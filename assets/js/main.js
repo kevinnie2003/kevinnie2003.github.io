@@ -33,7 +33,7 @@ const EXPERIENCE = [
     role: 'Software Engineer Intern',
     team: 'TikTok User Experience (TUX)',
     period: 'Jun – Sep 2025',
-    location: 'San Jose, CA',
+    location: 'Shanghai, China',
     bullets: [
       'Built an AI-powered on-call assistant (Python, React, SQLite) with LLM Agent integration, improving incident classification accuracy by <strong>80%</strong> — adopted by <strong>1,000+ engineers</strong>.',
       'Designed real-time message handling architecture with WebSocket long connections and multi-threaded async LLM classification, reducing unnecessary manual on-call requests by <strong>20%</strong>.',
