@@ -88,6 +88,22 @@ const PROJECTS = [
     live: null,
     tags: ['Java', 'Android', 'Android Studio', 'Agile', 'Design Patterns'],
   },
+  {
+    name: 'Deep Learning Applications in MTG',
+    period: 'Jan – Mar 2024',
+    description: 'CNN and Vision Transformer (ViT) models for Magic: The Gathering card creature type classification across 15 classes, achieving up to 60% accuracy with ViT and Supervised Contrastive Learning (SupCon). Applied DCGAN to generate novel MTG card images, enhancing dataset diversity. Tackled class imbalance and variation through data preprocessing and augmentation.',
+    github: null,
+    live: null,
+    tags: ['Python', 'CNN', 'ViT', 'DCGAN', 'Deep Learning', 'Machine Learning'],
+  },
+  {
+    name: 'Line Following Robot',
+    period: 'Nov – Dec 2022',
+    description: 'Designed and built a line-following robot from scratch with a team of 4, covering sensors, actuators, controls, and programming. 3D-printed the chassis, created and soldered circuits, and iteratively tested functionality. Competed against classmates with our custom-designed robot.',
+    github: null,
+    live: null,
+    tags: ['Arduino', 'Arduino IDE', '3D Printing', 'CAD', 'Embedded Systems'],
+  },
 ];
 
 /* ── SKILLS DATA ─────────────────────────────────────────────── */
@@ -96,8 +112,8 @@ const SKILLS = {
   'Frontend':   ['React', 'HTML / CSS', 'UIKit', 'SwiftUI'],
   'Backend':    ['Spring Boot', 'FastAPI', 'PostgreSQL', 'MySQL', 'REST APIs'],
   'Mobile':     ['Android (Kotlin)', 'iOS (Swift)'],
-  'AI / ML':    ['LLM Orchestration', 'Multi-Agent', 'ReAct', 'RAG', 'MCP', 'Skills', 'TensorFlow', 'U-Net'],
-  'Tools':      ['Git', 'Android Studio', 'Xcode', 'Linux', 'JUnit', 'SQLite'],
+  'AI / ML':    ['LLM Orchestration', 'Multi-Agent', 'ReAct', 'RAG', 'MCP', 'TensorFlow', 'U-Net', 'CNN', 'ViT', 'DCGAN'],
+  'Tools':      ['Git', 'Android Studio', 'Xcode', 'Linux', 'JUnit', 'SQLite', 'Arduino', 'CAD'],
 };
 
 /* ── EDUCATION DATA ──────────────────────────────────────────── */
