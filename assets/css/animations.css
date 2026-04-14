@@ -1,0 +1,75 @@
+/* ============================================================
+   ANIMATIONS.CSS
+   Page-load entrance, scroll reveals, hover effects
+   ============================================================ */
+
+/* ── PAGE LOAD: SIDEBAR ──────────────────────────────────────── */
+.sidebar {
+  animation: sidebarIn 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes sidebarIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── PAGE LOAD: HERO SEQUENCE ────────────────────────────────── */
+.hero-greeting {
+  animation: heroUp 0.55s 0.15s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-name {
+  animation: heroUp 0.55s 0.28s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-tagline {
+  animation: heroUp 0.55s 0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-bio {
+  animation: heroUp 0.55s 0.56s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-actions {
+  animation: heroUp 0.55s 0.70s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity  0.58s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.58s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger helpers — apply these classes alongside .reveal */
+.reveal-d1 { transition-delay: 60ms;  }
+.reveal-d2 { transition-delay: 120ms; }
+.reveal-d3 { transition-delay: 180ms; }
+.reveal-d4 { transition-delay: 240ms; }
+.reveal-d5 { transition-delay: 300ms; }
+.reveal-d6 { transition-delay: 360ms; }
+
+/* ── REDUCED MOTION OVERRIDES ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .hero-greeting, .hero-name, .hero-tagline,
+  .hero-bio, .hero-actions,
+  .reveal, .section-about::before {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

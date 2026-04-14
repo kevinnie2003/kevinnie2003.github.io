@@ -1,0 +1,219 @@
+\documentclass[8pt, letterpaper]{article}
+
+\usepackage[
+    ignoreheadfoot,
+    top=0.75cm,
+    bottom=0.75cm,
+    left=0.75cm,
+    right=0.75cm,
+    footskip=0.75cm
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0,0,0}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={Mingxuan Nie's Resume},
+    pdfauthor={Mingxuan Nie},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{needspace}
+\usepackage{iftex}
+\usepackage{environ}
+
+% ==== contact macros ====
+\newcommand{\phone}[1]{\faPhone\ #1}
+\newcommand{\email}[1]{\faEnvelope\ \href{mailto:#1}{#1}}
+\newcommand{\github}[1]{\faGithub\ \href{https://#1}{#1}}
+\newcommand{\linkedin}[1]{\faLinkedin\ \href{https://#1}{#1}}
+\newcommand{\basicInfo}[1]{\par\noindent\small #1}
+\newcommand{\addr}[1]{\faMapMarker*~#1}
+
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage[scaled]{helvet}
+  \renewcommand\familydefault{\sfdefault}
+\fi
+
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.15cm}{0.1cm}
+\renewcommand\labelitemi{$\vcenter{\hbox{\normalsize$\bullet$}}$}
+
+% ---------------- Highlight + onecolentry ----------------
+\newenvironment{highlights}{
+  \begin{itemize}[topsep=0.10cm,parsep=0.10cm,partopsep=0pt,itemsep=0pt,leftmargin=10pt]
+}{
+  \end{itemize}
+}
+\newenvironment{onecolentry}{
+  \begin{adjustwidth}{0cm}{0cm}
+}{
+  \end{adjustwidth}
+}
+
+% ---------- twocolentry: body left, date right (one-line) -------------
+\NewEnviron{twocolentry}[1]{% #1 = date, \BODY = content
+  \onecolentry
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \BODY & {\small #1} \\
+  \end{tabularx}
+  \endonecolentry
+}
+
+% ---------- twocolentryLarge: for Experience & Projects -------------
+\NewEnviron{twocolentryLarge}[1]{% #1 = date, \BODY = content
+  \onecolentry
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    {\large \BODY} & {\normalsize #1} \\
+  \end{tabularx}
+  \endonecolentry
+}
+
+% ---------------- Header environment ----------------------------------
+\newenvironment{header}{
+  \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+  \par\kern\topsep
+}
+
+% ----------------------------------------------------------------------
+\begin{document}
+\normalsize
+
+\begin{header}
+  \fontsize{20pt}{20pt}\selectfont\textbf{Mingxuan (Kevin) Nie}
+
+  \vspace{2pt}
+  \basicInfo{
+    \addr{San Diego, CA 92092}\quad
+    \phone{858-568-0063}\quad
+    \email{kevinnie2003@gmail.com}\quad
+    \github{github.com/kevinnie2003}\quad
+    \linkedin{linkedin.com/in/mingxuan-nie}
+  }
+\end{header}
+
+
+\vspace{5pt}
+
+% ---------------------- EDUCATION -------------------------------------
+\section{Education}
+
+\begin{twocolentry}{Expected March 2027}
+\textbf{University of California San Diego}, Master of Science in Computer Science
+\end{twocolentry}
+
+\begin{twocolentry}{Sept 2021 – June 2025}
+\textbf{University of California San Diego}, Bachelor of Science in Computer Engineering
+\end{twocolentry}
+
+% ---------------- Coursework & Skills ---------------------------------
+\section{Coursework \& Technical Skills}
+
+\begin{onecolentry}
+\textbf{Coursework:} Operating Systems, Computer Networks, Database System, Data Structures, Advanced Algorithms, Machine Learning, Deep Learning, Software Engineering, Linear Algebra, Calculus, Discrete Mathematics
+\end{onecolentry}
+
+\begin{onecolentry}
+\textbf{Programming:} Java, Kotlin, Swift, Obj-C, C, C++, Python, SQL, HTML, CSS, Assembly, SystemVerilog, MATLAB
+\end{onecolentry}
+
+\begin{onecolentry}
+\textbf{Technologies:} Android, Android Studio, Xcode, Spring Boot, React JS, PostgreSQL, MySQL, Linux, Git, GitHub, JUnit, XML
+\end{onecolentry}
+
+% ---------------------- EXPERIENCE ------------------------------------
+\section{Experience}
+
+\begin{twocolentryLarge}{June 2025 – September 2025}
+\textbf{TikTok} – \textit{Software Engineer | TikTok User Experience (TUX) Team}
+\end{twocolentryLarge}
+\begin{onecolentry}
+\begin{highlights}
+  \item Independently built an \textbf{AI-powered on-call assistant} (\textbf{Python/React, SQLite}) for automated issue classification and workflow orchestration, integrating an \textbf{LLM Agent} for intelligent intent recognition and routing, \textbf{improving classification accuracy by 80\%} compared to the previous manual process, and \textbf{adopted by 1000+ engineers}
+  \item Designed the assistant’s \textbf{real-time message handling} architecture with \textbf{WebSocket-based long connections}, multi-threaded \textbf{LLM async classification}, and \textbf{document interception} to reduce unnecessary manual on-call requests by \textbf{20\%}; built fault-tolerant async queues, \textbf{LLM response caching}, and persistence layers to ensure stable message delivery under high concurrency
+  \item Built a \textbf{React web dashboard} to visualize live Oncall statistics (requests, ticket status, and platform distribution) and integrated a \textbf{SQLite data-tracking service} for persistence and analytics
+  \item Designed reusable \textbf{iOS UI components}, including an independently developed \textbf{Item Picker} with adaptive sheet/panel layouts, dynamic detent height caching, and single/multi-select API support; wrote comprehensive \textbf{unit tests} that increased overall test coverage by \textbf{5\%}
+  \item Participated in daily \textbf{oncall rotations}, resolving an average of \textbf{2 tickets per day} and achieving a \textbf{100\% resolution rate} within deadlines, improving developer efficiency and platform stability
+\end{highlights}
+\end{onecolentry}
+
+
+
+\vspace{0.3cm}
+
+\begin{twocolentryLarge}{June 2024 – September 2024}
+\textbf{Alibaba Group} – \textit{Software Engineer}
+\end{twocolentryLarge}
+\begin{onecolentry}
+\begin{highlights}
+  \item Developed an \textbf{Android Network Diagnostic} feature for Lazada (Southeast Asia’s leading eCommerce platform with over 160 million users), addressing the critical business need of ensuring reliable performance across regions with inconsistent and unreliable network conditions
+  \item Designed and implemented an \textbf{Android UI} to showcase the diagnostic interface and developed the \textbf{SDK} using \textbf{Kotlin and Java}
+  \item Tackled the major challenge of creating a weak-network detection strategy, independently devising the solution after extensive research and team discussions, as no external solutions existed in the field of app network diagnostics
+  \item \textbf{Reduced user-reported network issues by 30\%} through real-time detection and solutions for weak signal strength, connectivity loss, and proxy settings, resulting in a smoother user experience, particularly in regions with poor network infrastructure
+  \item \textbf{Fixed 100\% reported bugs and resolved 100\% of tickets} before deadlines, ensuring timely delivery and a high level of app stability
+\end{highlights}
+\end{onecolentry}
+
+% ------------------------ PROJECTS ------------------------------------
+\section{Projects}
+\begin{twocolentryLarge}{November 2025 -- Present}
+\textbf{Vicino AI Agent Platform} -- \textit{Multi-Agent Image Generation \& Storyboard System}
+\end{twocolentryLarge}
+\begin{onecolentry}
+\begin{highlights}
+  \item Built a \textbf{React + FastAPI multi-agent system} for consistent \textbf{4-view image generation} (front, left, right, rear), orchestrating \textbf{8+ specialized agents} for query understanding, prompt optimization, rendering, evaluation, search, pose editing, attribute editing, and detail refinement using \textbf{ReAct-style reasoning loops}
+  \item Implemented \textbf{MCP/tool-calling workflows} inside the multi-agent pipeline, including online search and external-tool coordination, enabling agents to retrieve context, reason over intermediate results, and adapt generation plans dynamically
+  \item Designed a \textbf{self-correcting generation loop} with up to \textbf{4 retry iterations}, dynamic quality thresholds, cross-view consistency evaluation, memory/version tracking, and fallback heuristics to improve stability and alignment of multi-view outputs
+  \item Developed the \textbf{Storyboard platform} end-to-end, including board generation, \textbf{prompt-to-workflow planning}, and a \textbf{video editor agent}; shipped backend APIs supporting \textbf{6 workflow templates}, connected runnable node graphs, conversational workflow updates, and \textbf{10+ structured video editing operations}
+\end{highlights}
+\end{onecolentry}
+\vspace{0.3cm}
+\begin{twocolentryLarge}{January 2026 -- March 2026}
+\textbf{Adaptive Moderation Agent} -- \textit{LLM Content Governance System}
+\end{twocolentryLarge}
+\begin{onecolentry}
+\begin{highlights}
+  \item Built a 2-stage \textbf{Python LLM moderation pipeline} with \textbf{8+ structured risk signals}, including toxicity and uncertainty
+  \item Implemented a \textbf{ReAct-based action chooser} to select moderation actions (\textbf{do nothing, downrank, add friction, throttle}), with tool-using reasoning, retry handling, and deterministic fallback logic
+  \item Evaluated the system on the \textbf{Jigsaw toxic comment dataset} and showed more calibrated action selection, including escalating severe harmful cases and downranking moderate-conflict cases
+\end{highlights}
+\end{onecolentry}
+
+
+
+
+
+% -------------------- HONORS & AWARDS ---------------------------------
+% \section{Honors \& Awards}
+
+% \begin{onecolentry}
+% \begin{highlights}
+%   \item UCSD Provost Honor (2021–2025)
+%   \item 1st Prize / Champion, 2019 VEX Robotic Tianjin International Challenge
+% \end{highlights}
+% \end{onecolentry}
+
+\end{document}
