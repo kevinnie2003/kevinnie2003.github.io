@@ -330,7 +330,8 @@ code, kbd, samp, .mono {
 
   .content {
     margin-left: 0;
-    padding: 20px 28px 40px;
+    /* pt accounts for the hamburger button (18px top + 40px height + 8px gap) */
+    padding: 66px 28px 40px;
     max-width: 100%;
   }
 
@@ -341,11 +342,18 @@ code, kbd, samp, .mono {
 
 @media (max-width: 560px) {
   .content {
-    padding: 16px 20px 40px;
+    padding: 66px 20px 40px;
   }
 
   :root {
-    --section-gap: 80px;
+    --section-gap: 72px;
+  }
+}
+
+/* Use small/dynamic viewport height on mobile so content fits beneath browser chrome */
+@supports (min-height: 100svh) {
+  .section-about {
+    min-height: 100svh;
   }
 }
 
