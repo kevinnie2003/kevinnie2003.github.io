@@ -66,7 +66,11 @@ const PROJECTS = [
   {
     name: 'Adaptive Moderation Agent',
     period: 'Jan – Mar 2026',
-    description: '2-stage LLM content moderation pipeline with 8+ structured risk signals including toxicity and uncertainty scoring. Uses a ReAct-based action chooser for calibrated responses: do nothing, downrank, add friction, or throttle. Evaluated on the Jigsaw toxic comment dataset.',
+    bullets: [
+      'Built a 2-stage LLM moderation pipeline with <strong>8+ structured risk signals</strong> including toxicity and uncertainty scoring.',
+      'Implemented a <strong>ReAct-based action chooser</strong> for calibrated responses: do nothing, downrank, add friction, or throttle.',
+      'Evaluated on the Jigsaw toxic comment dataset, demonstrating more calibrated action selection across severity levels.',
+    ],
     github: 'https://github.com/Zihang-He/CSE291A_Group5_Adaptive_Moderation_Agent',
     live: null,
     tags: ['Python', 'LLM', 'ReAct', 'NLP', 'Content Moderation'],
@@ -74,7 +78,11 @@ const PROJECTS = [
   {
     name: 'Enhanced U-Net for Ship Segmentation',
     period: 'Jun – Dec 2024',
-    description: 'Advanced U-Net with depthwise separable and atrous convolutions for satellite ship segmentation, achieving Dice 0.6325 and precision 0.6678 — surpassing baselines on the Airbus Ship Detection dataset (50k+ images). Designed custom loss functions (BCE, Dice, Focal) and enhanced skip connections. Published as first author in Applied and Computational Engineering (CONF-SPML 2025).',
+    bullets: [
+      'Developed an advanced <strong>U-Net</strong> with depthwise separable and atrous convolutions, achieving <strong>Dice 0.6325</strong> and <strong>precision 0.6678</strong> on the Airbus Ship Detection dataset (50k+ images).',
+      'Designed custom loss functions (BCE, Dice, Focal) and enhanced skip connections in TensorFlow to improve small-ship segmentation.',
+      'Published results as <strong>first author</strong> in <em>Applied and Computational Engineering</em> (CONF-SPML 2025).',
+    ],
     github: 'https://github.com/kevinnie2003/ship-detection',
     live: null,
     tags: ['Python', 'TensorFlow', 'U-Net', 'Deep Learning', 'Computer Vision'],
@@ -83,7 +91,11 @@ const PROJECTS = [
   {
     name: 'Successorator',
     period: 'Jan – Mar 2024',
-    description: 'Android productivity app for goal-setting and task prioritization. Features adaptive UI with dynamic goal creation dialogs for varied task types, recurring goals, and context tagging. Designed modules using Strategy, Observer, Abstract Factory, and Builder patterns. Led unit testing in an Agile team.',
+    bullets: [
+      'Spearheaded development of an <strong>Android productivity app</strong> for goal-setting and task prioritization using Java and Android Studio.',
+      'Implemented adaptive UI with dynamic goal creation dialogs for varied task types, recurring goals, and context tagging.',
+      'Designed modules using <strong>Strategy, Observer, Abstract Factory, and Builder patterns</strong>; led rigorous unit testing in an Agile team.',
+    ],
     github: 'https://github.com/CSE-110-Winter-2024/TODO-List',
     live: null,
     tags: ['Java', 'Android', 'Android Studio', 'Agile', 'Design Patterns'],
@@ -91,7 +103,11 @@ const PROJECTS = [
   {
     name: 'Deep Learning Applications in MTG',
     period: 'Jan – Mar 2024',
-    description: 'CNN and Vision Transformer (ViT) models for Magic: The Gathering card creature type classification across 15 classes, achieving up to 60% accuracy with ViT and Supervised Contrastive Learning (SupCon). Applied DCGAN to generate novel MTG card images, enhancing dataset diversity. Tackled class imbalance and variation through data preprocessing and augmentation.',
+    bullets: [
+      'Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering card creature type classification across <strong>15 classes</strong>, achieving up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).',
+      'Utilized <strong>DCGAN</strong> to generate novel MTG card images, enhancing dataset diversity for model training.',
+      'Addressed class imbalance and variation through effective data preprocessing and augmentation.',
+    ],
     github: null,
     live: null,
     tags: ['Python', 'CNN', 'ViT', 'DCGAN', 'Deep Learning', 'Machine Learning'],
@@ -99,7 +115,11 @@ const PROJECTS = [
   {
     name: 'Line Following Robot',
     period: 'Nov – Dec 2022',
-    description: 'Designed and built a line-following robot from scratch with a team of 4, covering sensors, actuators, controls, and programming. 3D-printed the chassis, created and soldered circuits, and iteratively tested functionality. Competed against classmates with our custom-designed robot.',
+    bullets: [
+      'Designed and built a line-following robot from scratch with a team of 4, applying knowledge of sensors, actuators, programming, and controls.',
+      '<strong>3D-printed</strong> the chassis, created and soldered circuits, and iteratively tested the robot\'s functionality.',
+      'Competed against fellow students using our uniquely designed robot.',
+    ],
     github: null,
     live: null,
     tags: ['Arduino', 'Arduino IDE', '3D Printing', 'CAD', 'Embedded Systems'],
@@ -225,7 +245,9 @@ function renderProjects() {
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         ${p.publication}
       </p>` : ''}
-      <p class="project-desc">${p.description}</p>
+      <ul class="project-bullets" aria-label="Details">
+        ${p.bullets.map(b => `<li class="project-bullet"><span class="project-bullet-arrow" aria-hidden="true">▸</span><span>${b}</span></li>`).join('')}
+      </ul>
       <ul class="tag-list" aria-label="Technologies">
         ${p.tags.map(t => `<li class="tag">${t}</li>`).join('')}
       </ul>

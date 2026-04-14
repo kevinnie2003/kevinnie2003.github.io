@@ -559,11 +559,27 @@
   line-height: 1.4;
 }
 
-.project-desc {
-  font-size: 0.875rem;
-  color: var(--text-2);
-  line-height: 1.65;
+.project-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   flex: 1;
+}
+
+.project-bullet {
+  display: flex;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.62;
+}
+
+.project-bullet-arrow {
+  color: var(--accent);
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  margin-top: 3px;
+  user-select: none;
 }
 
 /* Last card spans full width when it would sit alone in a 2-col grid */
