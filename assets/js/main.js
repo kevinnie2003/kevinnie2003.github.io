@@ -17,7 +17,7 @@ const EXPERIENCE = [
     company: 'Vicino AI',
     role: 'Machine Learning Engineer Intern',
     team: 'MLE',
-    period: 'Nov 2025 – Present',
+    period: 'Nov 2025 – Apr 2026',
     location: 'Remote',
     bullets: [
       'Built a React + FastAPI multi-agent system for consistent 4-view image generation (front, left, right, rear), orchestrating <strong>8+ specialized agents</strong> for query understanding, prompt optimization, rendering, evaluation, search, pose editing, attribute editing, and detail refinement.',
