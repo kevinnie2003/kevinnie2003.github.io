@@ -12,6 +12,7 @@
 
 /* ── EXPERIENCE DATA ─────────────────────────────────────────── */
 const EXPERIENCE = [
+  /* Hidden for now — restore by uncommenting.
   {
     id: 'vicino',
     company: 'Vicino AI',
@@ -27,6 +28,7 @@ const EXPERIENCE = [
     ],
     tags: ['React', 'FastAPI', 'Python', 'Multi-Agent', 'LLM', 'MCP', 'ReAct'],
   },
+  */
   {
     id: 'tiktok',
     company: 'TikTok',
