@@ -57,22 +57,10 @@
 /* Paths belong here rather than in an inline style: url() inside a custom
    property resolves against the stylesheet that consumes var(), so a
    document-relative path would resolve against assets/css/ and 404. */
-/* miHoYo publishes only a wordmark, which is unreadable at this size and
-   duplicates the label next to it. Their favicon glyph is the "mi"
-   letterform, so set that as type in the same box instead. */
-.logo-mark--text {
-  background: none;
-  -webkit-mask: none;
-  mask: none;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 9.5px;
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  text-align: center;
-  color: currentColor;
-  opacity: 0.62;
-}
+/* miHoYo's own asset is a wordmark, unreadable at 16px and redundant beside
+   the label. This is the HoYoverse ring - the same company's global brand -
+   which is a true standalone glyph. */
+.logo-mihoyo  { --logo: url('../img/logos/mihoyo.png'); }
 .logo-vicino  { --logo: url('../img/logos/vicino.png'); }
 .logo-tiktok  { --logo: url('../img/logos/tiktok.svg'); }
 .logo-alibaba { --logo: url('../img/logos/alibabadotcom.svg'); }

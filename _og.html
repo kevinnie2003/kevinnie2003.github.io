@@ -98,18 +98,10 @@
   /* Declared here, not inline: url() in a custom property resolves against
      the stylesheet consuming var(), which for this inline <style> is the
      document - so document-relative paths are correct. */
+  .m-mihoyo  { --logo: url('assets/img/logos/mihoyo.png'); }
   .m-vicino  { --logo: url('assets/img/logos/vicino.png'); }
   .m-tiktok  { --logo: url('assets/img/logos/tiktok.svg'); }
   .m-alibaba { --logo: url('assets/img/logos/alibabadotcom.svg'); }
-
-  .mark-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    font-size: 18px;
-    color: #7d8ea4;
-    opacity: 0.72;
-    letter-spacing: 0.02em;
-  }
 
   .school {
     font-family: 'JetBrains Mono', monospace;
@@ -133,7 +125,7 @@
 
     <div class="foot">
       <div class="marks">
-        <span class="mark-text">MH</span>
+        <span class="mark m-mihoyo"></span>
         <span class="mark m-vicino"></span>
         <span class="mark m-tiktok"></span>
         <span class="mark m-alibaba"></span>

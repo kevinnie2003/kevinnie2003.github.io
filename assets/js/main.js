@@ -177,9 +177,6 @@ const EDUCATION = [
 
 /* Brand mark, masked and filled with currentColor by .logo-mark. */
 function logoMark(id) {
-  if (id === 'mihoyo') {
-    return '<span class="logo-mark logo-mark--text" aria-hidden="true">MH</span>';
-  }
   return `<span class="logo-mark logo-${id}" aria-hidden="true"></span>`;
 }
 
