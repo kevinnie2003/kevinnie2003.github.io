@@ -204,21 +204,24 @@
   display: flex;
   align-items: center;
   padding-top: 60px;
-  overflow: hidden;
 }
 
-/* Ambient gradient behind hero content */
+/* Ambient gradient behind hero content.
+   Deliberately unclipped and bled past the section box on every side: the
+   gradient reaches full transparency well inside its own edges, so nothing
+   shows a boundary. The left bleed runs under the opaque sidebar, which is
+   what makes the visible edge of the glow sit flush with the sidebar border. */
 .section-about::before {
   content: '';
   position: absolute;
-  top: -5%;
-  left: -15%;
-  width: 75%;
-  height: 80%;
-  background: radial-gradient(ellipse at 30% 40%,
-    rgba(var(--accent-rgb), 0.05) 0%,
-    rgba(var(--secondary-rgb), 0.03) 40%,
-    transparent 70%
+  top: -12%;
+  left: -30%;
+  width: 105%;
+  height: 118%;
+  background: radial-gradient(ellipse 58% 52% at 34% 44%,
+    rgba(var(--accent-rgb), 0.055) 0%,
+    rgba(var(--secondary-rgb), 0.032) 42%,
+    transparent 72%
   );
   pointer-events: none;
   animation: glowPulse 8s ease-in-out infinite;
@@ -227,6 +230,76 @@
 @keyframes glowPulse {
   0%, 100% { transform: scale(1);   opacity: 0.6; }
   50%       { transform: scale(1.1); opacity: 1;   }
+}
+
+/* Hero splits into bio + career ledger once there is room for both */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-main { min-width: 0; }
+
+/* ── HERO CAREER LEDGER ──────────────────────────────────────── */
+.hero-ledger { display: none; }
+
+@media (min-width: 1100px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(228px, 292px);
+    gap: 72px;
+  }
+
+  .hero-ledger {
+    display: block;
+    border-left: 1px solid var(--border);
+    padding-left: 28px;
+  }
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s var(--ease);
+}
+
+.ledger-row:last-child { border-bottom: none; }
+.ledger-row:hover { border-bottom-color: var(--accent-border); }
+.ledger-row:hover .ledger-company { color: var(--accent); }
+
+.ledger-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+.ledger-company {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-1);
+  transition: color 0.2s var(--ease);
+}
+
+.ledger-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.ledger-role {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-top: 2px;
 }
 
 .hero-greeting {
@@ -336,9 +409,10 @@
 
 /* ── EXPERIENCE ──────────────────────────────────────────────── */
 .exp-container {
-  display: flex;
-  gap: 36px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(128px, 168px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
 }
 
 /* Tab list — vertical on desktop */
@@ -379,15 +453,31 @@
 }
 
 /* Tab panels */
-.exp-panels { flex: 1; min-width: 0; }
+.exp-panels { min-width: 0; }
 
 .exp-panel {
   display: none;
 }
 
+/* Bullets on the left at a readable measure, facts + tags on a right rail */
 .exp-panel.active {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
   animation: panelIn 0.22s var(--ease) both;
+}
+
+@media (min-width: 1080px) {
+  .exp-panel.active {
+    grid-template-columns: minmax(0, 1fr) minmax(168px, 208px);
+    gap: 44px;
+  }
+}
+
+.exp-body {
+  min-width: 0;
+  max-width: var(--measure);
 }
 
 @keyframes panelIn {
@@ -400,30 +490,52 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-1);
-  margin-bottom: 6px;
+  margin-bottom: 20px;
   line-height: 1.3;
 }
 
 .exp-company { color: var(--accent); }
 
-.exp-meta {
+.exp-side {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-3);
-  letter-spacing: 0.03em;
-  margin-bottom: 22px;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
 }
 
-.exp-meta-dot { color: var(--text-3); opacity: 0.4; }
+.exp-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.exp-fact dt {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+.exp-fact dd {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-2);
+  line-height: 1.45;
+  margin-top: 1px;
+}
+
+/* Below the two-column breakpoint the rail sits under the bullets */
+@media (max-width: 1079px) {
+  .exp-facts {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+  }
+}
 
 .exp-bullets {
   display: flex;
   flex-direction: column;
   gap: 11px;
-  margin-bottom: 22px;
 }
 
 .exp-bullet {
@@ -452,8 +564,8 @@
 /* ── PROJECT CARDS ───────────────────────────────────────────── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 18px;
 }
 
 .project-card {
@@ -582,18 +694,9 @@
   user-select: none;
 }
 
-/* Last card spans full width when it would sit alone in a 2-col grid */
-.project-card:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-}
-
 @media (max-width: 580px) {
   .projects-grid {
     grid-template-columns: 1fr;
-  }
-
-  .project-card:last-child:nth-child(odd) {
-    grid-column: auto;
   }
 }
 
@@ -625,13 +728,20 @@
 .skills-groups {
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
 .skill-group {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+
+.skill-group:first-child {
+  border-top: none;
+  padding-top: 0;
 }
 
 .skill-category {
@@ -640,9 +750,7 @@
   color: var(--text-3);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  min-width: 90px;
   padding-top: 5px;
-  flex-shrink: 0;
 }
 
 .skill-pills {
@@ -673,17 +781,17 @@
 
 @media (max-width: 580px) {
   .skill-group {
-    flex-direction: column;
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
-  .skill-category { min-width: auto; padding-top: 0; }
+  .skill-category { padding-top: 0; }
 }
 
 /* ── EDUCATION ───────────────────────────────────────────────── */
 .edu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 16px;
 }
 
 .edu-item {
@@ -750,7 +858,7 @@
 
 .contact-inner {
   margin: 0 auto;
-  max-width: 480px;
+  max-width: 580px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -803,10 +911,12 @@
 
 .accent-text { color: var(--accent); }
 
-/* ── EXPERIENCE — MOBILE TABS ────────────────────────────────── */
-@media (max-width: 560px) {
+/* ── EXPERIENCE — STACKED TABS ───────────────────────────────── */
+/* Collapse the vertical company rail well before phone width: keeping it
+   until 560px squeezed the bullet column to ~295px on small tablets. */
+@media (max-width: 760px) {
   .exp-container {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
 

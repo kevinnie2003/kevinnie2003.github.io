@@ -40,7 +40,9 @@
 
   /* Layout */
   --sidebar-w:     262px;
-  --content-pad:   60px;
+  --content-pad:   clamp(28px, 4vw, 72px);
+  --shell-max:     1280px;   /* full width for grids, tabs, cards */
+  --measure:       62ch;     /* readable width for running prose */
   --section-gap:   120px;
 
   /* Typography */
@@ -181,7 +183,12 @@ code, kbd, samp, .mono {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border);
-  background: var(--bg);
+  /* Same dot-grid as body::before (which the opaque background would hide).
+     Both are anchored at viewport x=0, so the 28px phase matches and the
+     texture continues across the sidebar border without a tonal seam. */
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 0);
+  background-size: 28px 28px;
   overflow-y: auto;
   overflow-x: hidden;
   transition: transform 0.32s var(--ease),
@@ -209,8 +216,8 @@ code, kbd, samp, .mono {
 .content {
   margin-left: var(--sidebar-w);
   flex: 1;
+  min-width: 0;
   padding: 0 var(--content-pad);
-  max-width: 960px;
 }
 
 /* ── OVERLAYS ────────────────────────────────────────────────── */
@@ -290,7 +297,13 @@ code, kbd, samp, .mono {
 
 .section:last-of-type { border-bottom: none; }
 
-.section-inner { max-width: 660px; }
+/* The shell is wide; running prose gets its own narrower measure so
+   line length stays readable (see .hero-bio, .exp-body, .contact-inner). */
+.section-inner {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+}
 
 .section-title {
   font-size: 1.5rem;

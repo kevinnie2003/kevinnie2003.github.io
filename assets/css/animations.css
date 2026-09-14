@@ -65,9 +65,18 @@
 
 /* ── REDUCED MOTION OVERRIDES ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .sidebar,
+  /* The sidebar's transform is layout, not decoration: below 920px it is
+     translateX(-100%) to park the drawer off-screen. Blanket "transform:
+     none" would override that and leave the drawer stuck open on top of the
+     content, so only suppress its entrance animation. */
+  .sidebar {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
+
   .hero-greeting, .hero-name, .hero-tagline,
-  .hero-bio, .hero-actions,
+  .hero-bio, .hero-actions, .hero-ledger,
   .reveal, .section-about::before {
     animation: none !important;
     transition: none !important;

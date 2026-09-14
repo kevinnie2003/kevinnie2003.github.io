@@ -12,59 +12,82 @@
 
 /* ── EXPERIENCE DATA ─────────────────────────────────────────── */
 const EXPERIENCE = [
-  /* Hidden for now — restore by uncommenting.
+  {
+    id: 'mihoyo',
+    company: 'miHoYo',
+    role: 'Software Engineer',
+    team: 'Petit Planet · Tools Group',
+    period: 'Jun – Sep 2026',
+    location: 'Shanghai, China',
+    bullets: [
+      'Built the front and back end of an internal <strong>automated testing platform</strong> (React + TypeScript / Flask + Socket.IO + MySQL) serving <strong>dozens of QA engineers</strong> across test case management, task orchestration, AI test report analysis, and automated failure repair.',
+      'Led a <strong>conversational AI test-case generation system</strong>, fusing Unity Prefab/Lua, on-device UI, GM commands, protocol and config data into a hierarchical knowledge base of <strong>100K+ Prefab nodes</strong>.',
+      'Generated executable <strong>Airtest + Poco</strong> scripts through semantic grounding and action blueprints, with structured clarification, a GM channel, deterministic runtime node correction, static validation, and false-pass auditing.',
+      'Closed the loop from generation → on-device execution → failure repair → knowledge feedback, raising the effective on-device pass rate of the same regression suite from <strong>30% to 80%</strong>.',
+      'Developed <strong>GM commands</strong> that replace failure-prone UI clicks with one-click entry into <strong>30+ game scenarios</strong> (reusing OpenLuaUI across <strong>59 UI categories</strong>), and authored large-scale automated cases with assertions and launch-latency collection for regression coverage.',
+    ],
+    tags: ['React', 'TypeScript', 'Flask', 'Socket.IO', 'MySQL', 'Unity', 'Lua', 'Airtest', 'Poco', 'LLM Agents'],
+  },
   {
     id: 'vicino',
     company: 'Vicino AI',
-    role: 'Machine Learning Engineer Intern',
-    team: 'MLE',
+    role: 'Machine Learning Engineer',
+    team: 'Machine Learning Team',
     period: 'Nov 2025 – Apr 2026',
-    location: 'Remote',
+    location: 'US, Remote',
     bullets: [
-      'Built a React + FastAPI multi-agent system for consistent 4-view image generation (front, left, right, rear), orchestrating <strong>8+ specialized agents</strong> for query understanding, prompt optimization, rendering, evaluation, search, pose editing, attribute editing, and detail refinement.',
-      'Used <strong>ReAct-style reasoning loops</strong> and MCP/tool-calling workflows inside the multi-agent pipeline for online search, context retrieval, reasoning over intermediate results, and dynamic generation plan adaptation.',
-      'Designed a self-correcting generation loop with up to 4 retry iterations, dynamic quality thresholds, cross-view consistency evaluation, memory/version tracking, and fallback heuristics.',
-      'Developed the Storyboard platform end-to-end: board generation, prompt-to-workflow planning, video editor agent, 6 workflow templates, connected runnable node graphs, conversational workflow updates, and 10+ structured video editing operations.',
+      'Independently built a <strong>multi-agent four-view image generation system</strong> (front / back / left / right), orchestrating <strong>8+ specialized agents</strong> through <strong>ReAct</strong> loops and MCP/tool calling across requirement understanding, prompt optimization, image generation, image evaluation, and online retrieval.',
+      'Designed a <strong>self-correcting generation loop</strong> with dynamic quality thresholds, cross-view consistency evaluation, up to 4 retry rounds, and version rollback — <strong>90%+</strong> of requests converged to a qualified output within <strong>2 iterations</strong>.',
+      'Developed <strong>Storyboard</strong> generation, prompt-to-workflow, and a video editing agent end to end, supporting executable node graphs, conversational workflow updates, and <strong>10+</strong> structured video editing operations.',
     ],
-    tags: ['React', 'FastAPI', 'Python', 'Multi-Agent', 'LLM', 'MCP', 'ReAct'],
+    tags: ['Multi-Agent', 'ReAct', 'MCP', 'Tool Calling', 'LLM', 'Prompt Engineering'],
   },
-  */
   {
     id: 'tiktok',
     company: 'TikTok',
-    role: 'Software Engineer Intern',
+    role: 'Software Engineer',
     team: 'TikTok User Experience (TUX)',
     period: 'Jun – Sep 2025',
     location: 'Shanghai, China',
     bullets: [
-      'Built an AI-powered on-call assistant (Python, React, SQLite) with LLM Agent integration, improving incident classification accuracy by <strong>80%</strong> — adopted by <strong>1,000+ engineers</strong>.',
-      'Designed real-time message handling architecture with WebSocket long connections and multi-threaded async LLM classification, reducing unnecessary manual on-call requests by <strong>20%</strong>.',
-      'Built fault-tolerant async queues, LLM response caching, and a persistence layer engineered for high-concurrency incident management.',
-      'Created a React analytics dashboard for live on-call statistics: request volume, ticket status, and platform distribution.',
-      'Designed reusable iOS UI components in Swift — including an Item Picker with adaptive sheet/panel layouts, dynamic height caching, and single/multi-select API — increasing test coverage by <strong>5%</strong>.',
-      'Participated in daily on-call rotations, resolving an average of <strong>2 tickets/day</strong> with a <strong>100%</strong> on-time resolution rate.',
+      'Independently designed and built an <strong>AI on-call assistant</strong> (Python / React / SQLite) with an integrated <strong>LLM agent</strong> for issue intent recognition, automatic classification, and workflow routing — improving classification accuracy by <strong>80%</strong> over the manual process, adopted by <strong>1,000+ engineers</strong>.',
+      'Designed a high-concurrency real-time messaging architecture on <strong>WebSocket</strong> long connections with multithreaded asynchronous LLM classification, backed by fault-tolerant queues, response caching, and a persistence layer for reliable delivery.',
+      'Cut manual on-call requests by <strong>20%</strong> through a documentation-based interception mechanism.',
+      'Built a <strong>React dashboard</strong> visualizing live on-call data — request volume, ticket status, platform distribution — with data persistence and trend analysis.',
+      'Independently designed and shipped a reusable <strong>iOS Item Picker</strong> component supporting adaptive sheet/panel layouts, dynamic height caching, and single- and multi-select APIs.',
     ],
     tags: ['Python', 'React', 'Swift', 'LLM Agents', 'WebSocket', 'SQLite', 'iOS'],
   },
   {
     id: 'alibaba',
-    company: 'Alibaba International',
-    role: 'Software Engineer Intern',
-    team: 'Lazada',
+    company: 'Alibaba',
+    role: 'Software Engineer',
+    team: 'AIDC · Lazada',
     period: 'Jun – Sep 2024',
     location: 'Guangzhou, China',
     bullets: [
-      'Developed the Android Network Diagnostic feature for Lazada, a leading Southeast Asian eCommerce platform with <strong>160M+ users</strong> across regions with highly variable network conditions.',
-      'Built a Kotlin/Java SDK for real-time network diagnostics — detecting weak signal, connectivity loss, and proxy configuration issues.',
-      'Independently researched and designed a novel weak-network detection strategy with no prior external solutions, reducing user-reported network issues by <strong>30%</strong>.',
-      'Resolved <strong>100%</strong> of assigned bugs and support tickets before deadlines, maintaining a high level of app stability for a timely release.',
+      'Led design and development of an <strong>Android network diagnostics</strong> feature for the complex, volatile weak-network environments of Southeast Asia.',
+      'Independently designed a <strong>weak-network detection strategy</strong> where no mature application-layer diagnostic solution existed, targeting a <strong>~30%</strong> reduction in network-related issue reports.',
+      'Implemented detection and diagnostic <strong>SDKs</strong> and supporting UIs in Kotlin/Java for three scenarios — blocked app network access, signal strength, and network proxies — each pairing detection with an actionable fix so users in weak-network regions could self-diagnose.',
     ],
-    tags: ['Kotlin', 'Android', 'Java', 'SDK Development', 'Spring Boot'],
+    tags: ['Kotlin', 'Java', 'Android', 'SDK Development'],
   },
 ];
 
 /* ── PROJECTS DATA ───────────────────────────────────────────── */
 const PROJECTS = [
+  {
+    name: 'RogueForge — AI-Native Deck-Builder',
+    period: 'May – Jun 2026',
+    bullets: [
+      'Independently built an <strong>AI-native roguelike deck-building game</strong> where an LLM generates <strong>5 content types</strong> live during a run — cards, enemies, events, room rules, and characters — each routed through the same <strong>generate → validate → repair → retry</strong> pipeline to keep output playable and numerically balanced.',
+      'Kept the LLM to combining predefined effects and copy, never touching deterministic combat logic, and enforced three validation layers — structure, mechanic allowlist, and numerical budget — auto-clamping out-of-range values and bouncing invalid structures back with a specific reason.',
+      'Calibrated numerical budgets against real <em>Slay the Spire</em> card data as few-shot references, landing <strong>80%+</strong> of original cards in their correct tiers; a companion evaluation dashboard tracked accept / repair / reject ratios, with ~<strong>95%</strong> of <strong>2,658</strong> candidates directly usable.',
+    ],
+    github: 'https://github.com/kevinnie2003/rogueforge',
+    live: null,
+    tags: ['LLM', 'Procedural Generation', 'Validation Pipelines', 'Game Design', 'Evaluation'],
+  },
   {
     name: 'Adaptive Moderation Agent',
     period: 'Jan – Mar 2026',
@@ -119,7 +142,7 @@ const PROJECTS = [
     period: 'Nov – Dec 2022',
     bullets: [
       'Designed and built a line-following robot from scratch with a team of 4, applying knowledge of sensors, actuators, programming, and controls.',
-      '<strong>3D-printed</strong> the chassis, created and soldered circuits, and iteratively tested the robot\'s functionality.',
+      '<strong>3D-printed</strong> the chassis, created and soldered circuits, and iteratively tested the robot’s functionality.',
       'Competed against fellow students using our uniquely designed robot.',
     ],
     github: null,
@@ -130,12 +153,10 @@ const PROJECTS = [
 
 /* ── SKILLS DATA ─────────────────────────────────────────────── */
 const SKILLS = {
-  'Languages':  ['Python', 'Java', 'Kotlin', 'Swift', 'C', 'C++', 'TypeScript', 'SQL', 'Obj-C'],
-  'Frontend':   ['React', 'HTML / CSS', 'UIKit', 'SwiftUI'],
-  'Backend':    ['Spring Boot', 'FastAPI', 'PostgreSQL', 'MySQL', 'REST APIs'],
-  'Mobile':     ['Android (Kotlin)', 'iOS (Swift)'],
-  'AI / ML':    ['LLM Orchestration', 'Multi-Agent', 'ReAct', 'RAG', 'MCP', 'TensorFlow', 'U-Net', 'CNN', 'ViT', 'DCGAN'],
-  'Tools':      ['Git', 'Android Studio', 'Xcode', 'Linux', 'JUnit', 'SQLite', 'Arduino', 'CAD'],
+  'Languages':      ['Java', 'Python', 'C', 'C++', 'Kotlin', 'Swift', 'Objective-C', 'TypeScript', 'SQL', 'HTML', 'Assembly', 'SystemVerilog'],
+  'AI / Agents':    ['Multi-Agent', 'MCP', 'Skills', 'Tool Calling', 'ReAct', 'Prompt Engineering', 'RAG', 'LangGraph', 'LangChain'],
+  'Development':    ['React', 'Spring Boot', 'Flask', 'Socket.IO', 'MySQL', 'SQLite', 'Android Studio', 'Xcode', 'Blender', 'Linux'],
+  'Testing / Tools': ['Git', 'P4', 'JUnit', 'AirTest', 'Poco'],
 };
 
 /* ── EDUCATION DATA ──────────────────────────────────────────── */
@@ -180,26 +201,28 @@ function renderExperience() {
       id="exp-panel-${exp.id}"
       aria-labelledby="exp-tab-${exp.id}"
     >
-      <p class="exp-role-line">
-        ${exp.role}&nbsp;<span class="exp-company">@ ${exp.company}</span>
-      </p>
-      <div class="exp-meta">
-        <span>${exp.period}</span>
-        <span class="exp-meta-dot" aria-hidden="true">·</span>
-        <span>${exp.team}</span>
-        <span class="exp-meta-dot" aria-hidden="true">·</span>
-        <span>${exp.location}</span>
+      <div class="exp-body">
+        <p class="exp-role-line">
+          ${exp.role}&nbsp;<span class="exp-company">@ ${exp.company}</span>
+        </p>
+        <ul class="exp-bullets" aria-label="Responsibilities">
+          ${exp.bullets.map(b =>
+            `<li class="exp-bullet">
+              <span class="exp-bullet-arrow" aria-hidden="true">▸</span>
+              <span>${b}</span>
+            </li>`
+          ).join('')}
+        </ul>
       </div>
-      <ul class="exp-bullets" aria-label="Responsibilities">
-        ${exp.bullets.map(b =>
-          `<li class="exp-bullet">
-            <span class="exp-bullet-arrow" aria-hidden="true">▸</span>
-            <span>${b}</span>
-          </li>`
-        ).join('')}
-      </ul>
-      <div class="exp-tags" aria-label="Technologies used">
-        ${exp.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      <div class="exp-side">
+        <dl class="exp-facts">
+          <div class="exp-fact"><dt>Period</dt><dd>${exp.period}</dd></div>
+          <div class="exp-fact"><dt>Team</dt><dd>${exp.team}</dd></div>
+          <div class="exp-fact"><dt>Location</dt><dd>${exp.location}</dd></div>
+        </dl>
+        <div class="exp-tags" aria-label="Technologies used">
+          ${exp.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
       </div>
     </div>`
   ).join('');
@@ -208,16 +231,52 @@ function renderExperience() {
   tabsEl.addEventListener('click', (e) => {
     const tab = e.target.closest('.exp-tab');
     if (!tab) return;
-    const idx = Number(tab.dataset.index);
+    activateExperience(Number(tab.dataset.index));
+  });
+}
 
-    tabsEl.querySelectorAll('.exp-tab').forEach((t, i) => {
-      t.classList.toggle('active', i === idx);
-      t.setAttribute('aria-selected', String(i === idx));
-    });
+/* Switch the visible company. Driven by the tabs and by the hero ledger. */
+function activateExperience(idx) {
+  const tabsEl   = document.getElementById('exp-tabs');
+  const panelsEl = document.getElementById('exp-panels');
+  if (!tabsEl || !panelsEl) return;
 
-    panelsEl.querySelectorAll('.exp-panel').forEach((p, i) => {
-      p.classList.toggle('active', i === idx);
-    });
+  tabsEl.querySelectorAll('.exp-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+    t.setAttribute('aria-selected', String(i === idx));
+  });
+
+  panelsEl.querySelectorAll('.exp-panel').forEach((p, i) => {
+    p.classList.toggle('active', i === idx);
+  });
+}
+
+/* ── RENDER: HERO CAREER LEDGER ──────────────────────────────── */
+/* Compact index of roles beside the hero bio on wide screens.
+   Built from EXPERIENCE so it cannot drift out of sync. */
+function renderLedger() {
+  const el = document.getElementById('heroLedger');
+  if (!el) return;
+
+  const years = (period) => {
+    const found = period.match(/\d{4}/g);
+    if (!found) return '';
+    const first = found[0];
+    const last  = found[found.length - 1];
+    return first === last ? first : `${first}–${last.slice(2)}`;
+  };
+
+  el.innerHTML = EXPERIENCE.map((exp, i) =>
+    `<a class="ledger-row" href="#experience" data-index="${i}">
+      <span class="ledger-company">${exp.company}</span>
+      <span class="ledger-year">${years(exp.period)}</span>
+      <span class="ledger-role">${exp.role}</span>
+    </a>`
+  ).join('');
+
+  el.addEventListener('click', (e) => {
+    const row = e.target.closest('.ledger-row');
+    if (row) activateExperience(Number(row.dataset.index));
   });
 }
 
@@ -383,6 +442,7 @@ function initMobileNav() {
 document.addEventListener('DOMContentLoaded', () => {
   // Render dynamic content
   renderExperience();
+  renderLedger();
   renderProjects();
   renderSkills();
   renderEducation();
