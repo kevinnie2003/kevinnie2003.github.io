@@ -64,6 +64,7 @@
 .logo-vicino  { --logo: url('../img/logos/vicino.png'); }
 .logo-tiktok  { --logo: url('../img/logos/tiktok.svg'); }
 .logo-alibaba { --logo: url('../img/logos/alibabadotcom.svg'); }
+.logo-ucsd    { --logo: url('../img/logos/ucsd.png'); }
 
 .exp-tab.active .logo-mark,
 .ledger-row:hover .logo-mark { opacity: 1; }
@@ -593,13 +594,14 @@
 
 /* ── PROJECT CARDS ───────────────────────────────────────────── */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  gap: 18px;
-  align-items: start;
+  columns: 3 290px;
+  column-gap: 18px;
 }
 
 .project-card {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 18px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -726,7 +728,7 @@
 
 @media (max-width: 580px) {
   .projects-grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 }
 
@@ -867,10 +869,21 @@
 }
 
 .edu-school {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.875rem;
   color: var(--text-2);
   margin-bottom: 5px;
 }
+
+.edu-school .logo-mark {
+  width: 15px;
+  height: 15px;
+  opacity: 0.75;
+}
+
+.edu-item:hover .logo-mark { opacity: 1; }
 
 .edu-period {
   font-family: var(--font-mono);

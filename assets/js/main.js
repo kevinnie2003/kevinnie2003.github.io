@@ -347,7 +347,7 @@ function renderEducation() {
       <div class="edu-badge" aria-hidden="true">${edu.abbr}</div>
       <div class="edu-body">
         <p class="edu-degree">${edu.degree}</p>
-        <p class="edu-school">${edu.school}</p>
+        <p class="edu-school"><span class="logo-mark logo-ucsd" aria-hidden="true"></span>${edu.school}</p>
         <p class="edu-period">${edu.period}</p>
       </div>
     </div>`
