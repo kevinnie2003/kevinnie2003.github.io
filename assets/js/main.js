@@ -175,6 +175,14 @@ const EDUCATION = [
   },
 ];
 
+/* Brand mark, masked and filled with currentColor by .logo-mark. */
+function logoMark(id) {
+  if (id === 'mihoyo') {
+    return '<span class="logo-mark logo-mark--text" aria-hidden="true">MH</span>';
+  }
+  return `<span class="logo-mark logo-${id}" aria-hidden="true"></span>`;
+}
+
 /* ── RENDER: EXPERIENCE ──────────────────────────────────────── */
 function renderExperience() {
   const tabsEl   = document.getElementById('exp-tabs');
@@ -190,7 +198,7 @@ function renderExperience() {
       aria-controls="exp-panel-${exp.id}"
       id="exp-tab-${exp.id}"
       data-index="${i}"
-    >${exp.company}</button>`
+    >${logoMark(exp.id)}<span>${exp.company}</span></button>`
   ).join('');
 
   // Render panels
@@ -268,6 +276,7 @@ function renderLedger() {
 
   el.innerHTML = EXPERIENCE.map((exp, i) =>
     `<a class="ledger-row" href="#experience" data-index="${i}">
+      ${logoMark(exp.id)}
       <span class="ledger-company">${exp.company}</span>
       <span class="ledger-year">${years(exp.period)}</span>
       <span class="ledger-role">${exp.role}</span>

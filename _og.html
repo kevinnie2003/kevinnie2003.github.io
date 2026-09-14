@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #080c18;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+  }
+
+  /* Same dot grid and ambient glow as the site, so the card reads as part of it */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  body::after {
+    content: '';
+    position: absolute;
+    inset: -20% 30% -20% -25%;
+    background: radial-gradient(ellipse 58% 52% at 38% 46%,
+      rgba(94,240,176,0.10) 0%,
+      rgba(155,143,248,0.055) 42%,
+      transparent 72%);
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 76px 84px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .greeting {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 21px;
+    color: #5ef0b0;
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 88px;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: #e8edf5;
+  }
+
+  .name .paren { color: #3a4558; font-weight: 600; }
+
+  .tagline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 37px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #7d8ea4;
+    margin-top: 22px;
+  }
+
+  .spacer { flex: 1; }
+
+  .foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .marks {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .mark {
+    width: 31px;
+    height: 31px;
+    background-color: #7d8ea4;
+    -webkit-mask: var(--logo) center / contain no-repeat;
+    mask: var(--logo) center / contain no-repeat;
+  }
+
+  /* Declared here, not inline: url() in a custom property resolves against
+     the stylesheet consuming var(), which for this inline <style> is the
+     document - so document-relative paths are correct. */
+  .m-vicino  { --logo: url('assets/img/logos/vicino.png'); }
+  .m-tiktok  { --logo: url('assets/img/logos/tiktok.svg'); }
+  .m-alibaba { --logo: url('assets/img/logos/alibabadotcom.svg'); }
+
+  .mark-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 18px;
+    color: #7d8ea4;
+    opacity: 0.72;
+    letter-spacing: 0.02em;
+  }
+
+  .school {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 19px;
+    color: #3a4558;
+    letter-spacing: 0.03em;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .school b { color: #7d8ea4; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="greeting">kevinnie2003.github.io</p>
+    <h1 class="name">Mingxuan <span class="paren">(Kevin)</span> Nie</h1>
+    <p class="tagline">I build AI agent systems and the tools around them.</p>
+
+    <div class="spacer"></div>
+
+    <div class="foot">
+      <div class="marks">
+        <span class="mark-text">MH</span>
+        <span class="mark m-vicino"></span>
+        <span class="mark m-tiktok"></span>
+        <span class="mark m-alibaba"></span>
+      </div>
+      <p class="school">Software Engineer<br /><b>MS CS @ UC San Diego</b></p>
+    </div>
+  </div>
+</body>
+</html>

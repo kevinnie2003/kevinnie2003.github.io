@@ -39,16 +39,56 @@
   box-shadow: 0 0 0 5px var(--accent-mid), 0 0 32px var(--accent-mid);
 }
 
+/* ── BRAND MARKS ─────────────────────────────────────────────── */
+/* Each logo is used as a mask and filled with currentColor, so all four
+   render as one monochrome system and pick up hover/active colour from the
+   row they sit in. Works identically for the SVG and PNG sources. */
+.logo-mark {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  opacity: 0.85;
+  transition: opacity 0.2s var(--ease);
+}
+
+/* Paths belong here rather than in an inline style: url() inside a custom
+   property resolves against the stylesheet that consumes var(), so a
+   document-relative path would resolve against assets/css/ and 404. */
+/* miHoYo publishes only a wordmark, which is unreadable at this size and
+   duplicates the label next to it. Their favicon glyph is the "mi"
+   letterform, so set that as type in the same box instead. */
+.logo-mark--text {
+  background: none;
+  -webkit-mask: none;
+  mask: none;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 9.5px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: currentColor;
+  opacity: 0.62;
+}
+.logo-vicino  { --logo: url('../img/logos/vicino.png'); }
+.logo-tiktok  { --logo: url('../img/logos/tiktok.svg'); }
+.logo-alibaba { --logo: url('../img/logos/alibabadotcom.svg'); }
+
+.exp-tab.active .logo-mark,
+.ledger-row:hover .logo-mark { opacity: 1; }
+
 /* ── IDENTITY ────────────────────────────────────────────────── */
 .identity { display: flex; flex-direction: column; gap: 2px; }
 
 .identity-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--text-3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   margin-bottom: 4px;
 }
 
@@ -174,10 +214,9 @@
   border-radius: var(--radius-xs);
   border: 1px solid var(--border);
   color: var(--text-3);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   transition: var(--transition);
   align-self: flex-start;
 }
@@ -260,9 +299,9 @@
 
 .ledger-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: baseline;
-  column-gap: 12px;
+  column-gap: 10px;
   padding: 13px 0;
   border-bottom: 1px solid var(--border);
   transition: border-color 0.2s var(--ease);
@@ -295,7 +334,7 @@
 }
 
 .ledger-role {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
   font-size: 0.78rem;
   color: var(--text-2);
   line-height: 1.5;
@@ -426,6 +465,9 @@
 }
 
 .exp-tab {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   padding: 9px 16px 9px 14px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -564,8 +606,9 @@
 /* ── PROJECT CARDS ───────────────────────────────────────────── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 18px;
+  align-items: start;
 }
 
 .project-card {
@@ -675,7 +718,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1;
 }
 
 .project-bullet {
@@ -746,10 +788,9 @@
 
 .skill-category {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   color: var(--text-3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   padding-top: 5px;
 }
 
