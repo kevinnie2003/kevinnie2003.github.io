@@ -299,7 +299,7 @@ function renderProjects() {
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
-  grid.innerHTML = PROJECTS.map((p, i) =>
+  const card = (p, i) =>
     `<article class="project-card${p.featured ? ' project-card-featured' : ''} reveal reveal-d${(i % 3) + 1}">
       <div class="project-card-top">
         <svg class="project-folder" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -326,8 +326,13 @@ function renderProjects() {
       <ul class="tag-list" aria-label="Technologies">
         ${p.tags.map(t => `<li class="tag">${t}</li>`).join('')}
       </ul>
-    </article>`
-  ).join('');
+    </article>`;
+
+  const featured = PROJECTS.filter(p => p.featured);
+  const rest     = PROJECTS.filter(p => !p.featured);
+  grid.innerHTML =
+    featured.map(card).join('') +
+    `<div class="projects-masonry">${rest.map(card).join('')}</div>`;
 }
 
 /* ── RENDER: SKILLS ──────────────────────────────────────────── */
