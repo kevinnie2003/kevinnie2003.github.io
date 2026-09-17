@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Four views of one object — Kevin Nie</title>
+  <meta name="description" content="Generating front, back, left and right views of one object with a multi-agent loop: why the evaluator is a separate agent, when to regenerate one view versus all four, and how a dynamic threshold keeps the loop from spinning forever." />
+  <link rel="canonical" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
+  <meta property="og:title" content="Four views of one object" />
+  <meta property="og:description" content="A self-correcting multi-agent image generation loop, and the rules that keep it honest." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/forge.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <main class="article-page">
+    <div class="article-top">
+      <a class="back" href="../#writing">&larr; Kevin Nie</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <span class="theme-label">Light Mode</span>
+      </button>
+    </div>
+
+  <div class="article-head">
+    <p class="meta">April 2026 · 8 min read</p>
+    <h1 class="title">Four views of one object</h1>
+    <p class="lede">At Vicino AI I built a system that turns one reference image into front, back, left and right views of the same object, for downstream 3D reconstruction. The generation step was the least interesting part. The interesting parts were deciding who judges the output, what to redo when it fails, and when to stop.</p>
+  </div>
+
+  <div class="article-body">
+    <p class="aside">This describes work done as a machine learning engineer at a startup. Model names, prompts and product internals are left out. The numbers are from our own evaluation at the time.</p>
+
+    <p>The brief sounds simple. A user uploads a picture of a thing, a chair or a creature or a character, and asks for the four canonical views so a reconstruction pipeline can build a mesh from them. Any capable image model will produce four attractive images. The problem is that "attractive" is not the requirement. The requirement is that all four are <em>the same object</em>: same proportions, same colours, same decorations, the left view showing the mirror of the right view, the back view keeping the identity the front view established. Four independent generations almost never satisfy that. You get four cousins.</p>
+
+    <h2>Why the evaluator is a separate agent</h2>
+
+    <p>The system is a ReAct loop over eight specialised agents: requirement understanding, per-view prompt optimisation, generation, single-image evaluation, cross-view evaluation, targeted editing, external retrieval, and a controller that picks the next action. The split that mattered most was separating the generator from the judge.</p>
+
+    <p>A model asked to generate and then rate its own output is generous to itself. The generator's job is to try hard; the evaluator's job is to find problems, and it does that better when it has never seen the prompt that produced the images, only the original requirement and the four results side by side at full resolution. It scores each view on prompt adherence, visual quality, correct orientation, and whether the subject is complete and uncropped. Then it scores the set on geometry and identity consistency, colour and decoration consistency, scale alignment, and whether every user-requested modification actually shows up in every view. The output is structured: an overall score, per-view issues with severity, a list of views to regenerate, and edit suggestions.</p>
+
+    <p>One rule I added after watching the loop misbehave: if the evaluator's output cannot be parsed, that is a failure, not a pass. The first version defaulted to "fine" on a parse error and quietly waved bad sets through.</p>
+
+    <h2>Regenerate one view, not four</h2>
+
+    <p>The naive retry policy regenerates the whole set whenever the evaluator is unhappy. That is expensive and, worse, it throws away views that were already correct and replaces them with new ones that might not be. The loop instead repairs locally:</p>
+
+    <ul>
+      <li>One side view fails: regenerate only that view, with the front view and the good side as references.</li>
+      <li>Several views fail: regenerate only the flagged ones.</li>
+      <li>The front view fails: rebuild the whole set. The front is the reference every other view inherits identity from, so a bad front cannot be patched around; it would propagate.</li>
+    </ul>
+
+    <p>This is the same instinct as clamping a slightly over-budget card instead of rejecting it: fix the smallest thing that is wrong. The dependency structure makes it work. Front is generated first and becomes the anchor. Left and right are generated against it with an explicit instruction that they show opposite sides, and for characters and animals that limb positions mirror. Back inherits from front. When the evaluator flags the left view, the controller knows exactly which references to hand the generator for the redo.</p>
+
+    <div class="figure" role="img" aria-label="Loop: understand the requirement, generate the front view, generate the three other views against it, evaluate all four together, then either stop, regenerate flagged views, rebuild the set, or roll back to the best version.">
+      <svg class="dg" viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
+        <rect class="box" x="8" y="50" width="96" height="36"/><text x="56" y="73" text-anchor="middle">Understand</text>
+        <rect class="box" x="132" y="50" width="86" height="36"/><text x="175" y="68" text-anchor="middle">Front view</text><text x="175" y="81" text-anchor="middle" class="lbl">the anchor</text>
+        <rect class="box" x="246" y="50" width="110" height="36"/><text x="301" y="68" text-anchor="middle">L / R / back</text><text x="301" y="81" text-anchor="middle" class="lbl">against the front</text>
+        <rect class="box" x="384" y="50" width="100" height="36"/><text x="434" y="68" text-anchor="middle">Evaluate</text><text x="434" y="81" text-anchor="middle" class="lbl">all four at once</text>
+        <path class="ln" d="M104 68 H132"/><path class="ln" d="M218 68 H246"/><path class="ln" d="M356 68 H384"/>
+        <path class="ln ok" d="M484 60 H540"/><text class="t-ok" x="548" y="64" style="font-weight:600">done</text>
+        <text class="lbl" x="548" y="77">score over threshold, nothing flagged</text>
+        <path class="ln fix" d="M484 76 H520 V112 H301 V86" stroke-dasharray="3 3"/>
+        <text class="t-fix" x="410" y="126" text-anchor="middle" style="font-weight:600">side or back flagged: redo only that view</text>
+        <path class="ln no" d="M434 86 V150 H175 V86" stroke-dasharray="3 3"/>
+        <text class="t-no" x="304" y="163" text-anchor="middle" style="font-weight:600">front flagged: rebuild the set</text>
+        <text class="lbl" x="548" y="100">iteration, quality or budget cap hit:</text>
+        <text class="lbl" x="548" y="113">return the best version so far</text>
+      </svg>
+    </div>
+
+    <h2>When to stop</h2>
+
+    <p>A loop that can always try again will always try again. Three caps run at once, and the first one hit ends the run: a quality threshold, a maximum iteration count (four rounds), and the user's subscription budget, which is reserved up front and settled at the end so a runaway loop cannot overspend. Hitting a cap does not mean failure. Every candidate set is versioned with its score, so the controller returns the best version it has seen, and can roll back to it if a later round made things worse.</p>
+
+    <p>The quality threshold is dynamic, and this was the subtle part. A request with two constraints ("a red chair") and a request with nine ("a red velvet armchair with brass studs, a torn left cushion and a cat asleep on it") should not be held to the same bar for "fully satisfies every condition." The more constraints the requirement understanding agent extracts, the more the threshold relaxes, within limits. Without that, complex requests spun through all four rounds and returned a near-miss anyway; with it, they stopped early on the near-miss and saved the cost of the last two rounds.</p>
+
+    <div class="aside"><b>The result.</b> Over 90% of requests converged to an output the evaluator accepted within two iterations. Most of the rest hit the iteration cap on genuinely hard subjects, such as heavily asymmetric objects where "mirror the left side" has no clean answer, and shipped their best version.</div>
+
+    <h2>What the loop costs</h2>
+
+    <p>Splitting into agents is not free. There are more tokens, more latency, more state to hand between steps, and when something goes wrong it is harder to say which agent is to blame. The price was worth paying for two reasons. Local regeneration cut the cost of a retry to roughly a quarter of a full set. And a replayable trace of every thought, action, observation and version made failures debuggable: when a user reported a bad result, I could replay the run and see the exact evaluator call that let it through.</p>
+
+    <p>The pattern I took away, and later reused on a very different problem, is the shape of the loop rather than any of the agents in it. Generate, judge with something that did not generate, repair the smallest thing that is wrong, version everything, and stop for a reason you can name. The generator is the least important piece.</p>
+  </div>
+
+  <div class="article-foot">
+    <p>The same loop shape, with a deterministic validator instead of a model as the judge, is in <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>. With a phone as the judge, it is in <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>.</p>
+    <nav class="article-nav" aria-label="More writing">
+      <a href="vibes-with-extra-steps.html"><span>Next</span>Vibes with extra steps</a>
+      <a href="knowing-what-the-button-is-called.html"><span>Also</span>Knowing what the button is called</a>
+    </nav>
+  </div>
+  </main>
+  <script>
+    (function () {
+      var html = document.documentElement, btn = document.getElementById('themeToggle');
+      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+      apply(localStorage.getItem('kn-theme') || 'dark');
+      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
+    })();
+  </script>
+</body>
+</html>

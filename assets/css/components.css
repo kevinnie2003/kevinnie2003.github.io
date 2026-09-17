@@ -351,6 +351,7 @@
 .name-paren { color: var(--text-3); font-weight: 600; }
 
 .hero-tagline {
+  text-wrap: balance;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 3.5vw, 2.2rem);
   font-weight: 600;

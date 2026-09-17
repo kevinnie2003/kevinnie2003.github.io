@@ -115,8 +115,8 @@
           <ul role="list">
             <li><a href="#about"     class="nav-link" data-section="about"     ><span class="nav-num" aria-hidden="true">01</span><span class="nav-label">About</span></a></li>
             <li><a href="#experience" class="nav-link" data-section="experience"><span class="nav-num" aria-hidden="true">02</span><span class="nav-label">Experience</span></a></li>
-            <li><a href="#projects"  class="nav-link" data-section="projects"  ><span class="nav-num" aria-hidden="true">03</span><span class="nav-label">Projects</span></a></li>
-            <li><a href="#playground" class="nav-link" data-section="playground"><span class="nav-num" aria-hidden="true">04</span><span class="nav-label">Playground</span></a></li>
+            <li><a href="#playground" class="nav-link" data-section="playground"><span class="nav-num" aria-hidden="true">03</span><span class="nav-label">Playground</span></a></li>
+            <li><a href="#projects"  class="nav-link" data-section="projects"  ><span class="nav-num" aria-hidden="true">04</span><span class="nav-label">Projects</span></a></li>
             <li><a href="#writing"   class="nav-link" data-section="writing"   ><span class="nav-num" aria-hidden="true">05</span><span class="nav-label">Writing</span></a></li>
             <li><a href="#skills"    class="nav-link" data-section="skills"    ><span class="nav-num" aria-hidden="true">06</span><span class="nav-label">Skills</span></a></li>
             <li><a href="#education" class="nav-link" data-section="education" ><span class="nav-num" aria-hidden="true">07</span><span class="nav-label">Education</span></a></li>
@@ -176,9 +176,9 @@
           <div class="hero-main">
             <p class="hero-greeting">Hi, my name is</p>
             <h2 class="hero-name">Mingxuan <span class="name-paren">(Kevin)</span> Nie.</h2>
-            <h3 class="hero-tagline">I build AI agent systems and the tools around them.</h3>
+            <h3 class="hero-tagline">I make LLM output reliable enough to ship.</h3>
             <div class="hero-bio">
-              <p>I'm an MS CS student at <strong>UC San Diego</strong>, working at the intersection of LLM agent systems, multi-agent architectures, and production client engineering. I love shipping tools that make engineers' workflows dramatically better.</p>
+              <p>I'm an MS CS student at <strong>UC San Diego</strong>. Models write fluent, plausible, wrong things; the work I like is everything around the model: grounding it in real facts, validating what comes back, repairing what is close, and measuring the rest.</p>
               <p>Most recently I built conversational AI test automation and an internal testing platform at <a href="#experience" class="inline-link" data-exp-index="0">miHoYo</a>. Before that: a multi-agent image generation and storyboarding system at <a href="#experience" class="inline-link" data-exp-index="1">Vicino AI</a>, real-time AI on-call infrastructure at <a href="#experience" class="inline-link" data-exp-index="2">TikTok</a>, and Android network diagnostics for Lazada at <a href="#experience" class="inline-link" data-exp-index="3">Alibaba</a>.</p>
             </div>
             <div class="hero-actions">
@@ -205,16 +205,6 @@
         </div>
       </section>
 
-      <!-- ── PROJECTS ───────────────────────────────────────────── -->
-      <section id="projects" class="section" aria-label="Projects">
-        <div class="section-inner">
-          <h2 class="section-title">
-            Projects
-          </h2>
-          <div class="projects-grid" id="projects-grid" aria-label="Project list"></div>
-        </div>
-      </section>
-
       <!-- ── PLAYGROUND ─────────────────────────────────────────── -->
       <section id="playground" class="section" aria-label="Playground">
         <div class="section-inner">
@@ -223,7 +213,7 @@
           </h2>
           <div class="playground-grid">
             <div class="playground-copy">
-              <p>In <strong>RogueForge</strong>, an LLM forges every reward card, and this validator decides whether the result is fair before a player sees it. It is the real thing, ported line for line from the Python backend.</p>
+              <p><strong>RogueForge</strong> is a roguelike deck-builder where an LLM forges every card, enemy, event and hero during the run. The model never touches game logic; it picks from whitelisted effects, and this validator decides whether the result is fair before a player sees it. It is the real thing, ported line for line from the Python backend.</p>
               <p>A card's power is a weighted sum of its effects. The acceptable band for each (rarity, cost) bucket comes from the <strong>real <em>Slay the Spire</em> Ironclad cards</strong> in that bucket, so "balanced" is defined by data, not by taste. In band: accepted. Slightly out: clamped one point at a time and the rules text re-rendered. Far out, or structurally wrong: rejected, with the reason sent back to the model.</p>
               <p>Try 40 damage on a 1-cost card, poison on an Attack, or a Rare that gains 2 Block.</p>
               <div class="playground-stats">
@@ -242,6 +232,16 @@
         </div>
       </section>
 
+      <!-- ── PROJECTS ───────────────────────────────────────────── -->
+      <section id="projects" class="section" aria-label="Projects">
+        <div class="section-inner">
+          <h2 class="section-title">
+            Projects
+          </h2>
+          <div class="projects-grid" id="projects-grid" aria-label="Project list"></div>
+        </div>
+      </section>
+
       <!-- ── WRITING ────────────────────────────────────────────── -->
       <section id="writing" class="section" aria-label="Writing">
         <div class="section-inner">
@@ -249,6 +249,13 @@
             Writing
           </h2>
           <div class="writing-list">
+            <a class="writing-item" href="writing/four-views-one-object.html">
+              <span class="date">Apr 2026</span>
+              <div>
+                <h3>Four views of one object</h3>
+                <p>A multi-agent loop that turns one reference image into four consistent views. Why the judge is a separate agent, when to redo one view versus all four, and when to stop.</p>
+              </div>
+            </a>
             <a class="writing-item" href="writing/knowing-what-the-button-is-called.html">
               <span class="date">Sep 2026</span>
               <div>
@@ -293,7 +300,7 @@
           <p class="contact-overline">What's next?</p>
           <h2 class="contact-title">Get In Touch</h2>
           <p class="contact-body">
-            I'm currently open to full-time opportunities starting Spring 2027, and always excited to discuss interesting problems in AI agent systems, LLM infrastructure, or client engineering. My inbox is open.
+            I'm looking for a full-time software engineering role starting spring 2027, ideally somewhere that puts models in production and cares whether their output is right. If you are working on that, I would like to hear about it.
           </p>
           <a href="mailto:kevinnie2003@gmail.com" class="btn btn-primary btn-large">Say Hello →</a>
         </div>

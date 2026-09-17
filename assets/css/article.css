@@ -78,3 +78,13 @@
 .dg .ln { stroke: var(--border-hover); stroke-width: 1.2; fill: none; }
 .dg .ok { stroke: var(--v-ok); } .dg .fix { stroke: var(--v-fix); } .dg .no { stroke: var(--v-no); }
 .dg .t-ok { fill: var(--v-ok); } .dg .t-fix { fill: var(--v-fix); } .dg .t-no { fill: var(--v-no); }
+
+.article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.article-nav a {
+  display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg-surface); color: var(--text-1); text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+  transition: var(--transition);
+}
+.article-nav a span { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 0.68rem; color: var(--text-3); margin-bottom: 4px; }
+.article-nav a:hover { border-color: var(--border-hover); color: var(--accent); }
+@media (max-width: 520px) { .article-nav { grid-template-columns: 1fr; } }

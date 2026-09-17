@@ -57,6 +57,32 @@
 
     <p>Worse than any of those is the <strong>false pass</strong>: a script that runs green while checking nothing. In one early batch of 124 cases, 45 passed on device. I read them. Only 7 verified what the test case was actually about. The other 38 asserted things like "the HUD toolbar exists," which is true in every scene of the game, or compared two constants the script had defined itself. A false pass in a regression suite is worse than no test, because it dresses up "unverified" as "verified."</p>
 
+    <div class="figure" role="img" aria-label="Two panels. Left: a test report showing PASSED with three green checks. Right: what each check actually verified: the HUD toolbar exists, which is true in every scene; a constant equals itself; and a debug command was sent, with no read-back of its effect.">
+      <svg class="dg" viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+        <rect class="box" x="8" y="10" width="340" height="180"/>
+        <text x="24" y="34" style="font-weight:600">What the runner reported</text>
+        <text class="mono t-ok" x="24" y="62" style="font-size:12px;font-weight:600">PASSED  test_open_album_and_take_photo</text>
+        <text class="mono t-ok" x="24" y="86" style="font-size:11px">✓ arrived at album scene</text>
+        <text class="mono t-ok" x="24" y="112" style="font-size:11px">✓ photo count is correct</text>
+        <text class="mono t-ok" x="24" y="138" style="font-size:11px">✓ photo taken</text>
+        <text class="lbl" x="24" y="172">3 of 3 assertions green. Suite goes on.</text>
+
+        <path class="ln" d="M348 100 H412" marker-end="url(#arr)"/>
+        <defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--border-hover)"/></marker></defs>
+
+        <rect class="box" x="412" y="10" width="340" height="180"/>
+        <text x="428" y="34" style="font-weight:600">What each check actually verified</text>
+        <text class="mono t-no" x="428" y="86" style="font-size:11px">ToolBar.exists() == True</text>
+        <text class="lbl" x="428" y="99" style="font-size:10px">the HUD toolbar exists in every scene</text>
+        <text class="mono t-no" x="428" y="112" style="font-size:11px">assert EXPECTED == EXPECTED</text>
+        <text class="lbl" x="428" y="125" style="font-size:10px">both sides defined by the script itself</text>
+        <text class="mono t-no" x="428" y="138" style="font-size:11px">sendGM("take_photo"); assert True</text>
+        <text class="lbl" x="428" y="151" style="font-size:10px">command sent; effect never read back</text>
+        <text class="lbl" x="428" y="172">0 of 3 touched the album or the photo.</text>
+      </svg>
+    </div>
+    <p class="figcap">A false pass, reconstructed. Every line is green and none of them touched the thing the test case was about. The audit described below has a rule for each row on the right.</p>
+
     <p>So the design question became: how do you make the model operate under facts it did not invent, and how do you catch a green that lies?</p>
 
     <h2>Build the knowledge base from source, not from the phone</h2>
@@ -166,6 +192,10 @@
 
   <div class="article-foot">
     <p>The same idea, applied to a game where the model designs the content instead of testing it, is in <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>
+    <nav class="article-nav" aria-label="More writing">
+      <a href="four-views-one-object.html"><span>Next</span>Four views of one object</a>
+      <a href="vibes-with-extra-steps.html"><span>Also</span>Vibes with extra steps</a>
+    </nav>
   </div>
   </main>
   <script>
