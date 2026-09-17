@@ -79,6 +79,7 @@ const PROJECTS = [
   {
     name: 'RogueForge — AI-Native Deck-Builder',
     period: 'May – Jun 2026',
+    featured: true,
     bullets: [
       'Independently built an <strong>AI-native roguelike deck-building game</strong> where an LLM generates <strong>5 content types</strong> live during a run — cards, enemies, events, room rules, and characters — each routed through the same <strong>generate → validate → repair → retry</strong> pipeline to keep output playable and numerically balanced.',
       'Kept the LLM to combining predefined effects and copy, never touching deterministic combat logic, and enforced three validation layers — structure, mechanic allowlist, and numerical budget — auto-clamping out-of-range values and bouncing invalid structures back with a specific reason.',
@@ -153,8 +154,8 @@ const PROJECTS = [
 
 /* ── SKILLS DATA ─────────────────────────────────────────────── */
 const SKILLS = {
-  'Languages':      ['Java', 'Python', 'C', 'C++', 'Kotlin', 'Swift', 'Objective-C', 'TypeScript', 'SQL', 'HTML', 'Assembly', 'SystemVerilog'],
-  'AI / Agents':    ['Multi-Agent', 'MCP', 'Skills', 'Tool Calling', 'ReAct', 'Prompt Engineering', 'RAG', 'LangGraph', 'LangChain'],
+  'Languages':      ['Java', 'Python', 'C', 'C++', 'Kotlin', 'Swift', 'Objective-C', 'TypeScript', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Assembly', 'SystemVerilog'],
+  'AI / Agents':    ['Multi-Agent', 'MCP', 'Agent Skills', 'Tool Calling', 'ReAct', 'Prompt Engineering', 'RAG', 'LangGraph', 'LangChain'],
   'Development':    ['React', 'Spring Boot', 'Flask', 'Socket.IO', 'MySQL', 'SQLite', 'Android Studio', 'Xcode', 'Blender', 'Linux'],
   'Testing / Tools': ['Git', 'P4', 'JUnit', 'AirTest', 'Poco'],
 };
@@ -286,13 +287,20 @@ function renderLedger() {
   });
 }
 
+/* Company names in the hero bio jump to Experience and open that company. */
+function initBioLinks() {
+  document.querySelectorAll('.inline-link[data-exp-index]').forEach(link => {
+    link.addEventListener('click', () => activateExperience(Number(link.dataset.expIndex)));
+  });
+}
+
 /* ── RENDER: PROJECTS ────────────────────────────────────────── */
 function renderProjects() {
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
   grid.innerHTML = PROJECTS.map((p, i) =>
-    `<article class="project-card reveal reveal-d${(i % 3) + 1}">
+    `<article class="project-card${p.featured ? ' project-card-featured' : ''} reveal reveal-d${(i % 3) + 1}">
       <div class="project-card-top">
         <svg class="project-folder" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
@@ -449,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render dynamic content
   renderExperience();
   renderLedger();
+  initBioLinks();
   renderProjects();
   renderSkills();
   renderEducation();

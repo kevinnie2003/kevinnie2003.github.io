@@ -2,6 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
+  <!-- Apply the saved theme before first paint so light-mode users never see a dark flash -->
+  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mingxuan (Kevin) Nie — Software Engineer</title>
   <meta name="description" content="MS CS at UCSD. Building LLM agent systems and client experiences. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
@@ -22,13 +24,40 @@
   <meta name="twitter:description" content="MS CS at UCSD. Building LLM agent systems and client experiences. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
   <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
 
+  <link rel="canonical" href="https://kevinnie2003.github.io/" />
+  <meta name="theme-color" content="#080c18" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f0f3fa" media="(prefers-color-scheme: light)" />
+  <meta name="author" content="Mingxuan (Kevin) Nie" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mingxuan Nie",
+    "alternateName": "Kevin Nie",
+    "url": "https://kevinnie2003.github.io/",
+    "image": "https://kevinnie2003.github.io/assets/img/avatar-photo.jpg",
+    "email": "mailto:kevinnie2003@gmail.com",
+    "jobTitle": "Software Engineer",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of California, San Diego"
+    },
+    "knowsAbout": ["LLM agent systems", "Multi-agent architectures", "Software engineering", "Machine learning"],
+    "sameAs": [
+      "https://github.com/kevinnie2003",
+      "https://linkedin.com/in/mingxuan-nie"
+    ]
+  }
+  </script>
+
   <!-- SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
-
-  <!-- Fonts: Syne (display) + DM Sans (body) + JetBrains Mono (code) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Fonts: self-hosted variable woff2 (latin subset) -->
+  <link rel="preload" href="assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -147,7 +176,7 @@
             <h3 class="hero-tagline">I build AI agent systems and the tools around them.</h3>
             <div class="hero-bio">
               <p>I'm an MS CS student at <strong>UC San Diego</strong>, working at the intersection of LLM agent systems, multi-agent architectures, and production client engineering. I love shipping tools that make engineers' workflows dramatically better.</p>
-              <p>Most recently I built conversational AI test automation and an internal testing platform at <a href="#experience" class="inline-link">miHoYo</a>. Before that: a multi-agent image generation and storyboarding system at <a href="#experience" class="inline-link">Vicino AI</a>, real-time AI on-call infrastructure at <a href="#experience" class="inline-link">TikTok</a>, and Android network diagnostics for Lazada at <a href="#experience" class="inline-link">Alibaba</a>.</p>
+              <p>Most recently I built conversational AI test automation and an internal testing platform at <a href="#experience" class="inline-link" data-exp-index="0">miHoYo</a>. Before that: a multi-agent image generation and storyboarding system at <a href="#experience" class="inline-link" data-exp-index="1">Vicino AI</a>, real-time AI on-call infrastructure at <a href="#experience" class="inline-link" data-exp-index="2">TikTok</a>, and Android network diagnostics for Lazada at <a href="#experience" class="inline-link" data-exp-index="3">Alibaba</a>.</p>
             </div>
             <div class="hero-actions">
               <a href="#experience" class="btn btn-primary">View My Work</a>

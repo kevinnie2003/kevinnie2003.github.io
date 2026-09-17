@@ -15,13 +15,17 @@ Live at **[kevinnie2003.github.io](https://kevinnie2003.github.io)**
 │   │   ├── main.css         # Variables, reset, layout
 │   │   ├── components.css   # All component styles
 │   │   └── animations.css   # Scroll reveals, page-load sequence
+│   ├── fonts/               # Self-hosted Syne / DM Sans / JetBrains Mono (woff2)
 │   ├── js/
 │   │   ├── main.js          # Content data + render functions
 │   │   └── animations.js    # IntersectionObserver, cursor glow
 │   └── img/
 │       ├── avatar.png       # Cartoon avatar (active)
-│       └── avatar-photo.jpg # Real photo (swap src in index.html to use)
-└── Mingxuan_Nie_Resume.pdf
+│       ├── avatar-photo.jpg # Real photo (swap src in index.html to use)
+│       ├── og-cover.png     # Link preview image
+│       └── logos/           # Company / school marks
+└── tools/
+    └── og-cover.html        # Template used to render og-cover.png (1200×630)
 ```
 
 ## Adding content
@@ -51,11 +55,12 @@ const PROJECTS = [
   {
     name: 'Project Name',
     period: 'Jan – Mar 2026',
-    description: 'What it does and why it matters.',
+    bullets: ['What it does and why it matters.'],
     github: 'https://github.com/kevinnie2003/repo',
     live: null,              // or a URL
     tags: ['Python', 'LLM'],
     publication: null,       // or 'Journal Name, CONF 2025'
+    featured: false,         // true = full-width card at the top of the grid
   },
   // ...
 ];

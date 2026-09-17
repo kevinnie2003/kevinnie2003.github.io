@@ -593,15 +593,33 @@
 }
 
 /* ── PROJECT CARDS ───────────────────────────────────────────── */
+/* A real grid rather than CSS columns, so cards read left-to-right in
+   chronological order. A featured project spans the full row on top. */
 .projects-grid {
-  columns: 3 290px;
-  column-gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.project-card-featured {
+  grid-column: 1 / -1;
+}
+
+/* On wide screens the featured card lays its bullets out in two columns
+   so it does not become one tall block of text. */
+@media (min-width: 900px) {
+  .project-card-featured .project-bullets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+  }
+  .project-card-featured .project-name {
+    font-size: 1.15rem;
+  }
 }
 
 .project-card {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  margin-bottom: 18px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -728,7 +746,7 @@
 
 @media (max-width: 580px) {
   .projects-grid {
-    columns: 1;
+    grid-template-columns: 1fr;
   }
 }
 
