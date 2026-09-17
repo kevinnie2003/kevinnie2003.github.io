@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibes with extra steps — Kevin Nie</title>
+  <meta name="description" content="How I stopped an LLM from designing a 1-cost card that deals 40 damage: a power budget calibrated against real Slay the Spire cards, a repair policy, and the three bugs that hid behind silent fallbacks." />
+  <link rel="canonical" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html" />
+  <meta property="og:title" content="Vibes with extra steps" />
+  <meta property="og:description" content="Making 'is this AI-generated card balanced?' a question with a measurable answer." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/forge.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <main class="article-page">
+    <div class="article-top">
+      <a class="back" href="../#writing">&larr; Kevin Nie</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <span class="theme-label">Light Mode</span>
+      </button>
+    </div>
+
+  <div class="article-head">
+    <p class="meta">June 2026 · 9 min read</p>
+    <h1 class="title">Vibes with extra steps</h1>
+    <p class="lede">I built a deck-builder where an LLM designs every card. The first version was a game about a 1-cost card that dealt 40 damage. This is how "is it balanced?" became a question with a number for an answer, and the three bugs that hid behind that number.</p>
+  </div>
+
+  <div class="article-body">
+    <p>RogueForge is a roguelike deck-builder in the shape of <em>Slay the Spire</em>. After each fight, a model forges three brand-new reward cards: name, flavour, and mechanical effects. It also forges the enemies, the between-combat events, the room hazards, and, if you want, your whole character with a ten-card starter deck. No two runs share content.</p>
+
+    <p>Generation was the easy part. Ask a capable model for "a Common 1-cost Attack for an Ironclad deck" and you get something fluent every time. The problem is that fluent and fair are unrelated. The model will hand you Deal 40 damage for one energy with total confidence, and it will also hand you Gain 2 Block for a Rare, which is worse, because a weak Rare makes the boss reward feel like a punishment.</p>
+
+    <p>So the actual project is the pipeline that stands between the model and the player. This post is about the one layer of that pipeline I care most about: the numerical budget.</p>
+
+    <h2>Rule one: the model never writes game logic</h2>
+
+    <p>Before any of the balancing matters, there is a structural decision. A card is not a blob of prose that the engine tries to interpret. It is a typed object with an <code>effects</code> list, and every effect's <code>kind</code> comes from a whitelist of eight: deal damage, gain block, draw, gain energy, apply status, gain status, lose HP, heal. Statuses are a second whitelist of ten. The deterministic combat engine executes those effects directly. The description text is generated alongside, but it is not authoritative: if effects and description disagree, effects win, and the description gets re-rendered from a template.</p>
+
+    <p>This one decision is what makes everything downstream possible. Because the model only combines primitives, the validator can statically check every card before a player sees it. And because real <em>Slay the Spire</em> cards can be expressed in the same primitives, I can score them with the same function. Apples to apples.</p>
+
+    <h2>The budget, and where its numbers come from</h2>
+
+    <p>A card's power score is a weighted sum over its effects:</p>
+
+    <pre><code>score = 0.6 × damage × hits
+      + 0.5 × block
+      + 1.5 × cards drawn
+      + 2.0 × energy
+      + 2.0 × debuff stacks × status weight
+      + 1.5 × buff stacks × status weight
+      − 0.4 × HP lost
+      + 1.2 × HP healed
+      + small bonuses for Exhaust / Ethereal, penalties for Innate / Retain</code></pre>
+
+    <p>The first version of those coefficients was hand-picked by my coding agent, and it looked reasonable. I rejected it. Hand-picked coefficients are vibes with extra steps: I would be encoding my own taste and then congratulating the validator for agreeing with me. If the question is "would a <em>Slay the Spire</em> player accept this card", the answer has to come from <em>Slay the Spire</em>.</p>
+
+    <p>So I found a dataset of every card in the game, took the 75 Ironclad cards, and defined "balanced" empirically. For each (rarity, cost) bucket, the accepted band is the mean score of the real cards in that bucket, plus or minus two standard deviations. A generated Common 1-cost card is in band if it scores like a real Common 1-cost card. The coefficients themselves come from a small grid search that maximises how many real cards land inside their own band. That search has to reach 80% or the build fails.</p>
+
+    <div class="aside"><b>Where it landed.</b> Under the final coefficients, 65 of 75 real Ironclad cards sit inside their own ±1.5σ band, and 74 of 75 inside the ±2σ band the game actually uses. You can try the validator yourself <a href="../#playground">on the homepage</a>.</div>
+
+    <h2>Accept, repair, or reject</h2>
+
+    <p>Every candidate gets one of three verdicts. In band: accepted as written. Out of band but within 50% of the nearest edge: repaired. The validator clamps the largest-contributing effect down one point at a time (or lifts the finest-grained effect up, for under-powered Rares) until the score crosses back into band, then re-renders the rules text so the player reads the numbers they will actually get. Out of band by more than that: rejected, and the reason goes back into the prompt for a retry. Three rejections in a row and a hand-curated fallback card ships instead.</p>
+
+    <p>The repair step matters more than it sounds. Models are consistently a little generous. A Common 1-cost card that deals 12 and applies 1 Weak is just over the band; a human designer would say "make it 11" rather than "start over." The repair policy encodes that instinct and logs the exact diff, so the eval dashboard can show <code>deal_damage 12→11</code> next to every clamped card.</p>
+
+    <div class="figure" role="img" aria-label="Three example cards and their verdicts.">
+      <svg class="dg" viewBox="0 0 760 120" xmlns="http://www.w3.org/2000/svg">
+        <rect class="box" x="8" y="12" width="230" height="96"/>
+        <text x="20" y="34" style="font-weight:640">Measured Thrust</text><text class="lbl" x="228" y="34" text-anchor="end">Common · 1</text>
+        <text x="20" y="54">Deal 7 damage. Apply 1 Vulnerable.</text>
+        <text class="mono lbl" x="20" y="76">score 6.20 · band 0.00 – 8.31</text>
+        <text class="t-ok" x="20" y="98" style="font-weight:640">accepted</text>
+
+        <rect class="box" x="265" y="12" width="230" height="96"/>
+        <text x="277" y="34" style="font-weight:640">Gut Punch</text><text class="lbl" x="485" y="34" text-anchor="end">Common · 1</text>
+        <text x="277" y="54">Deal <tspan class="t-no" style="text-decoration:line-through">12</tspan> <tspan class="t-ok" style="font-weight:640">11</tspan> damage. Apply 1 Weak.</text>
+        <text class="mono lbl" x="277" y="76">score 8.90 → 8.30 · band 0.00 – 8.31</text>
+        <text class="t-fix" x="277" y="98" style="font-weight:640">repaired (clamped 1 step)</text>
+
+        <rect class="box" x="522" y="12" width="230" height="96"/>
+        <text x="534" y="34" style="font-weight:640">Overreach</text><text class="lbl" x="742" y="34" text-anchor="end">Common · 1</text>
+        <text x="534" y="54">Deal 40 damage.</text>
+        <text class="mono lbl" x="534" y="76">score 24.0 · band 0.00 – 8.31</text>
+        <text class="t-no" x="534" y="98" style="font-weight:640">rejected · 189% over, retry</text>
+      </svg>
+    </div>
+    <p class="figcap">Three candidates for the same slot. The middle one is what the model most often hands you: close, and a little generous.</p>
+
+    <h2>The three bugs that hid behind the number</h2>
+
+    <p>Having a measurement is how I found out the measurement was wrong. It happened three times.</p>
+
+    <h3>1. Every reward was secretly a fallback</h3>
+
+    <p>The first playable build looked fine. Fights worked, rewards appeared, I picked cards. Then I noticed all three rewards were called Steady Jab, which is the name of my curated fallback. Every single generated card was being rejected, silently, and the game was serving the same hand-written card three times.</p>
+
+    <p>The cause was the calibration. The grid search had driven the block coefficient to its floor and left the Common 1-cost band at [0, 2.6], narrow enough that a perfectly reasonable Deal 8, Apply 1 Weak scored 3.2 and bounced. The validator was doing exactly what the spec said. The spec was wrong. What stings is that a code-review pass had flagged this days earlier ("block coefficient collapsed, bands won't accommodate the LLM's natural output") and I had filed it under nitpicking. The fix was to widen the band from 1.5σ to 2σ and raise the repair threshold from 25% to 50%. After that, real cards landed: one accepted, two repaired, three different names.</p>
+
+    <h3>2. Heal 44</h3>
+
+    <p>Much later I added an "Ancient" rarity for wish cards: you describe the card you want, the model interprets it, and it bands above Rare. Playtesting produced a card that healed 44 HP. Not a model hallucination. The validator had <em>boosted</em> it there to reach the Ancient power floor, because heal was priced at 0.3 per point, below block, because the Ironclad corpus has almost no heal cards and the calibration had nothing to learn from. Healing restores persistent HP; block lasts one turn. Heal has to cost more than block no matter what the data says, so it now carries an enforced minimum coefficient that overrides the calibration file. The empirical approach is right, and it still needs a floor of designer judgement where the data is blind.</p>
+
+    <h3>3. The mini-games that never ran</h3>
+
+    <p>Events between fights include three playable gambles (a wheel, a shell game, dice) and the model can generate new ones. Weeks after shipping them, the eval log showed a 100% rejection rate for generated mini-games. The schema required a <code>choices</code> field that the prompt explicitly told the model to omit. Every generated gamble failed validation and one of the three curated ones quietly took its place, so from the player's seat the feature "worked." I only caught it because rejections are logged and counted.</p>
+
+    <div class="aside"><b>The common thread.</b> All three were silent fallbacks. Curated content is good for the player and bad for the developer, because it makes a broken generator look like a working one. My advice to the next person building anything like this: put the fallback rate on a dashboard before you build a second feature. The eval log was the most useful debugging tool in the project, more than the 255 automated tests. Tests catch broken. Playing and logging catch wrong.</div>
+
+    <h2>What the log says now</h2>
+
+    <table>
+      <thead><tr><th>Content type</th><th class="n">Candidates</th><th class="n">Accepted</th><th class="n">Repaired</th><th class="n">Rejected</th></tr></thead>
+      <tbody>
+        <tr><td>Cards</td><td class="n">2,165</td><td class="n">86%</td><td class="n">9%</td><td class="n">5%</td></tr>
+        <tr><td>Enemies</td><td class="n">231</td><td class="n">90%</td><td class="n">8%</td><td class="n">2%</td></tr>
+        <tr><td>Room modifiers</td><td class="n">130</td><td class="n">77%</td><td class="n">20%</td><td class="n">3%</td></tr>
+        <tr><td>Events</td><td class="n">125</td><td class="n">96%</td><td class="n">0%</td><td class="n">4%</td></tr>
+        <tr><td>Characters</td><td class="n">7</td><td class="n">0%</td><td class="n">100%</td><td class="n">0%</td></tr>
+        <tr><td><strong>All</strong></td><td class="n"><strong>2,658</strong></td><td class="n"><strong>86%</strong></td><td class="n"><strong>9%</strong></td><td class="n"><strong>5%</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="figcap">Snapshot of the eval log at submission. Characters show 100% repaired because every forged ten-card deck had at least one card clamped, which marks the whole character as repaired; that is the deck-level budget doing its job.</p>
+
+    <p>About 95% of what the model produced was served, either as written or after a clamp. Cards are the hardest budget to hit and where most repairs land. Those numbers mean something specific: they say that of the cards the model produced, this fraction fell within the same power distribution as canonical Ironclad cards of the same rarity and cost. That is a claim I can defend. "It feels balanced" is not.</p>
+
+    <h2>What is still wrong</h2>
+
+    <p>The scorer reads real cards through a heuristic on their damage, block and "magic number" fields, and it cannot read mechanics. Double Tap, Exhume and Limit Break all score zero. Since the Rare 1-cost bucket has four cards and three of them score zero, that band calibrated <em>below</em> Common, and boss rewards came out weak. I patched it in the validator rather than the scorer: the ceiling is now monotonic across rarities, and a rarity floor pushes Uncommon and Rare cards into the upper part of their band. It is a band-aid over the calibration. The principled fix is a scorer that reads mechanics, either richer heuristics or a small learned model, and that is what I would do next.</p>
+
+    <p>The bigger lesson is about where the design work actually lives. My agent built the pipeline fast and correctly within whatever principle I gave it. The principles were the job: that coefficients must come from data, that heal is not block, that a picked card is not a loved card, that a gamble must be able to lose. Deciding what the model may <em>not</em> choose turned out to be as much a design act as deciding what it may.</p>
+  </div>
+
+  <div class="article-foot">
+    <p>The validator described here runs unmodified in your browser <a href="../#playground">on the homepage</a>, Source is on <a href="https://github.com/kevinnie2003/rogueforge">GitHub</a>.</p>
+  </div>
+  </main>
+  <script>
+    (function () {
+      var html = document.documentElement, btn = document.getElementById('themeToggle');
+      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+      apply(localStorage.getItem('kn-theme') || 'dark');
+      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
+    })();
+  </script>
+</body>
+</html>

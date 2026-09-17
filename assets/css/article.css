@@ -1,0 +1,80 @@
+/* ============================================================
+   ARTICLE.CSS — standalone writing pages
+   Uses the same tokens as main.css; loaded after it.
+   ============================================================ */
+
+.article-page {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 40px var(--content-pad) 96px;
+}
+
+.article-top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  margin-bottom: 64px;
+}
+.article-top .back {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-2); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.article-top .back:hover { color: var(--accent); }
+.article-top .theme-toggle { width: auto; padding: 8px 12px; margin: 0; }
+
+.article-head .meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 18px; }
+.article-head h1 {
+  font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 800;
+  color: var(--text-1); letter-spacing: -0.03em; line-height: 1.06;
+}
+.article-head .lede { font-size: 1.12rem; line-height: 1.6; color: var(--text-2); margin-top: 22px; }
+
+.article-body { margin-top: 48px; font-size: 1rem; line-height: 1.8; color: var(--text-2); }
+.article-body > * + * { margin-top: 1.15em; }
+.article-body h2 {
+  font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; color: var(--text-1);
+  letter-spacing: -0.015em; margin-top: 2.4em; line-height: 1.2;
+}
+.article-body h3 {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-1); margin-top: 1.8em;
+}
+.article-body strong { color: var(--text-1); font-weight: 600; }
+.article-body em { font-style: italic; }
+.article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(var(--accent-rgb), 0.3); }
+.article-body a:hover { border-color: var(--accent); }
+.article-body code { font-family: var(--font-mono); font-size: 0.84em; background: var(--bg-elevated); padding: 0.1em 0.4em; border-radius: 4px; color: var(--text-1); }
+.article-body pre { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; overflow-x: auto; line-height: 1.55; }
+.article-body pre code { background: none; padding: 0; font-size: 0.8rem; color: var(--text-1); }
+.article-body ul, .article-body ol { padding-left: 1.3em; }
+.article-body li + li { margin-top: 0.45em; }
+.article-body li::marker { color: var(--accent); }
+
+.article-body table { border-collapse: collapse; width: 100%; font-size: 0.9rem; line-height: 1.5; }
+.article-body th, .article-body td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.article-body th { font-family: var(--font-mono); font-weight: 500; color: var(--text-3); font-size: 0.72rem; letter-spacing: 0.03em; }
+.article-body td.n, .article-body th.n { text-align: right; font-family: var(--font-mono); font-size: 0.82rem; white-space: nowrap; }
+.article-body td strong { color: var(--text-1); }
+
+.article-body .aside {
+  background: var(--bg-surface); border: 1px solid var(--border); border-left: 2px solid var(--accent);
+  border-radius: var(--radius-sm); padding: 14px 18px; font-size: 0.94rem;
+}
+.article-body .aside b { color: var(--text-1); font-weight: 600; }
+
+.article-body .figure { margin-top: 1.8em; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-surface); padding: 16px; overflow-x: auto; }
+.article-body .figure svg { display: block; width: 100%; height: auto; min-width: 560px; }
+.article-body .figcap, .article-body p.figcap { font-size: 0.82rem; color: var(--text-3); margin-top: 8px; }
+
+.article-foot { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.94rem; color: var(--text-2); line-height: 1.7; }
+.article-foot a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(var(--accent-rgb), 0.3); }
+
+/* diagram primitives for inline SVG */
+.dg text { font-family: var(--font-body); font-size: 12.5px; fill: var(--text-1); }
+.dg .lbl { fill: var(--text-2); font-size: 11px; }
+.dg .mono { font-family: var(--font-mono); font-size: 10.5px; }
+.dg .box { fill: var(--bg-elevated); stroke: var(--border-hover); stroke-width: 1; rx: 6; }
+.dg .box-ink { fill: var(--accent-dim); stroke: var(--accent-border); }
+.dg text.on-ink { fill: var(--text-1); }
+.dg .ln { stroke: var(--border-hover); stroke-width: 1.2; fill: none; }
+.dg .ok { stroke: var(--v-ok); } .dg .fix { stroke: var(--v-fix); } .dg .no { stroke: var(--v-no); }
+.dg .t-ok { fill: var(--v-ok); } .dg .t-fix { fill: var(--v-fix); } .dg .t-no { fill: var(--v-no); }

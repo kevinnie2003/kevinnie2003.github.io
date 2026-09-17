@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowing what the button is called — Kevin Nie</title>
+  <meta name="description" content="Turning human-written QA test cases into scripts a real phone will run. Why the hard part was never the code, why source code beat scanning the device, and what a false pass looks like." />
+  <link rel="canonical" href="https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.html" />
+  <meta property="og:title" content="Knowing what the button is called" />
+  <meta property="og:description" content="LLM-generated game test scripts: grounding, deterministic rewrites, and a false-pass audit." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/forge.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <main class="article-page">
+    <div class="article-top">
+      <a class="back" href="../#writing">&larr; Kevin Nie</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <span class="theme-label">Light Mode</span>
+      </button>
+    </div>
+
+  <div class="article-head">
+    <p class="meta">September 2026 · 11 min read</p>
+    <h1 class="title">Knowing what the button is called</h1>
+    <p class="lede">This summer I built a system that turns a QA engineer's test case into an Airtest + Poco script and runs it on a real phone. The model was never the bottleneck. The bottleneck was facts: what the button is called, which channel a debug command goes down, and whether a green test actually checked anything.</p>
+  </div>
+
+  <div class="article-body">
+    <p class="aside">This describes work done as an intern on the tools team of a game studio, for a cross-platform game (mobile, PC and console) whose tests run on Android devices. Internals, names and identifiers are deliberately left out. Numbers are from my own measurements at the time and I have kept the caveats that came with them.</p>
+
+    <p>A QA team maintains thousands of regression test cases written for humans: "open the album, take a photo, check that it appears in the list." Turning one of those into an automated script is skilled, tedious work, and the goal of my internship was to make a model do it. Give the system a sentence, get back a <code>.py</code> file that a device farm can run, with assertions that mean something.</p>
+
+    <p>The naive version takes an afternoon. Paste the test case into a prompt with a few example scripts, get code back. I measured what that produces on thirty real cases: thirty scripts, zero usable. Of 584 UI selectors the model wrote, 503 did not exist in the game. It never once used a debug command, because it did not know any existed. It was fluent, confident, and useless.</p>
+
+    <h2>Three kinds of fact a model cannot guess</h2>
+
+    <p>Every failure fell into one of three buckets, and none of them is a reasoning problem.</p>
+
+    <ul>
+      <li><strong>Control names.</strong> The model writes <code>poco("BackpackButton")</code>. The real node has a terse, unguessable name inherited from a prefab, and in the source it is called something else again.</li>
+      <li><strong>Command channels.</strong> The game exposes debug (GM) commands, but they travel down four different channels depending on what they do. Send one down the wrong channel and nothing happens. No error, no log line, nothing. The script runs on and asserts against a state that never changed.</li>
+      <li><strong>Configuration identifiers.</strong> "Place a wooden chair" needs a config id. "Go to the indoor test scene" needs a scene id. "Check the affection value" needs a save-field path. These are in spreadsheets and protobuf files, not in the UI, and guessing is always wrong.</li>
+    </ul>
+
+    <p>Worse than any of those is the <strong>false pass</strong>: a script that runs green while checking nothing. In one early batch of 124 cases, 45 passed on device. I read them. Only 7 verified what the test case was actually about. The other 38 asserted things like "the HUD toolbar exists," which is true in every scene of the game, or compared two constants the script had defined itself. A false pass in a regression suite is worse than no test, because it dresses up "unverified" as "verified."</p>
+
+    <p>So the design question became: how do you make the model operate under facts it did not invent, and how do you catch a green that lies?</p>
+
+    <h2>Build the knowledge base from source, not from the phone</h2>
+
+    <p>The obvious approach is to scan the running game: open every page, dump the control tree, record what is clickable. We did that, and it produced the most trustworthy facts we had, because a control seen on a real device definitely exists at runtime. It also had a ceiling. Scanning is slow, it needs an account in the right state, and empty states hide things: the album list has no items if the album has no photos. One suite went from 4 of 12 passing to 7 of 12 after I took three photos on the test phone. Same generator, same code.</p>
+
+    <p>The breakthrough was realising that most of the facts already exist in the game's source tree, in full, for free. So the knowledge base became a layered thing where every row carries its provenance:</p>
+
+    <table>
+      <thead><tr><th>Layer</th><th>Where it comes from</th><th>What it is good for</th></tr></thead>
+      <tbody>
+        <tr><td>On-device dumps</td><td>Real phone, real control trees, recorded transitions</td><td>Most trustworthy. Proves a control is visible and clickable now. Slow and account-dependent.</td></tr>
+        <tr><td>Human-verified</td><td>QA confirmed a page-open command works</td><td>Most trustworthy. Very little of it.</td></tr>
+        <tr><td>Source-derived</td><td>Debug command registries, config spreadsheets, protobuf, scene files</td><td>Hard facts for ids, coordinates, command names. Says nothing about what is reachable in the UI.</td></tr>
+        <tr><td>Source-parsed</td><td>Lua UI handlers: which button opens which page</td><td>A lead, not a fact, until a device confirms it.</td></tr>
+        <tr><td>Static scan</td><td>Every Unity prefab, recursively expanded</td><td>Complete structure. No promise the node exists at runtime.</td></tr>
+      </tbody>
+    </table>
+
+    <p>The static scan alone yields about 123,000 nodes. The source-derived layer added roughly 1,600 debug commands across the four channels, 33,000 object placements with computable world coordinates, and 1,800 protocol messages. The prompt keeps the provenance tags so the model knows which facts are harder than others.</p>
+
+    <p>This one change moved the number most. On a single ticket with seven test points, the system produced a runnable script for 2 of 7 before the source-derived layer existed, and 6 of 7 after, five of them clean on every audit. That is seven data points, and the earlier run was not archived, so I treat it as a strong signal rather than a statistic. But it is the same ticket, same pipeline, and the cause is unambiguous: the model now had the ids and command names it needed.</p>
+
+    <h2>No embeddings</h2>
+
+    <p>People assume grounding means a vector store. This system has none, on purpose. Retrieval is a tokeniser that does greedy longest-match against a closed vocabulary of keywords the knowledge base actually contains, plus alias expansion. We explicitly rejected a proper Chinese segmenter, because we do not want the linguistically correct word, we want a word that exists in the table.</p>
+
+    <p>Page candidates are then scored, and the scoring is where the design thesis lives. A textual match gets a literal score. But the two largest bonuses have nothing to do with text: +0.40 if the page has a verified way to open it, and up to +0.25 scaled by how much real-device evidence exists for it. <strong>Executability outranks similarity.</strong> A page we know how to reach and have seen on a phone beats a page whose name merely matches better. Grounding runs in about 25 milliseconds.</p>
+
+    <p>Grounding mostly yields page names. The selectors the model actually needs come from the next step: for the top pages, a blueprint assembler runs a few hundred SQL queries across a dozen tables and packs 18 to 21 fact sections into the prompt. The prompt ends up around 25,000 tokens, half of it blueprint. That, not retrieval, is what determines output quality.</p>
+
+    <h2>One call, and the model picks the exit</h2>
+
+    <div class="figure" role="img" aria-label="The generation flow from request to on-device run, with the clarify exit, deterministic rewrites, the audit-driven repair loop and the knowledge feedback loop.">
+      <svg class="dg" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+        <rect class="box box-ink" x="8" y="60" width="118" height="90" rx="6"/>
+        <text class="on-ink" x="67" y="86" text-anchor="middle" style="font-weight:600">Knowledge base</text>
+        <text class="lbl" x="67" y="104" text-anchor="middle" style="fill:var(--ground);opacity:.8">prefab nodes · GM</text>
+        <text class="lbl" x="67" y="119" text-anchor="middle" style="fill:var(--ground);opacity:.8">protocol · config</text>
+        <text class="lbl" x="67" y="134" text-anchor="middle" style="fill:var(--ground);opacity:.8">on-device dumps</text>
+        <rect class="box" x="160" y="18" width="96" height="36"/><text x="208" y="41" text-anchor="middle">Test request</text>
+        <rect class="box" x="160" y="86" width="96" height="36"/><text x="208" y="109" text-anchor="middle">Grounding</text>
+        <rect class="box" x="290" y="86" width="104" height="36"/><text x="342" y="109" text-anchor="middle">Fact-packed prompt</text>
+        <rect class="box" x="428" y="86" width="72" height="36"/><text x="464" y="109" text-anchor="middle">Model ×1</text>
+        <rect class="box" x="534" y="86" width="96" height="36"/><text x="582" y="104" text-anchor="middle">4 deterministic</text><text x="582" y="117" text-anchor="middle" class="lbl">rewrites</text>
+        <rect class="box" x="664" y="86" width="88" height="36"/><text x="708" y="104" text-anchor="middle">Validate +</text><text x="708" y="117" text-anchor="middle" class="lbl">false-pass audit</text>
+        <rect class="box" x="664" y="156" width="88" height="36"/><text x="708" y="179" text-anchor="middle">Run on phone</text>
+        <path class="ln" d="M208 54 V86"/><path class="ln" d="M126 104 H160"/><path class="ln" d="M256 104 H290"/><path class="ln" d="M394 104 H428"/><path class="ln" d="M500 104 H534"/><path class="ln" d="M630 104 H664"/><path class="ln" d="M708 122 V156"/>
+        <path class="ln fix" d="M464 86 V44 H414" stroke-dasharray="3 3"/><text class="lbl t-fix" x="410" y="47" text-anchor="end">asks a question instead</text>
+        <path class="ln no" d="M708 86 V56 H464" stroke-dasharray="3 3"/><text class="lbl t-no" x="586" y="52" text-anchor="middle">P0 finding → regenerate (≤2)</text>
+        <path class="ln ok" d="M664 174 H67 V150" stroke-dasharray="3 3"/><text class="lbl t-ok" x="365" y="190" text-anchor="middle">failure repaired → knowledge added → whole class of tests improves</text>
+      </svg>
+    </div>
+
+    <p>The normal path makes exactly one model call. Everything else is local and deterministic, so the cost lands only on the one step that needs a model. The model chooses its own exit: if the request is clear it writes code; if information is missing it emits a structured clarification block, which the UI turns into a form with candidate pages; if the input is not a test case at all it just replies. I tried a keyword router first and measured that 31 of 35 common action words appeared in none of our vocabularies. The clarifier module shrank by a quarter when it stopped deciding and started parsing the model's decision.</p>
+
+    <p>After the call, four rewrites run with no model involved, because each has exactly one right answer: a missing <code>(Clone)</code> suffix on a runtime node, a dialog placed in the wrong UI layer, a command sent down the wrong channel, a click written as a coordinate tap. These have to run <em>after</em> the gap assessment, because the AST rewrite erases comments, including the TODO markers the model leaves where the blueprint had no control for it. I learned that ordering the slow way.</p>
+
+    <p>Then static validation: a selector linter that collapses deep <code>offspring</code> chains that time out on device, a check for control names that appear nowhere in the knowledge base, and a syntax check.</p>
+
+    <h2>The false-pass audit</h2>
+
+    <p>The part I am proudest of is an auditor built from regular expressions and a little AST walking, with eleven hard P0 rules, one conditional, and six P1s. A P0 is turned into an error that drives up to two regeneration rounds; a P1 is recorded. The rules read like a list of the ways a green test has personally lied to me:</p>
+
+    <ul>
+      <li>A scene teleport with no check that the scene actually changed, or a scene id that does not exist in the project.</li>
+      <li>Asserting that a permanent HUD element exists. True everywhere.</li>
+      <li>Asserting two constants the script defined against each other.</li>
+      <li>An assertion inside a <code>try</code> whose <code>except</code> swallows it.</li>
+      <li>Asserting only that a debug command was sent, never reading back its effect.</li>
+      <li>A <code>raise</code> guarding the preconditions but no assertion on the actual requirement.</li>
+    </ul>
+
+    <p>The most humbling finding: the HUD-toolbar false pass was caused by <em>our own prompt</em>. A rule I had written told the model to confirm arrival in a scene by checking the toolbar. In one 54-case batch, 17 scripts carried that exact false pass. The audit caught what the prompt had taught. The rules themselves have pitfalls too. Counting assertions is not a strength measure. A performance-test exemption has to match a real function call with a parenthesis, not a keyword, or a docstring mentioning "performance" switches off the whole audit. And a P0 should prefer to miss than to misfire, because a false P0 sends a correct script back for rework.</p>
+
+    <h2>Measuring honestly</h2>
+
+    <p>The one-line version I use elsewhere is "roughly 30% to 80%." Here is what that line compresses, with the sample sizes attached.</p>
+
+    <table>
+      <thead><tr><th>Sample</th><th class="n">Before</th><th class="n">After</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr><td>One ticket, 7 test points, runnable script produced</td><td class="n">2/7</td><td class="n">6/7</td><td>Source-derived fact layer added</td></tr>
+        <tr><td>Album suite, 12 intents, on-device pass</td><td class="n">4/12</td><td class="n">10/12</td><td>Grounding fixes, then three photos on the phone</td></tr>
+        <tr><td>100 cases, three pipeline versions, executable by the runner</td><td class="n">0%</td><td class="n">100%</td><td>Framework compliance enforced</td></tr>
+        <tr><td>Same 100, debug commands that were fabricated</td><td class="n">80%</td><td class="n">12%</td><td>Command registry indexed</td></tr>
+        <tr><td>Same 100, scripts with a P0 assertion defect</td><td class="n">2, then 8</td><td class="n">0</td><td>Audit added. The middle version got worse before it got better.</td></tr>
+      </tbody>
+    </table>
+
+    <p>The first row is the one that matters and the one with the smallest n. The bottom rows come from the same hundred cases through three versions and are the cleanest before/after I have, with a paired test on effective assertions coming out at p = 0.008. I also retired a number I liked: "automatable rate 13.5% → 30%," because script-output rate turned out to be non-monotonic (97% → 10% → 31% across versions) as the system got stricter and then relaxed, so it measured caution, not quality.</p>
+
+    <p>The most valuable measurement was not a pass rate. I ran all 731 leaf cases of one regression module through the pipeline. 13.5% produced a script. 85% asked a clarifying question. That looks terrible until you classify the questions. 294 were missing a page or control name, which the platform can fix by mining more source. The other 330 were missing the object, the precondition state, or a checkable expectation, which no knowledge base can supply. Then the real finding: for all 731 cases, the steps, expected result and precondition fields were empty. They were titles. The best possible knowledge base gets you to 54%. The rest is a collaboration problem, not a model problem, and reframing it that way changed what the team asked QA for.</p>
+
+    <h2>What I would tell the next person</h2>
+
+    <ul>
+      <li><strong>Silent degradation is the enemy.</strong> The three recurring root causes in three weeks of optimisation were: something degraded without an error, the prompt contradicted itself (rules in code, examples in the database, edited separately), and static inference was treated as device fact. A model obeys rules, so the cost of a contradiction is not gibberish. It is the model marking the one reachable path as no-match.</li>
+      <li><strong>Mine the source before scanning the device.</strong> Source is complete and free. The device is truth but expensive. Use the device to verify, not to discover.</li>
+      <li><strong>Make the model pick the exit.</strong> A form with candidate pages beats a script that downloads and fails.</li>
+      <li><strong>Audit the green.</strong> Every regression suite has false passes in it. Write down how you have been fooled, turn each one into a rule, and let the rules drive regeneration.</li>
+      <li><strong>Over-defence is a failure mode too.</strong> At one point the system was so careful about unverified selectors that it would not generate anything when the facts were right there in the knowledge base. A test case exists to be automated, not to prove the generator is cautious.</li>
+    </ul>
+
+    <p>Loosening that last rule was the day the system started being useful.</p>
+  </div>
+
+  <div class="article-foot">
+    <p>The same idea, applied to a game where the model designs the content instead of testing it, is in <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>
+  </div>
+  </main>
+  <script>
+    (function () {
+      var html = document.documentElement, btn = document.getElementById('themeToggle');
+      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+      apply(localStorage.getItem('kn-theme') || 'dark');
+      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
+    })();
+  </script>
+</body>
+</html>

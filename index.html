@@ -63,6 +63,7 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/forge.css" />
 </head>
 <body>
 
@@ -115,9 +116,11 @@
             <li><a href="#about"     class="nav-link" data-section="about"     ><span class="nav-num" aria-hidden="true">01</span><span class="nav-label">About</span></a></li>
             <li><a href="#experience" class="nav-link" data-section="experience"><span class="nav-num" aria-hidden="true">02</span><span class="nav-label">Experience</span></a></li>
             <li><a href="#projects"  class="nav-link" data-section="projects"  ><span class="nav-num" aria-hidden="true">03</span><span class="nav-label">Projects</span></a></li>
-            <li><a href="#skills"    class="nav-link" data-section="skills"    ><span class="nav-num" aria-hidden="true">04</span><span class="nav-label">Skills</span></a></li>
-            <li><a href="#education" class="nav-link" data-section="education" ><span class="nav-num" aria-hidden="true">05</span><span class="nav-label">Education</span></a></li>
-            <li><a href="#contact"   class="nav-link" data-section="contact"   ><span class="nav-num" aria-hidden="true">06</span><span class="nav-label">Contact</span></a></li>
+            <li><a href="#playground" class="nav-link" data-section="playground"><span class="nav-num" aria-hidden="true">04</span><span class="nav-label">Playground</span></a></li>
+            <li><a href="#writing"   class="nav-link" data-section="writing"   ><span class="nav-num" aria-hidden="true">05</span><span class="nav-label">Writing</span></a></li>
+            <li><a href="#skills"    class="nav-link" data-section="skills"    ><span class="nav-num" aria-hidden="true">06</span><span class="nav-label">Skills</span></a></li>
+            <li><a href="#education" class="nav-link" data-section="education" ><span class="nav-num" aria-hidden="true">07</span><span class="nav-label">Education</span></a></li>
+            <li><a href="#contact"   class="nav-link" data-section="contact"   ><span class="nav-num" aria-hidden="true">08</span><span class="nav-label">Contact</span></a></li>
           </ul>
         </nav>
 
@@ -212,6 +215,58 @@
         </div>
       </section>
 
+      <!-- ── PLAYGROUND ─────────────────────────────────────────── -->
+      <section id="playground" class="section" aria-label="Playground">
+        <div class="section-inner">
+          <h2 class="section-title">
+            Playground
+          </h2>
+          <div class="playground-grid">
+            <div class="playground-copy">
+              <p>In <strong>RogueForge</strong>, an LLM forges every reward card, and this validator decides whether the result is fair before a player sees it. It is the real thing, ported line for line from the Python backend.</p>
+              <p>A card's power is a weighted sum of its effects. The acceptable band for each (rarity, cost) bucket comes from the <strong>real <em>Slay the Spire</em> Ironclad cards</strong> in that bucket, so "balanced" is defined by data, not by taste. In band: accepted. Slightly out: clamped one point at a time and the rules text re-rendered. Far out, or structurally wrong: rejected, with the reason sent back to the model.</p>
+              <p>Try 40 damage on a 1-cost card, poison on an Attack, or a Rare that gains 2 Block.</p>
+              <div class="playground-stats">
+                <div><b>2,658</b><span>candidates logged: 86% accepted, 9% repaired, 5% rejected</span></div>
+                <div><b>87%</b><span>of real Ironclad cards fall inside their own band</span></div>
+              </div>
+              <div class="playground-links">
+                <a href="writing/vibes-with-extra-steps.html" class="btn btn-ghost">Read how it was built</a>
+                <a href="https://github.com/kevinnie2003/rogueforge" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+            <div class="forge" id="forge" aria-label="Interactive card validator">
+              <noscript>This widget needs JavaScript.</noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── WRITING ────────────────────────────────────────────── -->
+      <section id="writing" class="section" aria-label="Writing">
+        <div class="section-inner">
+          <h2 class="section-title">
+            Writing
+          </h2>
+          <div class="writing-list">
+            <a class="writing-item" href="writing/knowing-what-the-button-is-called.html">
+              <span class="date">Sep 2026</span>
+              <div>
+                <h3>Knowing what the button is called</h3>
+                <p>Turning QA test cases into scripts a real phone will run. Why the hard part was never the code, how mining the game's source beat scanning the device, and what a false pass looks like.</p>
+              </div>
+            </a>
+            <a class="writing-item" href="writing/vibes-with-extra-steps.html">
+              <span class="date">Jun 2026</span>
+              <div>
+                <h3>Vibes with extra steps</h3>
+                <p>Making "is this AI-generated card balanced?" a question with a measurable answer, by calibrating a power budget against real <em>Slay the Spire</em> cards. Plus the three bugs that hid behind the number.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- ── SKILLS ─────────────────────────────────────────────── -->
       <section id="skills" class="section" aria-label="Skills">
         <div class="section-inner">
@@ -255,5 +310,7 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/animations.js"></script>
+  <script src="assets/js/forge-data.js"></script>
+  <script src="assets/js/forge.js"></script>
 </body>
 </html>

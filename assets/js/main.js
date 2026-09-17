@@ -23,7 +23,7 @@ const EXPERIENCE = [
       'Built the front and back end of an internal <strong>automated testing platform</strong> (React + TypeScript / Flask + Socket.IO + MySQL) serving <strong>dozens of QA engineers</strong> across test case management, task orchestration, AI test report analysis, and automated failure repair.',
       'Led a <strong>conversational AI test-case generation system</strong>, fusing Unity Prefab/Lua, on-device UI, GM commands, protocol and config data into a hierarchical knowledge base of <strong>100K+ Prefab nodes</strong>.',
       'Generated executable <strong>Airtest + Poco</strong> scripts through semantic grounding and action blueprints, with structured clarification, a GM channel, deterministic runtime node correction, static validation, and false-pass auditing.',
-      'Closed the loop from generation → on-device execution → failure repair → knowledge feedback, raising the effective on-device pass rate of the same regression suite from <strong>30% to 80%</strong>.',
+      'Closed the loop from generation → on-device execution → failure repair → knowledge feedback, raising the share of regression test points that yield a runnable, audit-clean script from roughly <strong>30% to 80%</strong> on the same samples.',
       'Developed <strong>GM commands</strong> that replace failure-prone UI clicks with one-click entry into <strong>30+ game scenarios</strong> (reusing OpenLuaUI across <strong>59 UI categories</strong>), and authored large-scale automated cases with assertions and launch-latency collection for regression coverage.',
     ],
     tags: ['React', 'TypeScript', 'Flask', 'Socket.IO', 'MySQL', 'Unity', 'Lua', 'Airtest', 'Poco', 'LLM Agents'],
