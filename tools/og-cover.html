@@ -98,10 +98,10 @@
   /* Declared here, not inline: url() in a custom property resolves against
      the stylesheet consuming var(), which for this inline <style> is the
      document - so document-relative paths are correct. */
-  .m-mihoyo  { --logo: url('assets/img/logos/mihoyo.png'); }
-  .m-vicino  { --logo: url('assets/img/logos/vicino.png'); }
-  .m-tiktok  { --logo: url('assets/img/logos/tiktok.svg'); }
-  .m-alibaba { --logo: url('assets/img/logos/alibabadotcom.svg'); }
+  .m-mihoyo  { --logo: url('../assets/img/logos/mihoyo.png'); }
+  .m-vicino  { --logo: url('../assets/img/logos/vicino.png'); }
+  .m-tiktok  { --logo: url('../assets/img/logos/tiktok.svg'); }
+  .m-alibaba { --logo: url('../assets/img/logos/alibabadotcom.svg'); }
 
   .school {
     font-family: 'JetBrains Mono', monospace;
@@ -113,13 +113,30 @@
   }
 
   .school b { color: #7d8ea4; font-weight: 500; }
+  .article .name { font-size: 64px; }
+  .article .tagline { font-size: 30px; color: #7d8ea4; max-width: 950px; }
+  .article .greeting { color: #9b8ff8; }
+  .byline { font-family: 'JetBrains Mono', monospace; font-size: 19px; color: #7d8ea4; }
+  .byline b { color: #e8edf5; font-weight: 500; }
 </style>
+<script>
+  // Article covers: tools/og-cover.html?t=Title&d=One-line description
+  addEventListener('DOMContentLoaded', () => {
+    const q = new URLSearchParams(location.search);
+    if (!q.get('t')) return;
+    document.body.classList.add('article');
+    document.querySelector('.greeting').textContent = 'kevinnie2003.github.io/writing';
+    document.querySelector('.name').textContent = q.get('t');
+    document.querySelector('.tagline').textContent = q.get('d') || '';
+    document.querySelector('.foot').innerHTML = '<p class="byline"><b>Mingxuan (Kevin) Nie</b><br />MS CS @ UC San Diego</p>';
+  });
+</script>
 </head>
 <body>
   <div class="card">
     <p class="greeting">kevinnie2003.github.io</p>
     <h1 class="name">Mingxuan <span class="paren">(Kevin)</span> Nie</h1>
-    <p class="tagline">I build AI agent systems and the tools around them.</p>
+    <p class="tagline">I make LLM output reliable enough to ship.</p>
 
     <div class="spacer"></div>
 

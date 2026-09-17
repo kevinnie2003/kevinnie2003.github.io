@@ -6,11 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Knowing what the button is called — Kevin Nie</title>
   <meta name="description" content="Turning human-written QA test cases into scripts a real phone will run. Why the hard part was never the code, why source code beat scanning the device, and what a false pass looks like." />
+  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
   <link rel="canonical" href="https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.html" />
   <meta property="og:title" content="Knowing what the button is called" />
   <meta property="og:description" content="LLM-generated game test scripts: grounding, deterministic rewrites, and a false-pass audit." />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-button.png" />
+  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-button.png" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
   <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
@@ -156,6 +161,9 @@
       <li>A <code>raise</code> guarding the preconditions but no assertion on the actual requirement.</li>
     </ul>
 
+    <div class="forge" id="audit"><noscript>This widget needs JavaScript.</noscript></div>
+    <p class="figcap">Six of the rules, rebuilt for this page. Paste your own test script, or edit the samples. The production auditor has eighteen rules and knows the game's real control names and scene ids; this one only knows the patterns.</p>
+
     <p>The most humbling finding: the HUD-toolbar false pass was caused by <em>our own prompt</em>. A rule I had written told the model to confirm arrival in a scene by checking the toolbar. In one 54-case batch, 17 scripts carried that exact false pass. The audit caught what the prompt had taught. The rules themselves have pitfalls too. Counting assertions is not a strength measure. A performance-test exemption has to match a real function call with a parenthesis, not a keyword, or a docstring mentioning "performance" switches off the whole audit. And a P0 should prefer to miss than to misfire, because a false P0 sends a correct script back for rework.</p>
 
     <h2>Measuring honestly</h2>
@@ -198,6 +206,7 @@
     </nav>
   </div>
   </main>
+  <script src="../assets/js/audit.js"></script>
   <script>
     (function () {
       var html = document.documentElement, btn = document.getElementById('themeToggle');
