@@ -262,11 +262,15 @@ code, kbd, samp, .mono {
   background: rgba(0,0,0,0.55);
   z-index: 90;
   opacity: 0;
+  /* Invisible AND untouchable while closed; otherwise a transparent
+     full-screen layer eats every tap on the page. */
+  pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
 .sidebar-backdrop.visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* Mobile hamburger */
