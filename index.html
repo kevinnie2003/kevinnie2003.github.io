@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <!-- Apply the saved theme before first paint so light-mode users never see a dark flash -->
-  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mingxuan (Kevin) Nie — Software Engineer</title>
   <meta name="description" content="MS CS at UC San Diego. I build LLM agent systems and the grounding, validation and repair loops that make them reliable. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
@@ -308,7 +308,7 @@
       <!-- Footer -->
       <footer class="footer" aria-label="Site footer">
         <p>Designed &amp; built by <span class="accent-text">Mingxuan (Kevin) Nie</span></p>
-        <p class="footer-sub">kevinnie2003.github.io</p>
+        <p class="footer-sub">kevinnie2003.github.io · updated September 2026 · <a href="feed.xml">RSS</a></p>
       </footer>
 
     </main>

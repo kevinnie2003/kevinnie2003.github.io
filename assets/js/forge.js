@@ -184,6 +184,7 @@
       <div><label for="f-cost">Cost</label><select id="f-cost"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
       <div><label for="f-diff">Difficulty</label><select id="f-diff"><option value="easy">Embers (easy)</option><option value="normal" selected>Forge (normal)</option><option value="hard">Inferno (hard)</option></select></div>
     </div>
+    <button type="button" class="effects-toggle" id="f-toggle" aria-expanded="true" aria-controls="f-effects"><span></span></button>
     <div class="effects" id="f-effects"></div>
     <div class="forge-actions">
       <button class="fbtn" id="f-add" type="button">Add effect</button>
@@ -199,6 +200,12 @@
     $('f-name').value = card.name; $('f-type').value = card.type; $('f-rarity').value = card.rarity; $('f-cost').value = String(card.cost);
   }
 
+  function syncToggle() {
+    const t = $('f-toggle'); if (!t) return;
+    const n = card.effects.length;
+    t.querySelector('span').textContent = `${n} effect${n === 1 ? '' : 's'}: ` + card.effects.map(e => F.renderEffect(e).replace(/\.$/, '')).join(', ');
+  }
+
   function renderEffects() {
     effectsEl.innerHTML = card.effects.map((e, i) => `
       <div class="effect" data-i="${i}">
@@ -211,6 +218,7 @@
             : `<span></span>`}
         <button class="x" type="button" aria-label="Remove effect" ${card.effects.length === 1 ? 'disabled' : ''}>×</button>
       </div>`).join('');
+    syncToggle();
   }
 
   function readForm() {
@@ -277,7 +285,7 @@
 
   function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
-  function update() { readForm(); renderOut(); }
+  function update() { readForm(); renderOut(); syncToggle(); }
   function full() { bindTop(); renderEffects(); renderOut(); }
 
   root.addEventListener('input', (e) => { if (e.target.matches('input, select')) update(); });
@@ -287,6 +295,11 @@
   effectsEl.addEventListener('click', (e) => {
     const x = e.target.closest('.x'); if (!x) return;
     readForm(); card.effects.splice(Number(x.closest('.effect').dataset.i), 1); renderEffects(); renderOut();
+  });
+  $('f-toggle').addEventListener('click', () => {
+    const open = $('f-toggle').getAttribute('aria-expanded') !== 'true';
+    $('f-toggle').setAttribute('aria-expanded', String(open));
+    root.classList.toggle('effects-collapsed', !open);
   });
   $('f-add').addEventListener('click', () => { readForm(); card.effects.push({ kind: 'gain_block', amount: 5 }); renderEffects(); renderOut(); });
   $('f-next').addEventListener('click', () => { presetIdx = (presetIdx + 1) % PRESETS.length; card = JSON.parse(JSON.stringify(PRESETS[presetIdx])); full(); });

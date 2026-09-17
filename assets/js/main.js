@@ -388,7 +388,8 @@ function initTheme() {
   const btn  = document.getElementById('themeToggle');
 
   // Restore saved preference
-  const saved = localStorage.getItem('kn-theme') || 'dark';
+  // The head script already chose saved preference → OS preference → dark.
+  const saved = html.getAttribute('data-theme') || 'dark';
   applyTheme(saved);
 
   btn?.addEventListener('click', () => {

@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Four views of one object — Kevin Nie</title>
   <meta name="description" content="Generating front, back, left and right views of one object with a multi-agent loop: why the evaluator is a separate agent, when to regenerate one view versus all four, and how a dynamic threshold keeps the loop from spinning forever." />
@@ -113,7 +113,7 @@
     (function () {
       var html = document.documentElement, btn = document.getElementById('themeToggle');
       function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
-      apply(localStorage.getItem('kn-theme') || 'dark');
+      apply(html.getAttribute('data-theme') || 'dark');
       btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
     })();
   </script>

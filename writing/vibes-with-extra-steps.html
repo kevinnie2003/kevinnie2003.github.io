@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <script>try{var t=localStorage.getItem("kn-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vibes with extra steps — Kevin Nie</title>
   <meta name="description" content="How I stopped an LLM from designing a 1-cost card that deals 40 damage: a power budget calibrated against real Slay the Spire cards, a repair policy, and the three bugs that hid behind silent fallbacks." />
@@ -161,7 +161,7 @@
     (function () {
       var html = document.documentElement, btn = document.getElementById('themeToggle');
       function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
-      apply(localStorage.getItem('kn-theme') || 'dark');
+      apply(html.getAttribute('data-theme') || 'dark');
       btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
     })();
   </script>

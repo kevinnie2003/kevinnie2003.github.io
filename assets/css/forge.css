@@ -59,6 +59,22 @@
 .forge select:focus, .forge input:focus { outline: none; border-color: var(--accent-border); box-shadow: 0 0 0 3px var(--accent-dim); }
 
 .effects { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 10px; }
+
+/* On phones the effect rows are the tallest part of the widget; a summary
+   line can stand in for them until the visitor wants to edit. */
+.effects-toggle { display: none; }
+@media (max-width: 520px) {
+  .effects-toggle {
+    display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+    margin-top: 12px; padding: 8px 10px; font: inherit; font-size: 0.82rem; color: var(--text-2);
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer;
+  }
+  .effects-toggle::before { content: '▾'; color: var(--text-3); font-size: 0.75rem; flex-shrink: 0; }
+  .effects-toggle[aria-expanded="false"]::before { content: '▸'; }
+  .effects-toggle span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .effects { margin-top: 8px; }
+  .effects-collapsed .effects { display: none; }
+}
 .effect { display: grid; grid-template-columns: 1.3fr 0.6fr 1fr auto; gap: 6px; align-items: center; }
 @media (max-width: 520px) {
   .forge-row { grid-template-columns: 1fr 1fr; }
