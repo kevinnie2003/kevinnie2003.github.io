@@ -165,9 +165,10 @@ code, kbd, samp, .mono {
 }
 
 /* ── LAYOUT ──────────────────────────────────────────────────── */
+/* No z-index here: it would make .layout a stacking context and trap the
+   sidebar (z 100) beneath the drawer backdrop (z 90) on mobile. */
 .layout {
   position: relative;
-  z-index: 1;
   display: flex;
   min-height: 100vh;
 }
@@ -214,6 +215,8 @@ code, kbd, samp, .mono {
 
 /* MAIN CONTENT */
 .content {
+  position: relative;
+  z-index: 1;
   margin-left: var(--sidebar-w);
   flex: 1;
   min-width: 0;
