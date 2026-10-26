@@ -71,6 +71,20 @@ const EXPERIENCE = [
 /* ── PROJECTS DATA ───────────────────────────────────────────── */
 const PROJECTS = [
   {
+    name: 'Coffee Companion — AI Mod for <em>Legend of Mortal</em>',
+    period: 'Oct 2026',
+    featured: true,
+    bullets: [
+      'A <strong>35K-line C#</strong> mod for the Unity wuxia RPG <em>Legend of Mortal</em>, built on <strong>BepInEx/Harmony</strong> with <strong>231 runtime patches</strong>: a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere through Lua record-and-replay, and a stat editor. <strong>60 releases in 11 days</strong>, <strong>85 stars</strong>, <strong>20K+ downloads</strong>.',
+      'The centrepiece is an in-game <strong>tool-calling agent</strong>. Its <strong>12 tools</strong> read a knowledge base built from the parsed scripts — branch conditions, where each of <strong>1,000+ story flags</strong> is set and checked, per-route totals of affinity and stats — plus the live save and the choices on screen. It looks things up over several rounds, then answers from what it found, not from memory.',
+      '<strong>11 character personas</strong> talk in their own voice, know only the story the player has read, and respect <strong>3 spoiler levels</strong>. Any change to the save is proposed as a card and applied only when the player confirms.',
+      'A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>. Read <a href="writing/eleven-days-sixty-releases.html" class="inline-link">how it was built</a>.',
+    ],
+    github: 'https://github.com/kevinnie2003/LOMAssistant',
+    live: null,
+    tags: ['C#', 'Unity', 'BepInEx', 'Harmony', 'Tool Calling', 'LLM Agents', 'Evaluation', 'Prompt Caching'],
+  },
+  {
     name: 'RogueForge — AI-Native Deck-Builder',
     period: 'May – Jun 2026',
     featured: true,
