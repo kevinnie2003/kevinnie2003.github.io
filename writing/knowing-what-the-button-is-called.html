@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
-<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("knowing-what-the-button-is-called.zh.html"+location.hash);}catch(e){}</script>
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en"){try{sessionStorage.setItem("kn-ref",document.referrer)}catch(e){}location.replace("knowing-what-the-button-is-called.zh.html"+location.hash);}}catch(e){}</script>
 <script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <script>window.KN_LANG = "en";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -214,6 +214,7 @@
 </footer>
 <script src="../assets/js/audit.js?v=baf12a08"></script>
 <script src="../assets/js/site.js?v=baf12a08"></script>
+<script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

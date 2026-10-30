@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
-<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("four-views-one-object.zh.html"+location.hash);}catch(e){}</script>
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en"){try{sessionStorage.setItem("kn-ref",document.referrer)}catch(e){}location.replace("four-views-one-object.zh.html"+location.hash);}}catch(e){}</script>
 <script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <script>window.KN_LANG = "en";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -115,6 +115,7 @@
   <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
 <script src="../assets/js/site.js?v=baf12a08"></script>
+<script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

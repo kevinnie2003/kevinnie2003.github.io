@@ -252,7 +252,7 @@ def head(lang, ui, *, title, desc, path, other_path, og_title, og_desc, og_image
 <html lang="{HTML_LANG[lang]}" data-theme="light">
 <head>
 <meta charset="UTF-8" />
-<script>try{{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="{lang}")location.replace("{there}"+location.hash);}}catch(e){{}}</script>
+<script>try{{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="{lang}"){{try{{sessionStorage.setItem("kn-ref",document.referrer)}}catch(e){{}}location.replace("{there}"+location.hash);}}}}catch(e){{}}</script>
 <script>try{{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}</script>
 <script>window.KN_LANG = "{lang}";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -312,7 +312,9 @@ def scripts(root, version, count, forge=False, audit=False):
         out.append(f'<script src="{root}assets/js/audit.js?v={version}"></script>')
     out.append(f'<script src="{root}assets/js/site.js?v={version}"></script>')
     if count:
-        # GoatCounter page views: no cookies, and it skips localhost previews
+        # GoatCounter page views: no cookies, and it skips localhost previews.
+        # After a language redirect (see head) report the visitor's own referrer, not our homepage
+        out.append('<script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>')
         out.append(f'<script data-goatcounter="https://{count}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>')
     return "\n".join(out) + "\n</body>\n</html>\n"
 
