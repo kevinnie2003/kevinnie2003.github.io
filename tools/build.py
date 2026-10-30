@@ -421,7 +421,8 @@ def game_card(lang, entry, info, badges, unit, quote_mode):
     rate = info.get("rate")
     name = entry[lang]
     score = f'<em class="score{" s10" if rate == 10 else ""}">{rate}</em>' if rate else ""
-    quote_text = info.get("quote_zh", "") if lang == "zh" else entry.get("quote_en", "")
+    # A quote_zh in games.toml wins over the first sentence of my Bangumi comment
+    quote_text = entry.get("quote_zh", info.get("quote_zh", "")) if lang == "zh" else entry.get("quote_en", "")
     parts = [f'<img src="{{folder}}/{entry["bgm"]}.webp" alt="{esc(name)}" loading="lazy" />', score, f"<b>{esc(name)}</b>"]
     if quote_mode and quote_text:
         parts.append(f"<q>{esc(quote_text)}</q>")

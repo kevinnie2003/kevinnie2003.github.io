@@ -59,3 +59,14 @@ for rec in font["name"].names:
 font.flavor = "woff2"
 font.save(path)
 print("renamed", path)
+
+# Point fonts.css at the new files, so browsers drop their cached copies
+import hashlib
+import re
+css_path = os.path.join(out, "fonts.css")
+css = open(css_path, encoding="utf-8").read()
+for _, target in jobs:
+    v = hashlib.sha1(open(os.path.join(out, target), "rb").read()).hexdigest()[:8]
+    css = re.sub(re.escape(target) + r"(\?v=[^')]*)?", f"{target}?v={v}", css)
+open(css_path, "w", encoding="utf-8", newline="\n").write(css)
+print("updated", css_path)

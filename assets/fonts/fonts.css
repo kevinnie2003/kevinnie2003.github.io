@@ -9,7 +9,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('kn-heading.woff2?v=4') format('woff2');
+  src: url('kn-heading.woff2?v=76bd0c30') format('woff2');
 }
 
 /* Body: Noto Sans SC (思源黑体; OFL, see OFL-NotoSansSC.txt), variable weight. */
@@ -18,5 +18,5 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('noto-sans-sc.woff2?v=4') format('woff2');
+  src: url('noto-sans-sc.woff2?v=bb13bfb1') format('woff2');
 }
