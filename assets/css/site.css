@@ -93,7 +93,11 @@ button { font: inherit; color: inherit; }
 .skip:focus { left: 0; }
 
 /* ── 顶栏 ─────────────────────────────────────────────── */
-.bar { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; gap: 1.6rem; padding: 1.2rem 2.4rem; }
+.bar { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; gap: 1.6rem; padding: 1.2rem 2.4rem; transition: background-color .2s ease, box-shadow .2s ease; }
+/* 有 JS 时顶栏一直钉在最上面：停在天空上是透明的，页面滚起来以后 site.js 加 .stuck，铺一条天空色。
+   位置和高度都不变，只淡入底色，滑动时顶栏不会跳 */
+.js .bar { position: fixed; }
+.bar.stuck { background: var(--sky-1); box-shadow: 0 4px 18px var(--glass-shadow); }
 .logo { display: flex; align-items: center; gap: 0.55rem; font-family: var(--head); font-size: 1.5rem; color: var(--ink); }
 .bar nav { margin-left: auto; display: flex; align-items: center; gap: 1.4rem; font-weight: 500; color: var(--ink); }
 .bar nav a:hover { color: var(--jerry); }
@@ -129,7 +133,7 @@ button { font: inherit; color: inherit; }
 
 /* ── 通用 ─────────────────────────────────────────────── */
 main.home { max-width: 1120px; margin: 0 auto; padding: 4.5rem 2rem 4rem; }
-.home section { scroll-margin-top: 1rem; }
+.home section { scroll-margin-top: 5.6rem; }
 .home section + section { margin-top: 5.5rem; }
 .home h2 { font-family: var(--head); font-weight: 400; font-size: 2.4rem; line-height: 1.1; }
 .panel { background: var(--card); border: 2px solid var(--line); border-radius: 20px; }
@@ -249,7 +253,6 @@ main.home { max-width: 1120px; margin: 0 auto; padding: 4.5rem 2rem 4rem; }
 
 /* ── 文章页 ───────────────────────────────────────────── */
 .sky-band { position: relative; overflow: hidden; height: 300px; background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-mid) 60%, var(--sky-2) 100%); }
-.sky-band .bar { position: relative; }
 [data-theme="dark"] .sky-band .stars { height: 100%; }
 [data-theme="dark"] .sky-band .moon { width: 64px; height: 64px; top: 34%; right: 9%; }
 .post { max-width: 760px; margin: -150px auto 0; padding: 0 1.5rem 4rem; position: relative; z-index: 2; }
@@ -309,6 +312,7 @@ main.home { max-width: 1120px; margin: 0 auto; padding: 4.5rem 2rem 4rem; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .next { animation: none; }
+  .bar { transition: none; }
 }
 @media (max-width: 860px) {
   .bar { padding: 1rem 1.2rem; gap: 0.8rem; }

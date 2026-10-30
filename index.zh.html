@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="zh"){try{sessionStorage.setItem("kn-ref",document.referrer)}catch(e){}location.replace("./"+location.hash);}}catch(e){}</script>
 <script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
-<script>window.KN_LANG = "zh";</script>
+<script>window.KN_LANG = "zh"; document.documentElement.classList.add("js");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content="tools/build.py" />
 <title>小鸭鸭 | 聂明轩 Kevin Nie</title>
@@ -25,9 +25,9 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/home.zh.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="assets/fonts/fonts.css?v=baf12a08" />
-<link rel="stylesheet" href="assets/css/forge.css?v=baf12a08" />
-<link rel="stylesheet" href="assets/css/site.css?v=baf12a08" />
+<link rel="stylesheet" href="assets/fonts/fonts.css?v=d7c19244" />
+<link rel="stylesheet" href="assets/css/forge.css?v=d7c19244" />
+<link rel="stylesheet" href="assets/css/site.css?v=d7c19244" />
 </head>
 <body>
 <a class="skip" href="#content">跳到正文</a>
@@ -79,26 +79,26 @@
     <div class="jobs">
       <article class="panel job">
         <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/mihoyo.png'); width: 82px; height: 22px"></span><h3>米哈游<span>游戏测试开发工程师</span></h3></div>
-        <ul class="list"><li>负责<strong>对话式自动化用例生成系统</strong>：QA 用一句话描述测试，系统写出能直接运行的 <strong>Airtest + Poco</strong> 脚本。生成时参考的知识库是从游戏源码里挖出来的，有 <strong>10 万多个 Unity Prefab 节点</strong>，还有 GM 指令、协议和配置数据。</li><li>把生成、规则改写、静态检查、<strong>假通过审计</strong>、真机运行和知识回填串成一个闭环。同一批回归测试点里，能生成可运行、且审计没问题的脚本的比例，从大约 <strong>30% 提到 80%</strong>。<a href="writing/knowing-what-the-button-is-called.zh.html">详细写在这篇文章里</a>。</li><li>开发内部<strong>自动化测试平台</strong>的前后端（React + TypeScript / Flask + Socket.IO + MySQL），几十位 QA 在用。另外写了一批 <strong>GM 指令</strong>，<strong>30 多个游戏场景</strong>可以一键直达，不用再靠很容易失效的 UI 点击。</li></ul>
-        <aside><b>2026.6 – 2026.9</b><span>星布谷地，工具组</span><span>中国上海</span></aside>
+        <ul class="list"><li>开发内部<strong>自动化测试平台</strong>前后端（<strong>React + TypeScript</strong> / <strong>Flask + Socket.IO + MySQL</strong>），服务<strong>数十位</strong> QA 的用例管理、任务编排、AI 测试报告分析与自动化修复。</li><li>主导<strong>对话式 AI 自动化用例生成系统</strong>建设：融合 Unity Prefab / Lua、真机 UI、GM、协议与配置数据，构建 <strong>10 万+ Prefab 节点</strong>的分层知识库，通过<strong>语义 Grounding + 操作蓝图</strong>生成可执行的 <strong>Airtest + Poco</strong> 脚本。</li><li>设计结构化澄清、GM 通道与运行时节点的确定性纠错、静态校验及<strong>假通过审计</strong>，打通「生成—真机执行—报错修复—知识回灌」闭环，同口径回归套件的<strong>真机有效通过率由 30% 提升至 80%</strong>。<a href="writing/knowing-what-the-button-is-called.zh.html">详见这篇文章</a>。</li><li>开发 <strong>GM 指令</strong>，将 <strong>30+</strong> 游戏场景的打开方式由易失效的 UI 控件点击改为一键触发（复用 <strong>OpenLuaUI</strong>，覆盖 59 类 UI），并编写带断言与打开耗时采集的大规模自动化用例，纳入回归覆盖。</li></ul>
+        <aside><b>2026.6 – 2026.9</b><span>星布谷地，工具组</span><span>上海</span></aside>
         <div class="chips"><span>React</span><span>TypeScript</span><span>Flask</span><span>Socket.IO</span><span>MySQL</span><span>Unity</span><span>Lua</span><span>Airtest</span><span>Poco</span><span>LLM Agents</span></div>
       </article>
       <article class="panel job">
         <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/vicino.png')"></span><h3>Vicino AI<span>Agent 算法工程师</span></h3></div>
-        <ul class="list"><li>搭了一个<strong>多 Agent 四视图生成系统</strong>，给一张参考图，生成正、背、左、右四个视图。<strong>8 个分工不同的 Agent</strong> 跑在 <strong>ReAct</strong> 循环里，通过 MCP 调工具；另有一个 Agent 专门打分，看每张图和四张之间是否一致，哪张不行就只重画哪张。<strong>九成以上</strong>的请求<strong>两轮以内</strong>就能出合格的结果。<a href="writing/four-views-one-object.zh.html">详细写在这篇文章里</a>。</li><li>做了<strong>分镜</strong>生成、提示词转工作流，还有一个视频剪辑 Agent：用户聊几句，它就能改出一张可执行的节点图，支持 <strong>10 多种</strong>剪辑操作。</li></ul>
+        <ul class="list"><li>独立搭建 <strong>Multi-Agent 四视图图像生成系统</strong>（正 / 背 / 左 / 右视图），基于 <strong>ReAct</strong> 循环与 <strong>MCP / Tool Calling</strong> 编排 <strong>8+ 专用 Agent</strong>，覆盖需求理解、提示词优化、图像生成、图像评估、在线检索等环节。</li><li>设计<strong>自纠错生成闭环</strong>：动态质量阈值、<strong>跨视图一致性评估</strong>、最多 4 轮重试与版本回退，<strong>90%+</strong> 的请求在 <strong>2 轮迭代内</strong>收敛至合格输出。<a href="writing/four-views-one-object.zh.html">详见这篇文章</a>。</li><li>端到端开发 <strong>Storyboard 分镜生成</strong>、<strong>Prompt-to-Workflow</strong> 与<strong>视频编辑 Agent</strong>，支持可执行节点图、对话式工作流更新及 <strong>10+ 种结构化视频编辑操作</strong>。</li></ul>
         <aside><b>2025.11 – 2026.4</b><span>机器学习团队</span><span>美国远程</span></aside>
         <div class="chips"><span>Multi-Agent</span><span>ReAct</span><span>MCP</span><span>Tool Calling</span><span>LLM</span><span>Prompt Engineering</span></div>
       </article>
       <article class="panel job">
         <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/tiktok.svg')"></span><h3>字节跳动<span>客户端开发工程师</span></h3></div>
-        <ul class="list"><li>一个人从头做了 <strong>AI Oncall 助手</strong>（Python / React / SQLite）：每来一个问题，LLM 先看懂它要什么，再分到对应的处理流程。<strong>一千多位工程师</strong>在用，分类准确率比人工高了 <strong>80%</strong>。</li><li>实时消息走 <strong>WebSocket</strong> 长连接，LLM 分类异步进行，后面有容错队列、响应缓存和持久化，压力大的时候也不丢消息。另外先用文档自动回答一部分问题，需要人工处理的 oncall 少了 <strong>20%</strong>。</li><li>还做了一个 React 看板，实时显示请求量、工单状态和变化趋势；以及一个能复用的 <strong>iOS Item Picker</strong> 组件，sheet 和 panel 两种布局都能自适应。</li></ul>
-        <aside><b>2025.6 – 2025.9</b><span>TikTok User Experience 团队</span><span>中国上海</span></aside>
+        <ul class="list"><li>独立设计并开发 <strong>AI Oncall 助手</strong>（<strong>Python / React / SQLite</strong>），集成 <strong>LLM Agent</strong> 实现问题意图识别、自动分类与工作流路由，分类准确率较人工流程提升 <strong>80%</strong>，被 <strong>1,000+ 工程师</strong>采用。</li><li>设计高并发实时消息架构：基于 <strong>WebSocket 长连接</strong>与<strong>多线程 LLM 异步分类</strong>，配合容错队列、<strong>响应缓存</strong>与持久化层保障消息稳定投递，并通过<strong>文档拦截</strong>机制将人工 Oncall 请求减少 <strong>20%</strong>。</li><li>开发 <strong>React Dashboard</strong>，可视化实时 Oncall 数据（请求量、工单状态、平台分布），支持数据持久化与趋势分析。</li><li>独立设计并开发可复用的 <strong>iOS UI 组件 Item Picker</strong>，支持自适应 sheet / panel 布局、动态高度缓存与单选 / 多选 API。</li></ul>
+        <aside><b>2025.6 – 2025.9</b><span>TikTok User Experience 团队</span><span>上海</span></aside>
         <div class="chips"><span>Python</span><span>React</span><span>Swift</span><span>LLM Agents</span><span>WebSocket</span><span>SQLite</span><span>iOS</span></div>
       </article>
       <article class="panel job">
-        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/alibabadotcom.svg')"></span><h3>阿里巴巴<span>客户端开发工程师</span></h3></div>
-        <ul class="list"><li>负责 Lazada 在东南亚的 <strong>Android 网络诊断</strong>。那边网络差、变化多，用户反馈里最多的就是网络问题，应用层又没有现成的方案。我自己设计了一套检测方法，目标是让网络相关的反馈少三成左右。</li><li>用 Kotlin 和 Java 写了检测和诊断用的 <strong>SDK</strong> 和界面，覆盖三种情况：App 被禁止联网、信号太弱、开了代理。每种情况都告诉用户怎么解决，网络差的地方也能自己排查。</li></ul>
-        <aside><b>2024.6 – 2024.9</b><span>阿里国际，Lazada</span><span>中国广州</span></aside>
+        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/alibabadotcom.svg')"></span><h3>阿里巴巴集团<span>客户端开发工程师</span></h3></div>
+        <ul class="list"><li>主导设计并开发 <strong>Android 端网络诊断功能</strong>：针对东南亚复杂多变的弱网环境，在应用层网络诊断<strong>缺乏成熟方案</strong>的情况下，独立设计<strong>弱网检测策略</strong>，目标减少约 <strong>30%</strong> 的网络类问题上报。</li><li>基于 <strong>Kotlin / Java</strong> 实现<strong>应用禁网、信号强度、网络代理</strong>三类场景的检测与诊断 <strong>SDK</strong> 及配套 UI，并为每类场景给出可执行的解决方案，帮助弱网地区用户<strong>自助定位并解决</strong>网络问题。</li></ul>
+        <aside><b>2024.6 – 2024.9</b><span>阿里国际，Lazada</span><span>广州</span></aside>
         <div class="chips"><span>Kotlin</span><span>Java</span><span>Android</span><span>SDK</span></div>
       </article>
     </div>
@@ -117,9 +117,8 @@
     <div class="others">
       <article class="panel other"><h3>自适应内容审核 Agent</h3><p class="when">2026.1 – 2026.3<a class="gh" href="https://github.com/Zihang-He/CSE291A_Group5_Adaptive_Moderation_Agent">GitHub</a></p><ul class="list"><li>内容审核不只是贴个标签，而是决定怎么处理。先抽出 <strong>8 个以上的风险信号</strong>（恶意程度、把握有多大、上下文），再让 <strong>ReAct Agent</strong> 挑一个轻重合适的做法：不管、降权、加一道门槛，或者限流。</li><li>在 Jigsaw 恶意评论数据集上做了评测。关键在分寸：严重的限流，擦边的加门槛，越拿不准的处理得越小心。</li></ul><div class="chips"><span>Python</span><span>LLM</span><span>ReAct</span><span>NLP</span><span>Content Moderation</span></div></article>
       <article class="panel other"><h3>U-Net 卫星图船只分割</h3><p class="when">2024.6 – 2024.12<a class="gh" href="https://github.com/kevinnie2003/ship-detection">GitHub</a></p><ul class="list"><li>在 Airbus 船只数据集（5 万多张卫星图）上改进 <strong>U-Net</strong>，加了深度可分离卷积和空洞卷积，<strong>Dice 0.63</strong>，<strong>精确率 0.67</strong>。船在图里只占很小一块，所以主要功夫花在损失函数（BCE、Dice、Focal）和跳跃连接上，主干网络没怎么动。</li><li>以<strong>第一作者</strong>身份发表在 <em>Applied and Computational Engineering</em>（CONF-SPML 2025）。</li></ul><div class="chips"><span>Python</span><span>TensorFlow</span><span>U-Net</span><span>Deep Learning</span><span>Computer Vision</span></div></article>
-      <article class="panel other"><h3>Successorator</h3><p class="when">2024.1 – 2024.3<a class="gh" href="https://github.com/CSE-110-Winter-2024/TODO-List">GitHub</a></p><ul class="list"><li>带头开发一款定目标、排任务优先级的 <strong>Android 效率 App</strong>（Java、Android Studio）。</li><li>界面会根据任务类型变化：不同任务、周期性目标、情境标签，各有对应的创建窗口。</li><li>模块设计用了<strong>策略、观察者、抽象工厂、建造者</strong>几种模式；团队按敏捷方式开发，我负责把单元测试做扎实。</li></ul><div class="chips"><span>Java</span><span>Android</span><span>Android Studio</span><span>Agile</span><span>Design Patterns</span></div></article>
+      <article class="panel other"><h3>待办清单 App</h3><p class="when">2024.1 – 2024.3<a class="gh" href="https://github.com/CSE-110-Winter-2024/TODO-List">GitHub</a></p><ul class="list"><li>带头开发一款定目标、排任务优先级的 <strong>Android 效率 App</strong>（Java、Android Studio）。</li><li>界面会根据任务类型变化：不同任务、周期性目标、情境标签，各有对应的创建窗口。</li><li>模块设计用了<strong>策略、观察者、抽象工厂、建造者</strong>几种模式；团队按敏捷方式开发，我负责把单元测试做扎实。</li></ul><div class="chips"><span>Java</span><span>Android</span><span>Android Studio</span><span>Agile</span><span>Design Patterns</span></div></article>
       <article class="panel other"><h3>用深度学习给《万智牌》分类</h3><p class="when">2024.1 – 2024.3</p><ul class="list"><li>带头训练 <strong>CNN 和 Vision Transformer</strong>，按生物类型给《万智牌》卡牌分 <strong>15 类</strong>，ViT 加上监督对比学习（SupCon）最好做到 <strong>60% 准确率</strong>。</li><li>用 <strong>DCGAN</strong> 生成新的卡图，扩充训练数据。</li><li>通过预处理和数据增强，缓解类别不均衡和同类差异大的问题。</li></ul><div class="chips"><span>Python</span><span>CNN</span><span>ViT</span><span>DCGAN</span><span>Deep Learning</span></div></article>
-      <article class="panel other"><h3>循迹机器人</h3><p class="when">2022.11 – 2022.12</p><ul class="list"><li>4 人一组，从零做一台循迹机器人，传感器、电机、编程和控制都要用上。<strong>3D 打印</strong>底盘，自己做电路、焊板子，一遍遍测试修改，最后拿它和其他组比赛。</li></ul><div class="chips"><span>Arduino</span><span>3D Printing</span><span>CAD</span><span>Embedded Systems</span></div></article>
     </div>
   </section>
 
@@ -280,9 +279,9 @@
   <p class="bye">欢迎扩列～</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">邮箱</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">小黑盒</a><a href="https://space.bilibili.com/167880864">B 站</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="assets/js/forge-data.js?v=baf12a08"></script>
-<script src="assets/js/forge.js?v=baf12a08"></script>
-<script src="assets/js/site.js?v=baf12a08"></script>
+<script src="assets/js/forge-data.js?v=d7c19244"></script>
+<script src="assets/js/forge.js?v=d7c19244"></script>
+<script src="assets/js/site.js?v=d7c19244"></script>
 <script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

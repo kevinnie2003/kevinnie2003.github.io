@@ -274,11 +274,12 @@ company = "米哈游"
 role = "游戏测试开发工程师"
 period = "2026.6 – 2026.9"
 team = "星布谷地，工具组"
-location = "中国上海"
+location = "上海"
 bullets = [
-  '''负责<strong>对话式自动化用例生成系统</strong>：QA 用一句话描述测试，系统写出能直接运行的 <strong>Airtest + Poco</strong> 脚本。生成时参考的知识库是从游戏源码里挖出来的，有 <strong>10 万多个 Unity Prefab 节点</strong>，还有 GM 指令、协议和配置数据。''',
-  '''把生成、规则改写、静态检查、<strong>假通过审计</strong>、真机运行和知识回填串成一个闭环。同一批回归测试点里，能生成可运行、且审计没问题的脚本的比例，从大约 <strong>30% 提到 80%</strong>。<a href="{post:knowing-what-the-button-is-called}">详细写在这篇文章里</a>。''',
-  '''开发内部<strong>自动化测试平台</strong>的前后端（React + TypeScript / Flask + Socket.IO + MySQL），几十位 QA 在用。另外写了一批 <strong>GM 指令</strong>，<strong>30 多个游戏场景</strong>可以一键直达，不用再靠很容易失效的 UI 点击。''',
+  '''开发内部<strong>自动化测试平台</strong>前后端（<strong>React + TypeScript</strong> / <strong>Flask + Socket.IO + MySQL</strong>），服务<strong>数十位</strong> QA 的用例管理、任务编排、AI 测试报告分析与自动化修复。''',
+  '''主导<strong>对话式 AI 自动化用例生成系统</strong>建设：融合 Unity Prefab / Lua、真机 UI、GM、协议与配置数据，构建 <strong>10 万+ Prefab 节点</strong>的分层知识库，通过<strong>语义 Grounding + 操作蓝图</strong>生成可执行的 <strong>Airtest + Poco</strong> 脚本。''',
+  '''设计结构化澄清、GM 通道与运行时节点的确定性纠错、静态校验及<strong>假通过审计</strong>，打通「生成—真机执行—报错修复—知识回灌」闭环，同口径回归套件的<strong>真机有效通过率由 30% 提升至 80%</strong>。<a href="{post:knowing-what-the-button-is-called}">详见这篇文章</a>。''',
+  '''开发 <strong>GM 指令</strong>，将 <strong>30+</strong> 游戏场景的打开方式由易失效的 UI 控件点击改为一键触发（复用 <strong>OpenLuaUI</strong>，覆盖 59 类 UI），并编写带断言与打开耗时采集的大规模自动化用例，纳入回归覆盖。''',
 ]
 
 [experience.en]
@@ -289,7 +290,7 @@ team = "Petit Planet, Tools Group"
 location = "Shanghai, China"
 bullets = [
   '''Led a <strong>conversational AI test-case generation system</strong>: a QA engineer describes a test, the system returns an executable <strong>Airtest + Poco</strong> script grounded in a knowledge base of <strong>100K+ Unity prefab nodes</strong>, GM commands, protocol and config data mined from the game source.''',
-  '''Closed the loop from generation to deterministic rewrites, static validation, a <strong>false-pass audit</strong>, an on-device run and knowledge feedback, raising the share of regression test points that yield a runnable, audit-clean script from roughly <strong>30% to 80%</strong> on the same samples. <a href="{post:knowing-what-the-button-is-called}">Write-up</a>.''',
+  '''Closed the loop from generation to deterministic rewrites, static validation, a <strong>false-pass audit</strong>, an on-device run and knowledge feedback, raising the <strong>effective on-device pass rate</strong> of the same regression suite from <strong>30% to 80%</strong>. <a href="{post:knowing-what-the-button-is-called}">Write-up</a>.''',
   '''Built the front and back end of the internal <strong>automated testing platform</strong> (React + TypeScript / Flask + Socket.IO + MySQL) used by dozens of QA engineers, and shipped <strong>GM commands</strong> giving one-click entry into <strong>30+ game scenarios</strong> that used to need fragile UI navigation.''',
 ]
 
@@ -304,8 +305,9 @@ period = "2025.11 – 2026.4"
 team = "机器学习团队"
 location = "美国远程"
 bullets = [
-  '''搭了一个<strong>多 Agent 四视图生成系统</strong>，给一张参考图，生成正、背、左、右四个视图。<strong>8 个分工不同的 Agent</strong> 跑在 <strong>ReAct</strong> 循环里，通过 MCP 调工具；另有一个 Agent 专门打分，看每张图和四张之间是否一致，哪张不行就只重画哪张。<strong>九成以上</strong>的请求<strong>两轮以内</strong>就能出合格的结果。<a href="{post:four-views-one-object}">详细写在这篇文章里</a>。''',
-  '''做了<strong>分镜</strong>生成、提示词转工作流，还有一个视频剪辑 Agent：用户聊几句，它就能改出一张可执行的节点图，支持 <strong>10 多种</strong>剪辑操作。''',
+  '''独立搭建 <strong>Multi-Agent 四视图图像生成系统</strong>（正 / 背 / 左 / 右视图），基于 <strong>ReAct</strong> 循环与 <strong>MCP / Tool Calling</strong> 编排 <strong>8+ 专用 Agent</strong>，覆盖需求理解、提示词优化、图像生成、图像评估、在线检索等环节。''',
+  '''设计<strong>自纠错生成闭环</strong>：动态质量阈值、<strong>跨视图一致性评估</strong>、最多 4 轮重试与版本回退，<strong>90%+</strong> 的请求在 <strong>2 轮迭代内</strong>收敛至合格输出。<a href="{post:four-views-one-object}">详见这篇文章</a>。''',
+  '''端到端开发 <strong>Storyboard 分镜生成</strong>、<strong>Prompt-to-Workflow</strong> 与<strong>视频编辑 Agent</strong>，支持可执行节点图、对话式工作流更新及 <strong>10+ 种结构化视频编辑操作</strong>。''',
 ]
 
 [experience.en]
@@ -328,11 +330,12 @@ company = "字节跳动"
 role = "客户端开发工程师"
 period = "2025.6 – 2025.9"
 team = "TikTok User Experience 团队"
-location = "中国上海"
+location = "上海"
 bullets = [
-  '''一个人从头做了 <strong>AI Oncall 助手</strong>（Python / React / SQLite）：每来一个问题，LLM 先看懂它要什么，再分到对应的处理流程。<strong>一千多位工程师</strong>在用，分类准确率比人工高了 <strong>80%</strong>。''',
-  '''实时消息走 <strong>WebSocket</strong> 长连接，LLM 分类异步进行，后面有容错队列、响应缓存和持久化，压力大的时候也不丢消息。另外先用文档自动回答一部分问题，需要人工处理的 oncall 少了 <strong>20%</strong>。''',
-  '''还做了一个 React 看板，实时显示请求量、工单状态和变化趋势；以及一个能复用的 <strong>iOS Item Picker</strong> 组件，sheet 和 panel 两种布局都能自适应。''',
+  '''独立设计并开发 <strong>AI Oncall 助手</strong>（<strong>Python / React / SQLite</strong>），集成 <strong>LLM Agent</strong> 实现问题意图识别、自动分类与工作流路由，分类准确率较人工流程提升 <strong>80%</strong>，被 <strong>1,000+ 工程师</strong>采用。''',
+  '''设计高并发实时消息架构：基于 <strong>WebSocket 长连接</strong>与<strong>多线程 LLM 异步分类</strong>，配合容错队列、<strong>响应缓存</strong>与持久化层保障消息稳定投递，并通过<strong>文档拦截</strong>机制将人工 Oncall 请求减少 <strong>20%</strong>。''',
+  '''开发 <strong>React Dashboard</strong>，可视化实时 Oncall 数据（请求量、工单状态、平台分布），支持数据持久化与趋势分析。''',
+  '''独立设计并开发可复用的 <strong>iOS UI 组件 Item Picker</strong>，支持自适应 sheet / panel 布局、动态高度缓存与单选 / 多选 API。''',
 ]
 
 [experience.en]
@@ -352,14 +355,14 @@ logo = "alibabadotcom.svg"
 tags = ["Kotlin", "Java", "Android", "SDK"]
 
 [experience.zh]
-company = "阿里巴巴"
+company = "阿里巴巴集团"
 role = "客户端开发工程师"
 period = "2024.6 – 2024.9"
 team = "阿里国际，Lazada"
-location = "中国广州"
+location = "广州"
 bullets = [
-  '''负责 Lazada 在东南亚的 <strong>Android 网络诊断</strong>。那边网络差、变化多，用户反馈里最多的就是网络问题，应用层又没有现成的方案。我自己设计了一套检测方法，目标是让网络相关的反馈少三成左右。''',
-  '''用 Kotlin 和 Java 写了检测和诊断用的 <strong>SDK</strong> 和界面，覆盖三种情况：App 被禁止联网、信号太弱、开了代理。每种情况都告诉用户怎么解决，网络差的地方也能自己排查。''',
+  '''主导设计并开发 <strong>Android 端网络诊断功能</strong>：针对东南亚复杂多变的弱网环境，在应用层网络诊断<strong>缺乏成熟方案</strong>的情况下，独立设计<strong>弱网检测策略</strong>，目标减少约 <strong>30%</strong> 的网络类问题上报。''',
+  '''基于 <strong>Kotlin / Java</strong> 实现<strong>应用禁网、信号强度、网络代理</strong>三类场景的检测与诊断 <strong>SDK</strong> 及配套 UI，并为每类场景给出可执行的解决方案，帮助弱网地区用户<strong>自助定位并解决</strong>网络问题。''',
 ]
 
 [experience.en]
@@ -369,7 +372,7 @@ period = "Jun – Sep 2024"
 team = "AIDC, Lazada"
 location = "Guangzhou, China"
 bullets = [
-  '''Led an <strong>Android network diagnostics</strong> feature for Lazada in Southeast Asia, where weak and volatile networks were the top source of issue reports and no mature application-layer approach existed. Designed a detection strategy targeting a <strong>~30%</strong> reduction in network-related reports.''',
+  '''Led the design and development of an <strong>Android network diagnostics</strong> feature for Lazada's weak and unstable networks in Southeast Asia, where no mature application-layer approach existed. Designed a weak-network detection strategy targeting a <strong>~30%</strong> reduction in network-related reports.''',
   '''Built the detection and diagnostic <strong>SDKs</strong> and UI in Kotlin and Java for three cases (blocked app network access, signal strength, and proxies), each paired with a fix the user can apply, so people in weak-network regions could self-diagnose.''',
 ]
 
@@ -481,7 +484,7 @@ github = "https://github.com/CSE-110-Winter-2024/TODO-List"
 tags = ["Java", "Android", "Android Studio", "Agile", "Design Patterns"]
 
 [projects.zh]
-name = "Successorator"
+name = "待办清单 App"
 period = "2024.1 – 2024.3"
 bullets = [
   '''带头开发一款定目标、排任务优先级的 <strong>Android 效率 App</strong>（Java、Android Studio）。''',
@@ -518,22 +521,4 @@ bullets = [
   '''Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering creature type classification across <strong>15 classes</strong>, reaching up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).''',
   '''Used <strong>DCGAN</strong> to generate new card images and widen the training set.''',
   '''Addressed class imbalance and in-class variation through preprocessing and augmentation.''',
-]
-
-[[projects]]
-id = "robot"
-tags = ["Arduino", "3D Printing", "CAD", "Embedded Systems"]
-
-[projects.zh]
-name = "循迹机器人"
-period = "2022.11 – 2022.12"
-bullets = [
-  '''4 人一组，从零做一台循迹机器人，传感器、电机、编程和控制都要用上。<strong>3D 打印</strong>底盘，自己做电路、焊板子，一遍遍测试修改，最后拿它和其他组比赛。''',
-]
-
-[projects.en]
-name = "Line Following Robot"
-period = "Nov – Dec 2022"
-bullets = [
-  '''Built a line-following robot from scratch with a team of four, from sensors and motors to programming and control. We <strong>3D-printed</strong> the chassis, made and soldered the circuits, tested it over and over, and raced it against the other teams.''',
 ]

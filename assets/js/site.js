@@ -22,6 +22,14 @@
     });
   });
 
+  // 顶栏：停在天空上时是透明的，页面滚起来以后加上底色
+  var bar = document.querySelector('.bar');
+  if (bar) {
+    var stick = function () { bar.classList.toggle('stuck', window.scrollY > 8); };
+    stick();
+    window.addEventListener('scroll', stick, { passive: true });
+  }
+
   // 首页的对话框：一行一行打字，最后一行出选项
   var data = document.getElementById('vn-lines');
   var el = document.getElementById('line');

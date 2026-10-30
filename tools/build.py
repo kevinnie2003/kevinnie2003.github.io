@@ -254,7 +254,7 @@ def head(lang, ui, *, title, desc, path, other_path, og_title, og_desc, og_image
 <meta charset="UTF-8" />
 <script>try{{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="{lang}"){{try{{sessionStorage.setItem("kn-ref",document.referrer)}}catch(e){{}}location.replace("{there}"+location.hash);}}}}catch(e){{}}</script>
 <script>try{{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}</script>
-<script>window.KN_LANG = "{lang}";</script>
+<script>window.KN_LANG = "{lang}"; document.documentElement.classList.add("js");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content="tools/build.py" />
 <title>{esc(title)}</title>
