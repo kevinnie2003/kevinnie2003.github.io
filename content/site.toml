@@ -387,13 +387,12 @@ tags = ["C#", "Unity", "BepInEx", "Harmony", "Tool Calling", "LLM Agents", "Eval
 
 [projects.zh]
 name = "咖啡伴侣"
-period = "2026.10 至今"
+period = "2026.10 – 至今"
 alt = ["咖啡伴侣横幅", "游戏里的 AI 陪玩", "剧情路线图"]
 bullets = [
-  '''给 Unity 武侠 RPG《活侠传》做的 Mod，C# 写了 <strong>3.6 万行</strong>，用 <strong>BepInEx / Harmony</strong> 打了 <strong>230 多个运行时补丁</strong>。功能包括路线图和剧情流程图（从 <strong>2,200 多个反编译的 Lua 剧本</strong>里解析出来）、靠 Lua 记录和重放实现的随时存档、数值修改等。<strong>两周发了 70 多个版本</strong>，GitHub <strong>100 多个 star</strong>，下载<strong>超过 2 万次</strong>，现在还在更新。''',
-  '''最核心的是游戏里的 <strong>Tool-Calling Agent</strong>。它有 <strong>15 个工具</strong>，能查剧本里的分岔条件、<strong>上千个剧情旗标</strong>在哪设置和判定、每条路线的好感和数值合计，也能看实时存档和屏幕上的选项。它会先查几轮资料，再根据查到的东西回答，不靠记忆瞎编。''',
-  '''<strong>11 个角色</strong>各用各的口吻聊天，只知道玩家已经读过的剧情，剧透分 <strong>3 档</strong>。想改存档，它会先弹一张卡片，玩家点确认才改。''',
-  '''用一套 <strong>20 道题的评测</strong>加每轮的调试记录，一点点修检索排序、补工具、调提示词（普通模式 <strong>15/20</strong>，深度模式 <strong>18/20</strong>）。提示词前缀保持不变，思考内容原样传回，<strong>缓存命中率一直在 80% 到 86%</strong>。''',
+  '''基于 <strong>BepInEx / Harmony</strong> 独立开发 Unity RPG《活侠传》Mod，C# <strong>3.6 万行</strong>（<strong>230+ 个运行时补丁</strong>），包含基于 <strong>2,200+ 个反编译 Lua 剧情脚本</strong>的路线图与剧情流程图、Lua 记录重放式随时存档、数值编辑等功能；<strong>两周发布 70+ 个版本</strong>，GitHub <strong>100+ star</strong>，下载 <strong>2 万+</strong>。''',
+  '''开发游戏内 <strong>Tool-Calling 攻略 Agent</strong>：<strong>15 个工具</strong>检索由剧本解析出的知识库（分岔条件、<strong>1,000+ 剧情旗标</strong>的读写索引、每条路线的数值合计）与实时存档；<strong>11 位角色人设</strong>以各自口吻作答，支持 <strong>3 档剧透</strong>，修改存档须玩家确认。''',
+  '''搭建 <strong>20 题评测集</strong>与逐轮调试记录，据此修正检索排序、工具覆盖和提示词规则（普通模式 <strong>15/20</strong>，深度模式 <strong>18/20</strong>）；通过固定提示词前缀、长对话定点压缩成摘要、思考块原样回传，使<strong>提示词缓存命中率达 80–86%</strong>。''',
 ]
 
 [projects.en]
@@ -401,10 +400,9 @@ name = "Coffee Companion"
 period = "Oct 2026 – Present"
 alt = ["Coffee Companion banner", "The in-game AI companion", "Story route map"]
 bullets = [
-  '''A <strong>36K-line C#</strong> mod for the Unity wuxia RPG <em>Legend of Mortal</em>, built on <strong>BepInEx/Harmony</strong> with <strong>230+ runtime patches</strong>: a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere through Lua record-and-replay, and a stat editor. <strong>70+ releases in two weeks</strong>, <strong>100+ stars</strong>, <strong>20K+ downloads</strong>, still in active development.''',
-  '''The centrepiece is an in-game <strong>tool-calling agent</strong>. Its <strong>15 tools</strong> read a knowledge base built from the parsed scripts (branch conditions, where each of <strong>1,000+ story flags</strong> is set and checked, per-route totals of affinity and stats) plus the live save and the choices on screen. It looks things up over several rounds, then answers from what it found, not from memory.''',
-  '''<strong>11 character personas</strong> talk in their own voice, know only the story the player has read, and respect <strong>3 spoiler levels</strong>. Any change to the save is proposed as a card and applied only when the player confirms.''',
-  '''A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>.''',
+  '''Independently developed a <strong>36K-line C#</strong> mod for the Unity RPG <em>Legend of Mortal</em> on <strong>BepInEx/Harmony</strong> (<strong>230+ runtime patches</strong>), adding a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere via Lua record-and-replay, and a stat editor; shipped <strong>70+ releases in two weeks</strong>, with <strong>100+ stars</strong> and <strong>20K+ downloads</strong>.''',
+  '''Built an in-game <strong>tool-calling AI agent</strong>: <strong>15 tools</strong> query a knowledge base built from the parsed scripts (branch conditions, a read/write index for <strong>1,000+ story flags</strong>, per-route stat totals) plus the live save; <strong>11 character personas</strong> answer in their own voice under <strong>3 spoiler levels</strong>, and any edit to the game state applies only after the player confirms.''',
+  '''Built a <strong>20-question graded eval harness</strong> with per-turn debug traces, and used it to fix retrieval ranking, tool coverage, and prompt rules (<strong>15/20</strong> in standard mode, <strong>18/20</strong> in deep mode); kept a stable prompt prefix, compressed long chats into a summary at fixed points, and passed thinking blocks back unchanged, for an <strong>80–86% prompt cache hit rate</strong>.''',
 ]
 
 [[projects]]
@@ -421,9 +419,9 @@ name = "RogueForge"
 period = "2026.5 – 2026.6"
 alt = ["RogueForge 的战斗画面"]
 bullets = [
-  '''一款 <strong>AI 原生的肉鸽卡牌游戏</strong>，卡牌、敌人、事件、房间规则和角色这 <strong>5 类内容</strong>都由 LLM 在对局里现做，每一类都走同一条流程：<strong>生成、校验、修正、重来</strong>。''',
-  '''模型只能拼白名单里的效果，战斗逻辑在后端按规则执行。每张卡要过三关：结构、机制白名单、数值预算。差一点的自动往回调，差太多的连同原因一起退回去重做。''',
-  '''数值预算是拿《杀戮尖塔》的真实卡牌校准的，平不平衡有数可查，不用靠猜。<strong>2,658</strong> 个候选里，大约 <strong>95%</strong> 能直接用。这里放了游戏里用的校验器，可以直接玩。''',
+  '''独立开发 <strong>AI-Native 肉鸽卡牌游戏</strong>，由 LLM 在对局中实时生成卡牌、敌人、事件、房间规则、角色 <strong>5 类内容</strong>；每类内容都走同一条「<strong>生成—校验—修复—重试</strong>」管线，保证 AI 产出可玩、数值平衡。''',
+  '''让 <strong>LLM 只组合预定义效果与文案</strong>、不介入确定性战斗逻辑，并对生成内容做<strong>结构 / 机制白名单 / 数值预算</strong>三重校验：超标数值<strong>自动裁剪</strong>，非法结构<strong>带原因打回重试</strong>。''',
+  '''用真实《杀戮尖塔》卡牌数据做 <strong>few-shot 参考</strong>并<strong>校准数值预算</strong>（使 <strong>80%+</strong> 原版卡落入各自档位）；配套<strong>评测面板</strong>统计每次生成的接受 / 修复 / 拒绝比例，实测 <strong>2,658</strong> 个候选约 <strong>95%</strong> 可直接使用。卡片中嵌入了游戏所用的校验器，可直接试用。''',
 ]
 
 [projects.en]
@@ -431,9 +429,9 @@ name = "RogueForge"
 period = "May – Jun 2026"
 alt = ["A fight in RogueForge"]
 bullets = [
-  '''An <strong>AI-native roguelike deck-builder</strong>: an LLM generates <strong>5 content types</strong> live during a run (cards, enemies, events, room rules and characters), each through the same <strong>generate, validate, repair, retry</strong> loop.''',
-  '''The model only combines whitelisted effects; deterministic combat runs on the backend. Three validation layers (structure, mechanic allowlist, numerical budget) clamp what is close and bounce what is not, with the reason fed back for a retry.''',
-  '''The budget is calibrated against real <em>Slay the Spire</em> cards, so "balanced" is measured, not guessed. Of <strong>2,658</strong> logged candidates, about <strong>95%</strong> were served. The validator from the game is right here, so you can try it.''',
+  '''Independently built an <strong>AI-native roguelike deck-building game</strong> where an LLM generates <strong>5 content types</strong> live during a run (cards, enemies, events, room rules and characters), each routed through the same <strong>generate → validate → repair → retry</strong> pipeline to keep output playable and numerically balanced.''',
+  '''Kept the LLM to combining predefined effects and copy, never touching deterministic combat logic, and enforced three validation layers (structure, mechanic allowlist and numerical budget), auto-clamping out-of-range values and bouncing invalid structures back with a specific reason.''',
+  '''Calibrated numerical budgets against real <em>Slay the Spire</em> card data as few-shot references, landing <strong>80%+</strong> of original cards in their correct tiers; a companion evaluation dashboard tracked accept / repair / reject ratios, with about <strong>95%</strong> of <strong>2,658</strong> candidates directly usable. The validator from the game is embedded in this card, so you can try it.''',
 ]
 
 [[projects]]
@@ -445,16 +443,18 @@ tags = ["Python", "LLM", "ReAct", "NLP", "Content Moderation"]
 name = "自适应内容审核 Agent"
 period = "2026.1 – 2026.3"
 bullets = [
-  '''内容审核不只是贴个标签，而是决定怎么处理。先抽出 <strong>8 个以上的风险信号</strong>（恶意程度、把握有多大、上下文），再让 <strong>ReAct Agent</strong> 挑一个轻重合适的做法：不管、降权、加一道门槛，或者限流。''',
-  '''在 Jigsaw 恶意评论数据集上做了评测。关键在分寸：严重的限流，擦边的加门槛，越拿不准的处理得越小心。''',
+  '''构建两阶段 LLM 内容审核管线，提取 <strong>8+ 项结构化风险信号</strong>，包括恶意程度与不确定性评分。''',
+  '''实现基于 <strong>ReAct 的处置选择器</strong>，给出与风险相称的处置：不处理、降权、增加操作门槛或限流。''',
+  '''在 Jigsaw 恶意评论数据集上完成评测，各严重程度下的处置选择与风险更加匹配。''',
 ]
 
 [projects.en]
 name = "Adaptive Moderation Agent"
 period = "Jan – Mar 2026"
 bullets = [
-  '''Content moderation as a decision, not a label: a first pass extracts <strong>8+ structured risk signals</strong> (toxicity, uncertainty, context) and a <strong>ReAct agent</strong> picks a proportionate action: do nothing, downrank, add friction, or throttle.''',
-  '''Evaluated on the Jigsaw toxic comment dataset. The point was calibration: severe content gets throttled, borderline content gets friction, and the uncertain cases are the ones the agent is most careful with.''',
+  '''Built a 2-stage LLM moderation pipeline with <strong>8+ structured risk signals</strong> including toxicity and uncertainty scoring.''',
+  '''Implemented a <strong>ReAct-based action chooser</strong> for calibrated responses: do nothing, downrank, add friction, or throttle.''',
+  '''Evaluated on the Jigsaw toxic comment dataset, demonstrating more calibrated action selection across severity levels.''',
 ]
 
 [[projects]]
@@ -466,16 +466,18 @@ tags = ["Python", "TensorFlow", "U-Net", "Deep Learning", "Computer Vision"]
 name = "U-Net 卫星图船只分割"
 period = "2024.6 – 2024.12"
 bullets = [
-  '''在 Airbus 船只数据集（5 万多张卫星图）上改进 <strong>U-Net</strong>，加了深度可分离卷积和空洞卷积，<strong>Dice 0.63</strong>，<strong>精确率 0.67</strong>。船在图里只占很小一块，所以主要功夫花在损失函数（BCE、Dice、Focal）和跳跃连接上，主干网络没怎么动。''',
-  '''以<strong>第一作者</strong>身份发表在 <em>Applied and Computational Engineering</em>（CONF-SPML 2025）。''',
+  '''改进 <strong>U-Net</strong> 结构，引入深度可分离卷积与空洞卷积，在 Airbus Ship Detection 数据集（5 万+ 张图像）上达到 <strong>Dice 0.6325</strong>、<strong>精确率 0.6678</strong>。''',
+  '''基于 TensorFlow 设计自定义损失函数（BCE、Dice、Focal）并改进跳跃连接，提升小型船只的分割效果。''',
+  '''以<strong>第一作者</strong>身份将成果发表于 <em>Applied and Computational Engineering</em>（CONF-SPML 2025）。''',
 ]
 
 [projects.en]
 name = "Enhanced U-Net for Ship Segmentation"
 period = "Jun – Dec 2024"
 bullets = [
-  '''A <strong>U-Net</strong> with depthwise-separable and atrous convolutions for the Airbus ship dataset (50k+ satellite images), reaching <strong>Dice 0.63</strong> and <strong>precision 0.67</strong>. Ships are tiny relative to the image, so the work was in the losses (BCE, Dice, Focal) and the skip connections, not the backbone.''',
-  '''Published as <strong>first author</strong> in <em>Applied and Computational Engineering</em>, CONF-SPML 2025.''',
+  '''Developed an advanced <strong>U-Net</strong> with depthwise separable and atrous convolutions, achieving <strong>Dice 0.6325</strong> and <strong>precision 0.6678</strong> on the Airbus Ship Detection dataset (50k+ images).''',
+  '''Designed custom loss functions (BCE, Dice, Focal) and enhanced skip connections in TensorFlow to improve small-ship segmentation.''',
+  '''Published results as <strong>first author</strong> in <em>Applied and Computational Engineering</em> (CONF-SPML 2025).''',
 ]
 
 [[projects]]
@@ -487,9 +489,9 @@ tags = ["Java", "Android", "Android Studio", "Agile", "Design Patterns"]
 name = "待办清单 App"
 period = "2024.1 – 2024.3"
 bullets = [
-  '''带头开发一款定目标、排任务优先级的 <strong>Android 效率 App</strong>（Java、Android Studio）。''',
-  '''界面会根据任务类型变化：不同任务、周期性目标、情境标签，各有对应的创建窗口。''',
-  '''模块设计用了<strong>策略、观察者、抽象工厂、建造者</strong>几种模式；团队按敏捷方式开发，我负责把单元测试做扎实。''',
+  '''主导开发一款用于目标设定与任务优先级管理的 <strong>Android 效率应用</strong>（Java、Android Studio）。''',
+  '''实现自适应界面，针对不同任务类型、周期性目标与情境标签提供动态的目标创建对话框。''',
+  '''采用<strong>策略、观察者、抽象工厂、建造者</strong>等设计模式完成模块设计；在敏捷团队中负责严格的单元测试。''',
 ]
 
 [projects.en]
@@ -506,19 +508,19 @@ id = "mtg"
 tags = ["Python", "CNN", "ViT", "DCGAN", "Deep Learning"]
 
 [projects.zh]
-name = "用深度学习给《万智牌》分类"
+name = "深度学习在《万智牌》中的应用"
 period = "2024.1 – 2024.3"
 bullets = [
-  '''带头训练 <strong>CNN 和 Vision Transformer</strong>，按生物类型给《万智牌》卡牌分 <strong>15 类</strong>，ViT 加上监督对比学习（SupCon）最好做到 <strong>60% 准确率</strong>。''',
-  '''用 <strong>DCGAN</strong> 生成新的卡图，扩充训练数据。''',
-  '''通过预处理和数据增强，缓解类别不均衡和同类差异大的问题。''',
+  '''主导开发 <strong>CNN 与 Vision Transformer（ViT）</strong>模型，对《万智牌》卡牌按生物类型进行 <strong>15 类</strong>分类，结合监督对比学习（SupCon）的 ViT 准确率最高达 <strong>60%</strong>。''',
+  '''使用 <strong>DCGAN</strong> 生成新的卡牌图像，提升训练数据的多样性。''',
+  '''通过数据预处理与数据增强，缓解类别不均衡与类内差异问题。''',
 ]
 
 [projects.en]
 name = "Deep Learning Applications in MTG"
 period = "Jan – Mar 2024"
 bullets = [
-  '''Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering creature type classification across <strong>15 classes</strong>, reaching up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).''',
-  '''Used <strong>DCGAN</strong> to generate new card images and widen the training set.''',
-  '''Addressed class imbalance and in-class variation through preprocessing and augmentation.''',
+  '''Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering card creature type classification across <strong>15 classes</strong>, achieving up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).''',
+  '''Utilized <strong>DCGAN</strong> to generate novel MTG card images, enhancing dataset diversity for model training.''',
+  '''Addressed class imbalance and variation through effective data preprocessing and augmentation.''',
 ]
