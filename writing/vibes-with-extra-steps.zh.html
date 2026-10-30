@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Language: saved choice, else the system language; send readers to their version -->
+  <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="zh")location.replace("vibes-with-extra-steps.html"+location.hash);}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>这卡超模了吗 — 聂明轩</title>
+  <meta name="description" content="用真实《杀戮尖塔》卡牌校准强度预算，让「这张 AI 生成的卡平衡吗」变成一个能用数字回答的问题；以及藏在这个数字背后的三个 bug。" />
+  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
+  <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.zh.html" />
+  <link rel="canonical" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.zh.html" />
+  <meta property="og:title" content="这卡超模了吗" />
+  <meta property="og:description" content="怎样让 AI 生成的卡牌在数值上站得住：用真实卡牌数据定义「平衡」。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-vibes.png" />
+  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-vibes.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/forge.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/article.css?v=20261029c" />
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <main class="article-page">
+    <div class="article-top">
+      <a class="back" href="../#writing">&larr; 聂明轩</a>
+      <div class="article-tools">
+        <a class="theme-toggle lang-toggle" href="vibes-with-extra-steps.html" aria-label="Read in English" onclick="try{localStorage.setItem('kn-lang','en')}catch(e){}"><span class="theme-label">EN</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换到浅色模式">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <span class="theme-label">浅色模式</span>
+      </button>
+      </div><!-- .article-tools -->
+    </div>
+
+  <div class="article-head">
+    <p class="meta">2026 年 6 月 · 阅读约 9 分钟</p>
+    <h1 class="title">这卡超模了吗</h1>
+    <p class="lede">我做了一款卡牌构筑游戏，每张卡都由 LLM 设计。第一个版本基本就是在玩一张 1 费打 40 的卡。这篇讲「这卡平衡吗」怎么变成一个有数字答案的问题，以及藏在那个数字背后的三个 bug。</p>
+  </div>
+
+  <div class="article-body">
+    <p>RogueForge 是一款《杀戮尖塔》式的肉鸽卡牌构筑游戏。每打完一场，模型都会现做三张全新的奖励卡：名字、风味文字、效果，一样不少。敌人、战斗之间的事件、房间里的危险机关也都是它做的；你愿意的话，连整个角色带十张起始牌组也能交给它。没有两局的内容是重样的。</p>
+
+    <p>生成反倒是最容易的部分。跟一个像样的模型要「一张给铁甲战士用的普通 1 费攻击牌」，每次拿回来的都像模像样。问题是，像模像样和公平是两回事。模型会理直气壮地递给你一张「1 费，造成 40 点伤害」，也会递给你一张「稀有，获得 2 点格挡」。后者其实更糟：稀有卡一弱，打完 Boss 的奖励就像是在罚你。</p>
+
+    <p>所以这个项目真正的活，是挡在模型和玩家之间的那一道道关卡。这篇只讲我最在意的一道：数值预算。</p>
+
+    <h2>第一条规则：模型不写游戏逻辑</h2>
+
+    <p>在谈平衡之前，得先说一个结构上的决定。卡牌不是一段让引擎去揣摩的文字，而是一个有类型的对象，带一个 <code>effects</code> 列表；每个效果的 <code>kind</code> 只能从八种里选：造成伤害、获得格挡、抽牌、获得能量、给敌人上状态、给自己上状态、失去生命、回复生命。状态又是另一份十种的白名单。战斗引擎是确定性的，直接执行这些效果。描述文字也会一起生成，但它说了不算：效果和描述对不上时，以效果为准，描述按模板重新生成。</p>
+
+    <p>后面所有东西都靠这个决定撑着。模型只是在组合基本单元，所以校验器能在玩家看到之前，把每张卡都静态检查一遍。而真实的《杀戮尖塔》卡牌也能用同样的单元表达出来，我就可以用同一个函数给它们打分，拿苹果比苹果。</p>
+
+    <h2>预算，以及它的数字从哪来</h2>
+
+    <p>一张卡的强度分，是它各个效果的加权和：</p>
+
+    <pre><code>强度 = 0.6 × 伤害 × 段数
+     + 0.5 × 格挡
+     + 1.5 × 抽牌数
+     + 2.0 × 能量
+     + 2.0 × 负面状态层数 × 状态权重
+     + 1.5 × 正面状态层数 × 状态权重
+     − 0.4 × 失去的生命
+     + 1.2 × 回复的生命
+     + 消耗 / 虚无有小幅加分，固有 / 保留有扣分</code></pre>
+
+    <p>这组系数的第一版，是我的编程 Agent 凭感觉定的，看着也挺像样。我没用。凭感觉定系数，说白了还是拍脑袋，只是看着像那么回事：把我自己的口味写进公式，再夸校验器跟我想的一样。如果问题是「一个《杀戮尖塔》玩家会不会认这张卡」，答案就得来自《杀戮尖塔》本身。</p>
+
+    <p>于是我找了一份收录全部卡牌的数据集，取出铁甲战士的 75 张卡，用数据来定义「平衡」。每个（稀有度，费用）档位，合理区间就是这个档位里真实卡牌强度分的均值，上下各两个标准差。一张生成出来的普通 1 费卡，只要分数和真实的普通 1 费卡差不多，就算落在区间里。系数本身则来自一次小规模网格搜索，目标是让尽可能多的真实卡落在各自的区间内；这个比例到不了 80%，构建就直接失败。</p>
+
+    <div class="aside"><b>最后的结果。</b>用最终这组系数，75 张真实铁甲战士卡里有 65 张落在各自的 ±1.5σ 区间内，74 张落在游戏实际使用的 ±2σ 区间内。你可以<a href="../#playground">在首页</a>亲手试试这个校验器。</div>
+
+    <h2>通过、修复，还是拒绝</h2>
+
+    <p>每个候选都会拿到三种判决之一。落在区间内：原样通过。超出区间、但离最近的边界不到 50%：修复。校验器会把贡献最大的那个效果一次降一点（如果是强度不够的稀有卡，就把粒度最细的效果往上抬），直到分数回到区间里，再重新生成规则文字，保证玩家读到的就是实际生效的数字。超出得更多：拒绝，原因写回提示词，让模型重来。连续被拒三次，就换上一张人工准备的备用卡。</p>
+
+    <p>修复这一步比听起来重要。模型总是稍微手松一点。一张普通 1 费卡打 12 点、上 1 层虚弱，刚好超出区间；换成人类设计师，会说「改成 11」，而不是「推倒重来」。修复策略就是把这种直觉写成规则，并记下确切的改动，评测面板上每张被裁过的卡旁边都能看到 <code>deal_damage 12→11</code>。</p>
+
+    <div class="figure" role="img" aria-label="三张示例卡牌及其判决。">
+      <svg class="dg" viewBox="0 0 760 120" xmlns="http://www.w3.org/2000/svg">
+        <rect class="box" x="8" y="12" width="230" height="96"/>
+        <text x="20" y="34" style="font-weight:640">Measured Thrust</text><text class="lbl" x="228" y="34" text-anchor="end">普通 · 1 费</text>
+        <text x="20" y="54">Deal 7 damage. Apply 1 Vulnerable.</text>
+        <text class="mono lbl" x="20" y="76">强度 6.20 · 区间 0.00 – 8.31</text>
+        <text class="t-ok" x="20" y="98" style="font-weight:640">通过</text>
+
+        <rect class="box" x="265" y="12" width="230" height="96"/>
+        <text x="277" y="34" style="font-weight:640">Gut Punch</text><text class="lbl" x="485" y="34" text-anchor="end">普通 · 1 费</text>
+        <text x="277" y="54">Deal <tspan class="t-no" style="text-decoration:line-through">12</tspan> <tspan class="t-ok" style="font-weight:640">11</tspan> damage. Apply 1 Weak.</text>
+        <text class="mono lbl" x="277" y="76">强度 8.90 → 8.30 · 区间 0.00 – 8.31</text>
+        <text class="t-fix" x="277" y="98" style="font-weight:640">修复（裁了 1 点）</text>
+
+        <rect class="box" x="522" y="12" width="230" height="96"/>
+        <text x="534" y="34" style="font-weight:640">Overreach</text><text class="lbl" x="742" y="34" text-anchor="end">普通 · 1 费</text>
+        <text x="534" y="54">Deal 40 damage.</text>
+        <text class="mono lbl" x="534" y="76">强度 24.0 · 区间 0.00 – 8.31</text>
+        <text class="t-no" x="534" y="98" style="font-weight:640">拒绝 · 超出 189%，重来</text>
+      </svg>
+    </div>
+    <p class="figcap">同一个卡位的三个候选。中间那张是模型最常给你的：差不多，就是稍微大方了点。</p>
+
+    <h2>藏在数字背后的三个 bug</h2>
+
+    <p>有了这个数字，我才发现数字本身有问题，前后一共三次。</p>
+
+    <h3>1. 每张奖励卡其实都是备用卡</h3>
+
+    <p>第一个能玩的版本看起来没毛病：战斗正常，奖励正常出，我也照常选卡。后来我才注意到，三张奖励卡全叫 Steady Jab，那正是我手写的备用卡的名字。生成的每一张卡都被悄悄拒掉了，游戏把同一张手写卡端上来三次。</p>
+
+    <p>原因出在校准上。网格搜索把格挡系数压到了下限，普通 1 费的区间只剩 [0, 2.6]，窄到一张再正常不过的「造成 8 点伤害，上 1 层虚弱」都能拿到 3.2 分，被弹回去。校验器完全是按规格办事，错的是规格。更扎心的是，几天前一次代码审查就指出过这个问题（「格挡系数塌了，区间容不下 LLM 的正常输出」），我当时当成了吹毛求疵。修法是把区间从 1.5σ 放宽到 2σ，修复的门槛从 25% 提到 50%。改完之后，真正生成的卡终于上桌了：一张通过，两张修复，三个不同的名字。</p>
+
+    <h3>2. 回复 44 点生命</h3>
+
+    <p>很久以后，我加了一个「远古」稀有度，用来做许愿卡：你描述想要的卡，模型来诠释，强度区间在稀有之上。试玩时冒出来一张回复 44 点生命的卡。这不是模型幻觉，是校验器为了够到远古的强度下限，把它<em>抬</em>上去的。因为回复的单价只有每点 0.3，比格挡还便宜；而之所以这么便宜，是铁甲战士的卡里几乎没有回复牌，校准没东西可学。回复的是跨战斗保留的生命，格挡只管一回合。不管数据怎么说，回复都得比格挡贵，所以它现在有一个强制的最低系数，优先于校准结果。用数据说话的路子是对的，但数据看不到的地方，还是得有设计师的判断兜底。</p>
+
+    <h3>3. 从来没跑过的小游戏</h3>
+
+    <p>战斗之间的事件里有三个可以玩的小赌局（转盘、猜杯子、掷骰子），模型也能生成新的。上线好几周后，评测日志显示：生成的小游戏拒绝率 100%。原来数据结构要求有一个 <code>choices</code> 字段，提示词却明确让模型别写它。每个生成的赌局都校验失败，悄悄换成了三个手写赌局之一，所以从玩家的角度看，这个功能「好好的」。我能发现，只是因为每次拒绝都有记录、有计数。</p>
+
+    <div class="aside"><b>三个 bug 的共同点。</b>它们都是悄无声息的兜底。人工准备的内容对玩家是好事，对开发者是坏事：它让一个坏掉的生成器看起来能用。给下一个做类似东西的人一句建议：在做第二个功能之前，先把兜底率放到面板上。整个项目里最有用的调试工具就是评测日志，比那 255 个自动化测试都有用。测试抓得到「坏了」，只有真去玩、去记日志，才抓得到「不对」。</div>
+
+    <h2>日志现在怎么说</h2>
+
+    <table>
+      <thead><tr><th>内容类型</th><th class="n">候选数</th><th class="n">通过</th><th class="n">修复</th><th class="n">拒绝</th></tr></thead>
+      <tbody>
+        <tr><td>卡牌</td><td class="n">2,165</td><td class="n">86%</td><td class="n">9%</td><td class="n">5%</td></tr>
+        <tr><td>敌人</td><td class="n">231</td><td class="n">90%</td><td class="n">8%</td><td class="n">2%</td></tr>
+        <tr><td>房间规则</td><td class="n">130</td><td class="n">77%</td><td class="n">20%</td><td class="n">3%</td></tr>
+        <tr><td>事件</td><td class="n">125</td><td class="n">96%</td><td class="n">0%</td><td class="n">4%</td></tr>
+        <tr><td>角色</td><td class="n">7</td><td class="n">0%</td><td class="n">100%</td><td class="n">0%</td></tr>
+        <tr><td><strong>合计</strong></td><td class="n"><strong>2,658</strong></td><td class="n"><strong>86%</strong></td><td class="n"><strong>9%</strong></td><td class="n"><strong>5%</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="figcap">提交时评测日志的快照。角色一栏修复率 100%，是因为每套生成的十张牌组里至少有一张卡被裁过，整个角色就记为「修复」；这正是牌组级别的预算在起作用。</p>
+
+    <p>模型产出的内容里，约 95% 最终上了桌，要么原样，要么裁过一刀。卡牌的预算最难达标，大部分修复也发生在这里。这些数字有明确的含义：模型生成的卡里，有这么大比例和同稀有度、同费用的原版铁甲战士卡落在同一个强度分布里。这句话我敢说。「感觉挺平衡的」我可不敢。</p>
+
+    <h2>还没解决的问题</h2>
+
+    <p>打分器是靠伤害、格挡和「魔法数字」这几个字段的启发式规则去读真实卡牌的，读不懂机制。双发、掘墓、突破极限的分数全是 0。稀有 1 费这个档位一共四张卡，三张是 0 分，结果这个区间校准得比普通卡还<em>低</em>，Boss 奖励就偏弱了。我是在校验器里打的补丁，没动打分器：上限现在随稀有度单调递增，再加一个稀有度下限，把罕见和稀有卡推到各自区间的上半段。这只是给校准贴了块创可贴。正经的修法是做一个能读懂机制的打分器，要么用更细的启发式规则，要么训练一个小模型，这是我接下来会做的事。</p>
+
+    <p>更大的收获，是想明白了真正的设计工作在哪。不管我给出什么原则，我的 Agent 都能又快又准地把管线搭出来。定这些原则，才是我真正的活：系数必须来自数据；回复不是格挡；被选中的卡不等于被喜欢的卡；赌局必须有可能输。规定模型<em>不能</em>选什么，和规定它能选什么一样，都是设计。</p>
+  </div>
+
+  <div class="article-foot">
+    <p>文中的校验器原封不动地跑在<a href="../#playground">首页</a>你的浏览器里。源码在 <a href="https://github.com/kevinnie2003/rogueforge">GitHub</a>。</p>
+    <nav class="article-nav" aria-label="更多文章">
+      <a href="knowing-what-the-button-is-called.zh.html"><span>下一篇</span>知道那个按钮叫什么</a>
+      <a href="four-views-one-object.zh.html"><span>另见</span>一个物体的四个视图</a>
+    </nav>
+  </div>
+  </main>
+  <script>
+    (function () {
+      var html = document.documentElement, btn = document.getElementById('themeToggle');
+      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? '浅色模式' : '深色模式'; btn.setAttribute('aria-label', t === 'dark' ? '切换到浅色模式' : '切换到深色模式'); }
+      apply(html.getAttribute('data-theme') || 'dark');
+      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
+    })();
+  </script>
+</body>
+</html>

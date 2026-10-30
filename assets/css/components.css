@@ -229,6 +229,16 @@
 
 .theme-label { font-family: var(--font-mono); }
 
+/* Language and theme switches sit side by side at the bottom of the sidebar */
+.sidebar-toggles { display: flex; flex-wrap: wrap; gap: 8px; }
+.lang-toggle .theme-label { min-width: 2ch; }
+
+/* Chinese: CJK glyphs need a little more line height and no letter spacing */
+html[lang^="zh"] body { line-height: 1.75; }
+html[lang^="zh"] .hero-tagline,
+html[lang^="zh"] .section-title,
+html[lang^="zh"] .contact-title { letter-spacing: 0; }
+
 /* ── HERO / ABOUT ────────────────────────────────────────────── */
 .section-about {
   position: relative;

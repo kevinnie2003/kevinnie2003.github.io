@@ -21,6 +21,8 @@
 }
 .article-top .back:hover { color: var(--accent); }
 .article-top .theme-toggle { width: auto; padding: 8px 12px; margin: 0; }
+.article-tools { display: flex; align-items: center; gap: 8px; }
+.article-tools .lang-toggle { text-decoration: none; }
 
 .article-head .meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 18px; }
 .article-head h1 {

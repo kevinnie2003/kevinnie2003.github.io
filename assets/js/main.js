@@ -8,6 +8,7 @@
    - Skills:     add items to a category in SKILLS, or add a new key
    - Education:  add an object to EDUCATION array
    No HTML editing required.
+   Chinese text for each entry lives in i18n.js, matched by id.
    ============================================================ */
 
 /* ── EXPERIENCE DATA ─────────────────────────────────────────── */
@@ -71,6 +72,7 @@ const EXPERIENCE = [
 /* ── PROJECTS DATA ───────────────────────────────────────────── */
 const PROJECTS = [
   {
+    id: 'coffee',
     name: 'Coffee Companion — AI Mod for <em>Legend of Mortal</em>',
     period: 'Oct 2026 – Present',
     featured: true,
@@ -78,13 +80,14 @@ const PROJECTS = [
       'A <strong>36K-line C#</strong> mod for the Unity wuxia RPG <em>Legend of Mortal</em>, built on <strong>BepInEx/Harmony</strong> with <strong>230+ runtime patches</strong>: a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere through Lua record-and-replay, and a stat editor. <strong>65+ releases in two weeks</strong>, <strong>100+ stars</strong>, <strong>20K+ downloads</strong>, still in active development.',
       'The centrepiece is an in-game <strong>tool-calling agent</strong>. Its <strong>15 tools</strong> read a knowledge base built from the parsed scripts — branch conditions, where each of <strong>1,000+ story flags</strong> is set and checked, per-route totals of affinity and stats — plus the live save and the choices on screen. It looks things up over several rounds, then answers from what it found, not from memory.',
       '<strong>11 character personas</strong> talk in their own voice, know only the story the player has read, and respect <strong>3 spoiler levels</strong>. Any change to the save is proposed as a card and applied only when the player confirms.',
-      'A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>. Read <a href="writing/eleven-days-sixty-releases.html" class="inline-link">how it was built</a>.',
+      'A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>. Read <a href="writing/two-weeks-seventy-releases.html" class="inline-link">how it was built</a>.',
     ],
     github: 'https://github.com/kevinnie2003/LOMAssistant',
     live: null,
     tags: ['C#', 'Unity', 'BepInEx', 'Harmony', 'Tool Calling', 'LLM Agents', 'Evaluation', 'Prompt Caching'],
   },
   {
+    id: 'rogueforge',
     name: 'RogueForge — AI-Native Deck-Builder',
     period: 'May – Jun 2026',
     featured: true,
@@ -98,6 +101,7 @@ const PROJECTS = [
     tags: ['LLM', 'Procedural Generation', 'Validation Pipelines', 'Game Design', 'Evaluation'],
   },
   {
+    id: 'moderation',
     name: 'Adaptive Moderation Agent',
     period: 'Jan – Mar 2026',
     bullets: [
@@ -109,6 +113,7 @@ const PROJECTS = [
     tags: ['Python', 'LLM', 'ReAct', 'NLP', 'Content Moderation'],
   },
   {
+    id: 'unet',
     name: 'Enhanced U-Net for Ship Segmentation',
     period: 'Jun – Dec 2024',
     bullets: [
@@ -121,6 +126,7 @@ const PROJECTS = [
     publication: 'Applied and Computational Engineering, CONF-SPML 2025',
   },
   {
+    id: 'successorator',
     name: 'Successorator',
     period: 'Jan – Mar 2024',
     bullets: [
@@ -133,6 +139,7 @@ const PROJECTS = [
     tags: ['Java', 'Android', 'Android Studio', 'Agile', 'Design Patterns'],
   },
   {
+    id: 'mtg',
     name: 'Deep Learning Applications in MTG',
     period: 'Jan – Mar 2024',
     bullets: [
@@ -145,6 +152,7 @@ const PROJECTS = [
     tags: ['Python', 'CNN', 'ViT', 'DCGAN', 'Deep Learning', 'Machine Learning'],
   },
   {
+    id: 'robot',
     name: 'Line Following Robot',
     period: 'Nov – Dec 2022',
     bullets: [
@@ -193,8 +201,10 @@ function renderExperience() {
   const panelsEl = document.getElementById('exp-panels');
   if (!tabsEl || !panelsEl) return;
 
+  const items = EXPERIENCE.map(exp => loc(exp, 'experience', exp.id));
+
   // Render tab buttons
-  tabsEl.innerHTML = EXPERIENCE.map((exp, i) =>
+  tabsEl.innerHTML = items.map((exp, i) =>
     `<button
       class="exp-tab${i === 0 ? ' active' : ''}"
       role="tab"
@@ -206,7 +216,7 @@ function renderExperience() {
   ).join('');
 
   // Render panels
-  panelsEl.innerHTML = EXPERIENCE.map((exp, i) =>
+  panelsEl.innerHTML = items.map((exp, i) =>
     `<div
       class="exp-panel${i === 0 ? ' active' : ''}"
       role="tabpanel"
@@ -228,9 +238,9 @@ function renderExperience() {
       </div>
       <div class="exp-side">
         <dl class="exp-facts">
-          <div class="exp-fact"><dt>Period</dt><dd>${exp.period}</dd></div>
-          <div class="exp-fact"><dt>Team</dt><dd>${exp.team}</dd></div>
-          <div class="exp-fact"><dt>Location</dt><dd>${exp.location}</dd></div>
+          <div class="exp-fact"><dt>${T('Period')}</dt><dd>${exp.period}</dd></div>
+          <div class="exp-fact"><dt>${T('Team')}</dt><dd>${exp.team}</dd></div>
+          <div class="exp-fact"><dt>${T('Location')}</dt><dd>${exp.location}</dd></div>
         </dl>
         <div class="exp-tags" aria-label="Technologies used">
           ${exp.tags.map(t => `<span class="tag">${t}</span>`).join('')}
@@ -278,7 +288,7 @@ function renderLedger() {
     return first === last ? first : `${first}–${last.slice(2)}`;
   };
 
-  el.innerHTML = EXPERIENCE.map((exp, i) =>
+  el.innerHTML = EXPERIENCE.map(exp => loc(exp, 'experience', exp.id)).map((exp, i) =>
     `<a class="ledger-row" href="#experience" data-index="${i}">
       ${logoMark(exp.id)}
       <span class="ledger-company">${exp.company}</span>
@@ -334,8 +344,9 @@ function renderProjects() {
       </ul>
     </article>`;
 
-  const featured = PROJECTS.filter(p => p.featured);
-  const rest     = PROJECTS.filter(p => !p.featured);
+  const items    = PROJECTS.map(p => loc(p, 'projects', p.id));
+  const featured = items.filter(p => p.featured);
+  const rest     = items.filter(p => !p.featured);
   grid.innerHTML =
     featured.map(card).join('') +
     `<div class="projects-masonry">${rest.map(card).join('')}</div>`;
@@ -348,7 +359,7 @@ function renderSkills() {
 
   el.innerHTML = Object.entries(SKILLS).map(([cat, items]) =>
     `<div class="skill-group reveal">
-      <span class="skill-category">${cat}</span>
+      <span class="skill-category">${KN_ZH && ZH_DATA.skills[cat] ? ZH_DATA.skills[cat] : cat}</span>
       <ul class="skill-pills" aria-label="${cat} skills">
         ${items.map(s => `<li class="skill-pill">${s}</li>`).join('')}
       </ul>
@@ -361,7 +372,7 @@ function renderEducation() {
   const el = document.getElementById('edu-list');
   if (!el) return;
 
-  el.innerHTML = EDUCATION.map((edu) =>
+  el.innerHTML = EDUCATION.map(edu => loc(edu, 'education', edu.abbr)).map((edu) =>
     `<div class="edu-item reveal">
       <div class="edu-badge" aria-hidden="true">${edu.abbr}</div>
       <div class="edu-body">
@@ -418,8 +429,8 @@ function initTheme() {
     if (!btn) return;
     const label = btn.querySelector('.theme-label');
     const isDark = theme === 'dark';
-    if (label) label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-    btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    if (label) label.textContent = T(isDark ? 'Light Mode' : 'Dark Mode');
+    btn.setAttribute('aria-label', T(isDark ? 'Switch to light mode' : 'Switch to dark mode'));
   }
 }
 

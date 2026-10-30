@@ -2,11 +2,15 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
+  <!-- Language: saved choice, else the system language; send readers to their version -->
+  <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("vibes-with-extra-steps.zh.html"+location.hash);}catch(e){}</script>
   <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vibes with extra steps — Kevin Nie</title>
   <meta name="description" content="How I stopped an LLM from designing a 1-cost card that deals 40 damage: a power budget calibrated against real Slay the Spire cards, a repair policy, and the three bugs that hid behind silent fallbacks." />
   <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
+  <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.zh.html" />
   <link rel="canonical" href="https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html" />
   <meta property="og:title" content="Vibes with extra steps" />
   <meta property="og:description" content="Making 'is this AI-generated card balanced?' a question with a measurable answer." />
@@ -19,22 +23,25 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
   <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="../assets/css/main.css" />
-  <link rel="stylesheet" href="../assets/css/components.css" />
-  <link rel="stylesheet" href="../assets/css/forge.css" />
-  <link rel="stylesheet" href="../assets/css/article.css" />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/forge.css?v=20261029c" />
+  <link rel="stylesheet" href="../assets/css/article.css?v=20261029c" />
 </head>
 <body>
   <div class="noise-overlay" aria-hidden="true"></div>
   <main class="article-page">
     <div class="article-top">
       <a class="back" href="../#writing">&larr; Kevin Nie</a>
+      <div class="article-tools">
+        <a class="theme-toggle lang-toggle" href="vibes-with-extra-steps.zh.html" aria-label="阅读中文版" onclick="try{localStorage.setItem('kn-lang','zh')}catch(e){}"><span class="theme-label">中文</span></a>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
         <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         <span class="theme-label">Light Mode</span>
       </button>
+      </div><!-- .article-tools -->
     </div>
 
   <div class="article-head">

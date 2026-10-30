@@ -46,9 +46,9 @@
   --section-gap:   120px;
 
   /* Typography */
-  --font-display:  'Syne', sans-serif;
-  --font-body:     'DM Sans', sans-serif;
-  --font-mono:     'JetBrains Mono', monospace;
+  --font-display:  'Syne', 'KN Heading', 'Noto Sans SC Web', "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body:     'DM Sans', 'Noto Sans SC Web', "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono:     'JetBrains Mono', 'Noto Sans SC Web', "PingFang SC", "Microsoft YaHei", monospace;
 
   /* Misc */
   --radius-xs:     4px;
