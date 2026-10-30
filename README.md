@@ -97,10 +97,11 @@ python tools/subset-cjk-fonts.py
 
 ## Visit stats
 
-Page views go to GoatCounter. The site code is `goatcounter` under `[analytics]`
-in `content/site.toml`; leave it empty to turn counting off. Open the site once
-with `#toggle-goatcounter` at the end of the address to stop counting your own
-browser.
+Page views go to GoatCounter. The dashboard is
+https://kevinnie2003.goatcounter.com (sign in with the GoatCounter account).
+The site code is `goatcounter` under `[analytics]` in `content/site.toml`; leave
+it empty to turn counting off. Open the site once with `#toggle-goatcounter` at
+the end of the address to stop counting your own browser.
 
 ## Deploying
 
