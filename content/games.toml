@@ -153,7 +153,6 @@ items = [
   { bgm = 29648, zh = "中二病也要谈恋爱！", en = "Love, Chunibyo & Other Delusions!", quote_en = "How do they write romance this well!" },
   { bgm = 45842, zh = "变态王子与不笑猫。", en = "Henneko", quote_en = "Twists I never saw coming, and the lead lives up to the title!" },
   { bgm = 79227, zh = "游戏人生", en = "No Game No Life", quote_en = "Blank never loses!" },
-  { bgm = 209925, zh = "寻梦环游记", en = "Coco", quote_zh = "关于死亡最美好的诠释。", quote_en = "The most beautiful take on death." },
   { bgm = 328609, zh = "孤独摇滚！", en = "Bocchi the Rock!", quote_en = "Amen to Bocchi!" },
   { bgm = 386809, zh = "【我推的孩子】", en = "Oshi no Ko", quote_en = "A mystery that was a joy to follow week by week." },
   { bgm = 282413, zh = "蜘蛛侠：纵横宇宙", en = "Spider-Man: Across the Spider-Verse", quote_en = "Absolutely electric!" },
