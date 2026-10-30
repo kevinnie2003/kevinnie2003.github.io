@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>Kevin Nie — Writing</title>
-  <link>https://kevinnie2003.github.io/#writing</link>
-  <description>Notes on making LLM output reliable: validation pipelines, grounding, repair loops, and the bugs that hide behind them.</description>
+  <title>Nemesie — Writing</title>
+  <link>https://kevinnie2003.github.io/#posts</link>
+  <description>Kevin Nie on building AI agents, game mods and game test automation, and the bugs hiding along the way.</description>
   <language>en</language>
   <atom:link href="https://kevinnie2003.github.io/feed.xml" rel="self" type="application/rss+xml" />
   <item>
@@ -11,28 +11,28 @@
     <link>https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html</link>
     <guid>https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html</guid>
     <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
-    <description>Building a 36K-line game mod with an AI pair programmer: who tests and who writes, reading a game without its source, a save system built on replay, what to refuse, an AI that has to look things up before it answers, and what players abroad taught me after launch.</description>
+    <description>Building a 36K-line mod for the wuxia RPG Legend of Mortal with Claude Code in two weeks: who tests and who writes, reading a game without its source, a save system built on replay, what not to build, an AI companion that has to look things up before it answers, and what players abroad taught me after launch.</description>
   </item>
   <item>
     <title>Knowing what the button is called</title>
     <link>https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.html</link>
     <guid>https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-    <description>Turning QA test cases into scripts a real phone will run. Why the hard part was never the code, how mining the game source beat scanning the device, and what a false pass looks like.</description>
+    <description>Turning human-written QA test cases into scripts a real phone will run. Why the hard part was never the code, why source code beat scanning the device, and what a false pass looks like.</description>
   </item>
   <item>
     <title>Vibes with extra steps</title>
     <link>https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html</link>
     <guid>https://kevinnie2003.github.io/writing/vibes-with-extra-steps.html</guid>
     <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-    <description>Making &quot;is this AI-generated card balanced?&quot; a question with a measurable answer, by calibrating a power budget against real Slay the Spire cards.</description>
+    <description>How I stopped an LLM from designing a 1-cost card that deals 40 damage: a power budget calibrated against real Slay the Spire cards, a repair policy, and the three bugs that hid behind silent fallbacks.</description>
   </item>
   <item>
     <title>Four views of one object</title>
     <link>https://kevinnie2003.github.io/writing/four-views-one-object.html</link>
     <guid>https://kevinnie2003.github.io/writing/four-views-one-object.html</guid>
     <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-    <description>A multi-agent loop that turns one reference image into four consistent views. Why the judge is a separate agent, when to redo one view versus all four, and when to stop.</description>
+    <description>Generating front, back, left and right views of one object with a multi-agent loop: why the evaluator is a separate agent, when to regenerate one view versus all four, and how a dynamic threshold keeps the loop from spinning forever.</description>
   </item>
 </channel>
 </rss>

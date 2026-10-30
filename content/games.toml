@@ -1,0 +1,164 @@
+# 游戏柜和番剧。分数和中文短评从 Bangumi 拉（python tools/update-games.py），
+# 封面也由那个脚本下载到 assets/img/games/ 和 assets/img/anime/。
+# 只放 9 分以上的；8 分的只有在有特别意义时才放（写在 badge 里）。
+# hours 是 Steam 时长，没有就不写。quote_en 是满分那排和番剧的英文短评，手写。
+
+[steam]
+hours = "4,510"
+achievements = "5,072"
+level = "Lv.90"
+
+[badges]
+all = { zh = "全成就", en = "100% achievements" }
+sts1 = { zh = "战士、观者 A20", en = "Ironclad & Watcher A20" }
+sts2 = { zh = "全角色 A10", en = "All characters A10" }
+plat = { zh = "白金", en = "Platinum" }
+mod = { zh = "在给它做 Mod", en = "Modding it now" }
+first = { zh = "入坑作", en = "My first VN" }
+most = { zh = "玩得最久", en = "Most played" }
+kodaka = { zh = "拿到小高签名", en = "Signed by Kodaka" }
+friend = { zh = "朋友带我入坑", en = "A friend got me in" }
+roommate = { zh = "和室友通关", en = "Beat it with my roommate" }
+
+[[shelf]]
+id = "top"
+zh = "满分"
+en = "Perfect 10s"
+games = [
+  { bgm = 278949, steam = 1687950, zh = "女神异闻录 5 皇家版", en = "Persona 5 Royal", hours = 73.8, badge = "all", quote_en = "P5R is number one. Period." },
+  { bgm = 203681, steam = 2679460, zh = "暗喻幻想", en = "Metaphor: ReFantazio", hours = 58.5, badge = "all", quote_en = "Of course my favorite game came from the Atlus trio!" },
+  { bgm = 22660, steam = 1113000, zh = "女神异闻录 4 黄金版", en = "Persona 4 Golden", hours = 42.4, quote_en = "Atlus really are gods. P5 and P4 are both JRPG masterpieces." },
+  { bgm = 401184, steam = 1971650, zh = "歧路旅人 II", en = "Octopath Traveler II", hours = 64.2, badge = "all", quote_en = "My favorite game of 2023, and the most well-rounded one I know." },
+  { bgm = 490427, steam = 1771300, zh = "天国：拯救 2", en = "Kingdom Come: Deliverance II", hours = 115.6, quote_en = "Fortune favors the bold!" },
+  { bgm = 234026, steam = 646570, zh = "杀戮尖塔", en = "Slay the Spire", hours = 170.3, badge = "sts1", quote_en = "Slay the Spire hooked me from the very first run." },
+  { bgm = 39066, steam = 413420, zh = "超级弹丸论破 2", en = "Danganronpa 2: Goodbye Despair", hours = 20.7, quote_en = "From gameplay to story, every part of it is top tier." },
+  { bgm = 4022, steam = 1680000, zh = "Rewrite", en = "Rewrite", quote_en = "A bible for humankind, a hymn to the hunters who save the Earth!" },
+  { bgm = 295957, steam = 3418570, zh = "夏日口袋 Reflection Blue", en = "Summer Pockets Reflection Blue", quote_en = "I never forgot that most colorful summer." },
+  { bgm = 147713, steam = 391540, zh = "传说之下", en = "Undertale", hours = 7.7, quote_en = "A perfect indie game, handed to the world by a genius." },
+  { bgm = 385912, steam = 2050650, zh = "生化危机 4 重制版", en = "Resident Evil 4", hours = 24.4, quote_en = "A blast from start to finish!" },
+  { bgm = 361699, zh = "心灵杀手 2", en = "Alan Wake 2", quote_en = "A brilliant story of two worlds, one of light and one of dark." },
+]
+
+[[shelf]]
+id = "live"
+zh = "长期在玩"
+en = "Still playing"
+live = [
+  { key = "genshin", icon = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0c/db/91/0cdb910c-48ee-d0ca-6ba1-94770855de73/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg", zh = "原神", en = "Genshin Impact", zh_notes = ["60 级", "危战稳定 N6"], en_notes = ["Adventure Rank 60", "Stygian Onslaught, difficulty 6"] },
+  { key = "starrail", icon = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/48/68a548c6-05e7-7f18-0adc-f757c19031c8/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg", zh = "崩坏：星穹铁道", en = "Honkai: Star Rail", zh_notes = ["70 级", "王棋高难 0T"], en_notes = ["Trailblaze Level 70", "Hard endgame, 0-cycle clears"] },
+  { key = "zzz", icon = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bf/3f/f5/bf3ff510-7b42-85f3-3fc3-6b5775486308/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg", zh = "绝区零", en = "Zenless Zone Zero", zh_notes = ["60 级", "危局高难满星"], en_notes = ["Inter-Knot Level 60", "Deadly Assault, full stars"] },
+]
+
+[[shelf]]
+id = "rpg"
+zh = "RPG"
+en = "RPG"
+games = [
+  { bgm = 440141, steam = 2161700, zh = "女神异闻录 3 Reload", en = "Persona 3 Reload", hours = 69.6, badge = "all" },
+  { bgm = 3230, steam = 1809700, zh = "女神异闻录 3 携带版", en = "Persona 3 Portable", hours = 40.1 },
+  { bgm = 454685, zh = "圣兽之王", en = "Unicorn Overlord", badge = "plat" },
+  { bgm = 111824, steam = 638970, zh = "如龙 0", en = "Yakuza 0" },
+  { bgm = 401332, steam = 2072450, zh = "如龙 8", en = "Like a Dragon: Infinite Wealth", hours = 36.5 },
+  { bgm = 335206, steam = 2058190, zh = "审判之逝", en = "Lost Judgment", hours = 21.2 },
+  { bgm = 388136, steam = 2909400, zh = "最终幻想 VII 重生", en = "Final Fantasy VII Rebirth", hours = 70.9 },
+  { bgm = 65759, steam = 1091500, zh = "赛博朋克 2077", en = "Cyberpunk 2077", hours = 59.4 },
+  { bgm = 405362, steam = 1718570, zh = "神之天平", en = "Astlibra Revision", hours = 28.1 },
+  { bgm = 385177, steam = 1859910, zh = "活侠传", en = "Legend of Mortal", hours = 80.7, badge = "mod" },
+]
+
+[[shelf]]
+id = "mystery"
+zh = "推理"
+en = "Mystery"
+games = [
+  { bgm = 943, steam = 787480, zh = "逆转裁判 123", en = "Ace Attorney Trilogy", hours = 38.5 },
+  { bgm = 192977, steam = 1158850, zh = "大逆转裁判 1+2", en = "The Great Ace Attorney Chronicles", hours = 47.2 },
+  { bgm = 4723, steam = 1967430, zh = "幽灵诡计", en = "Ghost Trick", hours = 8.3 },
+  { bgm = 10336, steam = 413410, zh = "弹丸论破", en = "Danganronpa: Trigger Happy Havoc", hours = 15.4 },
+  { bgm = 146579, steam = 567640, zh = "新弹丸论破 V3", en = "Danganronpa V3", hours = 26.8 },
+  { bgm = 955, steam = 648580, zh = "428 被封锁的涩谷", en = "428: Shibuya Scramble", hours = 13.8 },
+  { bgm = 539816, steam = 2663950, zh = "再见断刀", en = "再见断刀", hours = 14.0 },
+  { bgm = 499874, steam = 3014080, zh = "百日战纪", en = "The Hundred Line", hours = 39.0, badge = "kodaka" },
+]
+
+[[shelf]]
+id = "vn"
+zh = "Galgame"
+en = "Visual novels"
+games = [
+  { bgm = 13, steam = 324160, zh = "CLANNAD", en = "CLANNAD", hours = 25.6 },
+  { bgm = 935, steam = 2396980, zh = "Fate/stay night", en = "Fate/stay night", hours = 46.4 },
+  { bgm = 5418, steam = 2052410, zh = "魔法使之夜", en = "Witch on the Holy Night", hours = 15.9 },
+  { bgm = 172612, steam = 1144400, zh = "千恋＊万花", en = "Senren＊Banka", hours = 23.8, badge = "first" },
+  { bgm = 297264, steam = 1230140, zh = "ATRI", en = "ATRI -My Dear Moments-", hours = 5.4 },
+  { bgm = 1126, zh = "Ever17", en = "Ever17" },
+  { bgm = 3154, steam = 412830, zh = "命运石之门", en = "Steins;Gate", hours = 18.8 },
+  { bgm = 129820, steam = 825630, zh = "命运石之门 0", en = "Steins;Gate 0", hours = 15.4 },
+  { bgm = 88765, steam = 970570, zh = "混沌之子", en = "Chaos;Child" },
+  { bgm = 364637, steam = 1777430, zh = "恋爱绮谭：不存在的真相", en = "恋爱绮谭：不存在的真相", hours = 8.2 },
+]
+
+[[shelf]]
+id = "action"
+zh = "动作冒险"
+en = "Action & adventure"
+games = [
+  { bgm = 387052, steam = 1888930, zh = "最后生还者 第一部", en = "The Last of Us Part I" },
+  { bgm = 185189, steam = 1593500, zh = "战神", en = "God of War" },
+  { bgm = 216993, steam = 1817070, zh = "漫威蜘蛛侠", en = "Marvel's Spider-Man", hours = 22.1 },
+  { bgm = 349034, steam = 2651280, zh = "漫威蜘蛛侠 2", en = "Marvel's Spider-Man 2" },
+  { bgm = 249380, steam = 883710, zh = "生化危机 2 重制版", en = "Resident Evil 2", hours = 7.6 },
+  { bgm = 417623, steam = 1817230, zh = "完美音浪", en = "Hi-Fi Rush" },
+  { bgm = 132752, steam = 368500, zh = "刺客信条：枭雄", en = "Assassin's Creed Syndicate", hours = 25.5 },
+  { bgm = 248176, steam = 812140, zh = "刺客信条：奥德赛", en = "Assassin's Creed Odyssey", hours = 57.2 },
+  { bgm = 215197, steam = 582160, zh = "刺客信条：起源", en = "Assassin's Creed Origins", hours = 40.5 },
+  { bgm = 400814, steam = 3159330, zh = "刺客信条：影", en = "Assassin's Creed Shadows", hours = 62.1, badge = "plat" },
+]
+
+[[shelf]]
+id = "multi"
+zh = "多人游戏"
+en = "Multiplayer"
+games = [
+  { bgm = 375866, steam = 1568590, zh = "鹅鸭杀", en = "Goose Goose Duck", hours = 350.9, badge = "most" },
+  { bgm = 184874, steam = 381210, zh = "黎明杀机", en = "Dead by Daylight", hours = 121.1 },
+  { bgm = 437490, steam = 553850, zh = "绝地潜兵 2", en = "Helldivers 2", hours = 77.1, badge = "friend" },
+  { bgm = 308947, steam = 1426210, zh = "双人成行", en = "It Takes Two", hours = 15.1, badge = "roommate" },
+  { bgm = 528272, steam = 2001120, zh = "双影奇境", en = "Split Fiction", hours = 12.1 },
+]
+
+[[shelf]]
+id = "indie"
+zh = "独立游戏和童年"
+en = "Indie & childhood"
+games = [
+  { bgm = 489392, steam = 2868840, zh = "杀戮尖塔 2", en = "Slay the Spire 2", hours = 162.4, badge = "sts2" },
+  { bgm = 268588, steam = 1145360, zh = "哈迪斯", en = "Hades", hours = 64.5 },
+  { bgm = 214973, steam = 588650, zh = "死亡细胞", en = "Dead Cells", hours = 31.6 },
+  { bgm = 117092, steam = 250900, zh = "以撒的结合：重生", en = "The Binding of Isaac: Rebirth", hours = 15.6 },
+  { bgm = 265831, steam = 1671210, zh = "三角符文", en = "Deltarune", hours = 17.5 },
+  { bgm = 105645, steam = 304430, zh = "INSIDE", en = "Inside", hours = 3.9 },
+  { bgm = 29340, steam = 206440, zh = "去月球", en = "To the Moon", hours = 4.3 },
+  { bgm = 12596, zh = "我的世界", en = "Minecraft" },
+  { bgm = 1859, steam = 3590, zh = "植物大战僵尸", en = "Plants vs. Zombies", hours = 1.4 },
+  { bgm = 10858, zh = "愤怒的小鸟", en = "Angry Birds" },
+]
+
+# 番剧：Bangumi 上 9 分以上的。同一部的几季只放一张。
+[anime]
+items = [
+  { bgm = 215425, zh = "中二病也要谈恋爱！Take On Me", en = "Love, Chunibyo & Other Delusions! Take On Me", quote_en = "Chunibyo or not, I still want to fall in love!" },
+  { bgm = 232067, zh = "蜘蛛侠：平行宇宙", en = "Spider-Man: Into the Spider-Verse", quote_en = "My favorite movie. Perfect visuals, a perfect take on the Spider-Verse, and my favorite superhero." },
+  { bgm = 428735, zh = "BanG Dream! It's MyGO!!!!!", en = "BanG Dream! It's MyGO!!!!!", quote_en = "A rare original masterpiece!" },
+  { bgm = 909, zh = "龙与虎", en = "Toradora!", quote_en = "My idea of the perfect school romance. It gets the tsundere heart and the slow fall exactly right." },
+  { bgm = 3375, zh = "凉宫春日的消失", en = "The Disappearance of Haruhi Suzumiya", quote_en = "Kyon's journey into himself." },
+  { bgm = 1851, zh = "Angel Beats!", en = "Angel Beats!", quote_en = "Was my life complete?" },
+  { bgm = 29648, zh = "中二病也要谈恋爱！", en = "Love, Chunibyo & Other Delusions!", quote_en = "How do they write romance this well!" },
+  { bgm = 45842, zh = "变态王子与不笑猫。", en = "Henneko", quote_en = "Twists I never saw coming, and the lead lives up to the title!" },
+  { bgm = 79227, zh = "游戏人生", en = "No Game No Life", quote_en = "Blank never loses!" },
+  { bgm = 209925, zh = "寻梦环游记", en = "Coco", quote_zh = "", quote_en = "" },
+  { bgm = 328609, zh = "孤独摇滚！", en = "Bocchi the Rock!", quote_en = "Amen to Bocchi!" },
+  { bgm = 386809, zh = "【我推的孩子】", en = "Oshi no Ko", quote_en = "A mystery that was a joy to follow week by week." },
+  { bgm = 282413, zh = "蜘蛛侠：纵横宇宙", en = "Spider-Man: Across the Spider-Verse", quote_en = "Absolutely electric!" },
+  { bgm = 464376, zh = "败犬女主太多了！", en = "Makeine: Too Many Losing Heroines!", quote_en = "This is what youth feels like!" },
+]

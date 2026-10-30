@@ -1,339 +1,291 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Apply the saved theme before first paint so light-mode users never see a dark flash -->
-  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
-  <!-- Language: saved choice, else Chinese when the system language is Chinese, else English -->
-  <script>try{var l=localStorage.getItem("kn-lang");if(l!=="zh"&&l!=="en"){l=/^zh/i.test(navigator.language||"")?"zh":"en";}document.documentElement.setAttribute("lang",l==="zh"?"zh-CN":"en");window.KN_LANG=l;}catch(e){window.KN_LANG="en";}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mingxuan (Kevin) Nie — Software Engineer</title>
-  <meta name="description" content="MS CS at UC San Diego. I build LLM agent systems and the grounding, validation and repair loops that make them reliable. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Mingxuan (Kevin) Nie — Software Engineer" />
-  <meta property="og:description" content="MS CS at UC San Diego. I build LLM agent systems and the grounding, validation and repair loops that make them reliable. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kevinnie2003.github.io" />
-  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Mingxuan (Kevin) Nie - Software Engineer, MS CS at UC San Diego" />
-
-  <!-- Twitter / X large summary card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mingxuan (Kevin) Nie - Software Engineer" />
-  <meta name="twitter:description" content="MS CS at UC San Diego. I build LLM agent systems and the grounding, validation and repair loops that make them reliable. Previously at miHoYo, Vicino AI, TikTok, and Alibaba." />
-  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-
-  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
-  <link rel="canonical" href="https://kevinnie2003.github.io/" />
-  <meta name="theme-color" content="#080c18" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f0f3fa" media="(prefers-color-scheme: light)" />
-  <meta name="author" content="Mingxuan (Kevin) Nie" />
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mingxuan Nie",
-    "alternateName": "Kevin Nie",
-    "url": "https://kevinnie2003.github.io/",
-    "image": "https://kevinnie2003.github.io/assets/img/avatar.png",
-    "email": "mailto:kevinnie2003@gmail.com",
-    "jobTitle": "Software Engineer",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "University of California, San Diego"
-    },
-    "knowsAbout": ["LLM agent systems", "Multi-agent architectures", "Software engineering", "Machine learning"],
-    "sameAs": [
-      "https://github.com/kevinnie2003",
-      "https://linkedin.com/in/mingxuan-nie"
-    ]
-  }
-  </script>
-
-  <!-- SVG Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
-  <!-- Fonts: self-hosted variable woff2 (latin subset) -->
-  <link rel="preload" href="assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=20261029c" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/main.css?v=20261029c" />
-  <link rel="stylesheet" href="assets/css/components.css?v=20261029c" />
-  <link rel="stylesheet" href="assets/css/animations.css?v=20261029c" />
-  <link rel="stylesheet" href="assets/css/forge.css?v=20261029c" />
+<meta charset="UTF-8" />
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("index.zh.html"+location.hash);}catch(e){}</script>
+<script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>window.KN_LANG = "en";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="tools/build.py" />
+<title>Nemesie | Kevin Nie</title>
+<meta name="description" content="Personal site of Mingxuan (Kevin) Nie, a CS master&#x27;s student at UC San Diego who builds AI agents and tools for games. Work, projects and writing, plus the games and anime I love." />
+<link rel="canonical" href="https://kevinnie2003.github.io/" />
+<link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/" />
+<link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/index.zh.html" />
+<link rel="alternate" hreflang="x-default" href="https://kevinnie2003.github.io/" />
+<link rel="alternate" type="application/rss+xml" title="Nemesie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Nemesie" />
+<meta property="og:description" content="Personal site of Mingxuan (Kevin) Nie, a CS master&#x27;s student at UC San Diego who builds AI agents and tools for games. Work, projects and writing, plus the games and anime I love." />
+<meta property="og:url" content="https://kevinnie2003.github.io/" />
+<meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og/home.en.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/home.en.jpg" />
+<meta name="theme-color" content="#A9D8F5" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="assets/fonts/fonts.css?v=7b54d685" />
+<link rel="stylesheet" href="assets/css/forge.css?v=7b54d685" />
+<link rel="stylesheet" href="assets/css/site.css?v=7b54d685" />
 </head>
 <body>
-
-  <!-- Cursor glow overlay -->
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
-  <!-- Grain texture overlay -->
-  <div class="noise-overlay" aria-hidden="true"></div>
-
-  <!-- Mobile hamburger -->
-  <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
-    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-      <line x1="0" y1="1"  x2="20" y2="1"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="ham-line ham-top"/>
-      <line x1="0" y1="7"  x2="20" y2="7"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="ham-line ham-mid"/>
-      <line x1="0" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="ham-line ham-bot"/>
-    </svg>
-  </button>
-
-  <!-- Mobile overlay backdrop -->
-  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
-
-  <div class="layout">
-
-    <!-- ================================================================
-         SIDEBAR
-    ================================================================ -->
-    <aside class="sidebar" id="sidebar" aria-label="Site navigation">
-      <div class="sidebar-inner">
-
-        <!-- Avatar -->
-        <div class="avatar-wrapper">
-          <img src="assets/img/avatar.png" alt="Kevin Nie" class="avatar-img" width="58" height="58" />
-          <!-- Real photo alternative: assets/img/avatar-photo.jpg -->
-        </div>
-
-        <!-- Identity -->
-        <div class="identity">
-          <span class="identity-label" data-i18n="hi">Hi, I'm</span>
-          <h1 class="site-name">Kevin Nie<span class="cursor-blink" aria-hidden="true">_</span></h1>
-          <p class="site-role" data-i18n="role">Software Engineer</p>
-          <p class="site-meta" data-i18n="meta">MS CS <span class="at-sign">@</span> UCSD</p>
-          <p class="site-meta site-open"><a href="#contact" data-i18n="open">Open to roles from spring 2027</a></p>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="sidebar-nav" aria-label="Page sections">
-          <ul role="list">
-            <li><a href="#about"     class="nav-link" data-section="about"     ><span class="nav-num" aria-hidden="true">01</span><span class="nav-label" data-i18n="nav_about">About</span></a></li>
-            <li><a href="#experience" class="nav-link" data-section="experience"><span class="nav-num" aria-hidden="true">02</span><span class="nav-label" data-i18n="nav_experience">Experience</span></a></li>
-            <li><a href="#playground" class="nav-link" data-section="playground"><span class="nav-num" aria-hidden="true">03</span><span class="nav-label" data-i18n="nav_playground">Playground</span></a></li>
-            <li><a href="#projects"  class="nav-link" data-section="projects"  ><span class="nav-num" aria-hidden="true">04</span><span class="nav-label" data-i18n="nav_projects">Projects</span></a></li>
-            <li><a href="#writing"   class="nav-link" data-section="writing"   ><span class="nav-num" aria-hidden="true">05</span><span class="nav-label" data-i18n="nav_writing">Writing</span></a></li>
-            <li><a href="#skills"    class="nav-link" data-section="skills"    ><span class="nav-num" aria-hidden="true">06</span><span class="nav-label" data-i18n="nav_skills">Skills</span></a></li>
-            <li><a href="#education" class="nav-link" data-section="education" ><span class="nav-num" aria-hidden="true">07</span><span class="nav-label" data-i18n="nav_education">Education</span></a></li>
-            <li><a href="#contact"   class="nav-link" data-section="contact"   ><span class="nav-num" aria-hidden="true">08</span><span class="nav-label" data-i18n="nav_contact">Contact</span></a></li>
-          </ul>
-        </nav>
-
-        <!-- Spacer -->
-        <div class="sidebar-spacer" aria-hidden="true"></div>
-
-        <!-- Social links -->
-        <div class="social-links" aria-label="Social and contact links">
-          <a href="https://github.com/kevinnie2003" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-          </a>
-          <a href="https://linkedin.com/in/mingxuan-nie" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="mailto:kevinnie2003@gmail.com" class="social-link" aria-label="Email me">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-          </a>
-        </div>
-
-        <div class="sidebar-toggles">
-        <!-- Language toggle: shows the language it switches to -->
-        <button class="theme-toggle lang-toggle" id="langToggle" aria-label="切换到中文">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span class="theme-label">中文</span>
-        </button>
-        <!-- Theme toggle -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
-          <!-- Sun: shown in dark mode -->
-          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-          </svg>
-          <!-- Moon: shown in light mode -->
-          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-          </svg>
-          <span class="theme-label">Light Mode</span>
-        </button>
-        </div>
-
+<a class="skip" href="#content">Skip to content</a>
+<div class="scene">
+  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFF6D6"><circle cx="389" cy="106" r="1.4" opacity="0.40"/><circle cx="643" cy="256" r="0.7" opacity="0.68"/><circle cx="45" cy="304" r="0.7" opacity="0.41"/><circle cx="509" cy="579" r="0.8" opacity="0.50"/><circle cx="753" cy="663" r="1.4" opacity="0.61"/><circle cx="1172" cy="33" r="1.7" opacity="0.54"/><circle cx="173" cy="82" r="1.0" opacity="0.88"/><circle cx="217" cy="407" r="1.4" opacity="0.59"/><circle cx="657" cy="44" r="0.7" opacity="0.48"/><circle cx="816" cy="299" r="1.0" opacity="0.73"/><circle cx="544" cy="210" r="1.6" opacity="0.80"/><circle cx="293" cy="402" r="1.3" opacity="0.92"/><circle cx="875" cy="202" r="1.9" opacity="0.43"/><circle cx="502" cy="530" r="0.8" opacity="0.67"/><circle cx="47" cy="468" r="1.6" opacity="0.72"/><circle cx="1051" cy="220" r="1.5" opacity="0.74"/><circle cx="696" cy="319" r="1.7" opacity="0.96"/><circle cx="569" cy="465" r="0.7" opacity="0.81"/><circle cx="777" cy="695" r="1.7" opacity="0.53"/><circle cx="463" cy="468" r="0.6" opacity="0.65"/><circle cx="202" cy="82" r="0.7" opacity="0.85"/><circle cx="155" cy="173" r="1.1" opacity="0.92"/><circle cx="97" cy="314" r="1.3" opacity="0.92"/><circle cx="983" cy="605" r="1.0" opacity="0.62"/><circle cx="431" cy="619" r="1.8" opacity="0.45"/><circle cx="211" cy="162" r="0.9" opacity="0.67"/><circle cx="707" cy="184" r="0.6" opacity="0.62"/><circle cx="443" cy="396" r="1.8" opacity="0.80"/><circle cx="619" cy="432" r="1.5" opacity="0.39"/><circle cx="1079" cy="546" r="1.7" opacity="0.87"/><circle cx="471" cy="279" r="0.7" opacity="0.76"/><circle cx="75" cy="47" r="0.9" opacity="0.46"/><circle cx="408" cy="37" r="0.6" opacity="0.45"/><circle cx="122" cy="255" r="0.6" opacity="0.92"/><circle cx="737" cy="104" r="0.9" opacity="0.58"/><circle cx="437" cy="86" r="1.7" opacity="1.00"/><circle cx="559" cy="339" r="0.7" opacity="0.42"/><circle cx="411" cy="185" r="1.7" opacity="0.45"/><circle cx="28" cy="666" r="1.3" opacity="0.45"/><circle cx="652" cy="19" r="1.3" opacity="0.99"/><circle cx="1036" cy="487" r="0.9" opacity="0.59"/><circle cx="200" cy="540" r="1.3" opacity="0.86"/><circle cx="396" cy="156" r="1.7" opacity="0.99"/><circle cx="1023" cy="564" r="1.7" opacity="0.83"/><circle cx="272" cy="362" r="1.1" opacity="0.37"/><circle cx="34" cy="196" r="0.9" opacity="0.80"/><circle cx="1148" cy="313" r="1.8" opacity="0.99"/><circle cx="1146" cy="255" r="0.9" opacity="0.50"/><circle cx="236" cy="143" r="1.4" opacity="0.94"/><circle cx="1009" cy="336" r="1.4" opacity="0.87"/><circle cx="102" cy="462" r="1.8" opacity="0.86"/><circle cx="900" cy="335" r="0.8" opacity="0.86"/><circle cx="399" cy="561" r="1.9" opacity="0.61"/><circle cx="482" cy="663" r="1.5" opacity="0.46"/><circle cx="152" cy="106" r="1.8" opacity="0.87"/><circle cx="175" cy="579" r="1.9" opacity="0.78"/><circle cx="420" cy="384" r="0.8" opacity="0.36"/><circle cx="1165" cy="455" r="1.3" opacity="0.96"/><circle cx="521" cy="610" r="1.7" opacity="0.49"/><circle cx="302" cy="205" r="0.9" opacity="0.73"/><circle cx="311" cy="293" r="0.8" opacity="0.94"/><circle cx="425" cy="321" r="1.4" opacity="0.94"/><circle cx="505" cy="642" r="1.3" opacity="0.70"/><circle cx="628" cy="13" r="1.2" opacity="0.47"/><circle cx="5" cy="559" r="0.8" opacity="0.66"/><circle cx="870" cy="390" r="1.0" opacity="0.69"/><circle cx="667" cy="549" r="0.7" opacity="0.71"/><circle cx="298" cy="194" r="1.6" opacity="0.68"/><circle cx="674" cy="532" r="1.8" opacity="0.64"/><circle cx="735" cy="354" r="1.3" opacity="0.80"/><circle cx="543" cy="373" r="1.2" opacity="0.96"/><circle cx="839" cy="614" r="1.8" opacity="0.52"/><circle cx="671" cy="660" r="1.7" opacity="0.44"/><circle cx="146" cy="309" r="0.7" opacity="0.51"/><circle cx="88" cy="469" r="1.6" opacity="0.93"/><circle cx="185" cy="501" r="1.5" opacity="0.44"/><circle cx="1059" cy="677" r="0.9" opacity="0.97"/><circle cx="478" cy="341" r="1.9" opacity="0.89"/><circle cx="194" cy="302" r="1.3" opacity="0.57"/><circle cx="235" cy="223" r="1.5" opacity="0.36"/><circle cx="665" cy="308" r="0.6" opacity="0.57"/><circle cx="749" cy="359" r="0.7" opacity="0.99"/><circle cx="946" cy="680" r="0.7" opacity="0.52"/><circle cx="48" cy="545" r="1.0" opacity="0.43"/><circle cx="507" cy="638" r="1.7" opacity="0.52"/><circle cx="179" cy="643" r="1.3" opacity="0.81"/><circle cx="107" cy="40" r="1.5" opacity="0.63"/><circle cx="87" cy="657" r="1.4" opacity="0.87"/><circle cx="100" cy="599" r="0.7" opacity="0.91"/><circle cx="545" cy="237" r="1.3" opacity="0.95"/></g></svg><div class="moon" aria-hidden="true"></div>
+  <svg class="cloud c1" style="left:-3%; top:9%; width:300px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg><svg class="cloud c2" style="right:6%; top:13%; width:240px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="55" cy="50" r="26"/><circle cx="98" cy="36" r="34"/><circle cx="140" cy="52" r="24"/><rect x="44" y="50" width="104" height="30" rx="15"/></g></svg><svg class="cloud c3" style="right:-4%; top:40%; width:380px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg><svg class="cloud c4" style="left:30%; top:56%; width:200px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="55" cy="50" r="26"/><circle cx="98" cy="36" r="34"/><circle cx="140" cy="52" r="24"/><rect x="44" y="50" width="104" height="30" rx="15"/></g></svg>
+  <header class="bar">
+  <a class="logo" href="#"><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><ellipse cx="18" cy="21" rx="15" ry="8.5" fill="#FFD447"/><circle cx="11" cy="11" r="8" fill="#FFD447"/><path d="M2 12 q 2 -3 5 -1 q -2 2 -5 1z" fill="#F08A24"/><circle cx="9" cy="9.5" r="1.3" fill="#3A2E29"/><path d="M23 18 q 6 -3 8 2" stroke="#E9A800" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Nemesie</a>
+  <nav><a class="nav-link" href="#work">Work</a><a class="nav-link" href="#projects">Projects</a><a class="nav-link" href="#posts">Writing</a><a class="nav-link" href="#games">Games</a><a class="nav-link" href="#anime">Anime</a><button class="pill theme" id="theme" type="button" aria-label="Switch between day and night" title="Switch between day and night"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></button><a class="pill" href="index.zh.html" data-lang="zh" lang="zh-CN" aria-label="阅读中文版">中文</a></nav>
+</header>
+  <div class="title">
+    <h1>Nemesie</h1>
+    <p>Mingxuan (Kevin) Nie</p>
+  </div>
+  <nav class="choices" id="choices"><a href="#work">Show me your work</a><a href="#projects">Show me your projects</a><a href="#posts">Show me your writing</a><a href="#games">Show me your games</a></nav>
+  <div class="vn">
+    <div class="box" id="box" tabindex="0">
+      <img class="face" src="assets/img/avatar.png" alt="Nemesie&#x27;s avatar" />
+      <div>
+        <p class="line" id="line">Ciallo～(∠・ω&lt; )⌒★ Nemesie here!</p>
+        <div class="controls"><button type="button" id="skip">Skip</button><button type="button" id="log">Log</button><a href="index.zh.html" data-lang="zh" lang="zh-CN">中文</a></div>
       </div>
-    </aside>
+      <span class="nameplate">Nemesie</span>
+      <span class="next" id="next" aria-hidden="true">▼</span>
+    </div>
+  </div>
+  <script type="application/json" id="vn-lines">["Ciallo～(∠・ω< )⌒★ Nemesie here!", "I'm Mingxuan Nie, but Kevin works too. I'm doing a CS master's at UC San Diego, I build AI agents and tools for games, and I've interned at miHoYo, TikTok and Alibaba.", "I'm looking for a full-time job starting spring 2027. If you have something that fits, I'd love to chat~", "When I'm not coding I'm probably gaming. I've written almost 300 reviews on Steam and posted 200+ videos on Bilibili.", "What do you want to see?"]</script>
+</div>
 
-    <!-- ================================================================
-         MAIN CONTENT
-    ================================================================ -->
-    <main class="content" id="main-content">
+<main class="home" id="content">
+  <section id="about">
+    <h2>Profile</h2>
+    <div class="panel profile">
+      <div>
+        <dl class="kv">
+          <dt>Name</dt><dd><b>Mingxuan (Kevin) Nie</b> <span>online as Nemesie</span></dd>
+          <dt>Doing</dt><dd><b>AI agents and tools for games</b> <span>multi-agent systems, tool calling, evals</span></dd>
+          <dt>Status</dt><dd><span class="status">Looking for full-time roles from spring 2027</span></dd>
+          <dt>Education</dt><dd><div class="edu"><span class="logo-mark" style="--logo: url('/assets/img/logos/ucsd.png')"></span><div><b>UC San Diego, M.S. Computer Science</b><span>Sep 2025 – Mar 2027 (expected)</span></div></div><div class="edu"><span class="logo-mark" style="--logo: url('/assets/img/logos/ucsd.png')"></span><div><b>UC San Diego, B.S. Computer Engineering</b><span>Sep 2021 – Jun 2025</span></div></div></dd>
+        </dl>
+        <div class="links"><a class="btn main" href="mailto:kevinnie2003@gmail.com">Email me</a><a class="btn" href="https://github.com/kevinnie2003">GitHub</a><a class="btn" href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a></div>
+      </div>
+      <div class="skills"><h3>AI / Agents</h3><div class="chips"><span>Multi-Agent</span><span>MCP</span><span>Agent Skills</span><span>Tool Calling</span><span>ReAct</span><span>Prompt Engineering</span><span>RAG</span><span>LangGraph</span><span>LangChain</span></div><h3>Languages</h3><div class="chips"><span>Java</span><span>Python</span><span>C</span><span>C++</span><span>C#</span><span>Kotlin</span><span>Swift</span><span>Objective-C</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>HTML</span><span>CSS</span><span>Assembly</span><span>SystemVerilog</span></div><h3>Development</h3><div class="chips"><span>React</span><span>Spring Boot</span><span>Flask</span><span>Socket.IO</span><span>MySQL</span><span>SQLite</span><span>Unity</span><span>BepInEx / Harmony</span><span>Android Studio</span><span>Xcode</span><span>Blender</span><span>Linux</span></div><h3>Testing / Tools</h3><div class="chips"><span>Git</span><span>P4</span><span>JUnit</span><span>Airtest</span><span>Poco</span></div></div>
+    </div>
+  </section>
 
-      <!-- ── ABOUT ─────────────────────────────────────────────── -->
-      <section id="about" class="section section-about" aria-label="About me">
-        <div class="section-inner hero-grid">
+  <section id="work">
+    <h2>Experience</h2>
+    <div class="jobs">
+      <article class="panel job">
+        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/mihoyo.png'); width: 82px; height: 22px"></span><h3>miHoYo<span>Software Engineer</span></h3></div>
+        <ul class="list"><li>Led a <strong>conversational AI test-case generation system</strong>: a QA engineer describes a test, the system returns an executable <strong>Airtest + Poco</strong> script grounded in a knowledge base of <strong>100K+ Unity prefab nodes</strong>, GM commands, protocol and config data mined from the game source.</li><li>Closed the loop from generation to deterministic rewrites, static validation, a <strong>false-pass audit</strong>, an on-device run and knowledge feedback, raising the share of regression test points that yield a runnable, audit-clean script from roughly <strong>30% to 80%</strong> on the same samples. <a href="writing/knowing-what-the-button-is-called.html">Write-up</a>.</li><li>Built the front and back end of the internal <strong>automated testing platform</strong> (React + TypeScript / Flask + Socket.IO + MySQL) used by dozens of QA engineers, and shipped <strong>GM commands</strong> giving one-click entry into <strong>30+ game scenarios</strong> that used to need fragile UI navigation.</li></ul>
+        <aside><b>Jun – Sep 2026</b><span>Petit Planet, Tools Group</span><span>Shanghai, China</span></aside>
+        <div class="chips"><span>React</span><span>TypeScript</span><span>Flask</span><span>Socket.IO</span><span>MySQL</span><span>Unity</span><span>Lua</span><span>Airtest</span><span>Poco</span><span>LLM Agents</span></div>
+      </article>
+      <article class="panel job">
+        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/vicino.png')"></span><h3>Vicino AI<span>Machine Learning Engineer</span></h3></div>
+        <ul class="list"><li>Built a <strong>multi-agent four-view image generation system</strong> (front, back, left and right from one reference): <strong>8 specialised agents</strong> in <strong>ReAct</strong> loops with MCP tool calling, where a separate evaluator judges each view and cross-view consistency, and only the failing views are regenerated. <strong>90%+</strong> of requests converge within <strong>2 iterations</strong>. <a href="writing/four-views-one-object.html">Write-up</a>.</li><li>Shipped <strong>Storyboard</strong> generation, prompt-to-workflow, and a video editing agent that turns conversation into executable node graphs with <strong>10+</strong> structured editing operations.</li></ul>
+        <aside><b>Nov 2025 – Apr 2026</b><span>Machine Learning Team</span><span>US, Remote</span></aside>
+        <div class="chips"><span>Multi-Agent</span><span>ReAct</span><span>MCP</span><span>Tool Calling</span><span>LLM</span><span>Prompt Engineering</span></div>
+      </article>
+      <article class="panel job">
+        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/tiktok.svg')"></span><h3>TikTok<span>Software Engineer</span></h3></div>
+        <ul class="list"><li>Designed and built an <strong>AI on-call assistant</strong> end to end (Python / React / SQLite): an LLM agent reads each incoming issue, classifies its intent and routes it to the right workflow. Adopted by <strong>1,000+ engineers</strong>; classification accuracy up <strong>80%</strong> over the manual process.</li><li>Real-time architecture on <strong>WebSocket</strong> long connections with asynchronous LLM classification behind fault-tolerant queues, response caching and a persistence layer, so nothing is lost under load. A documentation-based interception step cut manual on-call requests by <strong>20%</strong>.</li><li>Shipped a React dashboard for live request volume, ticket status and trends, and a reusable <strong>iOS Item Picker</strong> component with adaptive sheet and panel layouts.</li></ul>
+        <aside><b>Jun – Sep 2025</b><span>TikTok User Experience (TUX)</span><span>Shanghai, China</span></aside>
+        <div class="chips"><span>Python</span><span>React</span><span>Swift</span><span>LLM Agents</span><span>WebSocket</span><span>SQLite</span><span>iOS</span></div>
+      </article>
+      <article class="panel job">
+        <div class="job-head"><span class="logo-mark" style="--logo: url('/assets/img/logos/alibabadotcom.svg')"></span><h3>Alibaba<span>Software Engineer</span></h3></div>
+        <ul class="list"><li>Led an <strong>Android network diagnostics</strong> feature for Lazada in Southeast Asia, where weak and volatile networks were the top source of issue reports and no mature application-layer approach existed. Designed a detection strategy targeting a <strong>~30%</strong> reduction in network-related reports.</li><li>Built the detection and diagnostic <strong>SDKs</strong> and UI in Kotlin and Java for three cases (blocked app network access, signal strength, and proxies), each paired with a fix the user can apply, so people in weak-network regions could self-diagnose.</li></ul>
+        <aside><b>Jun – Sep 2024</b><span>AIDC, Lazada</span><span>Guangzhou, China</span></aside>
+        <div class="chips"><span>Kotlin</span><span>Java</span><span>Android</span><span>SDK</span></div>
+      </article>
+    </div>
+  </section>
 
-          <div class="hero-main">
-            <p class="hero-greeting" data-i18n="greeting">Hi, my name is</p>
-            <h2 class="hero-name" data-i18n="heroName">Mingxuan <span class="name-paren">(Kevin)</span> Nie.</h2>
-            <h3 class="hero-tagline" data-i18n="tagline">I make LLM output reliable enough to ship.</h3>
-            <div class="hero-bio" data-i18n="bio">
-              <p>I'm an MS CS student at <strong>UC San Diego</strong>, and I build <strong>LLM agent systems</strong>: multi-agent loops, tool calling, MCP, and the grounding, validation and repair around them that turn a model's fluent, plausible, wrong output into something you can run.</p>
-              <p>Most recently I built an agent that turns QA test cases into on-device test scripts at <a href="#experience" class="inline-link" data-exp-index="0">miHoYo</a>. Before that: a multi-agent image generation and storyboarding system at <a href="#experience" class="inline-link" data-exp-index="1">Vicino AI</a>, an LLM on-call agent used by 1,000+ engineers at <a href="#experience" class="inline-link" data-exp-index="2">TikTok</a>, and Android network diagnostics for Lazada at <a href="#experience" class="inline-link" data-exp-index="3">Alibaba</a>.</p>
-            </div>
-            <div class="hero-actions">
-              <a href="#experience" class="btn btn-primary" data-i18n="viewWork">View My Work</a>
-            </div>
-          </div>
+  <section id="projects">
+    <h2>Projects</h2>
+    <article class="panel feature">
+      <div><div class="shot"><img src="assets/img/projects/coffee-banner.webp" alt="Coffee Companion banner" loading="lazy" /></div><div class="thumbs"><img src="assets/img/projects/coffee-ai.webp" alt="The in-game AI companion" loading="lazy" /><img src="assets/img/projects/coffee-route.webp" alt="Story route map" loading="lazy" /></div></div>
+      <div><h3>Coffee Companion</h3><p class="when">Oct 2026 – Present</p><ul class="list"><li>A <strong>36K-line C#</strong> mod for the Unity wuxia RPG <em>Legend of Mortal</em>, built on <strong>BepInEx/Harmony</strong> with <strong>230+ runtime patches</strong>: a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere through Lua record-and-replay, and a stat editor. <strong>70+ releases in two weeks</strong>, <strong>100+ stars</strong>, <strong>20K+ downloads</strong>, still in active development.</li><li>The centrepiece is an in-game <strong>tool-calling agent</strong>. Its <strong>15 tools</strong> read a knowledge base built from the parsed scripts (branch conditions, where each of <strong>1,000+ story flags</strong> is set and checked, per-route totals of affinity and stats) plus the live save and the choices on screen. It looks things up over several rounds, then answers from what it found, not from memory.</li><li><strong>11 character personas</strong> talk in their own voice, know only the story the player has read, and respect <strong>3 spoiler levels</strong>. Any change to the save is proposed as a card and applied only when the player confirms.</li><li>A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>.</li></ul><div class="chips"><span>C#</span><span>Unity</span><span>BepInEx</span><span>Harmony</span><span>Tool Calling</span><span>LLM Agents</span><span>Evaluation</span><span>Prompt Caching</span></div><div class="links"><a class="btn main" href="https://github.com/kevinnie2003/LOMAssistant">GitHub</a><a class="btn" href="writing/two-weeks-seventy-releases.html">How it was built</a></div></div>
+    </article>
+    <article class="panel feature">
+      <div><h3>RogueForge</h3><p class="when">May – Jun 2026</p><ul class="list"><li>An <strong>AI-native roguelike deck-builder</strong>: an LLM generates <strong>5 content types</strong> live during a run (cards, enemies, events, room rules and characters), each through the same <strong>generate, validate, repair, retry</strong> loop.</li><li>The model only combines whitelisted effects; deterministic combat runs on the backend. Three validation layers (structure, mechanic allowlist, numerical budget) clamp what is close and bounce what is not, with the reason fed back for a retry.</li><li>The budget is calibrated against real <em>Slay the Spire</em> cards, so "balanced" is measured, not guessed. Of <strong>2,658</strong> logged candidates, about <strong>95%</strong> were served. The validator from the game is right here, so you can try it.</li></ul><div class="shot"><img src="assets/img/projects/rogueforge.webp" alt="A fight in RogueForge" loading="lazy" /></div><div class="chips"><span>LLM</span><span>Procedural Generation</span><span>Validation Pipelines</span><span>Game Design</span><span>Evaluation</span></div><div class="links"><a class="btn main" href="https://github.com/kevinnie2003/rogueforge">GitHub</a><a class="btn" href="writing/vibes-with-extra-steps.html">How it was built</a></div></div>
+      <div class="forge" id="forge"></div>
+    </article>
+    <div class="others">
+      <article class="panel other"><h3>Adaptive Moderation Agent</h3><p class="when">Jan – Mar 2026<a class="gh" href="https://github.com/Zihang-He/CSE291A_Group5_Adaptive_Moderation_Agent">GitHub</a></p><ul class="list"><li>Content moderation as a decision, not a label: a first pass extracts <strong>8+ structured risk signals</strong> (toxicity, uncertainty, context) and a <strong>ReAct agent</strong> picks a proportionate action: do nothing, downrank, add friction, or throttle.</li><li>Evaluated on the Jigsaw toxic comment dataset. The point was calibration: severe content gets throttled, borderline content gets friction, and the uncertain cases are the ones the agent is most careful with.</li></ul><div class="chips"><span>Python</span><span>LLM</span><span>ReAct</span><span>NLP</span><span>Content Moderation</span></div></article>
+      <article class="panel other"><h3>Enhanced U-Net for Ship Segmentation</h3><p class="when">Jun – Dec 2024<a class="gh" href="https://github.com/kevinnie2003/ship-detection">GitHub</a></p><ul class="list"><li>A <strong>U-Net</strong> with depthwise-separable and atrous convolutions for the Airbus ship dataset (50k+ satellite images), reaching <strong>Dice 0.63</strong> and <strong>precision 0.67</strong>. Ships are tiny relative to the image, so the work was in the losses (BCE, Dice, Focal) and the skip connections, not the backbone.</li><li>Published as <strong>first author</strong> in <em>Applied and Computational Engineering</em>, CONF-SPML 2025.</li></ul><div class="chips"><span>Python</span><span>TensorFlow</span><span>U-Net</span><span>Deep Learning</span><span>Computer Vision</span></div></article>
+      <article class="panel other"><h3>Successorator</h3><p class="when">Jan – Mar 2024<a class="gh" href="https://github.com/CSE-110-Winter-2024/TODO-List">GitHub</a></p><ul class="list"><li>Spearheaded development of an <strong>Android productivity app</strong> for goal-setting and task prioritization using Java and Android Studio.</li><li>Implemented adaptive UI with dynamic goal creation dialogs for varied task types, recurring goals, and context tagging.</li><li>Designed modules using <strong>Strategy, Observer, Abstract Factory, and Builder patterns</strong>; led rigorous unit testing in an Agile team.</li></ul><div class="chips"><span>Java</span><span>Android</span><span>Android Studio</span><span>Agile</span><span>Design Patterns</span></div></article>
+      <article class="panel other"><h3>Deep Learning Applications in MTG</h3><p class="when">Jan – Mar 2024</p><ul class="list"><li>Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering creature type classification across <strong>15 classes</strong>, reaching up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).</li><li>Used <strong>DCGAN</strong> to generate new card images and widen the training set.</li><li>Addressed class imbalance and in-class variation through preprocessing and augmentation.</li></ul><div class="chips"><span>Python</span><span>CNN</span><span>ViT</span><span>DCGAN</span><span>Deep Learning</span></div></article>
+      <article class="panel other"><h3>Line Following Robot</h3><p class="when">Nov – Dec 2022</p><ul class="list"><li>Built a line-following robot from scratch with a team of four, from sensors and motors to programming and control. We <strong>3D-printed</strong> the chassis, made and soldered the circuits, tested it over and over, and raced it against the other teams.</li></ul><div class="chips"><span>Arduino</span><span>3D Printing</span><span>CAD</span><span>Embedded Systems</span></div></article>
+    </div>
+  </section>
 
-          <!-- Populated from the EXPERIENCE array in main.js -->
-          <aside class="hero-ledger" id="heroLedger" aria-label="Roles at a glance"></aside>
+  <section id="posts">
+    <h2>Writing</h2>
+    <div class="slots">
+      <a class="panel slot" href="writing/two-weeks-seventy-releases.html"><img src="assets/img/covers/two-weeks-seventy-releases.webp" alt="" loading="lazy" /><div><div class="no">No.04　Oct 2026</div><h3>Two weeks, seventy releases</h3><p>A 36K-line game mod built with Claude Code in two weeks: who tests and who writes, saves built on replay, what to refuse, and what players abroad taught me after launch.</p></div></a>
+      <a class="panel slot" href="writing/knowing-what-the-button-is-called.html"><img src="assets/img/covers/knowing-what-the-button-is-called.webp" alt="" loading="lazy" /><div><div class="no">No.03　Sep 2026</div><h3>Knowing what the button is called</h3><p>Turning QA test cases into scripts a real phone will run. Why the hard part was never the code, and what a false pass looks like.</p></div></a>
+      <a class="panel slot" href="writing/vibes-with-extra-steps.html"><img src="assets/img/covers/vibes-with-extra-steps.webp" alt="" loading="lazy" /><div><div class="no">No.02　Jun 2026</div><h3>Vibes with extra steps</h3><p>Calibrating a power budget against real Slay the Spire cards to tell whether an AI-made card is balanced, and the three bugs hiding behind that number.</p></div></a>
+      <a class="panel slot" href="writing/four-views-one-object.html"><img src="assets/img/covers/four-views-one-object.webp" alt="" loading="lazy" /><div><div class="no">No.01　Apr 2026</div><h3>Four views of one object</h3><p>Four consistent views of one object from a team of agents: why the judge is its own agent, and when to redraw just one view.</p></div></a>
+    </div>
+  </section>
 
+  <section id="games">
+    <h2>Game shelf</h2>
+    <div class="stats">
+      <div><b>378</b>games played</div>
+      <div><b>12</b>perfect 10s</div>
+      <div><b>4,510</b>hours on Steam</div>
+      <div><b>5,072</b>Steam achievements</div>
+      <div><b>Lv.90</b>Steam level</div>
+    </div>
+    <div class="cabinet">
+      <div>
+        <h3 class="shelf-head">Perfect 10s</h3>
+        <div class="shelf top">
+          <a class="game" href="https://bgm.tv/subject/278949"><img src="assets/img/games/278949.webp" alt="Persona 5 Royal" loading="lazy" /><em class="score s10">10</em><b>Persona 5 Royal</b><q>P5R is number one. Period.</q><span>73.8h</span><i>100% achievements</i></a>
+          <a class="game" href="https://bgm.tv/subject/203681"><img src="assets/img/games/203681.webp" alt="Metaphor: ReFantazio" loading="lazy" /><em class="score s10">10</em><b>Metaphor: ReFantazio</b><q>Of course my favorite game came from the Atlus trio!</q><span>58.5h</span><i>100% achievements</i></a>
+          <a class="game" href="https://bgm.tv/subject/22660"><img src="assets/img/games/22660.webp" alt="Persona 4 Golden" loading="lazy" /><em class="score s10">10</em><b>Persona 4 Golden</b><q>Atlus really are gods. P5 and P4 are both JRPG masterpieces.</q><span>42.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/401184"><img src="assets/img/games/401184.webp" alt="Octopath Traveler II" loading="lazy" /><em class="score s10">10</em><b>Octopath Traveler II</b><q>My favorite game of 2023, and the most well-rounded one I know.</q><span>64.2h</span><i>100% achievements</i></a>
+          <a class="game" href="https://bgm.tv/subject/490427"><img src="assets/img/games/490427.webp" alt="Kingdom Come: Deliverance II" loading="lazy" /><em class="score s10">10</em><b>Kingdom Come: Deliverance II</b><q>Fortune favors the bold!</q><span>115.6h</span></a>
+          <a class="game" href="https://bgm.tv/subject/234026"><img src="assets/img/games/234026.webp" alt="Slay the Spire" loading="lazy" /><em class="score s10">10</em><b>Slay the Spire</b><q>Slay the Spire hooked me from the very first run.</q><span>170.3h</span><i>Ironclad &amp; Watcher A20</i></a>
+          <a class="game" href="https://bgm.tv/subject/39066"><img src="assets/img/games/39066.webp" alt="Danganronpa 2: Goodbye Despair" loading="lazy" /><em class="score s10">10</em><b>Danganronpa 2: Goodbye Despair</b><q>From gameplay to story, every part of it is top tier.</q><span>20.7h</span></a>
+          <a class="game" href="https://bgm.tv/subject/4022"><img src="assets/img/games/4022.webp" alt="Rewrite" loading="lazy" /><em class="score s10">10</em><b>Rewrite</b><q>A bible for humankind, a hymn to the hunters who save the Earth!</q></a>
+          <a class="game" href="https://bgm.tv/subject/295957"><img src="assets/img/games/295957.webp" alt="Summer Pockets Reflection Blue" loading="lazy" /><em class="score s10">10</em><b>Summer Pockets Reflection Blue</b><q>I never forgot that most colorful summer.</q></a>
+          <a class="game" href="https://bgm.tv/subject/147713"><img src="assets/img/games/147713.webp" alt="Undertale" loading="lazy" /><em class="score s10">10</em><b>Undertale</b><q>A perfect indie game, handed to the world by a genius.</q><span>7.7h</span></a>
+          <a class="game" href="https://bgm.tv/subject/385912"><img src="assets/img/games/385912.webp" alt="Resident Evil 4" loading="lazy" /><em class="score s10">10</em><b>Resident Evil 4</b><q>A blast from start to finish!</q><span>24.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/361699"><img src="assets/img/games/361699.webp" alt="Alan Wake 2" loading="lazy" /><em class="score s10">10</em><b>Alan Wake 2</b><q>A brilliant story of two worlds, one of light and one of dark.</q></a>
         </div>
-      </section>
-
-      <!-- ── EXPERIENCE ─────────────────────────────────────────── -->
-      <section id="experience" class="section" aria-label="Work experience">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_experience">
-            Experience
-          </h2>
-          <div class="exp-container">
-            <div class="exp-tabs" id="exp-tabs" role="tablist" aria-label="Companies"></div>
-            <div class="exp-panels" id="exp-panels"></div>
-          </div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Still playing</h3>
+        <div class="live"><div class="panel"><img src="assets/img/games/live-genshin.webp" alt="Genshin Impact" loading="lazy" /><div><b>Genshin Impact</b><span>Adventure Rank 60</span><span>Stygian Onslaught, difficulty 6</span></div></div><div class="panel"><img src="assets/img/games/live-starrail.webp" alt="Honkai: Star Rail" loading="lazy" /><div><b>Honkai: Star Rail</b><span>Trailblaze Level 70</span><span>Hard endgame, 0-cycle clears</span></div></div><div class="panel"><img src="assets/img/games/live-zzz.webp" alt="Zenless Zone Zero" loading="lazy" /><div><b>Zenless Zone Zero</b><span>Inter-Knot Level 60</span><span>Deadly Assault, full stars</span></div></div></div>
+      </div>
+      <div>
+        <h3 class="shelf-head">RPG</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/440141"><img src="assets/img/games/440141.webp" alt="Persona 3 Reload" loading="lazy" /><em class="score">9</em><b>Persona 3 Reload</b><span>69.6h</span><i>100% achievements</i></a>
+          <a class="game" href="https://bgm.tv/subject/3230"><img src="assets/img/games/3230.webp" alt="Persona 3 Portable" loading="lazy" /><em class="score">9</em><b>Persona 3 Portable</b><span>40.1h</span></a>
+          <a class="game" href="https://bgm.tv/subject/454685"><img src="assets/img/games/454685.webp" alt="Unicorn Overlord" loading="lazy" /><em class="score">9</em><b>Unicorn Overlord</b><i>Platinum</i></a>
+          <a class="game" href="https://bgm.tv/subject/111824"><img src="assets/img/games/111824.webp" alt="Yakuza 0" loading="lazy" /><em class="score">9</em><b>Yakuza 0</b></a>
+          <a class="game" href="https://bgm.tv/subject/401332"><img src="assets/img/games/401332.webp" alt="Like a Dragon: Infinite Wealth" loading="lazy" /><em class="score">9</em><b>Like a Dragon: Infinite Wealth</b><span>36.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/335206"><img src="assets/img/games/335206.webp" alt="Lost Judgment" loading="lazy" /><em class="score">9</em><b>Lost Judgment</b><span>21.2h</span></a>
+          <a class="game" href="https://bgm.tv/subject/388136"><img src="assets/img/games/388136.webp" alt="Final Fantasy VII Rebirth" loading="lazy" /><em class="score">9</em><b>Final Fantasy VII Rebirth</b><span>70.9h</span></a>
+          <a class="game" href="https://bgm.tv/subject/65759"><img src="assets/img/games/65759.webp" alt="Cyberpunk 2077" loading="lazy" /><em class="score">9</em><b>Cyberpunk 2077</b><span>59.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/405362"><img src="assets/img/games/405362.webp" alt="Astlibra Revision" loading="lazy" /><em class="score">9</em><b>Astlibra Revision</b><span>28.1h</span></a>
+          <a class="game" href="https://bgm.tv/subject/385177"><img src="assets/img/games/385177.webp" alt="Legend of Mortal" loading="lazy" /><em class="score">9</em><b>Legend of Mortal</b><span>80.7h</span><i>Modding it now</i></a>
         </div>
-      </section>
-
-      <!-- ── PLAYGROUND ─────────────────────────────────────────── -->
-      <section id="playground" class="section" aria-label="Playground">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_playground">
-            Playground
-          </h2>
-          <div class="playground-grid">
-            <div class="playground-copy" data-i18n="playground">
-              <p><strong>RogueForge</strong> is a roguelike deck-builder where an LLM forges every card, enemy, event and hero during the run. The model never touches game logic; it picks from whitelisted effects, and this validator decides whether the result is fair before a player sees it. It is the real thing, ported line for line from the Python backend.</p>
-              <p>A card's power is a weighted sum of its effects. The acceptable band for each (rarity, cost) bucket comes from the <strong>real <em>Slay the Spire</em> Ironclad cards</strong> in that bucket, so "balanced" is defined by data, not by taste. In band: accepted. Slightly out: clamped one point at a time and the rules text re-rendered. Far out, or structurally wrong: rejected, with the reason sent back to the model.</p>
-              <p>Try 40 damage on a 1-cost card, poison on an Attack, or a Rare that gains 2 Block.</p>
-              <div class="playground-stats">
-                <div><b>2,658</b><span>candidates logged: 86% accepted, 9% repaired, 5% rejected</span></div>
-                <div><b>87%</b><span>of real Ironclad cards fall inside their own band</span></div>
-              </div>
-              <div class="playground-links">
-                <a href="writing/vibes-with-extra-steps.html" class="btn btn-ghost">Read how it was built</a>
-                <a href="https://github.com/kevinnie2003/rogueforge" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Source</a>
-              </div>
-            </div>
-            <div class="forge" id="forge" aria-label="Interactive card validator">
-              <noscript>This widget needs JavaScript.</noscript>
-            </div>
-          </div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Mystery</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/943"><img src="assets/img/games/943.webp" alt="Ace Attorney Trilogy" loading="lazy" /><em class="score">9</em><b>Ace Attorney Trilogy</b><span>38.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/192977"><img src="assets/img/games/192977.webp" alt="The Great Ace Attorney Chronicles" loading="lazy" /><em class="score">9</em><b>The Great Ace Attorney Chronicles</b><span>47.2h</span></a>
+          <a class="game" href="https://bgm.tv/subject/4723"><img src="assets/img/games/4723.webp" alt="Ghost Trick" loading="lazy" /><em class="score">9</em><b>Ghost Trick</b><span>8.3h</span></a>
+          <a class="game" href="https://bgm.tv/subject/10336"><img src="assets/img/games/10336.webp" alt="Danganronpa: Trigger Happy Havoc" loading="lazy" /><em class="score">9</em><b>Danganronpa: Trigger Happy Havoc</b><span>15.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/146579"><img src="assets/img/games/146579.webp" alt="Danganronpa V3" loading="lazy" /><em class="score">9</em><b>Danganronpa V3</b><span>26.8h</span></a>
+          <a class="game" href="https://bgm.tv/subject/955"><img src="assets/img/games/955.webp" alt="428: Shibuya Scramble" loading="lazy" /><em class="score">9</em><b>428: Shibuya Scramble</b><span>13.8h</span></a>
+          <a class="game" href="https://bgm.tv/subject/539816"><img src="assets/img/games/539816.webp" alt="再见断刀" loading="lazy" /><em class="score">9</em><b>再见断刀</b><span>14h</span></a>
+          <a class="game" href="https://bgm.tv/subject/499874"><img src="assets/img/games/499874.webp" alt="The Hundred Line" loading="lazy" /><em class="score">8</em><b>The Hundred Line</b><span>39h</span><i>Signed by Kodaka</i></a>
         </div>
-      </section>
-
-      <!-- ── PROJECTS ───────────────────────────────────────────── -->
-      <section id="projects" class="section" aria-label="Projects">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_projects">
-            Projects
-          </h2>
-          <div class="projects-grid" id="projects-grid" aria-label="Project list"></div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Visual novels</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/13"><img src="assets/img/games/13.webp" alt="CLANNAD" loading="lazy" /><em class="score">9</em><b>CLANNAD</b><span>25.6h</span></a>
+          <a class="game" href="https://bgm.tv/subject/935"><img src="assets/img/games/935.webp" alt="Fate/stay night" loading="lazy" /><em class="score">9</em><b>Fate/stay night</b><span>46.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/5418"><img src="assets/img/games/5418.webp" alt="Witch on the Holy Night" loading="lazy" /><em class="score">9</em><b>Witch on the Holy Night</b><span>15.9h</span></a>
+          <a class="game" href="https://bgm.tv/subject/172612"><img src="assets/img/games/172612.webp" alt="Senren＊Banka" loading="lazy" /><em class="score">9</em><b>Senren＊Banka</b><span>23.8h</span><i>My first VN</i></a>
+          <a class="game" href="https://bgm.tv/subject/297264"><img src="assets/img/games/297264.webp" alt="ATRI -My Dear Moments-" loading="lazy" /><em class="score">9</em><b>ATRI -My Dear Moments-</b><span>5.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/1126"><img src="assets/img/games/1126.webp" alt="Ever17" loading="lazy" /><em class="score">9</em><b>Ever17</b></a>
+          <a class="game" href="https://bgm.tv/subject/3154"><img src="assets/img/games/3154.webp" alt="Steins;Gate" loading="lazy" /><em class="score">9</em><b>Steins;Gate</b><span>18.8h</span></a>
+          <a class="game" href="https://bgm.tv/subject/129820"><img src="assets/img/games/129820.webp" alt="Steins;Gate 0" loading="lazy" /><em class="score">9</em><b>Steins;Gate 0</b><span>15.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/88765"><img src="assets/img/games/88765.webp" alt="Chaos;Child" loading="lazy" /><em class="score">9</em><b>Chaos;Child</b></a>
+          <a class="game" href="https://bgm.tv/subject/364637"><img src="assets/img/games/364637.webp" alt="恋爱绮谭：不存在的真相" loading="lazy" /><em class="score">9</em><b>恋爱绮谭：不存在的真相</b><span>8.2h</span></a>
         </div>
-      </section>
-
-      <!-- ── WRITING ────────────────────────────────────────────── -->
-      <section id="writing" class="section" aria-label="Writing">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_writing">
-            Writing
-          </h2>
-          <div class="writing-list" data-i18n="writing">
-            <a class="writing-item" href="writing/two-weeks-seventy-releases.html">
-              <span class="date">Oct 2026</span>
-              <div>
-                <h3>Two weeks, seventy releases</h3>
-                <p>Building a 36K-line game mod with an AI pair programmer. Who tests and who writes, reading a game without its source, a save system built on replay, what to refuse, an AI that has to look things up before it answers, and what players abroad taught me after launch.</p>
-              </div>
-            </a>
-            <a class="writing-item" href="writing/knowing-what-the-button-is-called.html">
-              <span class="date">Sep 2026</span>
-              <div>
-                <h3>Knowing what the button is called</h3>
-                <p>Turning QA test cases into scripts a real phone will run. Why the hard part was never the code, how mining the game's source beat scanning the device, and what a false pass looks like.</p>
-              </div>
-            </a>
-            <a class="writing-item" href="writing/vibes-with-extra-steps.html">
-              <span class="date">Jun 2026</span>
-              <div>
-                <h3>Vibes with extra steps</h3>
-                <p>Making "is this AI-generated card balanced?" a question with a measurable answer, by calibrating a power budget against real <em>Slay the Spire</em> cards. Plus the three bugs that hid behind the number.</p>
-              </div>
-            </a>
-            <a class="writing-item" href="writing/four-views-one-object.html">
-              <span class="date">Apr 2026</span>
-              <div>
-                <h3>Four views of one object</h3>
-                <p>A multi-agent loop that turns one reference image into four consistent views. Why the judge is a separate agent, when to redo one view versus all four, and when to stop.</p>
-              </div>
-            </a>
-          </div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Action &amp; adventure</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/387052"><img src="assets/img/games/387052.webp" alt="The Last of Us Part I" loading="lazy" /><em class="score">9</em><b>The Last of Us Part I</b></a>
+          <a class="game" href="https://bgm.tv/subject/185189"><img src="assets/img/games/185189.webp" alt="God of War" loading="lazy" /><em class="score">9</em><b>God of War</b></a>
+          <a class="game" href="https://bgm.tv/subject/216993"><img src="assets/img/games/216993.webp" alt="Marvel&#x27;s Spider-Man" loading="lazy" /><em class="score">9</em><b>Marvel&#x27;s Spider-Man</b><span>22.1h</span></a>
+          <a class="game" href="https://bgm.tv/subject/349034"><img src="assets/img/games/349034.webp" alt="Marvel&#x27;s Spider-Man 2" loading="lazy" /><em class="score">9</em><b>Marvel&#x27;s Spider-Man 2</b></a>
+          <a class="game" href="https://bgm.tv/subject/249380"><img src="assets/img/games/249380.webp" alt="Resident Evil 2" loading="lazy" /><em class="score">9</em><b>Resident Evil 2</b><span>7.6h</span></a>
+          <a class="game" href="https://bgm.tv/subject/417623"><img src="assets/img/games/417623.webp" alt="Hi-Fi Rush" loading="lazy" /><em class="score">9</em><b>Hi-Fi Rush</b></a>
+          <a class="game" href="https://bgm.tv/subject/132752"><img src="assets/img/games/132752.webp" alt="Assassin&#x27;s Creed Syndicate" loading="lazy" /><em class="score">9</em><b>Assassin&#x27;s Creed Syndicate</b><span>25.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/248176"><img src="assets/img/games/248176.webp" alt="Assassin&#x27;s Creed Odyssey" loading="lazy" /><em class="score">9</em><b>Assassin&#x27;s Creed Odyssey</b><span>57.2h</span></a>
+          <a class="game" href="https://bgm.tv/subject/215197"><img src="assets/img/games/215197.webp" alt="Assassin&#x27;s Creed Origins" loading="lazy" /><em class="score">9</em><b>Assassin&#x27;s Creed Origins</b><span>40.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/400814"><img src="assets/img/games/400814.webp" alt="Assassin&#x27;s Creed Shadows" loading="lazy" /><em class="score">8</em><b>Assassin&#x27;s Creed Shadows</b><span>62.1h</span><i>Platinum</i></a>
         </div>
-      </section>
-
-      <!-- ── SKILLS ─────────────────────────────────────────────── -->
-      <section id="skills" class="section" aria-label="Skills">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_skills">
-            Skills
-          </h2>
-          <div class="skills-groups" id="skills-groups"></div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Multiplayer</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/375866"><img src="assets/img/games/375866.webp" alt="Goose Goose Duck" loading="lazy" /><em class="score">8</em><b>Goose Goose Duck</b><span>350.9h</span><i>Most played</i></a>
+          <a class="game" href="https://bgm.tv/subject/184874"><img src="assets/img/games/184874.webp" alt="Dead by Daylight" loading="lazy" /><em class="score">8</em><b>Dead by Daylight</b><span>121.1h</span></a>
+          <a class="game" href="https://bgm.tv/subject/437490"><img src="assets/img/games/437490.webp" alt="Helldivers 2" loading="lazy" /><em class="score">8</em><b>Helldivers 2</b><span>77.1h</span><i>A friend got me in</i></a>
+          <a class="game" href="https://bgm.tv/subject/308947"><img src="assets/img/games/308947.webp" alt="It Takes Two" loading="lazy" /><em class="score">8</em><b>It Takes Two</b><span>15.1h</span><i>Beat it with my roommate</i></a>
+          <a class="game" href="https://bgm.tv/subject/528272"><img src="assets/img/games/528272.webp" alt="Split Fiction" loading="lazy" /><em class="score">9</em><b>Split Fiction</b><span>12.1h</span></a>
         </div>
-      </section>
-
-      <!-- ── EDUCATION ──────────────────────────────────────────── -->
-      <section id="education" class="section" aria-label="Education">
-        <div class="section-inner">
-          <h2 class="section-title" data-i18n="title_education">
-            Education
-          </h2>
-          <div class="edu-list" id="edu-list"></div>
+      </div>
+      <div>
+        <h3 class="shelf-head">Indie &amp; childhood</h3>
+        <div class="shelf">
+          <a class="game" href="https://bgm.tv/subject/489392"><img src="assets/img/games/489392.webp" alt="Slay the Spire 2" loading="lazy" /><em class="score">9</em><b>Slay the Spire 2</b><span>162.4h</span><i>All characters A10</i></a>
+          <a class="game" href="https://bgm.tv/subject/268588"><img src="assets/img/games/268588.webp" alt="Hades" loading="lazy" /><em class="score">9</em><b>Hades</b><span>64.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/214973"><img src="assets/img/games/214973.webp" alt="Dead Cells" loading="lazy" /><em class="score">9</em><b>Dead Cells</b><span>31.6h</span></a>
+          <a class="game" href="https://bgm.tv/subject/117092"><img src="assets/img/games/117092.webp" alt="The Binding of Isaac: Rebirth" loading="lazy" /><em class="score">9</em><b>The Binding of Isaac: Rebirth</b><span>15.6h</span></a>
+          <a class="game" href="https://bgm.tv/subject/265831"><img src="assets/img/games/265831.webp" alt="Deltarune" loading="lazy" /><em class="score">9</em><b>Deltarune</b><span>17.5h</span></a>
+          <a class="game" href="https://bgm.tv/subject/105645"><img src="assets/img/games/105645.webp" alt="Inside" loading="lazy" /><em class="score">9</em><b>Inside</b><span>3.9h</span></a>
+          <a class="game" href="https://bgm.tv/subject/29340"><img src="assets/img/games/29340.webp" alt="To the Moon" loading="lazy" /><em class="score">9</em><b>To the Moon</b><span>4.3h</span></a>
+          <a class="game" href="https://bgm.tv/subject/12596"><img src="assets/img/games/12596.webp" alt="Minecraft" loading="lazy" /><em class="score">9</em><b>Minecraft</b></a>
+          <a class="game" href="https://bgm.tv/subject/1859"><img src="assets/img/games/1859.webp" alt="Plants vs. Zombies" loading="lazy" /><em class="score">9</em><b>Plants vs. Zombies</b><span>1.4h</span></a>
+          <a class="game" href="https://bgm.tv/subject/10858"><img src="assets/img/games/10858.webp" alt="Angry Birds" loading="lazy" /><em class="score">9</em><b>Angry Birds</b></a>
         </div>
-      </section>
+      </div>
+    </div>
+    <p class="bgm-all"><a class="btn" href="https://bgm.tv/game/list/xiaoyaya/collect">All 378 games and my scores on Bangumi</a></p>
+    <div class="creator"><a class="panel" href="https://steamcommunity.com/id/kevinnie03/recommended/"><b>Steam reviews</b><strong>295</strong><span>writer for a Steam curator</span></a><a class="panel" href="https://www.xiaoheihe.cn/app/user/profile/11356239"><b>Xiaoheihe</b><strong>2,300+ followers</strong><span>1.83M views</span></a><a class="panel" href="https://space.bilibili.com/167880864"><b>Bilibili</b><strong>1,000+ followers</strong><span>200+ videos</span></a></div>
+  </section>
 
-      <!-- ── CONTACT ────────────────────────────────────────────── -->
-      <section id="contact" class="section section-contact" aria-label="Contact">
-        <div class="section-inner contact-inner">
-          <p class="contact-overline" data-i18n="next">What's next?</p>
-          <h2 class="contact-title" data-i18n="touch">Get In Touch</h2>
-          <p class="contact-body" data-i18n="contactBody">
-            I'm looking for a full-time software engineering role starting spring 2027. AI agents, LLM infrastructure and evaluation are where I have the most to offer, but I care more about shipping things that work than about the label. If you are building something like that, I would like to hear about it.
-          </p>
-          <a href="mailto:kevinnie2003@gmail.com" class="btn btn-primary btn-large" data-i18n="hello">Say Hello →</a>
-        </div>
-      </section>
+  <section id="anime">
+    <h2>Anime</h2>
+    <div class="stats">
+      <div><b>79</b>anime watched</div>
+      <div><b>3</b>perfect 10s</div>
+    </div>
+    <div class="cabinet">
+      <div class="shelf top">
+          <a class="game" href="https://bgm.tv/subject/215425"><img src="assets/img/anime/215425.webp" alt="Love, Chunibyo &amp; Other Delusions! Take On Me" loading="lazy" /><em class="score s10">10</em><b>Love, Chunibyo &amp; Other Delusions! Take On Me</b><q>Chunibyo or not, I still want to fall in love!</q></a>
+          <a class="game" href="https://bgm.tv/subject/232067"><img src="assets/img/anime/232067.webp" alt="Spider-Man: Into the Spider-Verse" loading="lazy" /><em class="score s10">10</em><b>Spider-Man: Into the Spider-Verse</b><q>My favorite movie. Perfect visuals, a perfect take on the Spider-Verse, and my favorite superhero.</q></a>
+          <a class="game" href="https://bgm.tv/subject/428735"><img src="assets/img/anime/428735.webp" alt="BanG Dream! It&#x27;s MyGO!!!!!" loading="lazy" /><em class="score s10">10</em><b>BanG Dream! It&#x27;s MyGO!!!!!</b><q>A rare original masterpiece!</q></a>
+          <a class="game" href="https://bgm.tv/subject/909"><img src="assets/img/anime/909.webp" alt="Toradora!" loading="lazy" /><em class="score">9</em><b>Toradora!</b><q>My idea of the perfect school romance. It gets the tsundere heart and the slow fall exactly right.</q></a>
+          <a class="game" href="https://bgm.tv/subject/3375"><img src="assets/img/anime/3375.webp" alt="The Disappearance of Haruhi Suzumiya" loading="lazy" /><em class="score">9</em><b>The Disappearance of Haruhi Suzumiya</b><q>Kyon&#x27;s journey into himself.</q></a>
+          <a class="game" href="https://bgm.tv/subject/1851"><img src="assets/img/anime/1851.webp" alt="Angel Beats!" loading="lazy" /><em class="score">9</em><b>Angel Beats!</b><q>Was my life complete?</q></a>
+          <a class="game" href="https://bgm.tv/subject/29648"><img src="assets/img/anime/29648.webp" alt="Love, Chunibyo &amp; Other Delusions!" loading="lazy" /><em class="score">9</em><b>Love, Chunibyo &amp; Other Delusions!</b><q>How do they write romance this well!</q></a>
+          <a class="game" href="https://bgm.tv/subject/45842"><img src="assets/img/anime/45842.webp" alt="Henneko" loading="lazy" /><em class="score">9</em><b>Henneko</b><q>Twists I never saw coming, and the lead lives up to the title!</q></a>
+          <a class="game" href="https://bgm.tv/subject/79227"><img src="assets/img/anime/79227.webp" alt="No Game No Life" loading="lazy" /><em class="score">9</em><b>No Game No Life</b><q>Blank never loses!</q></a>
+          <a class="game" href="https://bgm.tv/subject/209925"><img src="assets/img/anime/209925.webp" alt="Coco" loading="lazy" /><em class="score">9</em><b>Coco</b></a>
+          <a class="game" href="https://bgm.tv/subject/328609"><img src="assets/img/anime/328609.webp" alt="Bocchi the Rock!" loading="lazy" /><em class="score">9</em><b>Bocchi the Rock!</b><q>Amen to Bocchi!</q></a>
+          <a class="game" href="https://bgm.tv/subject/386809"><img src="assets/img/anime/386809.webp" alt="Oshi no Ko" loading="lazy" /><em class="score">9</em><b>Oshi no Ko</b><q>A mystery that was a joy to follow week by week.</q></a>
+          <a class="game" href="https://bgm.tv/subject/282413"><img src="assets/img/anime/282413.webp" alt="Spider-Man: Across the Spider-Verse" loading="lazy" /><em class="score">9</em><b>Spider-Man: Across the Spider-Verse</b><q>Absolutely electric!</q></a>
+          <a class="game" href="https://bgm.tv/subject/464376"><img src="assets/img/anime/464376.webp" alt="Makeine: Too Many Losing Heroines!" loading="lazy" /><em class="score">9</em><b>Makeine: Too Many Losing Heroines!</b><q>This is what youth feels like!</q></a>
+      </div>
+    </div>
+    <p class="bgm-all"><a class="btn" href="https://bgm.tv/anime/list/xiaoyaya/collect">All 79 anime and my scores on Bangumi</a></p>
+  </section>
+</main>
 
-      <!-- Footer -->
-      <footer class="footer" aria-label="Site footer" data-i18n="footer">
-        <p>Designed &amp; built by <span class="accent-text">Mingxuan (Kevin) Nie</span></p>
-        <p class="footer-sub">kevinnie2003.github.io · updated October 2026 · <a href="feed.xml">RSS</a></p>
-      </footer>
-
-    </main>
-  </div><!-- .layout -->
-
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/main.js?v=20261029c"></script>
-  <script src="assets/js/animations.js?v=20261029c"></script>
-  <script src="assets/js/forge-data.js?v=20261029c"></script>
-  <script src="assets/js/forge.js?v=20261029c"></script>
+<footer class="foot">
+  <p class="bye">Come say hi~</p>
+  <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
+</footer>
+<script src="assets/js/forge-data.js?v=7b54d685"></script>
+<script src="assets/js/forge.js?v=7b54d685"></script>
+<script src="assets/js/site.js?v=7b54d685"></script>
 </body>
 </html>

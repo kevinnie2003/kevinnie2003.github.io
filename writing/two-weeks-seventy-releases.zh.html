@@ -1,183 +1,174 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Language: saved choice, else the system language; send readers to their version -->
-  <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="zh")location.replace("two-weeks-seventy-releases.html"+location.hash);}catch(e){}</script>
-  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>两周，七十个版本 — 聂明轩</title>
-  <meta name="description" content="和 Claude Code 一起，两周给《活侠传》做了一个 3.6 万行的 Mod。谁测谁写，没有源码怎么摸清一个游戏，存档为什么靠重放，哪些功能干脆不做，AI 为什么得先查资料再开口，还有上线后海外玩家给我上的几课。" />
-  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
-  <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
-  <link rel="canonical" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
-  <meta property="og:title" content="两周，七十个版本" />
-  <meta property="og:description" content="和 AI 一起做一个大型游戏 Mod，真正难的地方在哪。" />
-  <meta property="og:type" content="article" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
-  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/forge.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/article.css?v=20261029c" />
+<meta charset="UTF-8" />
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="zh")location.replace("two-weeks-seventy-releases.html"+location.hash);}catch(e){}</script>
+<script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>window.KN_LANG = "zh";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="tools/build.py" />
+<title>两周，七十个版本 | 小鸭鸭</title>
+<meta name="description" content="和 Claude Code 一起，两周给《活侠传》做了一个 3.6 万行的 Mod。谁测谁写，没有源码怎么摸清一个游戏，存档为什么靠重放，哪些功能干脆不做，AI 为什么得先查资料再开口，还有上线后海外玩家给我上的几课。" />
+<link rel="canonical" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
+<link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<link rel="alternate" hreflang="x-default" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<link rel="alternate" type="application/rss+xml" title="小鸭鸭的文章" href="https://kevinnie2003.github.io/feed.zh.xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="两周，七十个版本" />
+<meta property="og:description" content="和 AI 一起做一个大型游戏 Mod，真正难的地方在哪。" />
+<meta property="og:url" content="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
+<meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
+<meta name="theme-color" content="#A9D8F5" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=7b54d685" />
+<link rel="stylesheet" href="../assets/css/site.css?v=7b54d685" />
 </head>
 <body>
-  <div class="noise-overlay" aria-hidden="true"></div>
-  <main class="article-page">
-    <div class="article-top">
-      <a class="back" href="../#writing">&larr; 聂明轩</a>
-      <div class="article-tools">
-        <a class="theme-toggle lang-toggle" href="two-weeks-seventy-releases.html" aria-label="Read in English" onclick="try{localStorage.setItem('kn-lang','en')}catch(e){}"><span class="theme-label">EN</span></a>
-      <button class="theme-toggle" id="themeToggle" aria-label="切换到浅色模式">
-        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <span class="theme-label">浅色模式</span>
-      </button>
-      </div><!-- .article-tools -->
-    </div>
+<a class="skip" href="#content">跳到正文</a>
+<div class="sky-band">
+  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFF6D6"><circle cx="897" cy="142" r="0.9" opacity="0.74"/><circle cx="68" cy="543" r="1.6" opacity="0.38"/><circle cx="820" cy="352" r="1.4" opacity="0.97"/><circle cx="1184" cy="286" r="1.7" opacity="0.86"/><circle cx="1166" cy="20" r="1.8" opacity="0.49"/><circle cx="155" cy="418" r="1.7" opacity="0.97"/><circle cx="437" cy="579" r="0.6" opacity="0.98"/><circle cx="352" cy="380" r="0.8" opacity="0.38"/><circle cx="9" cy="420" r="1.3" opacity="0.88"/><circle cx="1021" cy="296" r="1.7" opacity="0.48"/><circle cx="1057" cy="175" r="1.8" opacity="0.60"/><circle cx="514" cy="363" r="0.7" opacity="0.40"/><circle cx="654" cy="500" r="0.7" opacity="0.61"/><circle cx="444" cy="547" r="1.9" opacity="0.41"/><circle cx="652" cy="73" r="1.6" opacity="0.96"/><circle cx="848" cy="407" r="0.7" opacity="0.41"/><circle cx="288" cy="57" r="0.8" opacity="0.97"/><circle cx="418" cy="635" r="1.6" opacity="0.85"/><circle cx="1095" cy="489" r="1.1" opacity="0.66"/><circle cx="468" cy="23" r="0.7" opacity="0.72"/><circle cx="627" cy="681" r="1.4" opacity="0.88"/><circle cx="572" cy="407" r="1.7" opacity="0.37"/><circle cx="23" cy="301" r="1.0" opacity="0.63"/><circle cx="77" cy="118" r="0.7" opacity="0.75"/><circle cx="40" cy="14" r="1.5" opacity="0.63"/><circle cx="27" cy="658" r="1.2" opacity="0.96"/><circle cx="778" cy="383" r="1.1" opacity="0.42"/><circle cx="1159" cy="308" r="1.0" opacity="0.44"/><circle cx="715" cy="688" r="1.1" opacity="0.87"/><circle cx="840" cy="361" r="1.4" opacity="0.83"/><circle cx="1114" cy="31" r="0.8" opacity="0.51"/><circle cx="81" cy="197" r="1.2" opacity="0.49"/><circle cx="599" cy="5" r="1.8" opacity="0.81"/><circle cx="124" cy="149" r="1.6" opacity="0.44"/><circle cx="881" cy="26" r="1.4" opacity="0.79"/><circle cx="650" cy="556" r="1.8" opacity="0.99"/><circle cx="64" cy="339" r="0.8" opacity="0.83"/><circle cx="247" cy="117" r="0.7" opacity="0.36"/><circle cx="314" cy="137" r="1.3" opacity="0.88"/><circle cx="865" cy="227" r="0.9" opacity="0.86"/><circle cx="330" cy="454" r="1.9" opacity="0.73"/><circle cx="567" cy="34" r="0.9" opacity="0.97"/><circle cx="68" cy="38" r="1.4" opacity="0.55"/><circle cx="719" cy="163" r="0.9" opacity="0.51"/><circle cx="857" cy="486" r="0.6" opacity="0.81"/><circle cx="915" cy="328" r="0.7" opacity="0.36"/><circle cx="1175" cy="70" r="0.6" opacity="0.39"/><circle cx="1090" cy="699" r="1.6" opacity="0.96"/><circle cx="971" cy="51" r="1.1" opacity="0.77"/><circle cx="826" cy="535" r="1.5" opacity="0.43"/><circle cx="475" cy="662" r="1.4" opacity="0.47"/><circle cx="501" cy="669" r="0.9" opacity="0.42"/><circle cx="974" cy="455" r="1.1" opacity="0.65"/><circle cx="320" cy="484" r="1.0" opacity="0.71"/><circle cx="1107" cy="460" r="1.1" opacity="0.44"/><circle cx="597" cy="34" r="1.6" opacity="0.65"/><circle cx="536" cy="209" r="1.5" opacity="0.64"/><circle cx="530" cy="145" r="0.7" opacity="0.40"/><circle cx="279" cy="518" r="1.5" opacity="0.48"/><circle cx="39" cy="189" r="1.5" opacity="0.51"/><circle cx="552" cy="83" r="1.6" opacity="0.72"/><circle cx="529" cy="692" r="1.3" opacity="0.53"/><circle cx="820" cy="666" r="1.4" opacity="0.95"/><circle cx="662" cy="209" r="1.4" opacity="0.39"/><circle cx="1183" cy="352" r="0.6" opacity="0.55"/><circle cx="748" cy="599" r="1.8" opacity="0.59"/><circle cx="1072" cy="356" r="1.3" opacity="0.92"/><circle cx="860" cy="396" r="0.6" opacity="0.57"/><circle cx="893" cy="291" r="0.6" opacity="0.91"/><circle cx="435" cy="517" r="1.1" opacity="0.59"/><circle cx="709" cy="359" r="1.8" opacity="0.73"/><circle cx="425" cy="389" r="1.6" opacity="0.83"/><circle cx="18" cy="364" r="1.8" opacity="0.66"/><circle cx="192" cy="100" r="1.3" opacity="0.88"/><circle cx="919" cy="275" r="0.7" opacity="0.55"/><circle cx="710" cy="345" r="1.1" opacity="0.48"/><circle cx="542" cy="112" r="1.4" opacity="0.45"/><circle cx="181" cy="655" r="0.6" opacity="0.58"/><circle cx="595" cy="73" r="1.1" opacity="0.93"/><circle cx="922" cy="233" r="1.1" opacity="0.53"/><circle cx="1002" cy="221" r="1.6" opacity="0.98"/><circle cx="344" cy="442" r="1.7" opacity="0.70"/><circle cx="1114" cy="196" r="1.2" opacity="0.58"/><circle cx="347" cy="668" r="0.7" opacity="0.58"/><circle cx="1181" cy="186" r="1.5" opacity="0.92"/><circle cx="283" cy="149" r="1.5" opacity="0.39"/><circle cx="730" cy="622" r="1.8" opacity="0.94"/><circle cx="578" cy="570" r="1.8" opacity="0.81"/><circle cx="305" cy="533" r="1.3" opacity="0.63"/><circle cx="197" cy="576" r="1.5" opacity="0.37"/></g></svg><div class="moon" aria-hidden="true"></div>
+  <svg class="cloud " style="left:-2%; top:34%; width:220px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg><svg class="cloud " style="right:16%; top:20%; width:170px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="55" cy="50" r="26"/><circle cx="98" cy="36" r="34"/><circle cx="140" cy="52" r="24"/><rect x="44" y="50" width="104" height="30" rx="15"/></g></svg><svg class="cloud " style="right:-3%; top:58%; width:260px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg>
+  <header class="bar">
+  <a class="logo" href="../index.zh.html"><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><ellipse cx="18" cy="21" rx="15" ry="8.5" fill="#FFD447"/><circle cx="11" cy="11" r="8" fill="#FFD447"/><path d="M2 12 q 2 -3 5 -1 q -2 2 -5 1z" fill="#F08A24"/><circle cx="9" cy="9.5" r="1.3" fill="#3A2E29"/><path d="M23 18 q 6 -3 8 2" stroke="#E9A800" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>小鸭鸭</a>
+  <nav><a class="nav-link" href="../index.zh.html#work">经历</a><a class="nav-link" href="../index.zh.html#projects">项目</a><a class="nav-link" href="../index.zh.html#posts">文章</a><a class="nav-link" href="../index.zh.html#games">游戏</a><a class="nav-link" href="../index.zh.html#anime">番剧</a><button class="pill theme" id="theme" type="button" aria-label="切换白天和夜间" title="切换白天和夜间"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></button><a class="pill" href="two-weeks-seventy-releases.html" data-lang="en" lang="en" aria-label="Read in English">EN</a></nav>
+</header>
+</div>
 
-  <div class="article-head">
-    <p class="meta">2026 年 10 月 · 阅读约 15 分钟</p>
-    <h1 class="title">两周，七十个版本</h1>
+<main class="post" id="content">
+  <div class="post-cover"><img src="../assets/img/covers/two-weeks-seventy-releases.webp" alt="" /></div>
+  <header class="post-head">
+    <p class="meta"><time datetime="2026-10-26">2026 年 10 月 26 日</time>　阅读约 14 分钟</p>
+    <h1>两周，七十个版本</h1>
     <p class="lede">十月中旬，我开始给《活侠传》做 Mod。这是一款 Unity 做的武侠养成 RPG，我是在别人开源的一个小助手 Mod 上起步的。两周后，它长成了一个 3.6 万行的 Mod，叫「咖啡伴侣」：发了七十个版本，有一个会先翻剧本再回答的 AI，还多了一批用韩语和繁体中文发帖的玩家，我得学着去看他们在说什么。回头看，最难的几乎都不是写代码，而是决定做什么、不做什么，以及怎么跟一个写代码比我检查还快的搭档配合。</p>
+  </header>
+  <div class="prose">
+<p class="aside">咖啡伴侣开源在 <a href="https://github.com/kevinnie2003/LOMAssistant">kevinnie2003/LOMAssistant</a>，是我和 Claude Code 一起写的。文中提到玩家反馈的地方只讲大概，不涉及任何人的存档或电脑。</p>
+
+<h2>我测，它写</h2>
+
+<p>分工第一天就定了，后来一直没变。Claude Code 读反编译出来的游戏代码，写补丁，编译 DLL，放进我的游戏目录；我开游戏，玩到要测的地方，再告诉它结果。每个版本发出去之前，我都会说一句「测过了，没问题，提交吧」。提交、推送、写更新说明、回复玩家，这些对外的事都得等这句话。</p>
+
+<p>能跑这么快，靠的就是这个分工。第一个公开版本是 10 月 16 日发的，到 10 月 29 日，一共提交了 395 次，发了七十个版本，最多的一天发了十个。模型几分钟就能写完一个功能，可它看不见屏幕：提示框溢出来了，立绘从脸中间被切开了，手柄光标在菜单里跳过了最后一项。这些只能我去发现，我发给它的消息，大半都是这种。</p>
+
+<p>也有几次我说「没测，先提交吧」，结果就出了事。早期有个版本，玩家在对话菜单里也能「空过」，这本来只该出现在行动菜单里。在对话里空过会把日历往后推，剧情就提前触发了。几个小时后就有玩家发现了。修起来只花了几分钟。所以我的结论是：发得快没关系，只要修得也快。发一次版本只要十分钟，出错的代价就小。</p>
+
+<h2>没有源码，怎么摸清一个游戏</h2>
+
+<p>没有源码，也没有文档，手上只有反编译出来的 C# 和几千个 Lua 剧情脚本。Mod 是个 BepInEx 插件，用 Harmony 在游戏运行时打补丁，做到后来已经有 230 多个补丁。几乎每个功能都从同一个问题开始：游戏是在哪段代码里决定这件事的？还有哪些地方依赖这个决定？</p>
+
+<p>后来发现，剧本才是真正的说明书。我让 Claude 把两千两百多个剧本全部解析成一份数据：每个分岔要什么条件，每个旗标在哪里被设置、在哪里被判断，每个任务在什么时间段能触发。之后的大部分功能都建在这份数据上：按日历排列的主线支线路线图，每个任务的剧情流程图，选项旁边显示的真实解锁条件，还有后来 AI 用的知识库。</p>
+
+<p>有些看起来不可能的 bug，也是靠它查清的。有玩家想要一个「每旬只有一点行动点」的选项，听着没什么问题，其实不然：游戏里有四十多处剧情会看你还剩几点行动点，有些主线只能在某一旬触发。如果旬初的唐门会议用掉了你仅有的那一点，游戏会先进入下一旬、再检查任务，这条主线就永远不会出现，后面的章节全被卡住。改法是先检查、再推进：这一旬还有该触发的主线，就补一点行动点，先不进入下一旬。README 里也加了一句大白话警告，说这些模式可能卡剧情。光在角落里写一句「谨慎使用」，是不够的。</p>
+
+<p>也不是每个改进都很聪明。从启动到能点标题画面要 21 秒，大部分时间花在一段 11 秒的开场动画和一个启动 Logo 上。动画改成 6 倍速播放，安装器里再加一个去掉 Logo 的选项，就只要 6 秒了。</p>
+
+<h2>存档靠重放</h2>
+
+<p>游戏只能在特定的时候存档。玩家想随时存，对话说到一半能存，掷骰前一步也能存。可一个停在半路的 Lua 协程，没法直接存下来。我们参考了一位玩家分享的设计，换了个思路：先录下来，读档时再放一遍。</p>
+
+<p>每个剧情脚本在加载时都会被改写一遍，对白、选项、掷骰和条件判断都要经过一层记录。随时存档存的是当前这段剧情开始时的游戏状态，加上从那以后发生的所有事。读档时先把状态恢复回去，再从头跑一遍这段剧情：对白快进，选项和掷骰按录下来的结果填回去，所有改游戏数据的操作都跳过，因为存下来的状态里已经有了。等记录放完，玩家就正好回到存档那一刻，连背景音乐都是对的。</p>
+
+<p>重放有个前提：剧本得和录的时候是同一份。发布后游戏第一次更新，所有随时存档就都坏了，因为底下的剧本变了。最早的修复是一位贡献者提交的。后来的长久之计，是给每个存档加一份「兼容记录」：存下它经过的每个剧本、以及它依赖的游戏代码的指纹。读档时只要对不上，就停下来明确告诉玩家，而不是悄悄地错下去。</p>
+
+<p>过了十天，同样的思路还修好了游戏自带存档的一个 bug。有玩家说主线莫名其妙停了。我们翻了这位玩家发来的存档，找到了原因：第二年到崆峒的那段剧本，会先自动存档，再把日历往后推一个月。这段剧情里稍后手动存的档，记下的是推完之后的日期。读档时，游戏会从自动存档那里重演这段剧情，于是月份又推了一次，被跳过的那一个月里本该触发的任务，就再也不会来了。这是原版游戏的 bug，不是我们的。修法还是重放那一套：如果手动存档时剧本已经推过时间，就把存档里的时间改回重演起点那一刻。</p>
+
+<div class="aside"><b>值得保留的习惯。</b>这个 bug 我一开始猜的是：有一条剧情分支本来就会跳过这一章。结果直接看玩家存档里的旗标，十分钟就把这个猜测排除了。这个项目里，每一次都是先看数据再下结论更靠谱。</div>
+
+<h2>不做什么</h2>
+
+<p>我做的决定，大部分其实是拒绝。有人提了一个 PR，改剧本去掉一段修罗场事件。代码写得不错，但我没合：这个 Mod 帮你更好地玩这个故事，但不改故事本身。我建议作者单独做成一个 Mod，我们这边保证兼容。</p>
+
+<p>这个游戏还有另一个很受欢迎的 Mod，有些功能玩家挺喜欢。拿来参考有用，照抄不行。我们剧情树的一个早期版本，做出来和人家长得差不多、用法也差不多，我直接打了回去：目标可以一样，结构得是我们自己的。最后定下来的是按日历排的样式，更适合这个游戏，因为它的任务都绑着日期。有一次 Claude 修排版 bug，顺手把对方的三个小功能也搬了过来，从那以后就有了一条规矩：先列出人家哪里做得不一样，再问我要不要借。</p>
+
+<p>有些功能就是做错了，最省事的办法是删掉。一次性事件的地图标记，写需求时觉得挺好，放进游戏里基本看不出来，偶尔还会误导人，就删了。重做的存档界面，立绘老是从脸中间被切开，改了好几轮都不对，最后把这部分退回去，其他的留着。每次退回去，都比再补一轮省事。</p>
+
+<h2>写给玩家看的字</h2>
+
+<p>我给它提的修改意见，大概三分之一是关于文字的，不是代码。更新说明一句话讲清楚改了什么，不举玩家反馈里的例子，也不顺手夸自己一句。玩家反馈里的东西不会出现在任何公开的地方：早期有份更新说明拿一个真实的安装路径当例子，当天这就成了一条规矩。繁体中文、日语、韩语都单独写。一键简转繁会转出错字和不地道的说法，繁体读者一眼就看得出来。</p>
+
+<p>这些意见，每一条都被写成一句短规则，连同原因一起，存进了 Claude Code 的长期记忆：版本号怎么升，什么内容放进哪个发布文件，网盘里的旧文件永远别删。到最后攒了二十多条，同样的话我很少需要说第二遍。这是整个项目里最值钱的习惯：说一遍就能记住的修改意见，比一份更聪明的初稿有用得多。</p>
+
+<h2>3.0：先查资料再开口的 AI</h2>
+
+<p>3.0 的重点是游戏里的 AI。它可以当攻略助手，也可以扮成游戏里九位能结缘的女主角和大师兄，每个人用自己的口气说话。玩家用自己的 API Key。我们一开始就定了规矩：回答要从游戏里来，不能凭印象。<code>search</code>、<code>quest</code>、<code>script</code>、<code>routes</code>、<code>usage</code> 这些一共十五个工具，查的都是解析好的剧本和当前的存档。角色只知道玩家已经读过的剧情。想改存档，它会先弹一张卡片，玩家确认了才改。它也刻意不做成角色扮演那一套：没有长期记忆，也不管说话重不重复。跟游戏数据扯不上关系的，一律不做。</p>
+
+<p>为了知道它答得对不对，我出了二十道真实的问题，每道题标好答案里应该有什么、不该有什么，再打开调试记录，把每一次工具调用和返回结果都存下来。第一次用中档模型跑，对了十五道。我把那五道错题的记录挨个读了一遍，这一个小时是整个项目里收获最大的，因为问题几乎都不在模型：</p>
+
+<ul>
+  <li><b>排序。</b>问一个会死的角色怎么救，模型搜的名字没错，可搜索结果只列前八个旗标，还没排序。真正要紧的那个「幸存」旗标排在第九。改成按剧本里用到的次数排序，就好了。</li>
+  <li><b>名字对不上。</b>留学地图上的随机事件，归在一个叫 <code>Section_01_01</code> 的事件池里。谁会去搜这个？所以问到殿里的一个事件，什么都没搜到。把事件池和玩家实际看到的地名对上，就好了。</li>
+  <li><b>资料里没有。</b>一场关键战斗里怎么「唤醒」被附身的角色，哪张数据表都没写，只藏在一个反编译出来的类里：某个状态生效时，每嘴攻一次，计数就加一。把这句话补进这场战斗的说明，模型就答上来了。</li>
+  <li><b>题目本身。</b>有一道其实答对了，只是写的是「运功疗伤」，不是预设的那个词。这里该改的是题，不是模型。</li>
+</ul>
+
+<p>这些都改完，才轮到改提示词：查到几条路就全列出来，不要只说第一条；说「不可能」之前，先去查相关的旗标。之后换上更强的模型、开深度模式，对了十八道。</p>
+
+<p>另一半问题是钱。每个问题要查好几轮，每一轮都要把整段对话重新发一遍，所以账单多少，基本看提示词缓存能命中多少。缓存有个硬要求：前面的内容每次都得一模一样，差一个字都不行。所以每个问题的系统提示词固定不变；长对话在固定的节点压缩，而不是每轮都删一点；模型自己的思考内容原样传回去。之前 Claude 偶尔一个字都不回，原因就是这些思考内容被丢了，其他服务商也各有类似的要求。最后还剩一个漏洞：一个问题查满轮数之后，最后那一轮强制作答时把工具定义去掉了，前面缓存的内容也跟着全部作废。改成保留工具定义、只是不让它再调用，就好了。最近一次测下来，输入里有 80% 到 86% 都命中了缓存。</p>
+
+<h2>上线以后：看不懂的玩家留言</h2>
+
+<p>韩语和繁体中文的玩家找到这个 Mod 以后，大部分反馈就不在 GitHub 上了，而是在韩语论坛 DC Inside、繁体中文论坛巴哈姆特和 PTT 的帖子里，有的语言我读得很慢，有的根本读不懂。于是我们做了一个小网页：把这几个论坛上聊这个 Mod 的帖子都收进来，每篇配上中文标题和摘要，按好评、问题、求助、教程、资讯分好类，每天自动看一眼有没有新帖。下面这几条经验，大多是从这个网页里来的。它还让我们发现，有韩国玩家拿早期版本做了一个韩语汉化版，补丁被下了大约 320 次。这说明外语玩家是真的想用；也说明上游一直在更新，这种分支版本维护起来会很累。</p>
+
+<p><b>「Gemini 用不了」。</b>十几篇韩语帖子都说 AI 连不上：点测试连接没反应，发消息没反应，重装也没用。大家大多怪免费版 Gemini，或者本地跑的 Ollama 模型。其实对这些玩家来说，换哪家服务商都一样是坏的。Mod 拼请求时用了 Newtonsoft.Json 的一个写法 <code>JToken.ToString(Formatting)</code>，而有些玩家电脑上加载的那份库里没有它。报错 <code>MissingMethodException</code> 还没显示出来就被吞掉了。换成每个版本都有的写法，所有服务商一下子都好了。做 Mod 时，你用到的库是哪个版本，由玩家的电脑说了算；而出了错又不显示的时候，大家会怪到自己最近动过的那个东西上。</p>
+
+<p><b>模型总用中文回答。</b>界面是英文，问题也是英文，女主角照样回中文，强模型也一样。系统提示词、人设、引用的游戏台词、查回来的剧情资料，全是中文，一句「用玩家的语言回答」根本压不住几千字的中文。光靠改提示词，怎么都没修好：</p>
+
+<ul>
+  <li>在规则中间加一句「用玩家的语言回答」。没用。</li>
+  <li>用单独的标记把玩家自己说的话圈出来。这倒修好了另一个毛病，模型以前会把屏幕上的选项当成玩家在提问，可回答还是中文。</li>
+  <li>把这句要求用目标语言写，系统提示词开头放一句，消息末尾再放一句。不用查资料的问题有时管用；可只要模型去查了剧情资料，而资料全是中文，它就又变回去了。在查回来的资料后面再提醒一句，也没用。</li>
+  <li>把整套规则按界面语言重写，简体中文、繁体中文、英语、韩语、日语各一份，繁体是单独写的，没用转换。还是有一部分回答是中文，或者动作描写是英文、台词是中文。人设里的游戏原话、角色的经历和查到的资料都还是中文，这些没法翻掉。</li>
+</ul>
+
+<p>最后是在代码里加了一道检查才稳住的。界面是英语、韩语或日语，玩家也没用中文提问，可回答里大部分是汉字，Mod 就再发一次请求，只让模型把这段话改写成界面语言，还会告诉它说话的是谁、是男是女，免得人称写错。繁体界面收到简体回答，就直接转成繁体。回答还在一个字一个字往外出的时候，明显是中文的部分先不显示，免得中文在屏幕上闪一下。回答过程中显示的「搜索」「查看剧本」这类提示，现在也跟着界面语言走了。</p>
+
+<p>资料是一种语言、回答要用另一种语言的时候，光靠提示词是压不住的，强模型也一样。在代码里检查输出，不对就改写，结果才稳定。同一件事还带出一条经验：界面靠一个标记把回答拆成上下两块，模型有时把标记的括号写错了，就拆不开。现在回答一到，先在代码里把各种写法统一。界面要依赖的格式，都应该在代码里保证，光在提示词里叮嘱是不够的。</p>
+
+<p><b>也要照顾免费额度和小模型。</b>一开始我觉得，免费 API 和本地小模型不值得专门花力气。后来改主意了，因为很多玩家只有这些能用。免费版 Gemini 要排队，想得也久；本地小模型面对十五个工具会选错，上下文也很快就满了。所以现在多了一个极速模式：</p>
+
+<ul>
+  <li>少查：最多查 6 轮（原来是 20 轮），只给最常用的 5 个工具。</li>
+  <li>提示词更短：攻略助手换成只有 7 条规则的短版，每个角色的原话从 30 句减到 10 句，经历只留最近 20 条。</li>
+  <li>上下文更少：对话历史和每次查到的资料，都只留原来的三分之一左右。</li>
+  <li>少想一会儿：推理强度在 Gemini 上设成 minimal，在 Ollama 上设成 none。</li>
+</ul>
+
+<p>界面和这些限制一样重要。原来极速和深度是两个分开的开关，新玩家根本看不出一共有三种模式。现在对话框上面一排写着「回答方式：极速 / 标准 / 深度」，剧透程度和攻略提示也挪到了这一排，鼠标放上去每个都有说明。</p>
+
+<p><b>默认模型照着官方文档选。</b>每家服务商的默认模型，都对过他们自己的文档，不凭印象。OpenAI 有些模型只能通过一个更新的接口调用工具，Mod 用的接口不支持，所以不放进预设；另一些得把推理强度设成 none 才能调工具。Google 最新的 Gemini 只给付费 Key 用，所以也不当默认，免费 Key 用的是一个几乎秒回的模型。服务商的模型列表里查不到某个名字时，预设就换回一个能查到的。</p>
+
+<p><b>按真正显示的字来算宽度。</b>页签、版本号、标题和「可以这样问」那几个按钮，原来都是按中文原文算宽度的，可实际显示的是英文，所以英文界面老是太长、被截掉。现在改成按实际显示的译文来算，标题栏和人设栏放不下时，也会自动把间距收紧一点。</p>
+
+<h2>和 AI 搭档，我的几点体会</h2>
+
+<p>如果你也打算做类似的项目，这几条或许用得上：</p>
+
+<ul>
+  <li><b>收不回来的操作，留给自己做。</b>提交、推送、发版、回复、上传。有一次我只让 Claude 提交，它顺手推送了。虽然没出事，可这正是该等我点头的事。</li>
+  <li><b>把修改意见变成规矩。</b>说一次，连同原因记下来，以后就一直照办。</li>
+  <li><b>确认你看得到自己要批准的东西。</b>我用的桌面客户端只显示每轮的最后一条消息，结果有两次它让我批准「下面这段」草稿，我根本看不到。后来定了条规矩：草稿一律放在最后一条消息里。</li>
+  <li><b>知道哪里不该自动化。</b>让浏览器 Agent 反复改一篇 Steam 社区指南，多半触发了 Steam 的风控，那篇指南有一阵子都存不了。现在改成程序把文件准备好，我自己手动粘贴。</li>
+  <li><b>先看数据。</b>日志、存档、调试记录，解决的争论比任何「可能是这样吧」的推理都多。</li>
+</ul>
+
+<p>这个 Mod 现在有 100 多个 star，2.2 万次下载，界面支持五种语言。我最得意的，是这七十个版本里，因为上个版本出错而不得不补发的，其实很少。速度是模型给的；不让速度变成来回折腾的，是这套流程：我一个人在游戏里测，几件事永远等我点头，每条修改意见都记下来，不用说第二遍。</p>
   </div>
-
-  <div class="article-body">
-    <p class="aside">咖啡伴侣开源在 <a href="https://github.com/kevinnie2003/LOMAssistant">kevinnie2003/LOMAssistant</a>，是我和 Claude Code 一起写的。文中提到玩家反馈的地方只讲大概，不涉及任何人的存档或电脑。</p>
-
-    <h2>我测，它写</h2>
-
-    <p>分工第一天就定了，后来一直没变。Claude Code 读反编译出来的游戏代码，写补丁，编译 DLL，放进我的游戏目录；我开游戏，玩到要测的地方，再告诉它结果。每个版本发出去之前，我都会说一句「测过了，没问题，提交吧」。提交、推送、写更新说明、回复玩家，这些对外的事都得等这句话。</p>
-
-    <p>能跑这么快，靠的就是这个分工。第一个公开版本是 10 月 16 日发的，到 10 月 29 日，一共提交了 395 次，发了七十个版本，最多的一天发了十个。模型几分钟就能写完一个功能，可它看不见屏幕：提示框溢出来了，立绘从脸中间被切开了，手柄光标在菜单里跳过了最后一项。这些只能我去发现，我发给它的消息，大半都是这种。</p>
-
-    <p>也有几次我说「没测，先提交吧」，结果就出了事。早期有个版本，玩家在对话菜单里也能「空过」，这本来只该出现在行动菜单里。在对话里空过会把日历往后推，剧情就提前触发了。几个小时后就有玩家发现了。修起来只花了几分钟。所以我的结论是：发得快没关系，只要修得也快。发一次版本只要十分钟，出错的代价就小。</p>
-
-    <h2>没有源码，怎么摸清一个游戏</h2>
-
-    <p>没有源码，也没有文档，手上只有反编译出来的 C# 和几千个 Lua 剧情脚本。Mod 是个 BepInEx 插件，用 Harmony 在游戏运行时打补丁，做到后来已经有 230 多个补丁。几乎每个功能都从同一个问题开始：游戏是在哪段代码里决定这件事的？还有哪些地方依赖这个决定？</p>
-
-    <p>后来发现，剧本才是真正的说明书。我让 Claude 把两千两百多个剧本全部解析成一份数据：每个分岔要什么条件，每个旗标在哪里被设置、在哪里被判断，每个任务在什么时间段能触发。之后的大部分功能都建在这份数据上：按日历排列的主线支线路线图，每个任务的剧情流程图，选项旁边显示的真实解锁条件，还有后来 AI 用的知识库。</p>
-
-    <p>有些看起来不可能的 bug，也是靠它查清的。有玩家想要一个「每旬只有一点行动点」的选项，听着没什么问题，其实不然：游戏里有四十多处剧情会看你还剩几点行动点，有些主线只能在某一旬触发。如果旬初的唐门会议用掉了你仅有的那一点，游戏会先进入下一旬、再检查任务，这条主线就永远不会出现，后面的章节全被卡住。改法是先检查、再推进：这一旬还有该触发的主线，就补一点行动点，先不进入下一旬。README 里也加了一句大白话警告，说这些模式可能卡剧情。光在角落里写一句「谨慎使用」，是不够的。</p>
-
-    <p>也不是每个改进都很聪明。从启动到能点标题画面要 21 秒，大部分时间花在一段 11 秒的开场动画和一个启动 Logo 上。动画改成 6 倍速播放，安装器里再加一个去掉 Logo 的选项，就只要 6 秒了。</p>
-
-    <h2>存档靠重放</h2>
-
-    <p>游戏只能在特定的时候存档。玩家想随时存，对话说到一半能存，掷骰前一步也能存。可一个停在半路的 Lua 协程，没法直接存下来。我们参考了一位玩家分享的设计，换了个思路：先录下来，读档时再放一遍。</p>
-
-    <p>每个剧情脚本在加载时都会被改写一遍，对白、选项、掷骰和条件判断都要经过一层记录。随时存档存的是当前这段剧情开始时的游戏状态，加上从那以后发生的所有事。读档时先把状态恢复回去，再从头跑一遍这段剧情：对白快进，选项和掷骰按录下来的结果填回去，所有改游戏数据的操作都跳过，因为存下来的状态里已经有了。等记录放完，玩家就正好回到存档那一刻，连背景音乐都是对的。</p>
-
-    <p>重放有个前提：剧本得和录的时候是同一份。发布后游戏第一次更新，所有随时存档就都坏了，因为底下的剧本变了。最早的修复是一位贡献者提交的。后来的长久之计，是给每个存档加一份「兼容记录」：存下它经过的每个剧本、以及它依赖的游戏代码的指纹。读档时只要对不上，就停下来明确告诉玩家，而不是悄悄地错下去。</p>
-
-    <p>过了十天，同样的思路还修好了游戏自带存档的一个 bug。有玩家说主线莫名其妙停了。我们翻了这位玩家发来的存档，找到了原因：第二年到崆峒的那段剧本，会先自动存档，再把日历往后推一个月。这段剧情里稍后手动存的档，记下的是推完之后的日期。读档时，游戏会从自动存档那里重演这段剧情，于是月份又推了一次，被跳过的那一个月里本该触发的任务，就再也不会来了。这是原版游戏的 bug，不是我们的。修法还是重放那一套：如果手动存档时剧本已经推过时间，就把存档里的时间改回重演起点那一刻。</p>
-
-    <div class="aside"><b>值得保留的习惯。</b>这个 bug 我一开始猜的是：有一条剧情分支本来就会跳过这一章。结果直接看玩家存档里的旗标，十分钟就把这个猜测排除了。这个项目里，每一次都是先看数据再下结论更靠谱。</div>
-
-    <h2>不做什么</h2>
-
-    <p>我做的决定，大部分其实是拒绝。有人提了一个 PR，改剧本去掉一段修罗场事件。代码写得不错，但我没合：这个 Mod 帮你更好地玩这个故事，但不改故事本身。我建议作者单独做成一个 Mod，我们这边保证兼容。</p>
-
-    <p>这个游戏还有另一个很受欢迎的 Mod，有些功能玩家挺喜欢。拿来参考有用，照抄不行。我们剧情树的一个早期版本，做出来和人家长得差不多、用法也差不多，我直接打了回去：目标可以一样，结构得是我们自己的。最后定下来的是按日历排的样式，更适合这个游戏，因为它的任务都绑着日期。有一次 Claude 修排版 bug，顺手把对方的三个小功能也搬了过来，从那以后就有了一条规矩：先列出人家哪里做得不一样，再问我要不要借。</p>
-
-    <p>有些功能就是做错了，最省事的办法是删掉。一次性事件的地图标记，写需求时觉得挺好，放进游戏里基本看不出来，偶尔还会误导人，就删了。重做的存档界面，立绘老是从脸中间被切开，改了好几轮都不对，最后把这部分退回去，其他的留着。每次退回去，都比再补一轮省事。</p>
-
-    <h2>写给玩家看的字</h2>
-
-    <p>我给它提的修改意见，大概三分之一是关于文字的，不是代码。更新说明一句话讲清楚改了什么，不举玩家反馈里的例子，也不顺手夸自己一句。玩家反馈里的东西不会出现在任何公开的地方：早期有份更新说明拿一个真实的安装路径当例子，当天这就成了一条规矩。繁体中文、日语、韩语都单独写。一键简转繁会转出错字和不地道的说法，繁体读者一眼就看得出来。</p>
-
-    <p>这些意见，每一条都被写成一句短规则，连同原因一起，存进了 Claude Code 的长期记忆：版本号怎么升，什么内容放进哪个发布文件，网盘里的旧文件永远别删。到最后攒了二十多条，同样的话我很少需要说第二遍。这是整个项目里最值钱的习惯：说一遍就能记住的修改意见，比一份更聪明的初稿有用得多。</p>
-
-    <h2>3.0：先查资料再开口的 AI</h2>
-
-    <p>3.0 的重点是游戏里的 AI。它可以当攻略助手，也可以扮成游戏里九位能结缘的女主角和大师兄，每个人用自己的口气说话。玩家用自己的 API Key。我们一开始就定了规矩：回答要从游戏里来，不能凭印象。<code>search</code>、<code>quest</code>、<code>script</code>、<code>routes</code>、<code>usage</code> 这些一共十五个工具，查的都是解析好的剧本和当前的存档。角色只知道玩家已经读过的剧情。想改存档，它会先弹一张卡片，玩家确认了才改。它也刻意不做成角色扮演那一套：没有长期记忆，也不管说话重不重复。跟游戏数据扯不上关系的，一律不做。</p>
-
-    <p>为了知道它答得对不对，我出了二十道真实的问题，每道题标好答案里应该有什么、不该有什么，再打开调试记录，把每一次工具调用和返回结果都存下来。第一次用中档模型跑，对了十五道。我把那五道错题的记录挨个读了一遍，这一个小时是整个项目里收获最大的，因为问题几乎都不在模型：</p>
-
-    <ul>
-      <li><b>排序。</b>问一个会死的角色怎么救，模型搜的名字没错，可搜索结果只列前八个旗标，还没排序。真正要紧的那个「幸存」旗标排在第九。改成按剧本里用到的次数排序，就好了。</li>
-      <li><b>名字对不上。</b>留学地图上的随机事件，归在一个叫 <code>Section_01_01</code> 的事件池里。谁会去搜这个？所以问到殿里的一个事件，什么都没搜到。把事件池和玩家实际看到的地名对上，就好了。</li>
-      <li><b>资料里没有。</b>一场关键战斗里怎么「唤醒」被附身的角色，哪张数据表都没写，只藏在一个反编译出来的类里：某个状态生效时，每嘴攻一次，计数就加一。把这句话补进这场战斗的说明，模型就答上来了。</li>
-      <li><b>题目本身。</b>有一道其实答对了，只是写的是「运功疗伤」，不是预设的那个词。这里该改的是题，不是模型。</li>
-    </ul>
-
-    <p>这些都改完，才轮到改提示词：查到几条路就全列出来，不要只说第一条；说「不可能」之前，先去查相关的旗标。之后换上更强的模型、开深度模式，对了十八道。</p>
-
-    <p>另一半问题是钱。每个问题要查好几轮，每一轮都要把整段对话重新发一遍，所以账单多少，基本看提示词缓存能命中多少。缓存有个硬要求：前面的内容每次都得一模一样，差一个字都不行。所以每个问题的系统提示词固定不变；长对话在固定的节点压缩，而不是每轮都删一点；模型自己的思考内容原样传回去。之前 Claude 偶尔一个字都不回，原因就是这些思考内容被丢了，其他服务商也各有类似的要求。最后还剩一个漏洞：一个问题查满轮数之后，最后那一轮强制作答时把工具定义去掉了，前面缓存的内容也跟着全部作废。改成保留工具定义、只是不让它再调用，就好了。最近一次测下来，输入里有 80% 到 86% 都命中了缓存。</p>
-
-    <h2>上线以后：看不懂的玩家留言</h2>
-
-    <p>韩语和繁体中文的玩家找到这个 Mod 以后，大部分反馈就不在 GitHub 上了，而是在韩语论坛 DC Inside、繁体中文论坛巴哈姆特和 PTT 的帖子里，有的语言我读得很慢，有的根本读不懂。于是我们做了一个小网页：把这几个论坛上聊这个 Mod 的帖子都收进来，每篇配上中文标题和摘要，按好评、问题、求助、教程、资讯分好类，每天自动看一眼有没有新帖。下面这几条经验，大多是从这个网页里来的。它还让我们发现，有韩国玩家拿早期版本做了一个韩语汉化版，补丁被下了大约 320 次。这说明外语玩家是真的想用；也说明上游一直在更新，这种分支版本维护起来会很累。</p>
-
-    <p><b>「Gemini 用不了」。</b>十几篇韩语帖子都说 AI 连不上：点测试连接没反应，发消息没反应，重装也没用。大家大多怪免费版 Gemini，或者本地跑的 Ollama 模型。其实对这些玩家来说，换哪家服务商都一样是坏的。Mod 拼请求时用了 Newtonsoft.Json 的一个写法 <code>JToken.ToString(Formatting)</code>，而有些玩家电脑上加载的那份库里没有它。报错 <code>MissingMethodException</code> 还没显示出来就被吞掉了。换成每个版本都有的写法，所有服务商一下子都好了。做 Mod 时，你用到的库是哪个版本，由玩家的电脑说了算；而出了错又不显示的时候，大家会怪到自己最近动过的那个东西上。</p>
-
-    <p><b>模型总用中文回答。</b>界面是英文，问题也是英文，女主角照样回中文，强模型也一样。系统提示词、人设、引用的游戏台词、查回来的剧情资料，全是中文，一句「用玩家的语言回答」根本压不住几千字的中文。光靠改提示词，怎么都没修好：</p>
-
-    <ul>
-      <li>在规则中间加一句「用玩家的语言回答」。没用。</li>
-      <li>用单独的标记把玩家自己说的话圈出来。这倒修好了另一个毛病，模型以前会把屏幕上的选项当成玩家在提问，可回答还是中文。</li>
-      <li>把这句要求用目标语言写，系统提示词开头放一句，消息末尾再放一句。不用查资料的问题有时管用；可只要模型去查了剧情资料，而资料全是中文，它就又变回去了。在查回来的资料后面再提醒一句，也没用。</li>
-      <li>把整套规则按界面语言重写，简体中文、繁体中文、英语、韩语、日语各一份，繁体是单独写的，没用转换。还是有一部分回答是中文，或者动作描写是英文、台词是中文。人设里的游戏原话、角色的经历和查到的资料都还是中文，这些没法翻掉。</li>
-    </ul>
-
-    <p>最后是在代码里加了一道检查才稳住的。界面是英语、韩语或日语，玩家也没用中文提问，可回答里大部分是汉字，Mod 就再发一次请求，只让模型把这段话改写成界面语言，还会告诉它说话的是谁、是男是女，免得人称写错。繁体界面收到简体回答，就直接转成繁体。回答还在一个字一个字往外出的时候，明显是中文的部分先不显示，免得中文在屏幕上闪一下。回答过程中显示的「搜索」「查看剧本」这类提示，现在也跟着界面语言走了。</p>
-
-    <p>资料是一种语言、回答要用另一种语言的时候，光靠提示词是压不住的，强模型也一样。在代码里检查输出，不对就改写，结果才稳定。同一件事还带出一条经验：界面靠一个标记把回答拆成上下两块，模型有时把标记的括号写错了，就拆不开。现在回答一到，先在代码里把各种写法统一。界面要依赖的格式，都应该在代码里保证，光在提示词里叮嘱是不够的。</p>
-
-    <p><b>也要照顾免费额度和小模型。</b>一开始我觉得，免费 API 和本地小模型不值得专门花力气。后来改主意了，因为很多玩家只有这些能用。免费版 Gemini 要排队，想得也久；本地小模型面对十五个工具会选错，上下文也很快就满了。所以现在多了一个极速模式：</p>
-
-    <ul>
-      <li>少查：最多查 6 轮（原来是 20 轮），只给最常用的 5 个工具。</li>
-      <li>提示词更短：攻略助手换成只有 7 条规则的短版，每个角色的原话从 30 句减到 10 句，经历只留最近 20 条。</li>
-      <li>上下文更少：对话历史和每次查到的资料，都只留原来的三分之一左右。</li>
-      <li>少想一会儿：推理强度在 Gemini 上设成 minimal，在 Ollama 上设成 none。</li>
-    </ul>
-
-    <p>界面和这些限制一样重要。原来极速和深度是两个分开的开关，新玩家根本看不出一共有三种模式。现在对话框上面一排写着「回答方式：极速 / 标准 / 深度」，剧透程度和攻略提示也挪到了这一排，鼠标放上去每个都有说明。</p>
-
-    <p><b>默认模型照着官方文档选。</b>每家服务商的默认模型，都对过他们自己的文档，不凭印象。OpenAI 有些模型只能通过一个更新的接口调用工具，Mod 用的接口不支持，所以不放进预设；另一些得把推理强度设成 none 才能调工具。Google 最新的 Gemini 只给付费 Key 用，所以也不当默认，免费 Key 用的是一个几乎秒回的模型。服务商的模型列表里查不到某个名字时，预设就换回一个能查到的。</p>
-
-    <p><b>按真正显示的字来算宽度。</b>页签、版本号、标题和「可以这样问」那几个按钮，原来都是按中文原文算宽度的，可实际显示的是英文，所以英文界面老是太长、被截掉。现在改成按实际显示的译文来算，标题栏和人设栏放不下时，也会自动把间距收紧一点。</p>
-
-    <h2>和 AI 搭档，我的几点体会</h2>
-
-    <p>如果你也打算做类似的项目，这几条或许用得上：</p>
-
-    <ul>
-      <li><b>收不回来的操作，留给自己做。</b>提交、推送、发版、回复、上传。有一次我只让 Claude 提交，它顺手推送了。虽然没出事，可这正是该等我点头的事。</li>
-      <li><b>把修改意见变成规矩。</b>说一次，连同原因记下来，以后就一直照办。</li>
-      <li><b>确认你看得到自己要批准的东西。</b>我用的桌面客户端只显示每轮的最后一条消息，结果有两次它让我批准「下面这段」草稿，我根本看不到。后来定了条规矩：草稿一律放在最后一条消息里。</li>
-      <li><b>知道哪里不该自动化。</b>让浏览器 Agent 反复改一篇 Steam 社区指南，多半触发了 Steam 的风控，那篇指南有一阵子都存不了。现在改成程序把文件准备好，我自己手动粘贴。</li>
-      <li><b>先看数据。</b>日志、存档、调试记录，解决的争论比任何「可能是这样吧」的推理都多。</li>
-    </ul>
-
-    <p>这个 Mod 现在有 100 多个 star，2.2 万次下载，界面支持五种语言。我最得意的，是这七十个版本里，因为上个版本出错而不得不补发的，其实很少。速度是模型给的；不让速度变成来回折腾的，是这套流程：我一个人在游戏里测，几件事永远等我点头，每条修改意见都记下来，不用说第二遍。</p>
-  </div>
-
-  <div class="article-foot">
+  <footer class="post-foot">
     <p>先拿挖出来的游戏数据给模型垫底、再让它动手，这个思路在<a href="knowing-what-the-button-is-called.zh.html">《知道那个按钮叫什么》</a>里也是核心。至于在玩家看到之前先把模型的产出检查一遍，可以看<a href="vibes-with-extra-steps.zh.html">《这卡超模了吗》</a>。</p>
-    <nav class="article-nav" aria-label="更多文章">
-      <a href="knowing-what-the-button-is-called.zh.html"><span>下一篇</span>知道那个按钮叫什么</a>
-      <a href="vibes-with-extra-steps.zh.html"><span>另见</span>这卡超模了吗</a>
-    </nav>
-  </div>
-  </main>
-  <script>
-    (function () {
-      var html = document.documentElement, btn = document.getElementById('themeToggle');
-      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? '浅色模式' : '深色模式'; btn.setAttribute('aria-label', t === 'dark' ? '切换到浅色模式' : '切换到深色模式'); }
-      apply(html.getAttribute('data-theme') || 'dark');
-      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
-    })();
-  </script>
+    <h2 class="shelf-head" style="margin-top:1.6rem">再看看</h2>
+    <nav class="more"><a class="panel" href="knowing-what-the-button-is-called.zh.html"><img src="../assets/img/covers/knowing-what-the-button-is-called.webp" alt="" loading="lazy" /><div><span>No.03　2026.9</span><b>知道那个按钮叫什么</b></div></a><a class="panel" href="vibes-with-extra-steps.zh.html"><img src="../assets/img/covers/vibes-with-extra-steps.webp" alt="" loading="lazy" /><div><span>No.02　2026.6</span><b>这卡超模了吗</b></div></a></nav>
+  </footer>
+</main>
+
+<footer class="foot">
+  <p class="bye">欢迎扩列～</p>
+  <nav><a href="mailto:kevinnie2003@gmail.com">邮箱</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">小黑盒</a><a href="https://space.bilibili.com/167880864">B 站</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
+</footer>
+<script src="../assets/js/site.js?v=7b54d685"></script>
 </body>
 </html>

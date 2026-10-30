@@ -1,183 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Language: saved choice, else the system language; send readers to their version -->
-  <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("two-weeks-seventy-releases.zh.html"+location.hash);}catch(e){}</script>
-  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Two weeks, seventy releases — Kevin Nie</title>
-  <meta name="description" content="Building a 36K-line mod for the wuxia RPG Legend of Mortal with Claude Code in two weeks: who tests and who writes, reading a game without its source, a save system built on replay, what not to build, an AI companion that has to look things up before it answers, and what players abroad taught me after launch." />
-  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
-  <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
-  <link rel="canonical" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
-  <meta property="og:title" content="Two weeks, seventy releases" />
-  <meta property="og:description" content="What building a large game mod with an AI pair programmer was actually like, and what was hard." />
-  <meta property="og:type" content="article" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-cover.png" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
-  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/forge.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/article.css?v=20261029c" />
+<meta charset="UTF-8" />
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("two-weeks-seventy-releases.zh.html"+location.hash);}catch(e){}</script>
+<script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>window.KN_LANG = "en";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="tools/build.py" />
+<title>Two weeks, seventy releases | Nemesie</title>
+<meta name="description" content="Building a 36K-line mod for the wuxia RPG Legend of Mortal with Claude Code in two weeks: who tests and who writes, reading a game without its source, a save system built on replay, what not to build, an AI companion that has to look things up before it answers, and what players abroad taught me after launch." />
+<link rel="canonical" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html" />
+<link rel="alternate" hreflang="x-default" href="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<link rel="alternate" type="application/rss+xml" title="Nemesie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Two weeks, seventy releases" />
+<meta property="og:description" content="What building a large game mod with an AI pair programmer was actually like, and what was hard." />
+<meta property="og:url" content="https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.html" />
+<meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
+<meta name="theme-color" content="#A9D8F5" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=7b54d685" />
+<link rel="stylesheet" href="../assets/css/site.css?v=7b54d685" />
 </head>
 <body>
-  <div class="noise-overlay" aria-hidden="true"></div>
-  <main class="article-page">
-    <div class="article-top">
-      <a class="back" href="../#writing">&larr; Kevin Nie</a>
-      <div class="article-tools">
-        <a class="theme-toggle lang-toggle" href="two-weeks-seventy-releases.zh.html" aria-label="阅读中文版" onclick="try{localStorage.setItem('kn-lang','zh')}catch(e){}"><span class="theme-label">中文</span></a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
-        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <span class="theme-label">Light Mode</span>
-      </button>
-      </div><!-- .article-tools -->
-    </div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="sky-band">
+  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFF6D6"><circle cx="897" cy="142" r="0.9" opacity="0.74"/><circle cx="68" cy="543" r="1.6" opacity="0.38"/><circle cx="820" cy="352" r="1.4" opacity="0.97"/><circle cx="1184" cy="286" r="1.7" opacity="0.86"/><circle cx="1166" cy="20" r="1.8" opacity="0.49"/><circle cx="155" cy="418" r="1.7" opacity="0.97"/><circle cx="437" cy="579" r="0.6" opacity="0.98"/><circle cx="352" cy="380" r="0.8" opacity="0.38"/><circle cx="9" cy="420" r="1.3" opacity="0.88"/><circle cx="1021" cy="296" r="1.7" opacity="0.48"/><circle cx="1057" cy="175" r="1.8" opacity="0.60"/><circle cx="514" cy="363" r="0.7" opacity="0.40"/><circle cx="654" cy="500" r="0.7" opacity="0.61"/><circle cx="444" cy="547" r="1.9" opacity="0.41"/><circle cx="652" cy="73" r="1.6" opacity="0.96"/><circle cx="848" cy="407" r="0.7" opacity="0.41"/><circle cx="288" cy="57" r="0.8" opacity="0.97"/><circle cx="418" cy="635" r="1.6" opacity="0.85"/><circle cx="1095" cy="489" r="1.1" opacity="0.66"/><circle cx="468" cy="23" r="0.7" opacity="0.72"/><circle cx="627" cy="681" r="1.4" opacity="0.88"/><circle cx="572" cy="407" r="1.7" opacity="0.37"/><circle cx="23" cy="301" r="1.0" opacity="0.63"/><circle cx="77" cy="118" r="0.7" opacity="0.75"/><circle cx="40" cy="14" r="1.5" opacity="0.63"/><circle cx="27" cy="658" r="1.2" opacity="0.96"/><circle cx="778" cy="383" r="1.1" opacity="0.42"/><circle cx="1159" cy="308" r="1.0" opacity="0.44"/><circle cx="715" cy="688" r="1.1" opacity="0.87"/><circle cx="840" cy="361" r="1.4" opacity="0.83"/><circle cx="1114" cy="31" r="0.8" opacity="0.51"/><circle cx="81" cy="197" r="1.2" opacity="0.49"/><circle cx="599" cy="5" r="1.8" opacity="0.81"/><circle cx="124" cy="149" r="1.6" opacity="0.44"/><circle cx="881" cy="26" r="1.4" opacity="0.79"/><circle cx="650" cy="556" r="1.8" opacity="0.99"/><circle cx="64" cy="339" r="0.8" opacity="0.83"/><circle cx="247" cy="117" r="0.7" opacity="0.36"/><circle cx="314" cy="137" r="1.3" opacity="0.88"/><circle cx="865" cy="227" r="0.9" opacity="0.86"/><circle cx="330" cy="454" r="1.9" opacity="0.73"/><circle cx="567" cy="34" r="0.9" opacity="0.97"/><circle cx="68" cy="38" r="1.4" opacity="0.55"/><circle cx="719" cy="163" r="0.9" opacity="0.51"/><circle cx="857" cy="486" r="0.6" opacity="0.81"/><circle cx="915" cy="328" r="0.7" opacity="0.36"/><circle cx="1175" cy="70" r="0.6" opacity="0.39"/><circle cx="1090" cy="699" r="1.6" opacity="0.96"/><circle cx="971" cy="51" r="1.1" opacity="0.77"/><circle cx="826" cy="535" r="1.5" opacity="0.43"/><circle cx="475" cy="662" r="1.4" opacity="0.47"/><circle cx="501" cy="669" r="0.9" opacity="0.42"/><circle cx="974" cy="455" r="1.1" opacity="0.65"/><circle cx="320" cy="484" r="1.0" opacity="0.71"/><circle cx="1107" cy="460" r="1.1" opacity="0.44"/><circle cx="597" cy="34" r="1.6" opacity="0.65"/><circle cx="536" cy="209" r="1.5" opacity="0.64"/><circle cx="530" cy="145" r="0.7" opacity="0.40"/><circle cx="279" cy="518" r="1.5" opacity="0.48"/><circle cx="39" cy="189" r="1.5" opacity="0.51"/><circle cx="552" cy="83" r="1.6" opacity="0.72"/><circle cx="529" cy="692" r="1.3" opacity="0.53"/><circle cx="820" cy="666" r="1.4" opacity="0.95"/><circle cx="662" cy="209" r="1.4" opacity="0.39"/><circle cx="1183" cy="352" r="0.6" opacity="0.55"/><circle cx="748" cy="599" r="1.8" opacity="0.59"/><circle cx="1072" cy="356" r="1.3" opacity="0.92"/><circle cx="860" cy="396" r="0.6" opacity="0.57"/><circle cx="893" cy="291" r="0.6" opacity="0.91"/><circle cx="435" cy="517" r="1.1" opacity="0.59"/><circle cx="709" cy="359" r="1.8" opacity="0.73"/><circle cx="425" cy="389" r="1.6" opacity="0.83"/><circle cx="18" cy="364" r="1.8" opacity="0.66"/><circle cx="192" cy="100" r="1.3" opacity="0.88"/><circle cx="919" cy="275" r="0.7" opacity="0.55"/><circle cx="710" cy="345" r="1.1" opacity="0.48"/><circle cx="542" cy="112" r="1.4" opacity="0.45"/><circle cx="181" cy="655" r="0.6" opacity="0.58"/><circle cx="595" cy="73" r="1.1" opacity="0.93"/><circle cx="922" cy="233" r="1.1" opacity="0.53"/><circle cx="1002" cy="221" r="1.6" opacity="0.98"/><circle cx="344" cy="442" r="1.7" opacity="0.70"/><circle cx="1114" cy="196" r="1.2" opacity="0.58"/><circle cx="347" cy="668" r="0.7" opacity="0.58"/><circle cx="1181" cy="186" r="1.5" opacity="0.92"/><circle cx="283" cy="149" r="1.5" opacity="0.39"/><circle cx="730" cy="622" r="1.8" opacity="0.94"/><circle cx="578" cy="570" r="1.8" opacity="0.81"/><circle cx="305" cy="533" r="1.3" opacity="0.63"/><circle cx="197" cy="576" r="1.5" opacity="0.37"/></g></svg><div class="moon" aria-hidden="true"></div>
+  <svg class="cloud " style="left:-2%; top:34%; width:220px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg><svg class="cloud " style="right:16%; top:20%; width:170px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="55" cy="50" r="26"/><circle cx="98" cy="36" r="34"/><circle cx="140" cy="52" r="24"/><rect x="44" y="50" width="104" height="30" rx="15"/></g></svg><svg class="cloud " style="right:-3%; top:58%; width:260px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg>
+  <header class="bar">
+  <a class="logo" href="../"><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><ellipse cx="18" cy="21" rx="15" ry="8.5" fill="#FFD447"/><circle cx="11" cy="11" r="8" fill="#FFD447"/><path d="M2 12 q 2 -3 5 -1 q -2 2 -5 1z" fill="#F08A24"/><circle cx="9" cy="9.5" r="1.3" fill="#3A2E29"/><path d="M23 18 q 6 -3 8 2" stroke="#E9A800" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Nemesie</a>
+  <nav><a class="nav-link" href="../#work">Work</a><a class="nav-link" href="../#projects">Projects</a><a class="nav-link" href="../#posts">Writing</a><a class="nav-link" href="../#games">Games</a><a class="nav-link" href="../#anime">Anime</a><button class="pill theme" id="theme" type="button" aria-label="Switch between day and night" title="Switch between day and night"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></button><a class="pill" href="two-weeks-seventy-releases.zh.html" data-lang="zh" lang="zh-CN" aria-label="阅读中文版">中文</a></nav>
+</header>
+</div>
 
-  <div class="article-head">
-    <p class="meta">October 2026 · 15 min read</p>
-    <h1 class="title">Two weeks, seventy releases</h1>
+<main class="post" id="content">
+  <div class="post-cover"><img src="../assets/img/covers/two-weeks-seventy-releases.webp" alt="" /></div>
+  <header class="post-head">
+    <p class="meta"><time datetime="2026-10-26">October 26, 2026</time>　16 min read</p>
+    <h1>Two weeks, seventy releases</h1>
     <p class="lede">In mid-October I started modding <em>Legend of Mortal</em>, a Chinese wuxia life-sim RPG built in Unity, beginning from a small open-source helper mod. Two weeks later it was a 36,000-line mod called Coffee Companion, with seventy releases, an AI that reads the game's scripts before it answers, and players writing in Korean and Traditional Chinese whose forums I had to learn to follow. Almost none of the hard parts were the code. They were deciding what to build, what to refuse, and how to work with a collaborator that writes code much faster than I can check it.</p>
+  </header>
+  <div class="prose">
+<p class="aside">Coffee Companion is open source at <a href="https://github.com/kevinnie2003/LOMAssistant">kevinnie2003/LOMAssistant</a>. I wrote it together with Claude Code over one long run of sessions. Player reports are described in general terms only; nothing here comes from anyone's save or machine.</p>
+
+<h2>I test, it writes</h2>
+
+<p>The division of labour settled on day one and never changed. Claude Code read the decompiled game, wrote the patches, built the DLL and copied it into my game folder. I launched the game, played to the place that mattered, and reported back. The sentence that shipped a version was always some form of "tested, no problems, commit it." Everything outward-facing waited for that: commits, pushes, release notes, replies to players.</p>
+
+<p>That split is what made the pace possible. The first public release went out on October 16. By October 29 there had been 395 commits and seventy releases, ten of them on a single day. The model could implement a feature in minutes. What it could not do was see the screen: a tooltip that overflowed, a portrait cropped through the face, a gamepad cursor that skipped the last option in a menu. Those were mine to find, and most of my messages were exactly that kind of report.</p>
+
+<p>The few times I said "didn't test, commit anyway," it sometimes cost us. One early build let players "pass time" from inside conversation menus, not just from the action menus where that makes sense. In a conversation it advanced the calendar, so story events fired early. A player found it within hours. The fix took minutes, which is the other half of the lesson: shipping fast is fine as long as fixing fast comes with it, and a ten-minute release pipeline makes both cheap.</p>
+
+<h2>Reading a game without its source</h2>
+
+<p>There is no source code and no documentation, only decompiled C# and a few thousand Lua story scripts. The mod is a BepInEx plugin that patches the game at runtime with Harmony; by the end it had more than 230 patches. Most features started with the same question: where in the decompiled code does the game decide this, and what else depends on that decision?</p>
+
+<p>The scripts turned out to be the real specification. I had Claude parse all 2,200-odd of them into one structure: every branch with its condition, every flag with every place it is set and every place it is checked, every quest with its trigger window. That structure became the backbone for most of what came after: a calendar route map of the main and side quests, a flowchart for every quest, each choice's real unlock condition shown next to it, and later the AI's knowledge base.</p>
+
+<p>It also explained bugs that looked impossible. A player asked for an option where every ten-day turn has exactly one action. It seemed harmless. It was not: more than forty story scenes check how many actions you have left, and some main quests can only start in one specific ten-day window. If a household meeting at the start of the turn spent your only action, the game advanced the calendar before checking quests, and that main quest never fired. Every later chapter stalled behind it. The fix was to check before advancing: if a main quest is due in this turn, keep one action and stay. The README also got a plain warning that these modes can break the story, because "use with care" in small print was not enough.</p>
+
+<p>Not every win was clever. Getting from launch to a clickable title screen took 21 seconds, most of it an eleven-second intro animation and a splash logo. Playing the animation six times faster, plus an installer option that removes the logo, brought it to 6.</p>
+
+<h2>A save system built on replay</h2>
+
+<p>The game only lets you save at certain points. Players wanted to save anywhere, including in the middle of a dialogue, a step before a dice roll. You cannot simply serialise a paused Lua coroutine. The approach we took instead, starting from a design a player shared, is to record and replay.</p>
+
+<p>Every story script is rewritten as it loads: dialogue lines, choices, dice rolls and condition checks go through recording wrappers. An anytime save stores the game state from the start of the current script plus the trace of what happened since. Loading restores that state and runs the script again from the top. Dialogue is fast-forwarded, every choice and roll is fed back from the trace, and every write to game data is skipped, because the stored state already contains it. When the trace runs out, the player is exactly where they saved, with the right music playing.</p>
+
+<p>Replay is only correct if the script is the same one that was recorded. The first game patch after release broke every anytime save, because scripts had changed underneath them. A contributor sent the first fix. The lasting one was a compatibility contract: each save records a hash of every script it passed through and of the game code it depends on, and a load that does not match stops with a clear message instead of desyncing quietly.</p>
+
+<p>Ten days later the same idea solved a bug in the game's own saves. A player reported that their main story had silently stopped. From their save files we found the cause. The script for arriving at the second-year school runs an autosave and then advances the calendar a month. A manual save made later in that scene stored the new date. Loading it replays the scene from the autosave point, so the month advanced twice, and the one quest that only fires in the skipped window was gone for good. That is a vanilla bug, not ours. The fix used the replay idea again: when a manual save happens after the script has moved the clock, write the time as it was at the replay point.</p>
+
+<div class="aside"><b>A habit that paid off.</b> My first theory for that bug was a story branch that legitimately skips the chapter. Reading the actual flags in the player's save took ten minutes and ruled it out. In this project, reading the data before forming a theory was right every time.</div>
+
+<h2>What not to build</h2>
+
+<p>Most of my decisions were refusals. A pull request that rewrote a story script to remove a jealousy event was well made, and I declined it: the mod improves how you play the story, it does not change what the story is. I suggested the author publish it as a separate mod, and we kept compatible with it.</p>
+
+<p>Another popular mod for the same game had features players liked. Looking at it was useful; copying it was not. When an early version of our story tree came back looking and working like theirs, I sent it back: same goal, our own structure. The calendar-lane layout we ended up with is better for this game, because its quests are tied to dates. After one session where Claude fixed a layout bug and also brought in three of the other mod's extras on the side, the standing rule became: list what they do differently, then ask which to borrow.</p>
+
+<p>Some features were simply wrong, and the cheapest move was to delete them. Markers on the map for one-off events looked fine in the spec and, in the game, were mostly invisible and occasionally misleading, so they went. A redesigned save screen went through several rounds of portraits cropped through the face before we reverted the part that would not come right and kept the rest. Each revert cost less than another round of patches.</p>
+
+<h2>Words for players</h2>
+
+<p>About a third of my corrections were about text, not code. Release notes say what changed, in one sentence, without the example a player reported and without a little selling point attached. Nothing from a player's report ever appears in public: one early release note quoted a real install path as an example, and that became a rule the same day. Traditional Chinese, Japanese and Korean are each written as their own text. A one-click Simplified-to-Traditional conversion produces wrong characters and word choices that Traditional Chinese readers notice immediately.</p>
+
+<p>Each of these corrections went into Claude Code's persistent memory as a short rule with the reason attached: version bumps, what goes in which release file, never deleting old files from the cloud drive. By the end there were about two dozen rules, and I rarely had to say the same thing twice. That turned out to be the most valuable habit of the whole project. A correction made once and remembered is worth more than a smarter first draft.</p>
+
+<h2>3.0: an AI that looks things up</h2>
+
+<p>The headline of version 3.0 is an in-game AI. It works as a strategy assistant, and also as nine of the game's love interests plus the eldest senior brother, each speaking in their own voice. Players bring their own API key. The rule from the start was that it answers from the game, not from memory: <code>search</code>, <code>quest</code>, <code>script</code>, <code>routes</code>, <code>usage</code> and ten other tools all read the parsed scripts and the live save. Characters know only the story the player has actually read. Any change to the save is proposed as a card and applied when the player confirms it. It is deliberately not a role-play engine, so there is no long-term memory system and no anti-repetition rules; anything that does not tie a character more closely to the game's data was out of scope.</p>
+
+<p>To find out whether it was right, I built a graded set of twenty real questions, with expected and forbidden phrases, and turned on a debug trace that logs every tool call and its result. On the first run with a mid-tier model it got fifteen. Reading the traces for the five failures was the most instructive hour of the project, because the model was rarely the problem:</p>
+
+<ul>
+  <li><b>Retrieval ranking.</b> Asked how to save a character who dies, the model searched the right name, but search listed only the first eight matching flags, unsorted. The one flag that mattered, "survived," was ninth. Sorting flags by how often the scripts use them fixed it.</li>
+  <li><b>Missing names.</b> Random events on the school map belonged to pools called <code>Section_01_01</code>. Nobody searches for that, so a question about a temple event found nothing. Mapping pools to the place names players actually see fixed it.</li>
+  <li><b>Missing facts.</b> How you "wake" a possessed character in a key fight was not in any data table. It lived in one decompiled class: each verbal attack while a certain status is active advances a counter. Once we added that line to the fight's description, the model could answer the question.</li>
+  <li><b>The grader.</b> One answer was correct but said "channelling qi" instead of the expected word. The fix there was to the test, not the model.</li>
+</ul>
+
+<p>Only after those did we add prompt rules: list every route you found instead of the first one, and check the relevant flags before saying something is impossible. The stronger model in deep mode then scored eighteen of twenty.</p>
+
+<p>Cost was the other half. Each question takes several rounds of lookups, and each round resends the whole conversation, so the prompt cache decides the bill. A cache is a contract: the prefix has to be byte-identical every time. That meant a fixed system prompt for each question, long histories compressed at stable points instead of trimmed every turn, and the model's own reasoning blocks passed back unchanged. Dropping those blocks had also been the cause of a bug where Claude sometimes replied with nothing at all, and other providers have their own versions of the same requirement. One remaining leak was the final round: when a question ran out of lookups, the forced answer dropped the tool definitions, and with them the entire cached prefix. Keeping the tools and forbidding calls fixed it. Across the latest run, 80 to 86 percent of input tokens were cache hits.</p>
+
+<h2>After launch: players I can't read</h2>
+
+<p>Once Korean-speaking and Traditional Chinese-speaking players found the mod, most feedback stopped arriving as GitHub issues. It arrived as threads on the Korean forum DC Inside and on the Traditional Chinese forums Bahamut and PTT, in languages I read slowly or not at all. So we built a small page that collects every post about the mod on those boards, gives each one a Chinese title and summary, sorts it into praise, problem, help request, guide or news, and checks for new posts every day. Most of the lessons in this section came out of that page. It also turned up a Korean player's translated fork of an earlier version, with about 320 downloads of its patch. That is good evidence that non-Chinese players want the mod, and a reminder of what a fork costs once upstream keeps moving.</p>
+
+<p><b>"Gemini doesn't work."</b> More than a dozen Korean posts said the AI would not connect: the connection test did nothing, sending a message did nothing, reinstalling did not help. Most blamed the free Gemini tier or a local Ollama model. In fact every provider was broken for those players. The mod built its requests with a Newtonsoft.Json overload, <code>JToken.ToString(Formatting)</code>, that is missing from the copy of the library some players' setups load. The resulting <code>MissingMethodException</code> was swallowed before it reached the screen. Switching to an overload that exists in every version fixed all providers at once. In a mod, the player's install decides which version of your dependencies you run against, and when a failure is silent, users name it after whatever they changed last.</p>
+
+<p><b>The model kept answering in Chinese.</b> With the interface in English and a question asked in English, a heroine would still reply in Chinese, even on a strong model. The system prompt, the persona, the quoted game lines and the retrieved story data are all Chinese, and one rule saying "reply in the player's language" lost to thousands of tokens of context. Prompting alone never fixed it:</p>
+
+<ul>
+  <li>A line in the middle of the rules: "reply in the player's language." No effect.</li>
+  <li>Marking the part the player actually said with its own tag. That fixed a different bug, the model treating the choices on screen as the player's question, but the language stayed Chinese.</li>
+  <li>The same requirement, written in the target language, at both the start of the system prompt and the end of the message. It sometimes held for questions that needed no lookups. As soon as the model fetched story data, which is all Chinese, it drifted back. A reminder placed after the fetched data did not help either.</li>
+  <li>Rewriting the whole rule set in the interface language: Simplified Chinese, Traditional Chinese, English, Korean and Japanese, with the Traditional version written on its own rather than converted. Some answers still came back in Chinese, or with English stage directions around Chinese dialogue. The quoted game lines, the character's experiences and the retrieved data are still Chinese, and those cannot be translated away.</li>
+</ul>
+
+<p>What finally made it reliable was a check in code. When the interface is English, Korean or Japanese and the player did not write in Chinese, but the answer is mostly Chinese characters, the mod sends one more request that only asks the model to rewrite that answer in the interface language. The request names the speaker and their gender, so pronouns come out right. A Traditional Chinese interface that gets an answer in Simplified Chinese is converted directly. While an answer is still streaming, text that is clearly Chinese is held back, so it never flashes on screen before the rewrite. The lookup steps shown during an answer, like "searching" or "reading a script", now follow the interface language too.</p>
+
+<p>When the data is in one language and the output must be in another, a prompt cannot hold the line, even on a strong model. Checking the output in code and rewriting it when it is wrong is what made the result stable. A related lesson came from the same work. The interface splits an answer into two panels at a marker, and the model sometimes wrote the marker with the wrong brackets, so the split failed. Every variant is now normalised in code as the answer arrives. Anything the UI depends on structurally should be enforced in code; asking for it in the prompt is not enough.</p>
+
+<p><b>Room for free tiers and small models.</b> At first I decided free API keys and small local models were not worth special effort. I changed my mind, because many players have nothing else. Free Gemini queues and thinks for a long time, and small local models pick the wrong tool when they have fifteen to choose from and run out of context quickly. So there is now a fast mode:</p>
+
+<ul>
+  <li>Fewer lookups: at most 6 rounds instead of 20, with only the 5 most used tools.</li>
+  <li>Shorter prompts: a seven-rule strategy prompt, 10 quoted lines per persona instead of 30, and only the 20 most recent experiences.</li>
+  <li>Less context: history and each lookup result are cut to about a third.</li>
+  <li>Less thinking: reasoning effort set to minimal on Gemini and to none on Ollama.</li>
+</ul>
+
+<p>The interface mattered as much as the limits. Fast and deep used to be two separate switches, and new players could not tell there were three modes. Now one row above the chat reads "Answer mode: Fast / Standard / Deep". The spoiler level and strategy tips moved into the same row, and every option explains itself on hover.</p>
+
+<p><b>Presets come from the docs, not from memory.</b> Every default model is checked against the provider's own documentation. Some OpenAI models can only call tools through a newer API than the one the mod speaks, so they are not offered as presets. Others need reasoning set to none to call tools at all. Google's newest Gemini is open only to paid keys, so it is not the default either; a free key gets a model that answers almost instantly. When a provider's model list could not confirm a name, the preset went back to one it could confirm.</p>
+
+<p><b>Measure the text you actually draw.</b> Tabs, version labels, titles and the suggested-question buttons were sized by measuring the Chinese source string, then drawn in English, so the English interface overflowed and got clipped. They now measure the translated string that will actually be shown, and the title and persona bars tighten their spacing when space runs short.</p>
+
+<h2>Working with an AI pair</h2>
+
+<p>A few things I would tell anyone starting a project like this:</p>
+
+<ul>
+  <li><b>Keep every irreversible step for yourself.</b> Commits, pushes, releases, replies, uploads. Claude once pushed when I had only asked for a commit; nothing broke, but that is exactly the kind of step that should wait for a yes.</li>
+  <li><b>Turn corrections into rules.</b> Say it once, have it written down with the reason, and expect it to hold.</li>
+  <li><b>Make sure you can see what you are approving.</b> My desktop client only showed the final message of a turn, so twice I was asked to approve a draft "below" that I could not see. The fix was a rule: drafts go in the final message.</li>
+  <li><b>Know where automation does not belong.</b> Letting a browser agent repeatedly edit a Steam community guide most likely tripped Steam's spam filter, and the guide could not be saved for a while. Now the files are prepared automatically and I paste them by hand.</li>
+  <li><b>Read the data first.</b> Logs, saves and traces settled more arguments than any amount of reasoning about what might be happening.</li>
+</ul>
+
+<p>The mod now has more than 100 stars and 22,000 downloads, in five interface languages. What I am proudest of is how few of those seventy releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
   </div>
-
-  <div class="article-body">
-    <p class="aside">Coffee Companion is open source at <a href="https://github.com/kevinnie2003/LOMAssistant">kevinnie2003/LOMAssistant</a>. I wrote it together with Claude Code over one long run of sessions. Player reports are described in general terms only; nothing here comes from anyone's save or machine.</p>
-
-    <h2>I test, it writes</h2>
-
-    <p>The division of labour settled on day one and never changed. Claude Code read the decompiled game, wrote the patches, built the DLL and copied it into my game folder. I launched the game, played to the place that mattered, and reported back. The sentence that shipped a version was always some form of "tested, no problems, commit it." Everything outward-facing waited for that: commits, pushes, release notes, replies to players.</p>
-
-    <p>That split is what made the pace possible. The first public release went out on October 16. By October 29 there had been 395 commits and seventy releases, ten of them on a single day. The model could implement a feature in minutes. What it could not do was see the screen: a tooltip that overflowed, a portrait cropped through the face, a gamepad cursor that skipped the last option in a menu. Those were mine to find, and most of my messages were exactly that kind of report.</p>
-
-    <p>The few times I said "didn't test, commit anyway," it sometimes cost us. One early build let players "pass time" from inside conversation menus, not just from the action menus where that makes sense. In a conversation it advanced the calendar, so story events fired early. A player found it within hours. The fix took minutes, which is the other half of the lesson: shipping fast is fine as long as fixing fast comes with it, and a ten-minute release pipeline makes both cheap.</p>
-
-    <h2>Reading a game without its source</h2>
-
-    <p>There is no source code and no documentation, only decompiled C# and a few thousand Lua story scripts. The mod is a BepInEx plugin that patches the game at runtime with Harmony; by the end it had more than 230 patches. Most features started with the same question: where in the decompiled code does the game decide this, and what else depends on that decision?</p>
-
-    <p>The scripts turned out to be the real specification. I had Claude parse all 2,200-odd of them into one structure: every branch with its condition, every flag with every place it is set and every place it is checked, every quest with its trigger window. That structure became the backbone for most of what came after: a calendar route map of the main and side quests, a flowchart for every quest, each choice's real unlock condition shown next to it, and later the AI's knowledge base.</p>
-
-    <p>It also explained bugs that looked impossible. A player asked for an option where every ten-day turn has exactly one action. It seemed harmless. It was not: more than forty story scenes check how many actions you have left, and some main quests can only start in one specific ten-day window. If a household meeting at the start of the turn spent your only action, the game advanced the calendar before checking quests, and that main quest never fired. Every later chapter stalled behind it. The fix was to check before advancing: if a main quest is due in this turn, keep one action and stay. The README also got a plain warning that these modes can break the story, because "use with care" in small print was not enough.</p>
-
-    <p>Not every win was clever. Getting from launch to a clickable title screen took 21 seconds, most of it an eleven-second intro animation and a splash logo. Playing the animation six times faster, plus an installer option that removes the logo, brought it to 6.</p>
-
-    <h2>A save system built on replay</h2>
-
-    <p>The game only lets you save at certain points. Players wanted to save anywhere, including in the middle of a dialogue, a step before a dice roll. You cannot simply serialise a paused Lua coroutine. The approach we took instead, starting from a design a player shared, is to record and replay.</p>
-
-    <p>Every story script is rewritten as it loads: dialogue lines, choices, dice rolls and condition checks go through recording wrappers. An anytime save stores the game state from the start of the current script plus the trace of what happened since. Loading restores that state and runs the script again from the top. Dialogue is fast-forwarded, every choice and roll is fed back from the trace, and every write to game data is skipped, because the stored state already contains it. When the trace runs out, the player is exactly where they saved, with the right music playing.</p>
-
-    <p>Replay is only correct if the script is the same one that was recorded. The first game patch after release broke every anytime save, because scripts had changed underneath them. A contributor sent the first fix. The lasting one was a compatibility contract: each save records a hash of every script it passed through and of the game code it depends on, and a load that does not match stops with a clear message instead of desyncing quietly.</p>
-
-    <p>Ten days later the same idea solved a bug in the game's own saves. A player reported that their main story had silently stopped. From their save files we found the cause. The script for arriving at the second-year school runs an autosave and then advances the calendar a month. A manual save made later in that scene stored the new date. Loading it replays the scene from the autosave point, so the month advanced twice, and the one quest that only fires in the skipped window was gone for good. That is a vanilla bug, not ours. The fix used the replay idea again: when a manual save happens after the script has moved the clock, write the time as it was at the replay point.</p>
-
-    <div class="aside"><b>A habit that paid off.</b> My first theory for that bug was a story branch that legitimately skips the chapter. Reading the actual flags in the player's save took ten minutes and ruled it out. In this project, reading the data before forming a theory was right every time.</div>
-
-    <h2>What not to build</h2>
-
-    <p>Most of my decisions were refusals. A pull request that rewrote a story script to remove a jealousy event was well made, and I declined it: the mod improves how you play the story, it does not change what the story is. I suggested the author publish it as a separate mod, and we kept compatible with it.</p>
-
-    <p>Another popular mod for the same game had features players liked. Looking at it was useful; copying it was not. When an early version of our story tree came back looking and working like theirs, I sent it back: same goal, our own structure. The calendar-lane layout we ended up with is better for this game, because its quests are tied to dates. After one session where Claude fixed a layout bug and also brought in three of the other mod's extras on the side, the standing rule became: list what they do differently, then ask which to borrow.</p>
-
-    <p>Some features were simply wrong, and the cheapest move was to delete them. Markers on the map for one-off events looked fine in the spec and, in the game, were mostly invisible and occasionally misleading, so they went. A redesigned save screen went through several rounds of portraits cropped through the face before we reverted the part that would not come right and kept the rest. Each revert cost less than another round of patches.</p>
-
-    <h2>Words for players</h2>
-
-    <p>About a third of my corrections were about text, not code. Release notes say what changed, in one sentence, without the example a player reported and without a little selling point attached. Nothing from a player's report ever appears in public: one early release note quoted a real install path as an example, and that became a rule the same day. Traditional Chinese, Japanese and Korean are each written as their own text. A one-click Simplified-to-Traditional conversion produces wrong characters and word choices that Traditional Chinese readers notice immediately.</p>
-
-    <p>Each of these corrections went into Claude Code's persistent memory as a short rule with the reason attached: version bumps, what goes in which release file, never deleting old files from the cloud drive. By the end there were about two dozen rules, and I rarely had to say the same thing twice. That turned out to be the most valuable habit of the whole project. A correction made once and remembered is worth more than a smarter first draft.</p>
-
-    <h2>3.0: an AI that looks things up</h2>
-
-    <p>The headline of version 3.0 is an in-game AI. It works as a strategy assistant, and also as nine of the game's love interests plus the eldest senior brother, each speaking in their own voice. Players bring their own API key. The rule from the start was that it answers from the game, not from memory: <code>search</code>, <code>quest</code>, <code>script</code>, <code>routes</code>, <code>usage</code> and ten other tools all read the parsed scripts and the live save. Characters know only the story the player has actually read. Any change to the save is proposed as a card and applied when the player confirms it. It is deliberately not a role-play engine, so there is no long-term memory system and no anti-repetition rules; anything that does not tie a character more closely to the game's data was out of scope.</p>
-
-    <p>To find out whether it was right, I built a graded set of twenty real questions, with expected and forbidden phrases, and turned on a debug trace that logs every tool call and its result. On the first run with a mid-tier model it got fifteen. Reading the traces for the five failures was the most instructive hour of the project, because the model was rarely the problem:</p>
-
-    <ul>
-      <li><b>Retrieval ranking.</b> Asked how to save a character who dies, the model searched the right name, but search listed only the first eight matching flags, unsorted. The one flag that mattered, "survived," was ninth. Sorting flags by how often the scripts use them fixed it.</li>
-      <li><b>Missing names.</b> Random events on the school map belonged to pools called <code>Section_01_01</code>. Nobody searches for that, so a question about a temple event found nothing. Mapping pools to the place names players actually see fixed it.</li>
-      <li><b>Missing facts.</b> How you "wake" a possessed character in a key fight was not in any data table. It lived in one decompiled class: each verbal attack while a certain status is active advances a counter. Once we added that line to the fight's description, the model could answer the question.</li>
-      <li><b>The grader.</b> One answer was correct but said "channelling qi" instead of the expected word. The fix there was to the test, not the model.</li>
-    </ul>
-
-    <p>Only after those did we add prompt rules: list every route you found instead of the first one, and check the relevant flags before saying something is impossible. The stronger model in deep mode then scored eighteen of twenty.</p>
-
-    <p>Cost was the other half. Each question takes several rounds of lookups, and each round resends the whole conversation, so the prompt cache decides the bill. A cache is a contract: the prefix has to be byte-identical every time. That meant a fixed system prompt for each question, long histories compressed at stable points instead of trimmed every turn, and the model's own reasoning blocks passed back unchanged. Dropping those blocks had also been the cause of a bug where Claude sometimes replied with nothing at all, and other providers have their own versions of the same requirement. One remaining leak was the final round: when a question ran out of lookups, the forced answer dropped the tool definitions, and with them the entire cached prefix. Keeping the tools and forbidding calls fixed it. Across the latest run, 80 to 86 percent of input tokens were cache hits.</p>
-
-    <h2>After launch: players I can't read</h2>
-
-    <p>Once Korean-speaking and Traditional Chinese-speaking players found the mod, most feedback stopped arriving as GitHub issues. It arrived as threads on the Korean forum DC Inside and on the Traditional Chinese forums Bahamut and PTT, in languages I read slowly or not at all. So we built a small page that collects every post about the mod on those boards, gives each one a Chinese title and summary, sorts it into praise, problem, help request, guide or news, and checks for new posts every day. Most of the lessons in this section came out of that page. It also turned up a Korean player's translated fork of an earlier version, with about 320 downloads of its patch. That is good evidence that non-Chinese players want the mod, and a reminder of what a fork costs once upstream keeps moving.</p>
-
-    <p><b>"Gemini doesn't work."</b> More than a dozen Korean posts said the AI would not connect: the connection test did nothing, sending a message did nothing, reinstalling did not help. Most blamed the free Gemini tier or a local Ollama model. In fact every provider was broken for those players. The mod built its requests with a Newtonsoft.Json overload, <code>JToken.ToString(Formatting)</code>, that is missing from the copy of the library some players' setups load. The resulting <code>MissingMethodException</code> was swallowed before it reached the screen. Switching to an overload that exists in every version fixed all providers at once. In a mod, the player's install decides which version of your dependencies you run against, and when a failure is silent, users name it after whatever they changed last.</p>
-
-    <p><b>The model kept answering in Chinese.</b> With the interface in English and a question asked in English, a heroine would still reply in Chinese, even on a strong model. The system prompt, the persona, the quoted game lines and the retrieved story data are all Chinese, and one rule saying "reply in the player's language" lost to thousands of tokens of context. Prompting alone never fixed it:</p>
-
-    <ul>
-      <li>A line in the middle of the rules: "reply in the player's language." No effect.</li>
-      <li>Marking the part the player actually said with its own tag. That fixed a different bug, the model treating the choices on screen as the player's question, but the language stayed Chinese.</li>
-      <li>The same requirement, written in the target language, at both the start of the system prompt and the end of the message. It sometimes held for questions that needed no lookups. As soon as the model fetched story data, which is all Chinese, it drifted back. A reminder placed after the fetched data did not help either.</li>
-      <li>Rewriting the whole rule set in the interface language: Simplified Chinese, Traditional Chinese, English, Korean and Japanese, with the Traditional version written on its own rather than converted. Some answers still came back in Chinese, or with English stage directions around Chinese dialogue. The quoted game lines, the character's experiences and the retrieved data are still Chinese, and those cannot be translated away.</li>
-    </ul>
-
-    <p>What finally made it reliable was a check in code. When the interface is English, Korean or Japanese and the player did not write in Chinese, but the answer is mostly Chinese characters, the mod sends one more request that only asks the model to rewrite that answer in the interface language. The request names the speaker and their gender, so pronouns come out right. A Traditional Chinese interface that gets an answer in Simplified Chinese is converted directly. While an answer is still streaming, text that is clearly Chinese is held back, so it never flashes on screen before the rewrite. The lookup steps shown during an answer, like "searching" or "reading a script", now follow the interface language too.</p>
-
-    <p>When the data is in one language and the output must be in another, a prompt cannot hold the line, even on a strong model. Checking the output in code and rewriting it when it is wrong is what made the result stable. A related lesson came from the same work. The interface splits an answer into two panels at a marker, and the model sometimes wrote the marker with the wrong brackets, so the split failed. Every variant is now normalised in code as the answer arrives. Anything the UI depends on structurally should be enforced in code; asking for it in the prompt is not enough.</p>
-
-    <p><b>Room for free tiers and small models.</b> At first I decided free API keys and small local models were not worth special effort. I changed my mind, because many players have nothing else. Free Gemini queues and thinks for a long time, and small local models pick the wrong tool when they have fifteen to choose from and run out of context quickly. So there is now a fast mode:</p>
-
-    <ul>
-      <li>Fewer lookups: at most 6 rounds instead of 20, with only the 5 most used tools.</li>
-      <li>Shorter prompts: a seven-rule strategy prompt, 10 quoted lines per persona instead of 30, and only the 20 most recent experiences.</li>
-      <li>Less context: history and each lookup result are cut to about a third.</li>
-      <li>Less thinking: reasoning effort set to minimal on Gemini and to none on Ollama.</li>
-    </ul>
-
-    <p>The interface mattered as much as the limits. Fast and deep used to be two separate switches, and new players could not tell there were three modes. Now one row above the chat reads "Answer mode: Fast / Standard / Deep". The spoiler level and strategy tips moved into the same row, and every option explains itself on hover.</p>
-
-    <p><b>Presets come from the docs, not from memory.</b> Every default model is checked against the provider's own documentation. Some OpenAI models can only call tools through a newer API than the one the mod speaks, so they are not offered as presets. Others need reasoning set to none to call tools at all. Google's newest Gemini is open only to paid keys, so it is not the default either; a free key gets a model that answers almost instantly. When a provider's model list could not confirm a name, the preset went back to one it could confirm.</p>
-
-    <p><b>Measure the text you actually draw.</b> Tabs, version labels, titles and the suggested-question buttons were sized by measuring the Chinese source string, then drawn in English, so the English interface overflowed and got clipped. They now measure the translated string that will actually be shown, and the title and persona bars tighten their spacing when space runs short.</p>
-
-    <h2>Working with an AI pair</h2>
-
-    <p>A few things I would tell anyone starting a project like this:</p>
-
-    <ul>
-      <li><b>Keep every irreversible step for yourself.</b> Commits, pushes, releases, replies, uploads. Claude once pushed when I had only asked for a commit; nothing broke, but that is exactly the kind of step that should wait for a yes.</li>
-      <li><b>Turn corrections into rules.</b> Say it once, have it written down with the reason, and expect it to hold.</li>
-      <li><b>Make sure you can see what you are approving.</b> My desktop client only showed the final message of a turn, so twice I was asked to approve a draft "below" that I could not see. The fix was a rule: drafts go in the final message.</li>
-      <li><b>Know where automation does not belong.</b> Letting a browser agent repeatedly edit a Steam community guide most likely tripped Steam's spam filter, and the guide could not be saved for a while. Now the files are prepared automatically and I paste them by hand.</li>
-      <li><b>Read the data first.</b> Logs, saves and traces settled more arguments than any amount of reasoning about what might be happening.</li>
-    </ul>
-
-    <p>The mod now has more than 100 stars and 22,000 downloads, in five interface languages. What I am proudest of is how few of those seventy releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
-  </div>
-
-  <div class="article-foot">
+  <footer class="post-foot">
     <p>The idea of grounding a model in mined game data before letting it act also drives <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>. Validating what a model produces before a player sees it is the subject of <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>
-    <nav class="article-nav" aria-label="More writing">
-      <a href="knowing-what-the-button-is-called.html"><span>Next</span>Knowing what the button is called</a>
-      <a href="vibes-with-extra-steps.html"><span>Also</span>Vibes with extra steps</a>
-    </nav>
-  </div>
-  </main>
-  <script>
-    (function () {
-      var html = document.documentElement, btn = document.getElementById('themeToggle');
-      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
-      apply(html.getAttribute('data-theme') || 'dark');
-      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
-    })();
-  </script>
+    <h2 class="shelf-head" style="margin-top:1.6rem">Keep reading</h2>
+    <nav class="more"><a class="panel" href="knowing-what-the-button-is-called.html"><img src="../assets/img/covers/knowing-what-the-button-is-called.webp" alt="" loading="lazy" /><div><span>No.03　Sep 2026</span><b>Knowing what the button is called</b></div></a><a class="panel" href="vibes-with-extra-steps.html"><img src="../assets/img/covers/vibes-with-extra-steps.webp" alt="" loading="lazy" /><div><span>No.02　Jun 2026</span><b>Vibes with extra steps</b></div></a></nav>
+  </footer>
+</main>
+
+<footer class="foot">
+  <p class="bye">Come say hi~</p>
+  <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
+</footer>
+<script src="../assets/js/site.js?v=7b54d685"></script>
 </body>
 </html>

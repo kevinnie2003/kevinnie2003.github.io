@@ -2,3 +2,5 @@
 .claude/
 Mingxuan_Nie_Resume.pdf
 resume.tex
+# Full source fonts for tools/subset-cjk-fonts.py (too large to serve)
+fonts-src/

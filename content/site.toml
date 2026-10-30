@@ -1,0 +1,533 @@
+# 首页内容。中文和英文各写一份，改完运行 python tools/build.py
+# 经历和项目里的 {post:slug} 会换成对应语言的文章地址。
+
+[links]
+email = "kevinnie2003@gmail.com"
+github = "https://github.com/kevinnie2003"
+linkedin = "https://linkedin.com/in/mingxuan-nie"
+steam = "https://steamcommunity.com/id/kevinnie03/"
+steam_reviews = "https://steamcommunity.com/id/kevinnie03/recommended/"
+xiaoheihe = "https://www.xiaoheihe.cn/app/user/profile/11356239"
+bilibili = "https://space.bilibili.com/167880864"
+bangumi = "https://bgm.tv/user/xiaoyaya"
+bangumi_games = "https://bgm.tv/game/list/xiaoyaya/collect"
+bangumi_anime = "https://bgm.tv/anime/list/xiaoyaya/collect"
+
+# ── 中文 ────────────────────────────────────────────────────────────
+[zh]
+site_name = "小鸭鸭"
+real_name = "聂明轩 Kevin Nie"
+page_title = "小鸭鸭 | 聂明轩 Kevin Nie"
+description = "聂明轩（Kevin Nie）的个人网站。UCSD 计算机硕士在读，做 AI Agent 和游戏工具。这里有工作经历、项目和文章，也有我玩过的游戏和看过的番。"
+skip = "跳到正文"
+theme = "切换白天和夜间"
+other_lang = "EN"
+other_lang_label = "Read in English"
+avatar_alt = "小鸭鸭的头像"
+lines = [
+  "Ciallo～(∠・ω< )⌒★ 这里是小鸭鸭！",
+  "我是聂明轩，也可以叫我 Kevin。在 UCSD 读计算机硕士，做 AI Agent 和游戏工具，在米哈游、字节跳动、阿里巴巴实习过。",
+  "2027 年春天开始找全职工作，有合适的机会欢迎来聊～",
+  "不写代码的时候基本在打游戏，Steam 上写了快 300 篇评测，B 站也发了 200 多个视频。",
+  "想看点什么？",
+]
+choices = [
+  ["work", "看看你的工作经历"],
+  ["projects", "看看你做过的项目"],
+  ["posts", "看看你写的文章"],
+  ["games", "看看你玩过的游戏"],
+]
+skip_line = "快进"
+log_line = "回想"
+lang_line = "English"
+bye = "欢迎扩列～"
+
+[zh.nav]
+work = "经历"
+projects = "项目"
+posts = "文章"
+games = "游戏"
+anime = "番剧"
+
+[zh.titles]
+about = "角色档案"
+work = "工作经历"
+projects = "项目"
+posts = "文章"
+games = "游戏柜"
+anime = "番剧"
+
+[zh.profile]
+name_label = "名字"
+name = "聂明轩"
+name_note = "Kevin Nie，网名小鸭鸭"
+doing_label = "在做"
+doing = "AI Agent 和游戏工具"
+doing_note = "多 Agent 协作、工具调用、评测"
+status_label = "状态"
+status = "2027 年春天起找全职工作"
+edu_label = "学历"
+email = "发邮件给我"
+
+[zh.project_ui]
+how = "怎么做出来的"
+
+[zh.games_ui]
+played = "玩过的游戏"
+tens = "打了满分"
+hours = "Steam 小时"
+achievements = "Steam 成就"
+level = "Steam 等级"
+hours_unit = "小时"
+all = "在 Bangumi 上看全部 {n} 款和打分"
+
+[zh.anime_ui]
+watched = "看过的动画"
+tens = "打了满分"
+all = "在 Bangumi 上看全部 {n} 部和打分"
+
+[zh.post_ui]
+home = "首页"
+minutes = "阅读约 {n} 分钟"
+more = "再看看"
+feed_title = "小鸭鸭的文章"
+feed_description = "聂明轩（Kevin Nie）写的文章：做 AI Agent、游戏 Mod 和游戏测试时踩过的坑。"
+
+[[zh.creator]]
+link = "steam_reviews"
+label = "Steam 评测"
+value = "295 篇"
+note = "鉴赏家写手"
+
+[[zh.creator]]
+link = "xiaoheihe"
+label = "小黑盒"
+value = "2,300+ 粉丝"
+note = "累计 183 万次浏览"
+
+[[zh.creator]]
+link = "bilibili"
+label = "B 站"
+value = "1,000+ 粉丝"
+note = "发了 200 多个视频"
+
+[zh.footer]
+email = "邮箱"
+github = "GitHub"
+linkedin = "LinkedIn"
+steam = "Steam"
+xiaoheihe = "小黑盒"
+bilibili = "B 站"
+bangumi = "Bangumi"
+
+# ── English ─────────────────────────────────────────────────────────
+[en]
+site_name = "Nemesie"
+real_name = "Mingxuan (Kevin) Nie"
+page_title = "Nemesie | Kevin Nie"
+description = "Personal site of Mingxuan (Kevin) Nie, a CS master's student at UC San Diego who builds AI agents and tools for games. Work, projects and writing, plus the games and anime I love."
+skip = "Skip to content"
+theme = "Switch between day and night"
+other_lang = "中文"
+other_lang_label = "阅读中文版"
+avatar_alt = "Nemesie's avatar"
+lines = [
+  "Ciallo～(∠・ω< )⌒★ Nemesie here!",
+  "I'm Mingxuan Nie, but Kevin works too. I'm doing a CS master's at UC San Diego, I build AI agents and tools for games, and I've interned at miHoYo, TikTok and Alibaba.",
+  "I'm looking for a full-time job starting spring 2027. If you have something that fits, I'd love to chat~",
+  "When I'm not coding I'm probably gaming. I've written almost 300 reviews on Steam and posted 200+ videos on Bilibili.",
+  "What do you want to see?",
+]
+choices = [
+  ["work", "Show me your work"],
+  ["projects", "Show me your projects"],
+  ["posts", "Show me your writing"],
+  ["games", "Show me your games"],
+]
+skip_line = "Skip"
+log_line = "Log"
+lang_line = "中文"
+bye = "Come say hi~"
+
+[en.nav]
+work = "Work"
+projects = "Projects"
+posts = "Writing"
+games = "Games"
+anime = "Anime"
+
+[en.titles]
+about = "Profile"
+work = "Experience"
+projects = "Projects"
+posts = "Writing"
+games = "Game shelf"
+anime = "Anime"
+
+[en.profile]
+name_label = "Name"
+name = "Mingxuan (Kevin) Nie"
+name_note = "online as Nemesie"
+doing_label = "Doing"
+doing = "AI agents and tools for games"
+doing_note = "multi-agent systems, tool calling, evals"
+status_label = "Status"
+status = "Looking for full-time roles from spring 2027"
+edu_label = "Education"
+email = "Email me"
+
+[en.project_ui]
+how = "How it was built"
+
+[en.games_ui]
+played = "games played"
+tens = "perfect 10s"
+hours = "hours on Steam"
+achievements = "Steam achievements"
+level = "Steam level"
+hours_unit = "h"
+all = "All {n} games and my scores on Bangumi"
+
+[en.anime_ui]
+watched = "anime watched"
+tens = "perfect 10s"
+all = "All {n} anime and my scores on Bangumi"
+
+[en.post_ui]
+home = "Home"
+minutes = "{n} min read"
+more = "Keep reading"
+feed_title = "Nemesie — Writing"
+feed_description = "Kevin Nie on building AI agents, game mods and game test automation, and the bugs hiding along the way."
+
+[[en.creator]]
+link = "steam_reviews"
+label = "Steam reviews"
+value = "295"
+note = "writer for a Steam curator"
+
+[[en.creator]]
+link = "xiaoheihe"
+label = "Xiaoheihe"
+value = "2,300+ followers"
+note = "1.83M views"
+
+[[en.creator]]
+link = "bilibili"
+label = "Bilibili"
+value = "1,000+ followers"
+note = "200+ videos"
+
+[en.footer]
+email = "Email"
+github = "GitHub"
+linkedin = "LinkedIn"
+steam = "Steam"
+xiaoheihe = "Xiaoheihe"
+bilibili = "Bilibili"
+bangumi = "Bangumi"
+
+# ── 学历 ────────────────────────────────────────────────────────────
+[[education]]
+zh = { school = "加州大学圣地亚哥分校", degree = "计算机科学硕士", period = "2025.9 – 2027.3（预计）" }
+en = { school = "UC San Diego", degree = "M.S. Computer Science", period = "Sep 2025 – Mar 2027 (expected)" }
+
+[[education]]
+zh = { school = "加州大学圣地亚哥分校", degree = "计算机工程学士", period = "2021.9 – 2025.6" }
+en = { school = "UC San Diego", degree = "B.S. Computer Engineering", period = "Sep 2021 – Jun 2025" }
+
+# ── 技能 ────────────────────────────────────────────────────────────
+[[skills]]
+zh = "AI / Agent"
+en = "AI / Agents"
+items = ["Multi-Agent", "MCP", "Agent Skills", "Tool Calling", "ReAct", "Prompt Engineering", "RAG", "LangGraph", "LangChain"]
+
+[[skills]]
+zh = "编程语言"
+en = "Languages"
+items = ["Java", "Python", "C", "C++", "C#", "Kotlin", "Swift", "Objective-C", "TypeScript", "JavaScript", "SQL", "HTML", "CSS", "Assembly", "SystemVerilog"]
+
+[[skills]]
+zh = "开发"
+en = "Development"
+items = ["React", "Spring Boot", "Flask", "Socket.IO", "MySQL", "SQLite", "Unity", "BepInEx / Harmony", "Android Studio", "Xcode", "Blender", "Linux"]
+
+[[skills]]
+zh = "测试和工具"
+en = "Testing / Tools"
+items = ["Git", "P4", "JUnit", "Airtest", "Poco"]
+
+# ── 工作经历 ────────────────────────────────────────────────────────
+[[experience]]
+logo = "mihoyo.png"
+logo_size = [82, 22]
+tags = ["React", "TypeScript", "Flask", "Socket.IO", "MySQL", "Unity", "Lua", "Airtest", "Poco", "LLM Agents"]
+
+[experience.zh]
+company = "米哈游"
+role = "游戏测试开发工程师"
+period = "2026.6 – 2026.9"
+team = "星布谷地，工具组"
+location = "中国上海"
+bullets = [
+  '''负责<strong>对话式自动化用例生成系统</strong>：QA 用一句话描述测试，系统写出能直接运行的 <strong>Airtest + Poco</strong> 脚本。生成时参考的知识库是从游戏源码里挖出来的，有 <strong>10 万多个 Unity Prefab 节点</strong>，还有 GM 指令、协议和配置数据。''',
+  '''把生成、规则改写、静态检查、<strong>假通过审计</strong>、真机运行和知识回填串成一个闭环。同一批回归测试点里，能生成可运行、且审计没问题的脚本的比例，从大约 <strong>30% 提到 80%</strong>。<a href="{post:knowing-what-the-button-is-called}">详细写在这篇文章里</a>。''',
+  '''开发内部<strong>自动化测试平台</strong>的前后端（React + TypeScript / Flask + Socket.IO + MySQL），几十位 QA 在用。另外写了一批 <strong>GM 指令</strong>，<strong>30 多个游戏场景</strong>可以一键直达，不用再靠很容易失效的 UI 点击。''',
+]
+
+[experience.en]
+company = "miHoYo"
+role = "Software Engineer"
+period = "Jun – Sep 2026"
+team = "Petit Planet, Tools Group"
+location = "Shanghai, China"
+bullets = [
+  '''Led a <strong>conversational AI test-case generation system</strong>: a QA engineer describes a test, the system returns an executable <strong>Airtest + Poco</strong> script grounded in a knowledge base of <strong>100K+ Unity prefab nodes</strong>, GM commands, protocol and config data mined from the game source.''',
+  '''Closed the loop from generation to deterministic rewrites, static validation, a <strong>false-pass audit</strong>, an on-device run and knowledge feedback, raising the share of regression test points that yield a runnable, audit-clean script from roughly <strong>30% to 80%</strong> on the same samples. <a href="{post:knowing-what-the-button-is-called}">Write-up</a>.''',
+  '''Built the front and back end of the internal <strong>automated testing platform</strong> (React + TypeScript / Flask + Socket.IO + MySQL) used by dozens of QA engineers, and shipped <strong>GM commands</strong> giving one-click entry into <strong>30+ game scenarios</strong> that used to need fragile UI navigation.''',
+]
+
+[[experience]]
+logo = "vicino.png"
+tags = ["Multi-Agent", "ReAct", "MCP", "Tool Calling", "LLM", "Prompt Engineering"]
+
+[experience.zh]
+company = "Vicino AI"
+role = "Agent 算法工程师"
+period = "2025.11 – 2026.4"
+team = "机器学习团队"
+location = "美国远程"
+bullets = [
+  '''搭了一个<strong>多 Agent 四视图生成系统</strong>，给一张参考图，生成正、背、左、右四个视图。<strong>8 个分工不同的 Agent</strong> 跑在 <strong>ReAct</strong> 循环里，通过 MCP 调工具；另有一个 Agent 专门打分，看每张图和四张之间是否一致，哪张不行就只重画哪张。<strong>九成以上</strong>的请求<strong>两轮以内</strong>就能出合格的结果。<a href="{post:four-views-one-object}">详细写在这篇文章里</a>。''',
+  '''做了<strong>分镜</strong>生成、提示词转工作流，还有一个视频剪辑 Agent：用户聊几句，它就能改出一张可执行的节点图，支持 <strong>10 多种</strong>剪辑操作。''',
+]
+
+[experience.en]
+company = "Vicino AI"
+role = "Machine Learning Engineer"
+period = "Nov 2025 – Apr 2026"
+team = "Machine Learning Team"
+location = "US, Remote"
+bullets = [
+  '''Built a <strong>multi-agent four-view image generation system</strong> (front, back, left and right from one reference): <strong>8 specialised agents</strong> in <strong>ReAct</strong> loops with MCP tool calling, where a separate evaluator judges each view and cross-view consistency, and only the failing views are regenerated. <strong>90%+</strong> of requests converge within <strong>2 iterations</strong>. <a href="{post:four-views-one-object}">Write-up</a>.''',
+  '''Shipped <strong>Storyboard</strong> generation, prompt-to-workflow, and a video editing agent that turns conversation into executable node graphs with <strong>10+</strong> structured editing operations.''',
+]
+
+[[experience]]
+logo = "tiktok.svg"
+tags = ["Python", "React", "Swift", "LLM Agents", "WebSocket", "SQLite", "iOS"]
+
+[experience.zh]
+company = "字节跳动"
+role = "客户端开发工程师"
+period = "2025.6 – 2025.9"
+team = "TikTok User Experience 团队"
+location = "中国上海"
+bullets = [
+  '''一个人从头做了 <strong>AI Oncall 助手</strong>（Python / React / SQLite）：每来一个问题，LLM 先看懂它要什么，再分到对应的处理流程。<strong>一千多位工程师</strong>在用，分类准确率比人工高了 <strong>80%</strong>。''',
+  '''实时消息走 <strong>WebSocket</strong> 长连接，LLM 分类异步进行，后面有容错队列、响应缓存和持久化，压力大的时候也不丢消息。另外先用文档自动回答一部分问题，需要人工处理的 oncall 少了 <strong>20%</strong>。''',
+  '''还做了一个 React 看板，实时显示请求量、工单状态和变化趋势；以及一个能复用的 <strong>iOS Item Picker</strong> 组件，sheet 和 panel 两种布局都能自适应。''',
+]
+
+[experience.en]
+company = "TikTok"
+role = "Software Engineer"
+period = "Jun – Sep 2025"
+team = "TikTok User Experience (TUX)"
+location = "Shanghai, China"
+bullets = [
+  '''Designed and built an <strong>AI on-call assistant</strong> end to end (Python / React / SQLite): an LLM agent reads each incoming issue, classifies its intent and routes it to the right workflow. Adopted by <strong>1,000+ engineers</strong>; classification accuracy up <strong>80%</strong> over the manual process.''',
+  '''Real-time architecture on <strong>WebSocket</strong> long connections with asynchronous LLM classification behind fault-tolerant queues, response caching and a persistence layer, so nothing is lost under load. A documentation-based interception step cut manual on-call requests by <strong>20%</strong>.''',
+  '''Shipped a React dashboard for live request volume, ticket status and trends, and a reusable <strong>iOS Item Picker</strong> component with adaptive sheet and panel layouts.''',
+]
+
+[[experience]]
+logo = "alibabadotcom.svg"
+tags = ["Kotlin", "Java", "Android", "SDK"]
+
+[experience.zh]
+company = "阿里巴巴"
+role = "客户端开发工程师"
+period = "2024.6 – 2024.9"
+team = "阿里国际，Lazada"
+location = "中国广州"
+bullets = [
+  '''负责 Lazada 在东南亚的 <strong>Android 网络诊断</strong>。那边网络差、变化多，用户反馈里最多的就是网络问题，应用层又没有现成的方案。我自己设计了一套检测方法，目标是让网络相关的反馈少三成左右。''',
+  '''用 Kotlin 和 Java 写了检测和诊断用的 <strong>SDK</strong> 和界面，覆盖三种情况：App 被禁止联网、信号太弱、开了代理。每种情况都告诉用户怎么解决，网络差的地方也能自己排查。''',
+]
+
+[experience.en]
+company = "Alibaba"
+role = "Software Engineer"
+period = "Jun – Sep 2024"
+team = "AIDC, Lazada"
+location = "Guangzhou, China"
+bullets = [
+  '''Led an <strong>Android network diagnostics</strong> feature for Lazada in Southeast Asia, where weak and volatile networks were the top source of issue reports and no mature application-layer approach existed. Designed a detection strategy targeting a <strong>~30%</strong> reduction in network-related reports.''',
+  '''Built the detection and diagnostic <strong>SDKs</strong> and UI in Kotlin and Java for three cases (blocked app network access, signal strength, and proxies), each paired with a fix the user can apply, so people in weak-network regions could self-diagnose.''',
+]
+
+# ── 项目 ────────────────────────────────────────────────────────────
+[[projects]]
+id = "coffee"
+featured = true
+images = ["coffee-banner.webp", "coffee-ai.webp", "coffee-route.webp"]
+github = "https://github.com/kevinnie2003/LOMAssistant"
+post = "two-weeks-seventy-releases"
+tags = ["C#", "Unity", "BepInEx", "Harmony", "Tool Calling", "LLM Agents", "Evaluation", "Prompt Caching"]
+
+[projects.zh]
+name = "咖啡伴侣"
+period = "2026.10 至今"
+alt = ["咖啡伴侣横幅", "游戏里的 AI 陪玩", "剧情路线图"]
+bullets = [
+  '''给 Unity 武侠 RPG《活侠传》做的 Mod，C# 写了 <strong>3.6 万行</strong>，用 <strong>BepInEx / Harmony</strong> 打了 <strong>230 多个运行时补丁</strong>。功能包括路线图和剧情流程图（从 <strong>2,200 多个反编译的 Lua 剧本</strong>里解析出来）、靠 Lua 记录和重放实现的随时存档、数值修改等。<strong>两周发了 70 多个版本</strong>，GitHub <strong>100 多个 star</strong>，下载<strong>超过 2 万次</strong>，现在还在更新。''',
+  '''最核心的是游戏里的 <strong>Tool-Calling Agent</strong>。它有 <strong>15 个工具</strong>，能查剧本里的分岔条件、<strong>上千个剧情旗标</strong>在哪设置和判定、每条路线的好感和数值合计，也能看实时存档和屏幕上的选项。它会先查几轮资料，再根据查到的东西回答，不靠记忆瞎编。''',
+  '''<strong>11 个角色</strong>各用各的口吻聊天，只知道玩家已经读过的剧情，剧透分 <strong>3 档</strong>。想改存档，它会先弹一张卡片，玩家点确认才改。''',
+  '''用一套 <strong>20 道题的评测</strong>加每轮的调试记录，一点点修检索排序、补工具、调提示词（普通模式 <strong>15/20</strong>，深度模式 <strong>18/20</strong>）。提示词前缀保持不变，思考内容原样传回，<strong>缓存命中率一直在 80% 到 86%</strong>。''',
+]
+
+[projects.en]
+name = "Coffee Companion"
+period = "Oct 2026 – Present"
+alt = ["Coffee Companion banner", "The in-game AI companion", "Story route map"]
+bullets = [
+  '''A <strong>36K-line C#</strong> mod for the Unity wuxia RPG <em>Legend of Mortal</em>, built on <strong>BepInEx/Harmony</strong> with <strong>230+ runtime patches</strong>: a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere through Lua record-and-replay, and a stat editor. <strong>70+ releases in two weeks</strong>, <strong>100+ stars</strong>, <strong>20K+ downloads</strong>, still in active development.''',
+  '''The centrepiece is an in-game <strong>tool-calling agent</strong>. Its <strong>15 tools</strong> read a knowledge base built from the parsed scripts (branch conditions, where each of <strong>1,000+ story flags</strong> is set and checked, per-route totals of affinity and stats) plus the live save and the choices on screen. It looks things up over several rounds, then answers from what it found, not from memory.''',
+  '''<strong>11 character personas</strong> talk in their own voice, know only the story the player has read, and respect <strong>3 spoiler levels</strong>. Any change to the save is proposed as a card and applied only when the player confirms.''',
+  '''A <strong>20-question graded eval</strong> with per-turn traces drove the fixes to retrieval ranking, tool coverage and prompt rules (<strong>15/20</strong> standard, <strong>18/20</strong> deep mode). A stable prompt prefix and thinking blocks passed back unchanged keep the <strong>prompt cache hit rate at 80–86%</strong>.''',
+]
+
+[[projects]]
+id = "rogueforge"
+featured = true
+images = ["rogueforge.webp"]
+widget = "forge"
+github = "https://github.com/kevinnie2003/rogueforge"
+post = "vibes-with-extra-steps"
+tags = ["LLM", "Procedural Generation", "Validation Pipelines", "Game Design", "Evaluation"]
+
+[projects.zh]
+name = "RogueForge"
+period = "2026.5 – 2026.6"
+alt = ["RogueForge 的战斗画面"]
+bullets = [
+  '''一款 <strong>AI 原生的肉鸽卡牌游戏</strong>，卡牌、敌人、事件、房间规则和角色这 <strong>5 类内容</strong>都由 LLM 在对局里现做，每一类都走同一条流程：<strong>生成、校验、修正、重来</strong>。''',
+  '''模型只能拼白名单里的效果，战斗逻辑在后端按规则执行。每张卡要过三关：结构、机制白名单、数值预算。差一点的自动往回调，差太多的连同原因一起退回去重做。''',
+  '''数值预算是拿《杀戮尖塔》的真实卡牌校准的，平不平衡有数可查，不用靠猜。<strong>2,658</strong> 个候选里，大约 <strong>95%</strong> 能直接用。这里放了游戏里用的校验器，可以直接玩。''',
+]
+
+[projects.en]
+name = "RogueForge"
+period = "May – Jun 2026"
+alt = ["A fight in RogueForge"]
+bullets = [
+  '''An <strong>AI-native roguelike deck-builder</strong>: an LLM generates <strong>5 content types</strong> live during a run (cards, enemies, events, room rules and characters), each through the same <strong>generate, validate, repair, retry</strong> loop.''',
+  '''The model only combines whitelisted effects; deterministic combat runs on the backend. Three validation layers (structure, mechanic allowlist, numerical budget) clamp what is close and bounce what is not, with the reason fed back for a retry.''',
+  '''The budget is calibrated against real <em>Slay the Spire</em> cards, so "balanced" is measured, not guessed. Of <strong>2,658</strong> logged candidates, about <strong>95%</strong> were served. The validator from the game is right here, so you can try it.''',
+]
+
+[[projects]]
+id = "moderation"
+github = "https://github.com/Zihang-He/CSE291A_Group5_Adaptive_Moderation_Agent"
+tags = ["Python", "LLM", "ReAct", "NLP", "Content Moderation"]
+
+[projects.zh]
+name = "自适应内容审核 Agent"
+period = "2026.1 – 2026.3"
+bullets = [
+  '''内容审核不只是贴个标签，而是决定怎么处理。先抽出 <strong>8 个以上的风险信号</strong>（恶意程度、把握有多大、上下文），再让 <strong>ReAct Agent</strong> 挑一个轻重合适的做法：不管、降权、加一道门槛，或者限流。''',
+  '''在 Jigsaw 恶意评论数据集上做了评测。关键在分寸：严重的限流，擦边的加门槛，越拿不准的处理得越小心。''',
+]
+
+[projects.en]
+name = "Adaptive Moderation Agent"
+period = "Jan – Mar 2026"
+bullets = [
+  '''Content moderation as a decision, not a label: a first pass extracts <strong>8+ structured risk signals</strong> (toxicity, uncertainty, context) and a <strong>ReAct agent</strong> picks a proportionate action: do nothing, downrank, add friction, or throttle.''',
+  '''Evaluated on the Jigsaw toxic comment dataset. The point was calibration: severe content gets throttled, borderline content gets friction, and the uncertain cases are the ones the agent is most careful with.''',
+]
+
+[[projects]]
+id = "unet"
+github = "https://github.com/kevinnie2003/ship-detection"
+tags = ["Python", "TensorFlow", "U-Net", "Deep Learning", "Computer Vision"]
+
+[projects.zh]
+name = "U-Net 卫星图船只分割"
+period = "2024.6 – 2024.12"
+bullets = [
+  '''在 Airbus 船只数据集（5 万多张卫星图）上改进 <strong>U-Net</strong>，加了深度可分离卷积和空洞卷积，<strong>Dice 0.63</strong>，<strong>精确率 0.67</strong>。船在图里只占很小一块，所以主要功夫花在损失函数（BCE、Dice、Focal）和跳跃连接上，主干网络没怎么动。''',
+  '''以<strong>第一作者</strong>身份发表在 <em>Applied and Computational Engineering</em>（CONF-SPML 2025）。''',
+]
+
+[projects.en]
+name = "Enhanced U-Net for Ship Segmentation"
+period = "Jun – Dec 2024"
+bullets = [
+  '''A <strong>U-Net</strong> with depthwise-separable and atrous convolutions for the Airbus ship dataset (50k+ satellite images), reaching <strong>Dice 0.63</strong> and <strong>precision 0.67</strong>. Ships are tiny relative to the image, so the work was in the losses (BCE, Dice, Focal) and the skip connections, not the backbone.''',
+  '''Published as <strong>first author</strong> in <em>Applied and Computational Engineering</em>, CONF-SPML 2025.''',
+]
+
+[[projects]]
+id = "successorator"
+github = "https://github.com/CSE-110-Winter-2024/TODO-List"
+tags = ["Java", "Android", "Android Studio", "Agile", "Design Patterns"]
+
+[projects.zh]
+name = "Successorator"
+period = "2024.1 – 2024.3"
+bullets = [
+  '''带头开发一款定目标、排任务优先级的 <strong>Android 效率 App</strong>（Java、Android Studio）。''',
+  '''界面会根据任务类型变化：不同任务、周期性目标、情境标签，各有对应的创建窗口。''',
+  '''模块设计用了<strong>策略、观察者、抽象工厂、建造者</strong>几种模式；团队按敏捷方式开发，我负责把单元测试做扎实。''',
+]
+
+[projects.en]
+name = "Successorator"
+period = "Jan – Mar 2024"
+bullets = [
+  '''Spearheaded development of an <strong>Android productivity app</strong> for goal-setting and task prioritization using Java and Android Studio.''',
+  '''Implemented adaptive UI with dynamic goal creation dialogs for varied task types, recurring goals, and context tagging.''',
+  '''Designed modules using <strong>Strategy, Observer, Abstract Factory, and Builder patterns</strong>; led rigorous unit testing in an Agile team.''',
+]
+
+[[projects]]
+id = "mtg"
+tags = ["Python", "CNN", "ViT", "DCGAN", "Deep Learning"]
+
+[projects.zh]
+name = "用深度学习给《万智牌》分类"
+period = "2024.1 – 2024.3"
+bullets = [
+  '''带头训练 <strong>CNN 和 Vision Transformer</strong>，按生物类型给《万智牌》卡牌分 <strong>15 类</strong>，ViT 加上监督对比学习（SupCon）最好做到 <strong>60% 准确率</strong>。''',
+  '''用 <strong>DCGAN</strong> 生成新的卡图，扩充训练数据。''',
+  '''通过预处理和数据增强，缓解类别不均衡和同类差异大的问题。''',
+]
+
+[projects.en]
+name = "Deep Learning Applications in MTG"
+period = "Jan – Mar 2024"
+bullets = [
+  '''Led development of <strong>CNN and Vision Transformer (ViT)</strong> models for Magic: The Gathering creature type classification across <strong>15 classes</strong>, reaching up to <strong>60% accuracy</strong> with ViT and Supervised Contrastive Learning (SupCon).''',
+  '''Used <strong>DCGAN</strong> to generate new card images and widen the training set.''',
+  '''Addressed class imbalance and in-class variation through preprocessing and augmentation.''',
+]
+
+[[projects]]
+id = "robot"
+tags = ["Arduino", "3D Printing", "CAD", "Embedded Systems"]
+
+[projects.zh]
+name = "循迹机器人"
+period = "2022.11 – 2022.12"
+bullets = [
+  '''4 人一组，从零做一台循迹机器人，传感器、电机、编程和控制都要用上。<strong>3D 打印</strong>底盘，自己做电路、焊板子，一遍遍测试修改，最后拿它和其他组比赛。''',
+]
+
+[projects.en]
+name = "Line Following Robot"
+period = "Nov – Dec 2022"
+bullets = [
+  '''Built a line-following robot from scratch with a team of four, from sensors and motors to programming and control. We <strong>3D-printed</strong> the chassis, made and soldered the circuits, tested it over and over, and raced it against the other teams.''',
+]

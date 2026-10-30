@@ -1,18 +1,8 @@
 /* ============================================================
    FORGE.CSS
-   The live card validator (Playground section) and the Writing
-   list. Uses the existing design tokens from main.css.
+   The live card validator and the false-pass audit widget.
+   The design tokens (--bg, --text-1, --v-ok …) come from site.css.
    ============================================================ */
-
-:root {
-  --v-ok:  var(--accent);
-  --v-fix: #f0b35a;
-  --v-no:  #f0706c;
-}
-[data-theme="light"] {
-  --v-fix: #b8720e;
-  --v-no:  #c23a35;
-}
 
 /* ── PLAYGROUND LAYOUT ───────────────────────────────────────── */
 .playground-grid {

@@ -1,128 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Language: saved choice, else the system language; send readers to their version -->
-  <script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("four-views-one-object.zh.html"+location.hash);}catch(e){}</script>
-  <script>try{var t=localStorage.getItem("kn-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Four views of one object — Kevin Nie</title>
-  <meta name="description" content="Generating front, back, left and right views of one object with a multi-agent loop: why the evaluator is a separate agent, when to regenerate one view versus all four, and how a dynamic threshold keeps the loop from spinning forever." />
-  <link rel="alternate" type="application/rss+xml" title="Kevin Nie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
-  <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/four-views-one-object.zh.html" />
-  <link rel="canonical" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
-  <meta property="og:title" content="Four views of one object" />
-  <meta property="og:description" content="A self-correcting multi-agent image generation loop, and the rules that keep it honest." />
-  <meta property="og:type" content="article" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og-four-views.png" />
-  <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og-four-views.png" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080c18'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='13' font-weight='bold' fill='%235ef0b0' text-anchor='middle' dominant-baseline='middle'%3EKN%3C/text%3E%3C/svg%3E" />
-  <link rel="preload" href="../assets/fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/forge.css?v=20261029c" />
-  <link rel="stylesheet" href="../assets/css/article.css?v=20261029c" />
+<meta charset="UTF-8" />
+<script>try{var p=localStorage.getItem("kn-lang");var w=(p==="zh"||p==="en")?p:(/^zh/i.test(navigator.language||"")?"zh":"en");if(w!=="en")location.replace("four-views-one-object.zh.html"+location.hash);}catch(e){}</script>
+<script>try{var t=localStorage.getItem("kn-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>window.KN_LANG = "en";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="tools/build.py" />
+<title>Four views of one object | Nemesie</title>
+<meta name="description" content="Generating front, back, left and right views of one object with a multi-agent loop: why the evaluator is a separate agent, when to regenerate one view versus all four, and how a dynamic threshold keeps the loop from spinning forever." />
+<link rel="canonical" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
+<link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/four-views-one-object.zh.html" />
+<link rel="alternate" hreflang="x-default" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
+<link rel="alternate" type="application/rss+xml" title="Nemesie — Writing" href="https://kevinnie2003.github.io/feed.xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Four views of one object" />
+<meta property="og:description" content="A self-correcting multi-agent image generation loop, and the rules that keep it honest." />
+<meta property="og:url" content="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
+<meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og/four-views-one-object.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/four-views-one-object.jpg" />
+<meta name="theme-color" content="#A9D8F5" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=7b54d685" />
+<link rel="stylesheet" href="../assets/css/site.css?v=7b54d685" />
 </head>
 <body>
-  <div class="noise-overlay" aria-hidden="true"></div>
-  <main class="article-page">
-    <div class="article-top">
-      <a class="back" href="../#writing">&larr; Kevin Nie</a>
-      <div class="article-tools">
-        <a class="theme-toggle lang-toggle" href="four-views-one-object.zh.html" aria-label="阅读中文版" onclick="try{localStorage.setItem('kn-lang','zh')}catch(e){}"><span class="theme-label">中文</span></a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
-        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <span class="theme-label">Light Mode</span>
-      </button>
-      </div><!-- .article-tools -->
-    </div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="sky-band">
+  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFF6D6"><circle cx="198" cy="483" r="1.4" opacity="0.66"/><circle cx="259" cy="555" r="1.7" opacity="0.68"/><circle cx="606" cy="165" r="0.6" opacity="0.59"/><circle cx="702" cy="48" r="1.6" opacity="0.50"/><circle cx="279" cy="30" r="1.9" opacity="0.83"/><circle cx="1050" cy="431" r="0.6" opacity="0.56"/><circle cx="597" cy="81" r="1.8" opacity="0.59"/><circle cx="186" cy="572" r="0.8" opacity="0.95"/><circle cx="544" cy="386" r="1.0" opacity="0.67"/><circle cx="224" cy="26" r="1.7" opacity="0.50"/><circle cx="936" cy="146" r="1.9" opacity="0.93"/><circle cx="906" cy="534" r="1.4" opacity="0.82"/><circle cx="147" cy="333" r="1.7" opacity="0.48"/><circle cx="1108" cy="621" r="1.1" opacity="0.59"/><circle cx="542" cy="270" r="1.9" opacity="0.60"/><circle cx="32" cy="65" r="1.5" opacity="1.00"/><circle cx="595" cy="344" r="1.3" opacity="0.84"/><circle cx="266" cy="426" r="1.3" opacity="0.75"/><circle cx="217" cy="119" r="1.1" opacity="0.95"/><circle cx="416" cy="418" r="1.0" opacity="0.42"/><circle cx="79" cy="570" r="1.6" opacity="0.59"/><circle cx="820" cy="473" r="1.8" opacity="0.97"/><circle cx="488" cy="692" r="1.8" opacity="0.73"/><circle cx="1060" cy="344" r="1.1" opacity="0.51"/><circle cx="1051" cy="114" r="0.7" opacity="0.87"/><circle cx="929" cy="338" r="1.7" opacity="0.38"/><circle cx="310" cy="203" r="1.1" opacity="0.46"/><circle cx="83" cy="237" r="1.8" opacity="0.99"/><circle cx="895" cy="335" r="0.9" opacity="0.97"/><circle cx="631" cy="510" r="0.6" opacity="0.49"/><circle cx="1006" cy="557" r="1.7" opacity="0.74"/><circle cx="511" cy="407" r="1.7" opacity="0.55"/><circle cx="641" cy="193" r="1.6" opacity="0.36"/><circle cx="822" cy="668" r="0.6" opacity="0.74"/><circle cx="773" cy="596" r="1.4" opacity="0.52"/><circle cx="487" cy="671" r="1.8" opacity="0.44"/><circle cx="114" cy="66" r="0.6" opacity="0.64"/><circle cx="169" cy="607" r="1.5" opacity="0.43"/><circle cx="646" cy="227" r="1.2" opacity="0.49"/><circle cx="199" cy="129" r="1.1" opacity="0.81"/><circle cx="660" cy="32" r="1.5" opacity="0.92"/><circle cx="929" cy="554" r="0.6" opacity="0.65"/><circle cx="76" cy="535" r="0.8" opacity="0.81"/><circle cx="303" cy="488" r="1.0" opacity="0.38"/><circle cx="467" cy="217" r="1.8" opacity="0.54"/><circle cx="604" cy="385" r="1.8" opacity="0.41"/><circle cx="721" cy="356" r="1.6" opacity="0.98"/><circle cx="372" cy="490" r="1.3" opacity="0.71"/><circle cx="76" cy="570" r="1.9" opacity="0.58"/><circle cx="382" cy="695" r="0.7" opacity="0.40"/><circle cx="88" cy="570" r="1.6" opacity="0.64"/><circle cx="746" cy="14" r="1.4" opacity="0.64"/><circle cx="621" cy="273" r="1.1" opacity="0.50"/><circle cx="59" cy="304" r="0.9" opacity="0.81"/><circle cx="981" cy="507" r="1.2" opacity="0.50"/><circle cx="462" cy="341" r="1.4" opacity="0.98"/><circle cx="102" cy="336" r="1.2" opacity="0.82"/><circle cx="1069" cy="546" r="1.4" opacity="0.84"/><circle cx="802" cy="601" r="1.5" opacity="0.79"/><circle cx="294" cy="642" r="1.1" opacity="0.75"/><circle cx="990" cy="675" r="1.9" opacity="0.35"/><circle cx="375" cy="218" r="1.1" opacity="0.44"/><circle cx="664" cy="56" r="1.0" opacity="0.96"/><circle cx="891" cy="324" r="0.7" opacity="0.97"/><circle cx="845" cy="144" r="1.0" opacity="0.77"/><circle cx="818" cy="183" r="1.8" opacity="0.56"/><circle cx="305" cy="592" r="0.8" opacity="0.79"/><circle cx="240" cy="419" r="1.0" opacity="0.60"/><circle cx="1129" cy="327" r="1.2" opacity="0.75"/><circle cx="337" cy="122" r="1.1" opacity="0.53"/><circle cx="226" cy="673" r="0.6" opacity="0.88"/><circle cx="1122" cy="493" r="0.6" opacity="0.68"/><circle cx="47" cy="426" r="1.5" opacity="0.51"/><circle cx="9" cy="381" r="0.7" opacity="0.55"/><circle cx="545" cy="626" r="1.1" opacity="0.44"/><circle cx="950" cy="576" r="1.3" opacity="0.38"/><circle cx="225" cy="282" r="1.3" opacity="0.50"/><circle cx="963" cy="590" r="1.8" opacity="0.92"/><circle cx="21" cy="407" r="0.7" opacity="0.93"/><circle cx="896" cy="531" r="0.8" opacity="0.39"/><circle cx="978" cy="425" r="1.4" opacity="0.66"/><circle cx="960" cy="237" r="1.0" opacity="0.58"/><circle cx="358" cy="439" r="1.8" opacity="0.40"/><circle cx="81" cy="358" r="1.5" opacity="0.47"/><circle cx="324" cy="41" r="0.6" opacity="0.67"/><circle cx="817" cy="457" r="0.8" opacity="0.42"/><circle cx="1117" cy="377" r="1.1" opacity="0.80"/><circle cx="873" cy="367" r="0.7" opacity="0.89"/><circle cx="256" cy="28" r="1.1" opacity="0.70"/><circle cx="754" cy="122" r="1.5" opacity="0.67"/></g></svg><div class="moon" aria-hidden="true"></div>
+  <svg class="cloud " style="left:-2%; top:34%; width:220px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg><svg class="cloud " style="right:16%; top:20%; width:170px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="55" cy="50" r="26"/><circle cx="98" cy="36" r="34"/><circle cx="140" cy="52" r="24"/><rect x="44" y="50" width="104" height="30" rx="15"/></g></svg><svg class="cloud " style="right:-3%; top:58%; width:260px" viewBox="0 0 200 80" aria-hidden="true"><g fill="#fff"><circle cx="50" cy="52" r="28"/><circle cx="92" cy="38" r="36"/><circle cx="138" cy="52" r="26"/><rect x="40" y="52" width="112" height="28" rx="14"/></g></svg>
+  <header class="bar">
+  <a class="logo" href="../"><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><ellipse cx="18" cy="21" rx="15" ry="8.5" fill="#FFD447"/><circle cx="11" cy="11" r="8" fill="#FFD447"/><path d="M2 12 q 2 -3 5 -1 q -2 2 -5 1z" fill="#F08A24"/><circle cx="9" cy="9.5" r="1.3" fill="#3A2E29"/><path d="M23 18 q 6 -3 8 2" stroke="#E9A800" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Nemesie</a>
+  <nav><a class="nav-link" href="../#work">Work</a><a class="nav-link" href="../#projects">Projects</a><a class="nav-link" href="../#posts">Writing</a><a class="nav-link" href="../#games">Games</a><a class="nav-link" href="../#anime">Anime</a><button class="pill theme" id="theme" type="button" aria-label="Switch between day and night" title="Switch between day and night"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></button><a class="pill" href="four-views-one-object.zh.html" data-lang="zh" lang="zh-CN" aria-label="阅读中文版">中文</a></nav>
+</header>
+</div>
 
-  <div class="article-head">
-    <p class="meta">April 2026 · 8 min read</p>
-    <h1 class="title">Four views of one object</h1>
+<main class="post" id="content">
+  <div class="post-cover"><img src="../assets/img/covers/four-views-one-object.webp" alt="" /></div>
+  <header class="post-head">
+    <p class="meta"><time datetime="2026-04-20">April 20, 2026</time>　5 min read</p>
+    <h1>Four views of one object</h1>
     <p class="lede">At Vicino AI I built a system that turns one reference image into front, back, left and right views of the same object, for downstream 3D reconstruction. The generation step was the least interesting part. The interesting parts were deciding who judges the output, what to redo when it fails, and when to stop.</p>
+  </header>
+  <div class="prose">
+<p class="aside">This describes work done as a machine learning engineer at a startup. Model names, prompts and product internals are left out. The numbers are from our own evaluation at the time.</p>
+
+<p>The brief sounds simple. A user uploads a picture of a thing, a chair or a creature or a character, and asks for the four canonical views so a reconstruction pipeline can build a mesh from them. Any capable image model will produce four attractive images. The problem is that "attractive" is not the requirement. The requirement is that all four are <em>the same object</em>: same proportions, same colours, same decorations, the left view showing the mirror of the right view, the back view keeping the identity the front view established. Four independent generations almost never satisfy that. You get four cousins.</p>
+
+<h2>Why the evaluator is a separate agent</h2>
+
+<p>The system is a ReAct loop over eight specialised agents: requirement understanding, per-view prompt optimisation, generation, single-image evaluation, cross-view evaluation, targeted editing, external retrieval, and a controller that picks the next action. The split that mattered most was separating the generator from the judge.</p>
+
+<p>A model asked to generate and then rate its own output is generous to itself. The generator's job is to try hard; the evaluator's job is to find problems, and it does that better when it has never seen the prompt that produced the images, only the original requirement and the four results side by side at full resolution. It scores each view on prompt adherence, visual quality, correct orientation, and whether the subject is complete and uncropped. Then it scores the set on geometry and identity consistency, colour and decoration consistency, scale alignment, and whether every user-requested modification actually shows up in every view. The output is structured: an overall score, per-view issues with severity, a list of views to regenerate, and edit suggestions.</p>
+
+<p>One rule I added after watching the loop misbehave: if the evaluator's output cannot be parsed, that is a failure, not a pass. The first version defaulted to "fine" on a parse error and quietly waved bad sets through.</p>
+
+<h2>Regenerate one view, not four</h2>
+
+<p>The naive retry policy regenerates the whole set whenever the evaluator is unhappy. That is expensive and, worse, it throws away views that were already correct and replaces them with new ones that might not be. The loop instead repairs locally:</p>
+
+<ul>
+  <li>One side view fails: regenerate only that view, with the front view and the good side as references.</li>
+  <li>Several views fail: regenerate only the flagged ones.</li>
+  <li>The front view fails: rebuild the whole set. The front is the reference every other view inherits identity from, so a bad front cannot be patched around; it would propagate.</li>
+</ul>
+
+<p>This is the same instinct as clamping a slightly over-budget card instead of rejecting it: fix the smallest thing that is wrong. The dependency structure makes it work. Front is generated first and becomes the anchor. Left and right are generated against it with an explicit instruction that they show opposite sides, and for characters and animals that limb positions mirror. Back inherits from front. When the evaluator flags the left view, the controller knows exactly which references to hand the generator for the redo.</p>
+
+<div class="figure" role="img" aria-label="Loop: understand the requirement, generate the front view, generate the three other views against it, evaluate all four together, then either stop, regenerate flagged views, rebuild the set, or roll back to the best version.">
+  <svg class="dg" viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
+    <rect class="box" x="8" y="50" width="96" height="36"/><text x="56" y="73" text-anchor="middle">Understand</text>
+    <rect class="box" x="132" y="50" width="86" height="36"/><text x="175" y="68" text-anchor="middle">Front view</text><text x="175" y="81" text-anchor="middle" class="lbl">the anchor</text>
+    <rect class="box" x="246" y="50" width="110" height="36"/><text x="301" y="68" text-anchor="middle">L / R / back</text><text x="301" y="81" text-anchor="middle" class="lbl">against the front</text>
+    <rect class="box" x="384" y="50" width="100" height="36"/><text x="434" y="68" text-anchor="middle">Evaluate</text><text x="434" y="81" text-anchor="middle" class="lbl">all four at once</text>
+    <path class="ln" d="M104 68 H132"/><path class="ln" d="M218 68 H246"/><path class="ln" d="M356 68 H384"/>
+    <path class="ln ok" d="M484 60 H540"/><text class="t-ok" x="548" y="64" style="font-weight:600">done</text>
+    <text class="lbl" x="548" y="77">score over threshold, nothing flagged</text>
+    <path class="ln fix" d="M484 76 H520 V112 H301 V86" stroke-dasharray="3 3"/>
+    <text class="t-fix" x="410" y="126" text-anchor="middle" style="font-weight:600">side or back flagged: redo only that view</text>
+    <path class="ln no" d="M434 86 V150 H175 V86" stroke-dasharray="3 3"/>
+    <text class="t-no" x="304" y="163" text-anchor="middle" style="font-weight:600">front flagged: rebuild the set</text>
+    <text class="lbl" x="548" y="100">iteration, quality or budget cap hit:</text>
+    <text class="lbl" x="548" y="113">return the best version so far</text>
+  </svg>
+</div>
+
+<h2>When to stop</h2>
+
+<p>A loop that can always try again will always try again. Three caps run at once, and the first one hit ends the run: a quality threshold, a maximum iteration count (four rounds), and the user's subscription budget, which is reserved up front and settled at the end so a runaway loop cannot overspend. Hitting a cap does not mean failure. Every candidate set is versioned with its score, so the controller returns the best version it has seen, and can roll back to it if a later round made things worse.</p>
+
+<p>The quality threshold is dynamic, and this was the subtle part. A request with two constraints ("a red chair") and a request with nine ("a red velvet armchair with brass studs, a torn left cushion and a cat asleep on it") should not be held to the same bar for "fully satisfies every condition." The more constraints the requirement understanding agent extracts, the more the threshold relaxes, within limits. Without that, complex requests spun through all four rounds and returned a near-miss anyway; with it, they stopped early on the near-miss and saved the cost of the last two rounds.</p>
+
+<div class="aside"><b>The result.</b> Over 90% of requests converged to an output the evaluator accepted within two iterations. Most of the rest hit the iteration cap on genuinely hard subjects, such as heavily asymmetric objects where "mirror the left side" has no clean answer, and shipped their best version.</div>
+
+<h2>What the loop costs</h2>
+
+<p>Splitting into agents is not free. There are more tokens, more latency, more state to hand between steps, and when something goes wrong it is harder to say which agent is to blame. The price was worth paying for two reasons. Local regeneration cut the cost of a retry to roughly a quarter of a full set. And a replayable trace of every thought, action, observation and version made failures debuggable: when a user reported a bad result, I could replay the run and see the exact evaluator call that let it through.</p>
+
+<p>The pattern I took away, and later reused on a very different problem, is the shape of the loop rather than any of the agents in it. Generate, judge with something that did not generate, repair the smallest thing that is wrong, version everything, and stop for a reason you can name. The generator is the least important piece.</p>
   </div>
-
-  <div class="article-body">
-    <p class="aside">This describes work done as a machine learning engineer at a startup. Model names, prompts and product internals are left out. The numbers are from our own evaluation at the time.</p>
-
-    <p>The brief sounds simple. A user uploads a picture of a thing, a chair or a creature or a character, and asks for the four canonical views so a reconstruction pipeline can build a mesh from them. Any capable image model will produce four attractive images. The problem is that "attractive" is not the requirement. The requirement is that all four are <em>the same object</em>: same proportions, same colours, same decorations, the left view showing the mirror of the right view, the back view keeping the identity the front view established. Four independent generations almost never satisfy that. You get four cousins.</p>
-
-    <h2>Why the evaluator is a separate agent</h2>
-
-    <p>The system is a ReAct loop over eight specialised agents: requirement understanding, per-view prompt optimisation, generation, single-image evaluation, cross-view evaluation, targeted editing, external retrieval, and a controller that picks the next action. The split that mattered most was separating the generator from the judge.</p>
-
-    <p>A model asked to generate and then rate its own output is generous to itself. The generator's job is to try hard; the evaluator's job is to find problems, and it does that better when it has never seen the prompt that produced the images, only the original requirement and the four results side by side at full resolution. It scores each view on prompt adherence, visual quality, correct orientation, and whether the subject is complete and uncropped. Then it scores the set on geometry and identity consistency, colour and decoration consistency, scale alignment, and whether every user-requested modification actually shows up in every view. The output is structured: an overall score, per-view issues with severity, a list of views to regenerate, and edit suggestions.</p>
-
-    <p>One rule I added after watching the loop misbehave: if the evaluator's output cannot be parsed, that is a failure, not a pass. The first version defaulted to "fine" on a parse error and quietly waved bad sets through.</p>
-
-    <h2>Regenerate one view, not four</h2>
-
-    <p>The naive retry policy regenerates the whole set whenever the evaluator is unhappy. That is expensive and, worse, it throws away views that were already correct and replaces them with new ones that might not be. The loop instead repairs locally:</p>
-
-    <ul>
-      <li>One side view fails: regenerate only that view, with the front view and the good side as references.</li>
-      <li>Several views fail: regenerate only the flagged ones.</li>
-      <li>The front view fails: rebuild the whole set. The front is the reference every other view inherits identity from, so a bad front cannot be patched around; it would propagate.</li>
-    </ul>
-
-    <p>This is the same instinct as clamping a slightly over-budget card instead of rejecting it: fix the smallest thing that is wrong. The dependency structure makes it work. Front is generated first and becomes the anchor. Left and right are generated against it with an explicit instruction that they show opposite sides, and for characters and animals that limb positions mirror. Back inherits from front. When the evaluator flags the left view, the controller knows exactly which references to hand the generator for the redo.</p>
-
-    <div class="figure" role="img" aria-label="Loop: understand the requirement, generate the front view, generate the three other views against it, evaluate all four together, then either stop, regenerate flagged views, rebuild the set, or roll back to the best version.">
-      <svg class="dg" viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
-        <rect class="box" x="8" y="50" width="96" height="36"/><text x="56" y="73" text-anchor="middle">Understand</text>
-        <rect class="box" x="132" y="50" width="86" height="36"/><text x="175" y="68" text-anchor="middle">Front view</text><text x="175" y="81" text-anchor="middle" class="lbl">the anchor</text>
-        <rect class="box" x="246" y="50" width="110" height="36"/><text x="301" y="68" text-anchor="middle">L / R / back</text><text x="301" y="81" text-anchor="middle" class="lbl">against the front</text>
-        <rect class="box" x="384" y="50" width="100" height="36"/><text x="434" y="68" text-anchor="middle">Evaluate</text><text x="434" y="81" text-anchor="middle" class="lbl">all four at once</text>
-        <path class="ln" d="M104 68 H132"/><path class="ln" d="M218 68 H246"/><path class="ln" d="M356 68 H384"/>
-        <path class="ln ok" d="M484 60 H540"/><text class="t-ok" x="548" y="64" style="font-weight:600">done</text>
-        <text class="lbl" x="548" y="77">score over threshold, nothing flagged</text>
-        <path class="ln fix" d="M484 76 H520 V112 H301 V86" stroke-dasharray="3 3"/>
-        <text class="t-fix" x="410" y="126" text-anchor="middle" style="font-weight:600">side or back flagged: redo only that view</text>
-        <path class="ln no" d="M434 86 V150 H175 V86" stroke-dasharray="3 3"/>
-        <text class="t-no" x="304" y="163" text-anchor="middle" style="font-weight:600">front flagged: rebuild the set</text>
-        <text class="lbl" x="548" y="100">iteration, quality or budget cap hit:</text>
-        <text class="lbl" x="548" y="113">return the best version so far</text>
-      </svg>
-    </div>
-
-    <h2>When to stop</h2>
-
-    <p>A loop that can always try again will always try again. Three caps run at once, and the first one hit ends the run: a quality threshold, a maximum iteration count (four rounds), and the user's subscription budget, which is reserved up front and settled at the end so a runaway loop cannot overspend. Hitting a cap does not mean failure. Every candidate set is versioned with its score, so the controller returns the best version it has seen, and can roll back to it if a later round made things worse.</p>
-
-    <p>The quality threshold is dynamic, and this was the subtle part. A request with two constraints ("a red chair") and a request with nine ("a red velvet armchair with brass studs, a torn left cushion and a cat asleep on it") should not be held to the same bar for "fully satisfies every condition." The more constraints the requirement understanding agent extracts, the more the threshold relaxes, within limits. Without that, complex requests spun through all four rounds and returned a near-miss anyway; with it, they stopped early on the near-miss and saved the cost of the last two rounds.</p>
-
-    <div class="aside"><b>The result.</b> Over 90% of requests converged to an output the evaluator accepted within two iterations. Most of the rest hit the iteration cap on genuinely hard subjects, such as heavily asymmetric objects where "mirror the left side" has no clean answer, and shipped their best version.</div>
-
-    <h2>What the loop costs</h2>
-
-    <p>Splitting into agents is not free. There are more tokens, more latency, more state to hand between steps, and when something goes wrong it is harder to say which agent is to blame. The price was worth paying for two reasons. Local regeneration cut the cost of a retry to roughly a quarter of a full set. And a replayable trace of every thought, action, observation and version made failures debuggable: when a user reported a bad result, I could replay the run and see the exact evaluator call that let it through.</p>
-
-    <p>The pattern I took away, and later reused on a very different problem, is the shape of the loop rather than any of the agents in it. Generate, judge with something that did not generate, repair the smallest thing that is wrong, version everything, and stop for a reason you can name. The generator is the least important piece.</p>
-  </div>
-
-  <div class="article-foot">
+  <footer class="post-foot">
     <p>The same loop shape, with a deterministic validator instead of a model as the judge, is in <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>. With a phone as the judge, it is in <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>.</p>
-    <nav class="article-nav" aria-label="More writing">
-      <a href="vibes-with-extra-steps.html"><span>Next</span>Vibes with extra steps</a>
-      <a href="knowing-what-the-button-is-called.html"><span>Also</span>Knowing what the button is called</a>
-    </nav>
-  </div>
-  </main>
-  <script>
-    (function () {
-      var html = document.documentElement, btn = document.getElementById('themeToggle');
-      function apply(t) { html.setAttribute('data-theme', t); var l = btn.querySelector('.theme-label'); if (l) l.textContent = t === 'dark' ? 'Light Mode' : 'Dark Mode'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
-      apply(html.getAttribute('data-theme') || 'dark');
-      btn.addEventListener('click', function () { var n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; apply(n); localStorage.setItem('kn-theme', n); });
-    })();
-  </script>
+    <h2 class="shelf-head" style="margin-top:1.6rem">Keep reading</h2>
+    <nav class="more"><a class="panel" href="knowing-what-the-button-is-called.html"><img src="../assets/img/covers/knowing-what-the-button-is-called.webp" alt="" loading="lazy" /><div><span>No.03　Sep 2026</span><b>Knowing what the button is called</b></div></a><a class="panel" href="vibes-with-extra-steps.html"><img src="../assets/img/covers/vibes-with-extra-steps.webp" alt="" loading="lazy" /><div><span>No.02　Jun 2026</span><b>Vibes with extra steps</b></div></a></nav>
+  </footer>
+</main>
+
+<footer class="foot">
+  <p class="bye">Come say hi~</p>
+  <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
+</footer>
+<script src="../assets/js/site.js?v=7b54d685"></script>
 </body>
 </html>
