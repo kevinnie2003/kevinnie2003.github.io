@@ -60,8 +60,15 @@
   }
   function skip() { stop(); i = lines.length - 1; el.textContent = lines[i]; done(i); }
 
-  document.getElementById('box').addEventListener('click', function (e) {
-    if (!e.target.closest('button, a')) advance();
+  // 和 Galgame 一样，点开场画面的任何地方都能推进对话；顶栏、选项、链接和按钮不算，选中文字时也不推进
+  var scene = document.querySelector('.scene');
+  scene.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, .bar, .choices') || String(window.getSelection())) return;
+    advance();
+  });
+  // 连着点时浏览器会选中一个词，这一下就被吞掉了；连点时不选字，按住鼠标选字照常
+  scene.addEventListener('mousedown', function (e) {
+    if (e.detail > 1 && !e.target.closest('a, button, .bar, .choices')) e.preventDefault();
   });
   document.getElementById('box').addEventListener('keydown', function (e) {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.id === 'box') { e.preventDefault(); advance(); }
