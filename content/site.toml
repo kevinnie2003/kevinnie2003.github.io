@@ -36,6 +36,7 @@ choices = [
   ["projects", "看看你做过的项目"],
   ["posts", "看看你写的文章"],
   ["games", "看看你玩过的游戏"],
+  ["anime", "看看你看过的番"],
 ]
 skip_line = "快进"
 log_line = "回想"
@@ -143,6 +144,7 @@ choices = [
   ["projects", "Show me your projects"],
   ["posts", "Show me your writing"],
   ["games", "Show me your games"],
+  ["anime", "Show me your anime"],
 ]
 skip_line = "Skip"
 log_line = "Log"

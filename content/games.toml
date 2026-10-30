@@ -141,11 +141,10 @@ games = [
   { bgm = 10858, zh = "愤怒的小鸟", en = "Angry Birds" },
 ]
 
-# 番剧：Bangumi 上 9 分以上的。同一部的几季只放一张。
+# 番剧：Bangumi 上 9 分以上的。同一部的几季只放一张；欧美动画电影不算番剧，不放。
 [anime]
 items = [
   { bgm = 215425, zh = "中二病也要谈恋爱！Take On Me", en = "Love, Chunibyo & Other Delusions! Take On Me", quote_en = "Chunibyo or not, I still want to fall in love!" },
-  { bgm = 232067, zh = "蜘蛛侠：平行宇宙", en = "Spider-Man: Into the Spider-Verse", quote_en = "My favorite movie. Perfect visuals, a perfect take on the Spider-Verse, and my favorite superhero." },
   { bgm = 428735, zh = "BanG Dream! It's MyGO!!!!!", en = "BanG Dream! It's MyGO!!!!!", quote_en = "A rare original masterpiece!" },
   { bgm = 909, zh = "龙与虎", en = "Toradora!", quote_en = "My idea of the perfect school romance. It gets the tsundere heart and the slow fall exactly right." },
   { bgm = 3375, zh = "凉宫春日的消失", en = "The Disappearance of Haruhi Suzumiya", quote_en = "Kyon's journey into himself." },
@@ -155,6 +154,5 @@ items = [
   { bgm = 79227, zh = "游戏人生", en = "No Game No Life", quote_en = "Blank never loses!" },
   { bgm = 328609, zh = "孤独摇滚！", en = "Bocchi the Rock!", quote_en = "Amen to Bocchi!" },
   { bgm = 386809, zh = "【我推的孩子】", en = "Oshi no Ko", quote_en = "A mystery that was a joy to follow week by week." },
-  { bgm = 282413, zh = "蜘蛛侠：纵横宇宙", en = "Spider-Man: Across the Spider-Verse", quote_en = "Absolutely electric!" },
   { bgm = 464376, zh = "败犬女主太多了！", en = "Makeine: Too Many Losing Heroines!", quote_en = "This is what youth feels like!" },
 ]

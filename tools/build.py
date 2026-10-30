@@ -476,7 +476,7 @@ def section_anime(lang, ui, site, games, data):
     <h2>{esc(ui['titles']['anime'])}</h2>
     <div class="stats">
       <div><b>{st['anime_watched']}</b>{esc(a['watched'])}</div>
-      <div><b>{st['anime_10']}</b>{esc(a['tens'])}</div>
+      <div><b>{sum(1 for e in games['anime']['items'] if data['anime'][str(e['bgm'])].get('rate') == 10)}</b>{esc(a['tens'])}</div>
     </div>
     <div class="cabinet">
       <div class="shelf top">
