@@ -304,13 +304,16 @@ def footer(lang, ui, links, root):
 </footer>"""
 
 
-def scripts(root, version, forge=False, audit=False):
+def scripts(root, version, count, forge=False, audit=False):
     out = []
     if forge:
         out += [f'<script src="{root}assets/js/forge-data.js?v={version}"></script>', f'<script src="{root}assets/js/forge.js?v={version}"></script>']
     if audit:
         out.append(f'<script src="{root}assets/js/audit.js?v={version}"></script>')
     out.append(f'<script src="{root}assets/js/site.js?v={version}"></script>')
+    if count:
+        # GoatCounter page views: no cookies, and it skips localhost previews
+        out.append(f'<script data-goatcounter="https://{count}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>')
     return "\n".join(out) + "\n</body>\n</html>\n"
 
 
@@ -537,7 +540,7 @@ def build_home(lang, site, games, data, posts, version):
 
 {footer(lang, ui, site['links'], '')}
 """
-    out += scripts("", version, forge=True)
+    out += scripts("", version, site["analytics"]["goatcounter"], forge=True)
     (SITE / ("index.zh.html" if lang == "zh" else "index.html")).write_text(out, encoding="utf-8")
 
 
@@ -614,7 +617,7 @@ def build_post(post, lang, posts, site, version):
 
 {footer(lang, ui, site['links'], root)}
 """
-    out += scripts(root, version, forge="forge" in widgets, audit="audit" in widgets)
+    out += scripts(root, version, site["analytics"]["goatcounter"], forge="forge" in widgets, audit="audit" in widgets)
     target = SITE / post_path(slug, lang)
     target.parent.mkdir(exist_ok=True)
     target.write_text(out, encoding="utf-8")

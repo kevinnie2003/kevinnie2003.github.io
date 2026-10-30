@@ -13,6 +13,10 @@ bangumi = "https://bgm.tv/user/xiaoyaya"
 bangumi_games = "https://bgm.tv/game/list/xiaoyaya/collect"
 bangumi_anime = "https://bgm.tv/anime/list/xiaoyaya/collect"
 
+# 访问统计（GoatCounter）：在 goatcounter.com 注册后把站点代号填进来，每个页面就会开始统计；留空就不统计
+[analytics]
+goatcounter = "kevinnie2003"
+
 # ── 中文 ────────────────────────────────────────────────────────────
 [zh]
 site_name = "小鸭鸭"

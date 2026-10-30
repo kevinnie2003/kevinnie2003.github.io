@@ -95,6 +95,13 @@ pip install fonttools brotli
 python tools/subset-cjk-fonts.py
 ```
 
+## Visit stats
+
+Page views go to GoatCounter. The site code is `goatcounter` under `[analytics]`
+in `content/site.toml`; leave it empty to turn counting off. Open the site once
+with `#toggle-goatcounter` at the end of the address to stop counting your own
+browser.
+
 ## Deploying
 
 ```bash
