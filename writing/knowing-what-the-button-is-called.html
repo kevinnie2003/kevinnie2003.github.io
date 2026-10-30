@@ -25,9 +25,9 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/knowing-what-the-button-is-called.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=cb7cd811" />
-<link rel="stylesheet" href="../assets/css/forge.css?v=cb7cd811" />
-<link rel="stylesheet" href="../assets/css/site.css?v=cb7cd811" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=baf12a08" />
+<link rel="stylesheet" href="../assets/css/forge.css?v=baf12a08" />
+<link rel="stylesheet" href="../assets/css/site.css?v=baf12a08" />
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -96,7 +96,7 @@
 
 <h2>Build the knowledge base from source, not from the phone</h2>
 
-<p>The obvious approach is to scan the running game: open every page, dump the control tree, record what is clickable. We did that, and it produced the most trustworthy facts we had, because a control seen on a real device definitely exists at runtime. It also had a ceiling. Scanning is slow, it needs an account in the right state, and empty states hide things: the album list has no items if the album has no photos. One suite went from 4 of 12 passing to 7 of 12 after I took three photos on the test phone. Same generator, same code.</p>
+<p>The obvious approach is to scan the running game: open every page, dump the control tree, record what is clickable. I did that, and it produced the most trustworthy facts I had, because a control seen on a real device definitely exists at runtime. It also had a ceiling. Scanning is slow, it needs an account in the right state, and empty states hide things: the album list has no items if the album has no photos. One suite went from 4 of 12 passing to 7 of 12 after I took three photos on the test phone. Same generator, same code.</p>
 
 <p>The breakthrough was realising that most of the facts already exist in the game's source tree, in full, for free. So the knowledge base became a layered thing where every row carries its provenance:</p>
 
@@ -117,9 +117,9 @@
 
 <h2>No embeddings</h2>
 
-<p>People assume grounding means a vector store. This system has none, on purpose. Retrieval is a tokeniser that does greedy longest-match against a closed vocabulary of keywords the knowledge base actually contains, plus alias expansion. We explicitly rejected a proper Chinese segmenter, because we do not want the linguistically correct word, we want a word that exists in the table.</p>
+<p>People assume grounding means a vector store. This system has none, on purpose. Retrieval is a tokeniser that does greedy longest-match against a closed vocabulary of keywords the knowledge base actually contains, plus alias expansion. I deliberately skipped a proper Chinese segmenter: the goal is not the linguistically correct word but a word that exists in the table.</p>
 
-<p>Page candidates are then scored, and the scoring is where the design thesis lives. A textual match gets a literal score. But the two largest bonuses have nothing to do with text: +0.40 if the page has a verified way to open it, and up to +0.25 scaled by how much real-device evidence exists for it. <strong>Executability outranks similarity.</strong> A page we know how to reach and have seen on a phone beats a page whose name merely matches better. Grounding runs in about 25 milliseconds.</p>
+<p>Page candidates are then scored, and the scoring is where the design thesis lives. A textual match gets a literal score. But the two largest bonuses have nothing to do with text: +0.40 if the page has a verified way to open it, and up to +0.25 scaled by how much real-device evidence exists for it. <strong>Executability outranks similarity.</strong> A page with a known way in, also seen on a real phone, beats a page whose name merely matches better. Grounding runs in about 25 milliseconds.</p>
 
 <p>Grounding mostly yields page names. The selectors the model actually needs come from the next step: for the top pages, a blueprint assembler runs a few hundred SQL queries across a dozen tables and packs 18 to 21 fact sections into the prompt. The prompt ends up around 25,000 tokens, half of it blueprint. That, not retrieval, is what determines output quality.</p>
 
@@ -146,7 +146,7 @@
   </svg>
 </div>
 
-<p>The normal path makes exactly one model call. Everything else is local and deterministic, so the cost lands only on the one step that needs a model. The model chooses its own exit: if the request is clear it writes code; if information is missing it emits a structured clarification block, which the UI turns into a form with candidate pages; if the input is not a test case at all it just replies. I tried a keyword router first and measured that 31 of 35 common action words appeared in none of our vocabularies. The clarifier module shrank by a quarter when it stopped deciding and started parsing the model's decision.</p>
+<p>The normal path makes exactly one model call. Everything else is local and deterministic, so the cost lands only on the one step that needs a model. The model chooses its own exit: if the request is clear it writes code; if information is missing it emits a structured clarification block, which the UI turns into a form with candidate pages; if the input is not a test case at all it just replies. I tried a keyword router first and measured that 31 of 35 common action words appeared in none of the vocabularies. The clarifier module shrank by a quarter when it stopped deciding and started parsing the model's decision.</p>
 
 <p>After the call, four rewrites run with no model involved, because each has exactly one right answer: a missing <code>(Clone)</code> suffix on a runtime node, a dialog placed in the wrong UI layer, a command sent down the wrong channel, a click written as a coordinate tap. These have to run <em>after</em> the gap assessment, because the AST rewrite erases comments, including the TODO markers the model leaves where the blueprint had no control for it. I learned that ordering the slow way.</p>
 
@@ -168,7 +168,7 @@
 <div class="forge" id="audit"><noscript>This widget needs JavaScript.</noscript></div>
 <p class="figcap">Six of the rules, rebuilt for this page. Paste your own test script, or edit the samples. The production auditor has eighteen rules and knows the game's real control names and scene ids; this one only knows the patterns.</p>
 
-<p>The most humbling finding: the HUD-toolbar false pass was caused by <em>our own prompt</em>. A rule I had written told the model to confirm arrival in a scene by checking the toolbar. In one 54-case batch, 17 scripts carried that exact false pass. The audit caught what the prompt had taught. The rules themselves have pitfalls too. Counting assertions is not a strength measure. A performance-test exemption has to match a real function call with a parenthesis, not a keyword, or a docstring mentioning "performance" switches off the whole audit. And a P0 should prefer to miss than to misfire, because a false P0 sends a correct script back for rework.</p>
+<p>The most humbling finding: the HUD-toolbar false pass was caused by <em>my own prompt</em>. A rule I had written told the model to confirm arrival in a scene by checking the toolbar. In one 54-case batch, 17 scripts carried that exact false pass. The audit caught what the prompt had taught. The rules themselves have pitfalls too. Counting assertions is not a strength measure. A performance-test exemption has to match a real function call with a parenthesis, not a keyword, or a docstring mentioning "performance" switches off the whole audit. And a P0 should prefer to miss than to misfire, because a false P0 sends a correct script back for rework.</p>
 
 <h2>Measuring honestly</h2>
 
@@ -212,7 +212,7 @@
   <p class="bye">Come say hi~</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="../assets/js/audit.js?v=cb7cd811"></script>
-<script src="../assets/js/site.js?v=cb7cd811"></script>
+<script src="../assets/js/audit.js?v=baf12a08"></script>
+<script src="../assets/js/site.js?v=baf12a08"></script>
 </body>
 </html>

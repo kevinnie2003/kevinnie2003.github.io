@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content="tools/build.py" />
 <title>一个物体的四个视图 | 小鸭鸭</title>
-<meta name="description" content="用多 Agent 循环生成同一物体的正、背、左、右四个视图：为什么评审要单独一个 Agent，什么时候只重做一个视图、什么时候四个全部重来，以及动态阈值如何让循环不会没完没了。" />
+<meta name="description" content="用多 Agent 循环生成同一个物体的正、背、左、右四个视图：评审为什么要单独一个 Agent，什么时候只重做一张、什么时候四张全部重来，还有动态阈值怎么让循环及时停下。" />
 <link rel="canonical" href="https://kevinnie2003.github.io/writing/four-views-one-object.zh.html" />
 <link rel="alternate" hreflang="zh-CN" href="https://kevinnie2003.github.io/writing/four-views-one-object.zh.html" />
 <link rel="alternate" hreflang="en" href="https://kevinnie2003.github.io/writing/four-views-one-object.html" />
@@ -16,7 +16,7 @@
 <link rel="alternate" type="application/rss+xml" title="小鸭鸭的文章" href="https://kevinnie2003.github.io/feed.zh.xml" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="一个物体的四个视图" />
-<meta property="og:description" content="一个能自我纠错的多 Agent 图像生成循环，以及让它保持诚实的几条规则。" />
+<meta property="og:description" content="一个能自己纠错的多 Agent 图像生成循环，以及不让它放过坏结果的几条规则。" />
 <meta property="og:url" content="https://kevinnie2003.github.io/writing/four-views-one-object.zh.html" />
 <meta property="og:image" content="https://kevinnie2003.github.io/assets/img/og/four-views-one-object.jpg" />
 <meta property="og:image:width" content="1200" />
@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/four-views-one-object.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=cb7cd811" />
-<link rel="stylesheet" href="../assets/css/site.css?v=cb7cd811" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=baf12a08" />
+<link rel="stylesheet" href="../assets/css/site.css?v=baf12a08" />
 </head>
 <body>
 <a class="skip" href="#content">跳到正文</a>
@@ -44,32 +44,32 @@
   <header class="post-head">
     <p class="meta"><time datetime="2026-04-20">2026 年 4 月 20 日</time>　阅读约 4 分钟</p>
     <h1>一个物体的四个视图</h1>
-    <p class="lede">在 Vicino AI，我做了一个系统：输入一张参考图，输出同一物体的正、背、左、右四个视图，供下游做 3D 重建。生成这一步反倒最没意思。有意思的是另外三件事：谁来判好坏，不合格时重做哪部分，以及什么时候该停。</p>
+    <p class="lede">在 Vicino AI，我做了一个系统：输入一张参考图，输出同一物体的正、背、左、右四个视图，供下游做 3D 重建。生成这一步反倒最没意思，有意思的是另外三件事：谁来判断好坏，不合格时重做哪部分，什么时候该停。</p>
   </header>
   <div class="prose">
-<p class="aside">本文讲的是我在一家创业公司做机器学习工程师时的工作。模型名称、提示词和产品内部细节都略去了，数字来自我们当时自己的评测。</p>
+<p class="aside">本文讲的是我在一家创业公司做机器学习工程师时的工作。模型名称、提示词和产品内部细节都略去了，数字来自我当时自己做的评测。</p>
 
-<p>需求听起来很简单。用户上传一张物体的图，可能是一把椅子、一只怪兽或一个角色，要求生成四个标准视图，好让重建管线据此建出网格。任何一个能力不错的图像模型，都能生成四张好看的图。问题在于，「好看」不是需求。需求是四张图画的必须是<em>同一个物体</em>：比例相同，颜色相同，装饰相同；左视图要是右视图的镜像；背视图要保持正视图确立的身份特征。四次独立生成几乎永远做不到这一点，你得到的是四个长得像的表兄弟。</p>
+<p>需求听起来很简单。用户上传一张物体的图，可能是一把椅子、一只怪兽或一个角色，系统要生成四个标准视图，让重建管线据此建出网格。随便一个不错的图像模型，都能画出四张好看的图，可需求不是好看，而是四张图画的必须是<em>同一个物体</em>：比例、颜色、装饰都一样；左视图和右视图要互为镜像；背视图要保留正视图里的外观特征。四张图分开生成，几乎不可能做到这一点，结果往往是四个长得差不多、细节却对不上的东西。</p>
 
 <h2>为什么评审要单独一个 Agent</h2>
 
-<p>系统是一个 ReAct 循环，串起八个专用 Agent：需求理解、逐视图的提示词优化、生成、单图评估、跨视图评估、定向编辑、外部检索，以及一个决定下一步做什么的控制器。其中最关键的拆分，是把生成者和评审者分开。</p>
+<p>系统是一个 ReAct 循环，串起了八个专用 Agent：需求理解、给每个视图优化提示词、生成、单图评估、跨视图评估、定向编辑、外部检索，还有一个决定下一步做什么的控制器。其中最关键的一点，是把生成和评审分开。</p>
 
-<p>让模型先生成、再给自己的作品打分，它会对自己很宽容。生成者的任务是尽力去做；评审者的任务是找问题，而它在从没见过生成提示词、只看得到原始需求和四张全分辨率结果并排摆在一起时，找得最好。它先给每张视图打分：是否符合提示词、画面质量、朝向是否正确、主体是否完整没被裁掉。再给整组打分：几何与身份是否一致，颜色与装饰是否一致，比例是否对齐，用户要求的每一处修改是否在每张视图里都体现了。输出是结构化的：总分、每张视图的问题及严重程度、需要重新生成的视图列表，以及修改建议。</p>
+<p>让同一个模型先生成、再给自己打分，它会对自己很宽容。生成的一方只管尽力画好；评审的一方专门找问题。评审最好别看到生成用的提示词，只看原始需求，再把四张全分辨率的结果并排放在一起看，这样问题找得最准。它先给每张图单独打分：符不符合提示词、画面质量、朝向对不对、主体有没有被裁掉。再给整组打分：形状和外观特征是否一致，颜色和装饰是否一致，比例是否对得上，用户要求的每一处修改是不是在每张图里都改到了。输出是结构化的：总分、每张图的问题和严重程度、需要重画的视图，还有修改建议。</p>
 
-<p>循环出过几次错之后，我加了一条规则：评审的输出如果解析不了，算失败，而不是算通过。第一版在解析出错时默认「没问题」，悄悄放过了好几组不合格的结果。</p>
+<p>循环出过几次错以后，我加了一条规则：评审的输出解析不了，就算不通过。第一版在解析出错时默认「没问题」，悄悄放过了好几组不合格的结果。</p>
 
-<h2>只重做一个视图，而不是四个</h2>
+<h2>只重做出问题的那张</h2>
 
-<p>最朴素的重试策略是：评审不满意，就整组重新生成。这样不仅贵，更糟的是会扔掉已经正确的视图，换上未必正确的新图。所以这个循环只做局部修复：</p>
+<p>最简单的重试办法是：评审不满意，就整组重画。这样不光贵，还会把已经画对的图扔掉，换上不一定对的新图。所以这个循环只做局部修复：</p>
 
 <ul>
-  <li>一张侧视图不合格：只重新生成那一张，以正视图和合格的另一侧作为参考。</li>
-  <li>几张视图不合格：只重新生成被标记的那几张。</li>
-  <li>正视图不合格：整组重建。正视图是其他视图继承身份特征的参考，坏掉的正视图无法绕过去修补，它会一路传染下去。</li>
+  <li>一张侧视图不合格：只重画那一张，拿正视图和合格的另一侧当参考。</li>
+  <li>几张视图不合格：只重画被标出来的那几张。</li>
+  <li>正视图不合格：整组重来。其他视图都照着正视图画，正视图错了，别的图跟着错，没法绕过它单独修。</li>
 </ul>
 
-<p>这跟卡牌数值稍微超一点就往回调、而不是直接扔掉，是一个道理：哪里错了只修哪里。依赖结构让这件事行得通。先生成正视图，它成为锚点。左右视图对照正视图生成，并明确要求两者画的是相对的两侧；如果是角色或动物，四肢姿态也要互为镜像。背视图继承正视图。当评审标记左视图有问题时，控制器清楚地知道该把哪些参考图交给生成者去重做。</p>
+<p>这和卡牌数值稍微超一点就往回调、不直接扔掉，是一个道理：哪里错了就只修哪里。能这样做，是因为各个视图之间有明确的依赖关系：先生成正视图，把它当作锚点；左右视图照着正视图生成，并且明确要求两张画的是相对的两侧，如果是角色或动物，四肢的姿势也要互为镜像；背视图也照着正视图来。所以评审说左视图有问题时，控制器很清楚该把哪几张参考图交给生成的一方去重画。</p>
 
 <div class="figure" role="img" aria-label="循环：理解需求，生成正视图，对照正视图生成另外三个视图，四张一起评估，然后结束、重新生成被标记的视图、整组重建，或回退到最好的版本。">
   <svg class="dg" viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
@@ -91,20 +91,20 @@
 
 <h2>什么时候该停</h2>
 
-<p>一个随时可以再试一次的循环，就会一直再试下去。所以同时设了三道上限，先碰到哪道就在哪停：质量阈值、最大迭代轮数（四轮），以及用户的订阅额度。额度在开始时预留、结束时结算，失控的循环也不会超支。碰到上限不等于失败。每一组候选都带着分数存成版本，控制器返回见过的最好版本；如果后面某一轮反而变差，也能回退过去。</p>
+<p>循环只要还能再试，就会一直试下去。所以我设了三道上限，碰到哪一道就停：质量阈值、最多迭代轮数（四轮）和用户的订阅额度。额度在开始时先预留、结束时再结算，就算循环失控也不会超支。碰到上限也不算失败：每一组结果都连同分数存成一个版本，控制器最后返回分数最高的那一版；后面哪一轮反而变差了，也能退回去。</p>
 
-<p>质量阈值是动态的，这是最微妙的部分。只有两个约束的请求（「一把红色的椅子」）和有九个约束的请求（「一把红色天鹅绒扶手椅，铜钉装饰，左边坐垫破了，上面睡着一只猫」），不应该用同一条「完全满足所有条件」的标准来衡量。需求理解 Agent 提取出的约束越多，阈值就在一定范围内放得越宽。没有这一点，复杂请求会一路跑满四轮，最后照样返回一个差一点点的结果；有了它，它们会更早停在那个差一点点的结果上，省下最后两轮的花费。</p>
+<p>质量阈值是动态的，这是最需要拿捏的地方。只有两个条件的请求（「一把红色的椅子」）和有九个条件的请求（「一把红色天鹅绒扶手椅，铜钉装饰，左边坐垫破了，上面睡着一只猫」），不该用同一条「全部满足」的标准来衡量。需求理解 Agent 提取出的条件越多，阈值就在一定范围内放得越宽。不这样做的话，复杂请求会一路跑满四轮，最后照样只拿到一个差一点点的结果；这样做了，它们会更早停在这个差一点点的结果上，省下最后两轮的钱。</p>
 
-<div class="aside"><b>结果。</b>超过 90% 的请求在两轮迭代内收敛到评审认可的输出。剩下的大多是真正难的主体跑满了轮数上限，比如严重不对称的物体，「左右镜像」根本没有干净的答案，最后交付的是最好的那一版。</div>
+<div class="aside"><b>结果。</b>超过 90% 的请求在两轮以内就得到了评审认可的结果。剩下的大多是确实难画的东西，比如严重不对称的物体，根本谈不上「左右镜像」，这些会跑满轮数，最后交出最好的那一版。</div>
 
 <h2>这个循环的代价</h2>
 
-<p>拆成多个 Agent 是有代价的：更多 token，更高延迟，步骤之间要传递更多状态，出了问题也更难说清该怪哪个 Agent。这个代价值得付，有两个原因。局部重生成让一次重试的成本降到整组的大约四分之一。而每一步的想法、动作、观察和版本都留有可重放的记录，失败变得可以调试：用户反馈结果不好时，我可以重放那次运行，找到放过它的那一次评审调用。</p>
+<p>拆成多个 Agent 是有代价的：token 更多，延迟更高，步骤之间要传的状态更多，出了问题也更难说清该怪哪个 Agent。但我觉得值得，原因有两个。一是只重画出问题的那张，一次重试的成本大约只有整组重画的四分之一。二是每一步的想法、动作、观察结果和版本都有记录，可以重放，出了问题能查：用户反馈结果不好时，我可以把那次运行重放一遍，找到是哪一次评审放过了它。</p>
 
-<p>这个项目我最大的收获不是哪个 Agent，而是这个循环的样子，后来在一个完全不同的问题上又用上了：先生成；让不是生成者的人来判；哪里错了只修哪里；每一版都存下来；停下来时要说得出为什么。负责生成的那个，反倒是最不重要的一环。</p>
+<p>这个项目给我最大的收获不是某个 Agent，而是这个循环的结构，后来我在一个完全不同的问题上又用上了它：先生成；让生成者以外的一方来评；哪里错了只修哪里；每一版都存下来；停下来时要说得出为什么。生成本身反倒是最不重要的一环。</p>
   </div>
   <footer class="post-foot">
-    <p>同样的循环形状，把评审换成确定性校验器，见<a href="vibes-with-extra-steps.zh.html">《这卡超模了吗》</a>；把评审换成真机，见<a href="knowing-what-the-button-is-called.zh.html">《知道那个按钮叫什么》</a>。</p>
+    <p>同样的循环，把评审换成确定性的校验器，可以看<a href="vibes-with-extra-steps.zh.html">《这卡超模了吗》</a>；把评审换成真机，可以看<a href="knowing-what-the-button-is-called.zh.html">《知道那个按钮叫什么》</a>。</p>
     <h2 class="shelf-head" style="margin-top:1.6rem">再看看</h2>
     <nav class="more"><a class="panel" href="knowing-what-the-button-is-called.zh.html"><img src="../assets/img/covers/knowing-what-the-button-is-called.webp" alt="" loading="lazy" /><div><span>No.03　2026.9</span><b>知道那个按钮叫什么</b></div></a><a class="panel" href="vibes-with-extra-steps.zh.html"><img src="../assets/img/covers/vibes-with-extra-steps.webp" alt="" loading="lazy" /><div><span>No.02　2026.6</span><b>这卡超模了吗</b></div></a></nav>
   </footer>
@@ -114,6 +114,6 @@
   <p class="bye">欢迎扩列～</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">邮箱</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">小黑盒</a><a href="https://space.bilibili.com/167880864">B 站</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="../assets/js/site.js?v=cb7cd811"></script>
+<script src="../assets/js/site.js?v=baf12a08"></script>
 </body>
 </html>

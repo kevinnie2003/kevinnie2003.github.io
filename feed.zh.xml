@@ -11,28 +11,28 @@
     <link>https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html</link>
     <guid>https://kevinnie2003.github.io/writing/two-weeks-seventy-releases.zh.html</guid>
     <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
-    <description>和 Claude Code 一起，两周给《活侠传》做了一个 3.6 万行的 Mod。谁测谁写，没有源码怎么摸清一个游戏，存档为什么靠重放，哪些功能干脆不做，AI 为什么得先查资料再开口，还有上线后海外玩家给我上的几课。</description>
+    <description>和 Claude Code 一起，两周给《活侠传》做了一个 3.6 万行的 Mod。谁测谁写，没有源码怎么摸清一个游戏，存档为什么靠重放，哪些功能干脆不做，AI 为什么得先查资料再开口，还有上线后从玩家反馈里学到的东西。</description>
   </item>
   <item>
     <title>知道那个按钮叫什么</title>
     <link>https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.zh.html</link>
     <guid>https://kevinnie2003.github.io/writing/knowing-what-the-button-is-called.zh.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-    <description>把 QA 测试用例变成真机能跑的脚本：难点为什么从来不在代码，为什么挖掘游戏源码比扫描设备更管用，以及「假通过」长什么样。</description>
+    <description>把 QA 测试用例变成真机能跑的脚本：难点为什么不在代码，为什么挖游戏源码比扫描设备更管用，还有「假通过」长什么样。</description>
   </item>
   <item>
     <title>这卡超模了吗</title>
     <link>https://kevinnie2003.github.io/writing/vibes-with-extra-steps.zh.html</link>
     <guid>https://kevinnie2003.github.io/writing/vibes-with-extra-steps.zh.html</guid>
     <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-    <description>用真实《杀戮尖塔》卡牌校准强度预算，让「这张 AI 生成的卡平衡吗」变成一个能用数字回答的问题；以及藏在这个数字背后的三个 bug。</description>
+    <description>用真实的《杀戮尖塔》卡牌校准强度预算，让「这张 AI 生成的卡平不平衡」能用数字回答，还有这个数字背后藏着的三个 bug。</description>
   </item>
   <item>
     <title>一个物体的四个视图</title>
     <link>https://kevinnie2003.github.io/writing/four-views-one-object.zh.html</link>
     <guid>https://kevinnie2003.github.io/writing/four-views-one-object.zh.html</guid>
     <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-    <description>用多 Agent 循环生成同一物体的正、背、左、右四个视图：为什么评审要单独一个 Agent，什么时候只重做一个视图、什么时候四个全部重来，以及动态阈值如何让循环不会没完没了。</description>
+    <description>用多 Agent 循环生成同一个物体的正、背、左、右四个视图：评审为什么要单独一个 Agent，什么时候只重做一张、什么时候四张全部重来，还有动态阈值怎么让循环及时停下。</description>
   </item>
 </channel>
 </rss>
