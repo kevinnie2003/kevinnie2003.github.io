@@ -101,20 +101,20 @@ feed_description = "聂明轩（Kevin Nie）写的文章：做 AI Agent、游戏
 [[zh.creator]]
 link = "steam_reviews"
 label = "Steam 评测"
-value = "295 篇"
+value = "300+ 篇"
 note = "鉴赏家写手"
 
 [[zh.creator]]
 link = "xiaoheihe"
 label = "小黑盒"
 value = "2,300+ 粉丝"
-note = "累计 183 万次浏览"
+note = "150+ 篇文章"
 
 [[zh.creator]]
 link = "bilibili"
 label = "B 站"
 value = "1,000+ 粉丝"
-note = "发了 200 多个视频"
+note = "150+ 个视频"
 
 [zh.footer]
 email = "邮箱"
@@ -209,20 +209,20 @@ feed_description = "Kevin Nie on building AI agents, game mods and game test aut
 [[en.creator]]
 link = "steam_reviews"
 label = "Steam reviews"
-value = "295"
+value = "300+"
 note = "writer for a Steam curator"
 
 [[en.creator]]
 link = "xiaoheihe"
 label = "Xiaoheihe"
 value = "2,300+ followers"
-note = "1.83M views"
+note = "150+ articles"
 
 [[en.creator]]
 link = "bilibili"
 label = "Bilibili"
 value = "1,000+ followers"
-note = "200+ videos"
+note = "150+ videos"
 
 [en.footer]
 email = "Email"
