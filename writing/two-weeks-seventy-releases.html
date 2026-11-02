@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=316b3d75" />
-<link rel="stylesheet" href="../assets/css/site.css?v=316b3d75" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=4d19379f" />
+<link rel="stylesheet" href="../assets/css/site.css?v=4d19379f" />
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -42,7 +42,7 @@
 <main class="post" id="content">
   <div class="post-cover"><img src="../assets/img/covers/two-weeks-seventy-releases.webp" alt="" /></div>
   <header class="post-head">
-    <p class="meta"><time datetime="2026-10-26">October 26, 2026</time>　16 min read</p>
+    <p class="meta"><time datetime="2026-10-26">October 26, 2026</time>　18 min read</p>
     <h1>Two weeks, seventy releases</h1>
     <p class="lede">In mid-October I started modding <em>Legend of Mortal</em>, a Chinese wuxia life-sim RPG built in Unity, beginning from a small open-source helper mod. Two weeks later it was a 36,000-line mod called Coffee Companion, with seventy releases. It draws the whole story as a route map and each quest as a flowchart, saves anywhere and replays from any point in the story, lets you pick dice outcomes, edits stats, affinity and story flags, and has an AI companion that reads the game's scripts before it answers. Almost none of the hard parts were the code. They were deciding what to build, what to refuse, and how to work with a collaborator that writes code much faster than I can check it.</p>
   </header>
@@ -144,6 +144,18 @@
 
 <p><b>Measure the text you actually draw.</b> Tabs, version labels, titles and the suggested-question buttons were sized by measuring the Chinese source string, then drawn in English, so the English interface overflowed and got clipped. They now measure the translated string that will actually be shown, and the title and persona bars tighten their spacing when space runs short.</p>
 
+<p><b>Diagnostic bundles.</b> Both the installer and the in-game ESC menu can export diagnostics: the mod log, the BepInEx log, the game log, the config, the plugin list, and the game and system versions, packed into one zip. A player sends me that file, and I can look into the problem without touching their computer.</p>
+
+<p>For one player, the mod loaded when the game was started by double-clicking <code>Mortal.exe</code>, but not when it was launched from Steam, and antivirus and file verification were both clean. The loader, Doorstop, sets an environment variable, <code>DOORSTOP_DISABLE</code>, inside the game process. If Steam was started by a modded game, <code>steam.exe</code> inherits that variable, and every game Steam launches after that quietly skips the loader. Setting <code>ignore_disable_switch</code> to <code>true</code> in the loader's config fixed it, and the installer now does that for existing installs too. Since then the installer's diagnostics include a loader check: which proxy DLLs the game actually loaded, which program started it, and the command line. A later error on an old version of the game was found through a diagnostic bundle as well: one field used a type that only exists in newer versions, so the whole class failed to load and the same error showed up in the log more than a thousand times.</p>
+
+<h2>Not just me anymore</h2>
+
+<p>A lot of the Korean localization was reworked together with Korean-speaking players. Untranslated strings in the Korean interface, character names, condition descriptions and terminology were all checked together, and Korean-speaking players send pull requests with the fixes themselves.</p>
+
+<p>Many other players have opened pull requests on their own, adding features they wanted or improving existing ones. One built a floating memo window: you set a goal such as "meet this condition before a given year, month and ten-day turn in the game", for example a technique's training progress, an item, or someone's affinity, and the window shows the progress live and alerts you when the goal is met, when it slips back, or when the deadline is close. Another proposed choosing a branch before a check: when the story reaches a condition on stats, affinity or flags, it stops and lists each branch's condition, the current value, which part of the story it leads to and whether you have read that dialogue, and you pick the branch to take. Someone else reorganized the trigger conditions and links in the story map.</p>
+
+<p>I usually merge these pull requests first and follow up myself. After merging I check whether the result matches what the game itself shows, whether it slows down the life-sim map, whether all five languages are filled in, and whether its style matches the other small windows. If something is off, I add another commit.</p>
+
 <h2>Working with an AI pair</h2>
 
 <p>A few things I would tell anyone starting a project like this:</p>
@@ -156,7 +168,7 @@
   <li><b>Read the data first.</b> Logs, saves and traces settled more arguments than any amount of reasoning about what might be happening.</li>
 </ul>
 
-<p>The mod now has more than 100 stars and 22,000 downloads, in five interface languages. What I am proudest of is how few of those seventy releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
+<p>By now the mod has had 78 releases (the latest is 3.4.0) and 466 commits, with more than 100 stars on GitHub and about 30,000 downloads across all channels, in five interface languages. What I am proudest of is how few of those releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
   </div>
   <footer class="post-foot">
     <p>The idea of grounding a model in mined game data before letting it act also drives <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>. Validating what a model produces before a player sees it is the subject of <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>
@@ -169,7 +181,7 @@
   <p class="bye">Come say hi~</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="../assets/js/site.js?v=316b3d75"></script>
+<script src="../assets/js/site.js?v=4d19379f"></script>
 <script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

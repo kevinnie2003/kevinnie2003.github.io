@@ -104,6 +104,18 @@ lede: In mid-October I started modding <em>Legend of Mortal</em>, a Chinese wuxi
 
 <p><b>Measure the text you actually draw.</b> Tabs, version labels, titles and the suggested-question buttons were sized by measuring the Chinese source string, then drawn in English, so the English interface overflowed and got clipped. They now measure the translated string that will actually be shown, and the title and persona bars tighten their spacing when space runs short.</p>
 
+<p><b>Diagnostic bundles.</b> Both the installer and the in-game ESC menu can export diagnostics: the mod log, the BepInEx log, the game log, the config, the plugin list, and the game and system versions, packed into one zip. A player sends me that file, and I can look into the problem without touching their computer.</p>
+
+<p>For one player, the mod loaded when the game was started by double-clicking <code>Mortal.exe</code>, but not when it was launched from Steam, and antivirus and file verification were both clean. The loader, Doorstop, sets an environment variable, <code>DOORSTOP_DISABLE</code>, inside the game process. If Steam was started by a modded game, <code>steam.exe</code> inherits that variable, and every game Steam launches after that quietly skips the loader. Setting <code>ignore_disable_switch</code> to <code>true</code> in the loader's config fixed it, and the installer now does that for existing installs too. Since then the installer's diagnostics include a loader check: which proxy DLLs the game actually loaded, which program started it, and the command line. A later error on an old version of the game was found through a diagnostic bundle as well: one field used a type that only exists in newer versions, so the whole class failed to load and the same error showed up in the log more than a thousand times.</p>
+
+<h2>Not just me anymore</h2>
+
+<p>A lot of the Korean localization was reworked together with Korean-speaking players. Untranslated strings in the Korean interface, character names, condition descriptions and terminology were all checked together, and Korean-speaking players send pull requests with the fixes themselves.</p>
+
+<p>Many other players have opened pull requests on their own, adding features they wanted or improving existing ones. One built a floating memo window: you set a goal such as "meet this condition before a given year, month and ten-day turn in the game", for example a technique's training progress, an item, or someone's affinity, and the window shows the progress live and alerts you when the goal is met, when it slips back, or when the deadline is close. Another proposed choosing a branch before a check: when the story reaches a condition on stats, affinity or flags, it stops and lists each branch's condition, the current value, which part of the story it leads to and whether you have read that dialogue, and you pick the branch to take. Someone else reorganized the trigger conditions and links in the story map.</p>
+
+<p>I usually merge these pull requests first and follow up myself. After merging I check whether the result matches what the game itself shows, whether it slows down the life-sim map, whether all five languages are filled in, and whether its style matches the other small windows. If something is off, I add another commit.</p>
+
 <h2>Working with an AI pair</h2>
 
 <p>A few things I would tell anyone starting a project like this:</p>
@@ -116,7 +128,7 @@ lede: In mid-October I started modding <em>Legend of Mortal</em>, a Chinese wuxi
   <li><b>Read the data first.</b> Logs, saves and traces settled more arguments than any amount of reasoning about what might be happening.</li>
 </ul>
 
-<p>The mod now has more than 100 stars and 22,000 downloads, in five interface languages. What I am proudest of is how few of those seventy releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
+<p>By now the mod has had 78 releases (the latest is 3.4.0) and 466 commits, with more than 100 stars on GitHub and about 30,000 downloads across all channels, in five interface languages. What I am proudest of is how few of those releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
 
 <!-- foot -->
 <p>The idea of grounding a model in mined game data before letting it act also drives <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>. Validating what a model produces before a player sees it is the subject of <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>

@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=316b3d75" />
-<link rel="stylesheet" href="../assets/css/site.css?v=316b3d75" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=4d19379f" />
+<link rel="stylesheet" href="../assets/css/site.css?v=4d19379f" />
 </head>
 <body>
 <a class="skip" href="#content">跳到正文</a>
@@ -42,7 +42,7 @@
 <main class="post" id="content">
   <div class="post-cover"><img src="../assets/img/covers/two-weeks-seventy-releases.webp" alt="" /></div>
   <header class="post-head">
-    <p class="meta"><time datetime="2026-10-26">2026 年 10 月 26 日</time>　阅读约 14 分钟</p>
+    <p class="meta"><time datetime="2026-10-26">2026 年 10 月 26 日</time>　阅读约 16 分钟</p>
     <h1>两周，七十个版本</h1>
     <p class="lede">十月中旬，我开始给《活侠传》做 Mod。这是一款 Unity 做的武侠养成 RPG，我是在别人开源的一个小助手 Mod 上起步的。两周后，它长成了一个 3.6 万行的 Mod，叫「咖啡伴侣」，发了七十个版本。它有整条剧情的路线图和每个任务的流程图，能随时存档、从任意一段剧情重玩，掷骰能自己挑结果，数值、好感、旗标都能直接改，还有一个会先翻剧本再回答的 AI 陪玩。回头看，最难的几乎都不是写代码，而是决定做什么、不做什么，以及怎么跟一个写代码比我检查还快的搭档配合。</p>
   </header>
@@ -144,6 +144,18 @@
 
 <p><b>按真正显示的字来算宽度。</b>页签、版本号、标题和「可以这样问」那几个按钮，原来都是按中文原文算宽度的，可实际显示的是英文，所以英文界面老是太长、被截掉。现在改成按实际显示的译文来算，标题栏和人设栏放不下时，也会自动把间距收紧一点。</p>
 
+<p><b>诊断包。</b>安装器和游戏里的 ESC 菜单都能「导出诊断」，把 Mod 日志、BepInEx 日志、游戏日志、配置、插件列表，以及游戏和系统的版本打成一个压缩包。玩家发来这个包，我不用碰对方的电脑就能查。</p>
+
+<p>有玩家遇到过这样的情况：双击 <code>Mortal.exe</code> 时 Mod 能加载，从 Steam 启动就不加载，杀毒软件和文件校验都正常。原因是加载器 Doorstop 会在游戏进程里设一个环境变量 <code>DOORSTOP_DISABLE</code>。如果 Steam 是被装了 Mod 的游戏拉起来的，<code>steam.exe</code> 就会继承这个变量，之后 Steam 启动的每个游戏都会悄悄跳过加载器。把加载器配置里的 <code>ignore_disable_switch</code> 改成 <code>true</code> 就修好了，安装器也会顺手改好已经装上的。从那以后，安装器的诊断里多了一项「加载器排查」，会列出游戏载入了哪些代理 DLL、是由哪个程序启动的、命令行是什么。后来旧版游戏上的报错也是靠诊断包查到的：一个字段用了新版游戏才有的类型，整个类都加载不了，同一条报错在日志里刷了一千多次。</p>
+
+<h2>不再是一个人做</h2>
+
+<p>我和韩语玩家一起改了很多本地化的内容：韩语界面里漏翻的地方、人物名、条件说明和术语，都是一起校对的，韩语玩家会直接提 PR 来改。</p>
+
+<p>也有不少玩家自己提 PR，加上自己想要的功能，或者改进现有的功能。有人做了备忘录悬浮窗：定一个「在游戏里某年某月某旬之前达成某个条件」的目标，比如某门功法的修炼进度、某件物品、某个人的好感，悬浮窗会实时显示进度，达成、回落或者快到期的时候都会提醒。有人提了「判定前选分支」：剧情走到属性、好感、旗标这类条件判断时先停下来，列出每一支的条件、当前值、接到哪段剧情、对白看过没有，玩家选一支就走那一支。还有人整理了剧情图里的触发条件和连线。</p>
+
+<p>这些 PR 我一般先合并，再自己跟进修改。合并以后我会检查几件事：和游戏自己的显示对不对得上，在养成地图上会不会卡，五种语言有没有补齐，样式和其他小窗是否统一。有问题就再补一个提交。</p>
+
 <h2>和 AI 搭档，我的几点体会</h2>
 
 <p>如果你也打算做类似的项目，这几条或许用得上：</p>
@@ -156,7 +168,7 @@
   <li><b>先看数据。</b>遇到问题先看日志、存档和调试记录，比凭「可能是这样吧」去猜靠谱得多。</li>
 </ul>
 
-<p>这个 Mod 现在有 100 多个 star，2.2 万次下载，界面支持五种语言。我最得意的是，这七十个版本里，因为上一版出错而不得不补发的其实很少。快是因为有模型帮忙写；快了还不乱，靠的是这套流程：我自己在游戏里测，几件事一定等我点头，每条修改意见都记下来，不用说第二遍。</p>
+<p>到现在，这个 Mod 一共发了 78 个版本（最新是 3.4.0），提交了 466 次，GitHub 上有 100 多个 star，各渠道的下载加起来约 3 万次，界面支持五种语言。我最得意的是，这些版本里，因为上一版出错而不得不补发的其实很少。快是因为有模型帮忙写；快了还不乱，靠的是这套流程：我自己在游戏里测，几件事一定等我点头，每条修改意见都记下来，不用说第二遍。</p>
   </div>
   <footer class="post-foot">
     <p>先从游戏里挖出数据，交给模型当依据，再让它动手，这个思路在<a href="knowing-what-the-button-is-called.zh.html">《知道那个按钮叫什么》</a>里也是核心。在玩家看到之前先把模型的产出检查一遍，可以看<a href="vibes-with-extra-steps.zh.html">《这卡超模了吗》</a>。</p>
@@ -169,7 +181,7 @@
   <p class="bye">欢迎扩列～</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">邮箱</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">小黑盒</a><a href="https://space.bilibili.com/167880864">B 站</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="../assets/js/site.js?v=316b3d75"></script>
+<script src="../assets/js/site.js?v=4d19379f"></script>
 <script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
