@@ -1,40 +1,39 @@
 # 游戏柜和番剧。分数和中文短评从 Bangumi 拉（python tools/update-games.py），
 # 封面也由那个脚本下载到 assets/img/games/ 和 assets/img/anime/。
 # 只放 9 分以上的；8 分的只有在有特别意义时才放（写在 badge 里）。
-# hours 是 Steam 时长，没有就不写。quote_en 是满分那排和番剧的英文短评，手写；
-# 写了 quote_zh 就用它，不再用 Bangumi 短评的第一句。
+# 每一排按我在 Bangumi 上打分的时间排，先打分的在前，所以这里的先后顺序不影响显示。
+# 2023 年 4 月以前玩的（加入 Bangumi 时一次补的分）排在最前，按发售时间；想自己定先后就写
+# backlog = 1、2、3……，后来才打分的也能用它挪进这一组。
+# hours 是游戏时长，Steam 上玩的按 Steam，别的平台玩的手填，没有就不写。短评显示在封面下面，游戏只有 10 分的有，番剧每部都有：中文默认取
+# Bangumi 短评的第一句，写了 quote_zh 就用它；quote_en 是英文短评，手写。
 
 [steam]
-hours = "4,510"
-achievements = "5,072"
+hours = "4,628"
+achievements = "5,078"
 level = "Lv.90"
 
 [badges]
 all = { zh = "全成就", en = "100% achievements" }
-sts1 = { zh = "战士、观者 A20", en = "Ironclad & Watcher A20" }
 sts2 = { zh = "全角色 A10", en = "All characters A10" }
-mod = { zh = "在给它做 Mod", en = "Modding it now" }
 first = { zh = "入坑作", en = "My first VN" }
-most = { zh = "玩得最久", en = "Most played" }
-kodaka = { zh = "拿到小高签名", en = "Signed by Kodaka" }
 
 [[shelf]]
 id = "top"
 zh = "满分"
 en = "Perfect 10s"
 games = [
-  { bgm = 278949, steam = 1687950, zh = "女神异闻录 5 皇家版", en = "Persona 5 Royal", hours = 73.8, badge = "all", quote_en = "P5R is number one. Period." },
+  { bgm = 278949, steam = 1687950, zh = "女神异闻录 5 皇家版", en = "Persona 5 Royal", hours = 73.8, backlog = 1, badge = "all", quote_en = "P5R is number one. Period." },
   { bgm = 203681, steam = 2679460, zh = "暗喻幻想", en = "Metaphor: ReFantazio", hours = 58.5, badge = "all", quote_en = "Of course my favorite game came from the Atlus trio!" },
-  { bgm = 22660, steam = 1113000, zh = "女神异闻录 4 黄金版", en = "Persona 4 Golden", hours = 42.4, quote_zh = "黄金般的友情与羁绊", quote_en = "Golden friendships and bonds." },
-  { bgm = 401184, steam = 1971650, zh = "歧路旅人 II", en = "Octopath Traveler II", hours = 64.2, badge = "all", quote_en = "My favorite game of 2023, and the most well-rounded one I know." },
+  { bgm = 22660, steam = 1113000, zh = "女神异闻录 4 黄金版", en = "Persona 4 Golden", hours = 42.4, backlog = 4, quote_zh = "黄金般的友情与羁绊！", quote_en = "Golden friendships and bonds!" },
+  { bgm = 401184, steam = 1971650, zh = "歧路旅人 II", en = "Octopath Traveler II", hours = 64.2, badge = "all", quote_zh = "八位旅人的史诗冒险，精彩的六边形游戏。", quote_en = "An epic journey with eight travelers, and a game that excels at everything." },
   { bgm = 490427, steam = 1771300, zh = "天国：拯救 2", en = "Kingdom Come: Deliverance II", hours = 115.6, quote_en = "Fortune favors the bold!" },
-  { bgm = 234026, steam = 646570, zh = "杀戮尖塔", en = "Slay the Spire", hours = 170.3, badge = "sts1", quote_en = "Slay the Spire hooked me from the very first run." },
-  { bgm = 39066, steam = 413420, zh = "超级弹丸论破 2", en = "Danganronpa 2: Goodbye Despair", hours = 20.7, quote_zh = "好想忘掉这段记忆重新打一遍啊。", quote_en = "I wish I could forget it all and play it again." },
+  { bgm = 234026, steam = 646570, zh = "杀戮尖塔", en = "Slay the Spire", hours = 170.3, backlog = 5, badge = "all", quote_zh = "太上头了，丰富的build让人根本停不下来！", quote_en = "So addictive. With this many builds to try, I just can't stop!" },
+  { bgm = 39066, steam = 413420, zh = "超级弹丸论破 2", en = "Danganronpa 2: Goodbye Despair", hours = 20.7, backlog = 2, quote_zh = "完美的悬疑推理作品，好想忘掉这段记忆重新打一遍啊。", quote_en = "A perfect mystery. I wish I could forget it all and play it again for the first time." },
   { bgm = 4022, steam = 1680000, zh = "Rewrite", en = "Rewrite", quote_en = "A bible for humankind, a hymn to the hunters who save the Earth!" },
-  { bgm = 295957, steam = 3418570, zh = "夏日口袋 Reflection Blue", en = "Summer Pockets Reflection Blue", quote_en = "I never forgot that most colorful summer." },
-  { bgm = 147713, steam = 391540, zh = "传说之下", en = "Undertale", hours = 7.7, quote_en = "A perfect indie game, handed to the world by a genius." },
+  { bgm = 295957, steam = 3418570, zh = "夏日口袋 Reflection Blue", en = "Summer Pockets Reflection Blue", backlog = 3, quote_en = "I never forgot that most colorful summer." },
+  { bgm = 147713, steam = 391540, zh = "传说之下", en = "Undertale", hours = 7.7, backlog = 6, quote_en = "A perfect indie game, handed to the world by a genius." },
   { bgm = 385912, steam = 2050650, zh = "生化危机 4 重制版", en = "Resident Evil 4", hours = 24.4, quote_en = "A blast from start to finish!" },
-  { bgm = 361699, zh = "心灵杀手 2", en = "Alan Wake 2", quote_en = "A brilliant story of two worlds, one of light and one of dark." },
+  { bgm = 361699, zh = "心灵杀手 2", en = "Alan Wake 2", hours = 26, quote_zh = "无与伦比的叙事手法，游玩这个游戏简直就是在观赏一个极佳的艺术品。", quote_en = "Storytelling like nothing else. Playing it feels like taking in a great work of art." },
 ]
 
 [[shelf]]
@@ -54,14 +53,14 @@ en = "RPG"
 games = [
   { bgm = 440141, steam = 2161700, zh = "女神异闻录 3 Reload", en = "Persona 3 Reload", hours = 69.6, badge = "all" },
   { bgm = 3230, steam = 1809700, zh = "女神异闻录 3 携带版", en = "Persona 3 Portable", hours = 40.1 },
-  { bgm = 454685, zh = "圣兽之王", en = "Unicorn Overlord", badge = "all" },
-  { bgm = 111824, steam = 638970, zh = "如龙 0", en = "Yakuza 0" },
+  { bgm = 454685, zh = "圣兽之王", en = "Unicorn Overlord", hours = 36, badge = "all" },
+  { bgm = 111824, steam = 638970, zh = "如龙 0", en = "Yakuza 0", hours = 28.7 },
   { bgm = 401332, steam = 2072450, zh = "如龙 8", en = "Like a Dragon: Infinite Wealth", hours = 36.5 },
   { bgm = 335206, steam = 2058190, zh = "审判之逝", en = "Lost Judgment", hours = 21.2 },
   { bgm = 388136, steam = 2909400, zh = "最终幻想 VII 重生", en = "Final Fantasy VII Rebirth", hours = 70.9 },
   { bgm = 65759, steam = 1091500, zh = "赛博朋克 2077", en = "Cyberpunk 2077", hours = 59.4 },
   { bgm = 405362, steam = 1718570, zh = "神之天平", en = "Astlibra Revision", hours = 28.1 },
-  { bgm = 385177, steam = 1859910, zh = "活侠传", en = "Legend of Mortal", hours = 80.7, badge = "mod" },
+  { bgm = 385177, steam = 1859910, zh = "活侠传", en = "Legend of Mortal", hours = 104.7, badge = "all" },
 ]
 
 [[shelf]]
@@ -75,8 +74,7 @@ games = [
   { bgm = 10336, steam = 413410, zh = "弹丸论破", en = "Danganronpa: Trigger Happy Havoc", hours = 15.4 },
   { bgm = 146579, steam = 567640, zh = "新弹丸论破 V3", en = "Danganronpa V3", hours = 26.8 },
   { bgm = 955, steam = 648580, zh = "428 被封锁的涩谷", en = "428: Shibuya Scramble", hours = 13.8 },
-  { bgm = 539816, steam = 2663950, zh = "再见断刀", en = "再见断刀", hours = 14.0 },
-  { bgm = 499874, steam = 3014080, zh = "百日战纪", en = "The Hundred Line", hours = 39.0, badge = "kodaka" },
+  { bgm = 539816, steam = 2663950, zh = "再见断刀", en = "再见断刀", hours = 14 },
 ]
 
 [[shelf]]
@@ -87,13 +85,19 @@ games = [
   { bgm = 13, steam = 324160, zh = "CLANNAD", en = "CLANNAD", hours = 25.6 },
   { bgm = 935, steam = 2396980, zh = "Fate/stay night", en = "Fate/stay night", hours = 46.4 },
   { bgm = 5418, steam = 2052410, zh = "魔法使之夜", en = "Witch on the Holy Night", hours = 15.9 },
-  { bgm = 172612, steam = 1144400, zh = "千恋＊万花", en = "Senren＊Banka", hours = 23.8, badge = "first" },
-  { bgm = 297264, steam = 1230140, zh = "ATRI", en = "ATRI -My Dear Moments-", hours = 5.4 },
+  { bgm = 172612, steam = 1144400, zh = "千恋＊万花", en = "Senren＊Banka", hours = 23.8, badge = "first", backlog = 1 },
+  { bgm = 297264, steam = 1230140, zh = "ATRI", en = "ATRI -My Dear Moments-", hours = 5.4, backlog = 2 },
   { bgm = 1126, zh = "Ever17", en = "Ever17" },
   { bgm = 3154, steam = 412830, zh = "命运石之门", en = "Steins;Gate", hours = 18.8 },
   { bgm = 129820, steam = 825630, zh = "命运石之门 0", en = "Steins;Gate 0", hours = 15.4 },
   { bgm = 88765, steam = 970570, zh = "混沌之子", en = "Chaos;Child" },
   { bgm = 364637, steam = 1777430, zh = "恋爱绮谭：不存在的真相", en = "恋爱绮谭：不存在的真相", hours = 8.2 },
+  { bgm = 59842, zh = "你和她和她的恋爱。", en = "Kimi to Kanojo to Kanojo no Koi." },
+  { bgm = 165894, zh = "天津罪", en = "Amatsutsumi" },
+  { bgm = 243475, steam = 2399220, zh = "拔作岛", en = "NUKITASHI", hours = 16.5 },
+  { bgm = 347780, zh = "变态监狱", en = "Hentai Prison" },
+  { bgm = 220921, zh = "樱之刻", en = "Sakura no Toki" },
+  { bgm = 345691, zh = "甜蜜女友 2+", en = "Amakano 2+" },
 ]
 
 [[shelf]]
@@ -101,33 +105,22 @@ id = "action"
 zh = "动作冒险"
 en = "Action & adventure"
 games = [
-  { bgm = 387052, steam = 1888930, zh = "最后生还者 第一部", en = "The Last of Us Part I" },
-  { bgm = 185189, steam = 1593500, zh = "战神", en = "God of War" },
+  { bgm = 387052, steam = 1888930, zh = "最后生还者 第一部", en = "The Last of Us Part I", hours = 16 },
+  { bgm = 185189, steam = 1593500, zh = "战神", en = "God of War", hours = 15 },
   { bgm = 216993, steam = 1817070, zh = "漫威蜘蛛侠", en = "Marvel's Spider-Man", hours = 22.1 },
-  { bgm = 349034, steam = 2651280, zh = "漫威蜘蛛侠 2", en = "Marvel's Spider-Man 2" },
+  { bgm = 349034, steam = 2651280, zh = "漫威蜘蛛侠 2", en = "Marvel's Spider-Man 2", hours = 16 },
   { bgm = 249380, steam = 883710, zh = "生化危机 2 重制版", en = "Resident Evil 2", hours = 7.6 },
-  { bgm = 417623, steam = 1817230, zh = "完美音浪", en = "Hi-Fi Rush" },
+  { bgm = 417623, steam = 1817230, zh = "完美音浪", en = "Hi-Fi Rush", hours = 10 },
   { bgm = 132752, steam = 368500, zh = "刺客信条：枭雄", en = "Assassin's Creed Syndicate", hours = 25.5 },
   { bgm = 248176, steam = 812140, zh = "刺客信条：奥德赛", en = "Assassin's Creed Odyssey", hours = 57.2 },
   { bgm = 215197, steam = 582160, zh = "刺客信条：起源", en = "Assassin's Creed Origins", hours = 40.5 },
-]
-
-[[shelf]]
-id = "multi"
-zh = "多人游戏"
-en = "Multiplayer"
-games = [
-  { bgm = 375866, steam = 1568590, zh = "鹅鸭杀", en = "Goose Goose Duck", hours = 350.9, badge = "most" },
-  { bgm = 184874, steam = 381210, zh = "黎明杀机", en = "Dead by Daylight", hours = 121.1 },
-  { bgm = 437490, steam = 553850, zh = "绝地潜兵 2", en = "Helldivers 2", hours = 77.1, badge = "all" },
-  { bgm = 308947, steam = 1426210, zh = "双人成行", en = "It Takes Two", hours = 15.1 },
   { bgm = 528272, steam = 2001120, zh = "双影奇境", en = "Split Fiction", hours = 12.1 },
 ]
 
 [[shelf]]
 id = "indie"
-zh = "独立游戏和童年"
-en = "Indie & childhood"
+zh = "独立游戏"
+en = "Indie"
 games = [
   { bgm = 489392, steam = 2868840, zh = "杀戮尖塔 2", en = "Slay the Spire 2", hours = 162.4, badge = "sts2" },
   { bgm = 268588, steam = 1145360, zh = "哈迪斯", en = "Hades", hours = 64.5 },
@@ -137,15 +130,13 @@ games = [
   { bgm = 105645, steam = 304430, zh = "INSIDE", en = "Inside", hours = 3.9 },
   { bgm = 29340, steam = 206440, zh = "去月球", en = "To the Moon", hours = 4.3 },
   { bgm = 12596, zh = "我的世界", en = "Minecraft" },
-  { bgm = 1859, steam = 3590, zh = "植物大战僵尸", en = "Plants vs. Zombies", hours = 1.4 },
-  { bgm = 10858, zh = "愤怒的小鸟", en = "Angry Birds" },
 ]
 
 # 番剧：Bangumi 上 9 分以上的。同一部的几季只放一张；欧美动画电影不算番剧，不放。
 [anime]
 items = [
   { bgm = 215425, zh = "中二病也要谈恋爱！Take On Me", en = "Love, Chunibyo & Other Delusions! Take On Me", quote_en = "Chunibyo or not, I still want to fall in love!" },
-  { bgm = 428735, zh = "BanG Dream! It's MyGO!!!!!", en = "BanG Dream! It's MyGO!!!!!", quote_en = "A rare original masterpiece!" },
+  { bgm = 428735, zh = "BanG Dream! It's MyGO!!!!!", en = "BanG Dream! It's MyGO!!!!!", quote_zh = "与我看过的一些乐队番不同，MyGO更沉重、更扭曲，却带给了我无法替代的真实与感动。", quote_en = "Unlike the other band anime I have watched, MyGO is heavier and more twisted, yet it gave me something real and moving that nothing else can replace." },
   { bgm = 909, zh = "龙与虎", en = "Toradora!", quote_en = "My idea of the perfect school romance. It gets the tsundere heart and the slow fall exactly right." },
   { bgm = 3375, zh = "凉宫春日的消失", en = "The Disappearance of Haruhi Suzumiya", quote_en = "Kyon's journey into himself." },
   { bgm = 1851, zh = "Angel Beats!", en = "Angel Beats!", quote_zh = "我的人生是否圆满？能不能做好开启下一段生命旅程的准备？", quote_en = "Was my life complete? Am I ready to begin the next journey of my life?" },

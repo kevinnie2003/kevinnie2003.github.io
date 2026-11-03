@@ -128,11 +128,15 @@ def main():
             raise SystemExit(f"{entry['zh']} ({entry['bgm']}) is not in my Bangumi collection")
         target = SITE / "assets" / "img" / folder / f"{entry['bgm']}.webp"
         if refresh or not target.exists():
-            url = covers.get(entry.get("steam")) or bangumi_image(entry["bgm"])
+            # Bangumi's subject API hides adult games, but my collection still carries their covers
+            url = covers.get(entry.get("steam")) or ((c.get("subject") or {}).get("images") or {}).get("large") or bangumi_image(entry["bgm"])
             save_image(url, target, COVER)
             time.sleep(0.15)
         quote = entry["quote_zh"] if "quote_zh" in entry else first_sentence(c.get("comment"))
-        data[kind][str(entry["bgm"])] = {"rate": c.get("rate"), "quote_zh": quote}
+        # "rated" is when I last updated the entry on Bangumi and "released" the release date;
+        # tools/build.py sorts the shelves with them
+        data[kind][str(entry["bgm"])] = {"rate": c.get("rate"), "quote_zh": quote, "rated": c.get("updated_at", ""),
+                                         "released": (c.get("subject") or {}).get("date") or ""}
 
     for entry in entries:
         record("games", entry, "games")

@@ -422,20 +422,39 @@ def section_posts(lang, ui, posts):
   </section>"""
 
 
-def game_card(lang, entry, info, badges, unit, quote_mode):
+# Everything I had played before joining Bangumi got rated in one go in April 2023
+BANGUMI_BACKLOG = "2023-05"
+
+
+def by_rated(entries, info):
+    """Roughly the order I played them. What I played before joining Bangumi comes first, by
+    "backlog" in games.toml where I set my own order, then by release date; everything after
+    goes by when I rated it."""
+    def when(e):
+        i = info[str(e["bgm"])]
+        rated = i.get("rated") or "9999"
+        if "backlog" in e or rated < BANGUMI_BACKLOG:
+            return (0, e.get("backlog", 999), i.get("released") or rated)
+        return (1, 0, rated)
+    return sorted(entries, key=when)
+
+
+def game_card(lang, entry, info, badges, unit, every_quote=False):
     rate = info.get("rate")
     name = entry[lang]
     score = f'<em class="score{" s10" if rate == 10 else ""}">{rate}</em>' if rate else ""
-    # A quote_zh in games.toml wins over the first sentence of my Bangumi comment
-    quote_text = entry.get("quote_zh", info.get("quote_zh", "")) if lang == "zh" else entry.get("quote_en", "")
+    # Quotes go under the cover: every anime has one, games only the 10s. A quote_zh in
+    # games.toml wins over the first sentence of my Bangumi comment
+    quote_text = ""
+    if every_quote or rate == 10:
+        quote_text = entry.get("quote_zh", info.get("quote_zh", "")) if lang == "zh" else entry.get("quote_en", "")
     parts = [f'<img src="{{folder}}/{entry["bgm"]}.webp" alt="{esc(name)}" loading="lazy" />', score, f"<b>{esc(name)}</b>"]
-    if quote_mode and quote_text:
+    if quote_text:
         parts.append(f"<q>{esc(quote_text)}</q>")
     parts.append(hours(entry.get("hours"), lang, unit))
     if entry.get("badge"):
         parts.append(f'<i>{esc(badges[entry["badge"]][lang])}</i>')
-    title = f' title="{esc(quote_text)}"' if (quote_text and not quote_mode) else ""
-    return f'          <a class="game" href="https://bgm.tv/subject/{entry["bgm"]}"{title}>' + "".join(parts) + "</a>"
+    return f'          <a class="game" href="https://bgm.tv/subject/{entry["bgm"]}">' + "".join(parts) + "</a>"
 
 
 def section_games(lang, ui, site, games, data):
@@ -450,8 +469,8 @@ def section_games(lang, ui, site, games, data):
             shelves.append(f'      <div>\n        <h3 class="shelf-head">{esc(s[lang])}</h3>\n        <div class="live">{tiles}</div>\n      </div>')
             continue
         top = s["id"] == "top"
-        cards = "\n".join(game_card(lang, e, data["games"][str(e["bgm"])], games["badges"], g["hours_unit"], top).replace("{folder}", "assets/img/games")
-                          for e in s["games"])
+        cards = "\n".join(game_card(lang, e, data["games"][str(e["bgm"])], games["badges"], g["hours_unit"]).replace("{folder}", "assets/img/games")
+                          for e in by_rated(s["games"], data["games"]))
         shelves.append(f'      <div>\n        <h3 class="shelf-head">{esc(s[lang])}</h3>\n        <div class="shelf{" top" if top else ""}">\n{cards}\n        </div>\n      </div>')
     creators = "".join(f'<a class="panel" href="{site["links"][c["link"]]}"><b>{esc(c["label"])}</b><strong>{esc(c["value"])}</strong><span>{esc(c["note"])}</span></a>'
                        for c in ui["creator"])
@@ -475,8 +494,10 @@ def section_games(lang, ui, site, games, data):
 def section_anime(lang, ui, site, games, data):
     a = ui["anime_ui"]
     st = data["stats"]
-    cards = "\n".join(game_card(lang, e, data["anime"][str(e["bgm"])], games["badges"], "", True).replace("{folder}", "assets/img/anime")
-                      for e in games["anime"]["items"])
+    # The 10s lead, then the rest in the order I watched them
+    items = sorted(by_rated(games["anime"]["items"], data["anime"]), key=lambda e: data["anime"][str(e["bgm"])].get("rate") != 10)
+    cards = "\n".join(game_card(lang, e, data["anime"][str(e["bgm"])], games["badges"], "", every_quote=True).replace("{folder}", "assets/img/anime")
+                      for e in items)
     return f"""  <section id="anime">
     <h2>{esc(ui['titles']['anime'])}</h2>
     <div class="stats">

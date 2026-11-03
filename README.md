@@ -76,7 +76,9 @@ translated by a tool), then run `python tools/build.py`.
 `content/games.toml` lists what goes on the shelf: the Bangumi subject id, the
 Steam app id if there is one, the names in both languages, Steam hours, badges,
 and the English quotes. Only games scored 9 or 10 go on it, plus an 8 when it
-means something (say why in a badge). Then:
+means something (say why in a badge). Each row is shown in the order I rated
+the games on Bangumi, earliest first, so the order in the file does not matter.
+Then:
 
 ```bash
 pip install pillow
