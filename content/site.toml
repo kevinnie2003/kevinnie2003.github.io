@@ -390,8 +390,8 @@ name = "咖啡伴侣"
 period = "2026.10 – 至今"
 alt = ["咖啡伴侣横幅", "游戏里的 AI 陪玩", "剧情路线图"]
 bullets = [
-  '''基于 <strong>BepInEx / Harmony</strong> 独立开发 Unity RPG《活侠传》Mod，C# <strong>3.6 万行</strong>（<strong>230+ 个运行时补丁</strong>），包含基于 <strong>2,200+ 个反编译 Lua 剧情脚本</strong>的路线图与剧情流程图、Lua 记录重放式随时存档、数值编辑等功能；<strong>两周发布 70+ 个版本</strong>，GitHub <strong>100+ star</strong>，下载 <strong>3 万+</strong>。''',
-  '''开发游戏内 <strong>Tool-Calling 攻略 Agent</strong>：<strong>15 个工具</strong>检索由剧本解析出的知识库（分岔条件、<strong>1,000+ 剧情旗标</strong>的读写索引、每条路线的数值合计）与实时存档；<strong>11 位角色人设</strong>以各自口吻作答，支持 <strong>3 档剧透</strong>，修改存档须玩家确认。''',
+  '''基于 <strong>BepInEx / Harmony</strong> 独立开发 Unity RPG《活侠传》Mod，C# <strong>5 万行</strong>（<strong>260+ 个运行时补丁</strong>），包含基于 <strong>2,200+ 个反编译 Lua 剧情脚本</strong>的路线图与剧情流程图、Lua 记录重放式随时存档、数值编辑等功能；<strong>一个月发布 90+ 个版本</strong>，支持 <strong>5 种语言</strong>，GitHub <strong>130 star</strong>，下载 <strong>4 万+</strong>。''',
+  '''开发游戏内 <strong>Tool-Calling 攻略 Agent</strong>：<strong>15 个工具</strong>检索由剧本解析出的知识库（分岔条件、<strong>1,000+ 剧情旗标</strong>的读写索引、每条路线的数值合计）与实时存档；<strong>11 位角色人设</strong>以各自口吻作答，支持 <strong>3 档剧透</strong>，修改存档须玩家确认；另设事件驱动的<strong>主动陪玩</strong>，游戏事件经<strong>筛选、合并、去重、冷却与 token 预算</strong>后才发起无工具短请求实时点评。''',
   '''搭建 <strong>20 题评测集</strong>与逐轮调试记录，据此修正检索排序、工具覆盖和提示词规则（普通模式 <strong>15/20</strong>，深度模式 <strong>18/20</strong>）；通过固定提示词前缀、长对话定点压缩成摘要、思考块原样回传，使<strong>提示词缓存命中率达 80–86%</strong>。''',
 ]
 
@@ -400,8 +400,8 @@ name = "Coffee Companion"
 period = "Oct 2026 – Present"
 alt = ["Coffee Companion banner", "The in-game AI companion", "Story route map"]
 bullets = [
-  '''Independently developed a <strong>36K-line C#</strong> mod for the Unity RPG <em>Legend of Mortal</em> on <strong>BepInEx/Harmony</strong> (<strong>230+ runtime patches</strong>), adding a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere via Lua record-and-replay, and a stat editor; shipped <strong>70+ releases in two weeks</strong>, with <strong>100+ stars</strong> and <strong>30,000+ downloads</strong>.''',
-  '''Built an in-game <strong>tool-calling AI agent</strong>: <strong>15 tools</strong> query a knowledge base built from the parsed scripts (branch conditions, a read/write index for <strong>1,000+ story flags</strong>, per-route stat totals) plus the live save; <strong>11 character personas</strong> answer in their own voice under <strong>3 spoiler levels</strong>, and any edit to the game state applies only after the player confirms.''',
+  '''Independently developed a <strong>50K-line C#</strong> mod for the Unity RPG <em>Legend of Mortal</em> on <strong>BepInEx/Harmony</strong> (<strong>260+ runtime patches</strong>), adding a story route map and flowcharts parsed from <strong>2,200+ decompiled Lua scripts</strong>, save-anywhere via Lua record-and-replay, and a stat editor; shipped <strong>90+ releases in a month</strong> in <strong>5 languages</strong>, with <strong>130 stars</strong> and <strong>40,000+ downloads</strong>.''',
+  '''Built an in-game <strong>tool-calling AI agent</strong>: <strong>15 tools</strong> query a knowledge base built from the parsed scripts (branch conditions, a read/write index for <strong>1,000+ story flags</strong>, per-route stat totals) plus the live save; <strong>11 character personas</strong> answer in their own voice under <strong>3 spoiler levels</strong>, and any edit to the game state applies only after the player confirms; an event-driven <strong>proactive companion</strong> comments in real time, sending a short tool-free request only after game events pass <strong>filtering, merging, deduplication, cooldown and a token budget</strong>.''',
   '''Built a <strong>20-question graded eval harness</strong> with per-turn debug traces, and used it to fix retrieval ranking, tool coverage, and prompt rules (<strong>15/20</strong> in standard mode, <strong>18/20</strong> in deep mode); kept a stable prompt prefix, compressed long chats into a summary at fixed points, and passed thinking blocks back unchanged, for an <strong>80–86% prompt cache hit rate</strong>.''',
 ]
 
