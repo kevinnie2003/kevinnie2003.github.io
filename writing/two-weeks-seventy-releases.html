@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://kevinnie2003.github.io/assets/img/og/two-weeks-seventy-releases.jpg" />
 <meta name="theme-color" content="#A9D8F5" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2034%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2221%22%20rx%3D%2215%22%20ry%3D%228.5%22%20fill%3D%22%23FFD447%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22%23FFD447%22/%3E%3Cpath%20d%3D%22M2%2012%20q%202%20-3%205%20-1%20q%20-2%202%20-5%201z%22%20fill%3D%22%23F08A24%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229.5%22%20r%3D%221.3%22%20fill%3D%22%233A2E29%22/%3E%3Cpath%20d%3D%22M23%2018%20q%206%20-3%208%202%22%20stroke%3D%22%23E9A800%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=2d88744a" />
-<link rel="stylesheet" href="../assets/css/site.css?v=2d88744a" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=5f3ed09d" />
+<link rel="stylesheet" href="../assets/css/site.css?v=5f3ed09d" />
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -112,6 +112,8 @@
 
 <p>Cost was the other half. Each question takes several rounds of lookups, and each round resends the whole conversation, so the prompt cache decides the bill. A cache is a contract: the prefix has to be byte-identical every time. That meant a fixed system prompt for each question, long histories compressed at stable points instead of trimmed every turn, and the model's own reasoning blocks passed back unchanged. Dropping those blocks had also been the cause of a bug where Claude sometimes replied with nothing at all, and other providers have their own versions of the same requirement. One remaining leak was the final round: when a question ran out of lookups, the forced answer dropped the tool definitions, and with them the entire cached prefix. Keeping the tools and forbidding calls fixed it. Across the latest run, 80 to 86 percent of input tokens were cache hits.</p>
 
+<p>Later I added a proactive companion: one character stays in a corner of the screen and says a line or two after the player makes a choice, rolls the dice or finishes a fight. Most "desktop pet" style companion agents work from screenshots, handing the screen to a vision model every so often. I did not go that way. This one never looks at an image; it reads only what the game already has as data: dialogue, choices, dice results, and changes to stats and affinity. Images cost more tokens than text. Reading them is also slow, so by the time the line comes out the story has moved on. And screenshots are taken on a timer, so there is no way to know whether anything worth mentioning just happened. Reading game events lets code decide first whether to speak at all: which events are worth a remark, merging ones that come close together, skipping repeats, a cooldown after each line, and how much of the token budget is left for this launch. Only when all of that passes does the mod send one short request with no tools.</p>
+
 <h2>After launch: players I can't read</h2>
 
 <p>Once Korean-speaking and Traditional Chinese-speaking players found the mod, a new stream of feedback appeared, not on GitHub, Bilibili or the QQ group but in threads on the Korean forum DC Inside and the Traditional Chinese forums Bahamut and PTT, in languages I read slowly or not at all. So I built a small page that collects every post about the mod on those boards, gives each one a Chinese title and summary, sorts it into praise, problem, help request, guide or news, and checks for new posts every day. Most of the lessons in this section came out of that page. It also turned up a Korean player's translated fork of an earlier version, with about 320 downloads of its patch. That is good evidence that non-Chinese players want the mod, and a reminder of what a fork costs once upstream keeps moving.</p>
@@ -170,7 +172,7 @@
   <li><b>Read the data first.</b> Logs, saves and traces settled more arguments than any amount of reasoning about what might be happening.</li>
 </ul>
 
-<p>By now the mod has had 78 releases (the latest is 3.4.0) and 466 commits, with more than 100 stars on GitHub and about 30,000 downloads across all channels, in five interface languages. What I am proudest of is how few of those releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
+<p>By now the mod has had 92 releases (the latest is 3.7.0) and 588 commits, with 130 stars on GitHub and about 40,000 downloads across all channels, in five interface languages. What I am proudest of is how few of those releases were caused by a mistake in the release before. The model brought the speed. The process kept it from turning into churn: one person in the game testing, a short list of things that always wait for approval, and every correction written down so it does not have to be made twice.</p>
   </div>
   <footer class="post-foot">
     <p>The idea of grounding a model in mined game data before letting it act also drives <a href="knowing-what-the-button-is-called.html">Knowing what the button is called</a>. Validating what a model produces before a player sees it is the subject of <a href="vibes-with-extra-steps.html">Vibes with extra steps</a>.</p>
@@ -183,7 +185,7 @@
   <p class="bye">Come say hi~</p>
   <nav><a href="mailto:kevinnie2003@gmail.com">Email</a><a href="https://github.com/kevinnie2003">GitHub</a><a href="https://linkedin.com/in/mingxuan-nie">LinkedIn</a><a href="https://steamcommunity.com/id/kevinnie03/">Steam</a><a href="https://www.xiaoheihe.cn/app/user/profile/11356239">Xiaoheihe</a><a href="https://space.bilibili.com/167880864">Bilibili</a><a href="https://bgm.tv/user/xiaoyaya">Bangumi</a></nav>
 </footer>
-<script src="../assets/js/site.js?v=2d88744a"></script>
+<script src="../assets/js/site.js?v=5f3ed09d"></script>
 <script>window.goatcounter={referrer:function(r){try{var s=sessionStorage.getItem("kn-ref");if(s!==null){sessionStorage.removeItem("kn-ref");return s}}catch(e){}return r}};</script>
 <script data-goatcounter="https://kevinnie2003.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
